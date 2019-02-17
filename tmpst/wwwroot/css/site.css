@@ -1,0 +1,117 @@
+﻿/*
+    Author Info:
+
+    Name(s) - Ross Taggart
+    Student Number - S1828840
+    Date Created - 17/02/2019
+    Version - 1.0.0
+
+    Description:
+    The main css file for the application
+*/
+
+/*------------------------------------------------------
+>>> TABLE OF CONTENTS:
+--------------------------------------------------------
+# Common
+# Navbar
+    ## Navbar Item Hover
+# Containers
+    # Card
+# Media
+--------------------------------------------------------
+*/
+
+/*--------------------------------------------------------------------------
+    # Common
+---------------------------------------------------------------------------*/
+body {
+    padding-top: 55px;
+    padding-bottom: 20px;
+}
+
+.body-content {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+/*--------------------------------------------------------------------------
+    END: # Common
+---------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------
+    # Navbar
+---------------------------------------------------------------------------*/
+.navbar-item-expand {
+    transition: all .2s ease-in-out;
+}
+
+    .navbar-item-expand:hover {
+        transform: scale(1.1);
+        color: blue !important;
+    }
+
+.navbar-dropdown-item-expand:hover {
+    color: blue !important;
+}
+/*--------------------------------------------------------------------------
+    END: # Navbar
+---------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------
+    # Containers
+---------------------------------------------------------------------------*/
+.card {
+    background: #fff;
+    color: #444;
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+    /*min-height: 120px;*/
+    width: 100%;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-decoration: none;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+/*--------------------------------------------------------------------------
+    END: # Containers
+---------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------
+    # Media
+---------------------------------------------------------------------------*/
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+/* Ensures that the navbar items won't expand of page on mobile or tablet */
+@media screen and (max-width: 995px)
+{
+    .navbar-item-expand:hover {
+        transform: none;
+        color: blue !important;
+    }
+}
+/*--------------------------------------------------------------------------
+    END: # Media
+---------------------------------------------------------------------------*/

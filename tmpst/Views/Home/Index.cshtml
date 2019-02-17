@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/Layout/_Layout.cshtml";
+}
+
+@*
+    Author Info:
+
+    Name(s) - Ross Taggart
+    Student Number - S1828840
+    Date Created - 17/02/2019
+    Version - 1.0.0
+
+    Description:
+    Page that will contain all partial views in use within the application
+*@
+
+<div id="overview-page">
+    <div id="overview-title-container" class="text-center">
+        <h3>tmpst</h3>
+        <p>Weather processing platform</p>
+    </div>
+
+    <div class="card w-100">
+        @await Html.PartialAsync("~/Views/Partials/Overview/_OverviewLandingPartial.cshtml")
+    </div>
+</div>
+<link href="~/css/Overview/overview.css" rel="stylesheet" />
