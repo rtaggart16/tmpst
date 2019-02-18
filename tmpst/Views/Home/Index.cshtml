@@ -26,11 +26,15 @@
         @await Html.PartialAsync("~/Views/Partials/Overview/_OverviewLandingPartial.cshtml")
     </div>
 </div>
-    <div id="weather-page">
-        @await Html.PartialAsync("~/Views/Partials/Weather/_WeatherLandingPage.cshtml")
+    <div style="display:none;" id="weather-page">
+        @await Html.PartialAsync("~/Views/Partials/Weather/_WeatherLandingPage.cshtml", Model.Apixu)
     </div>
 </div>
 <link href="~/css/Overview/overview.css" rel="stylesheet" />
 <script>
-
+    $('#weather-container').on('click', function () {
+        $('#overview-page').fadeOut(300).promise().done(function () {
+            $('#weather-page').fadeIn(300);
+        });
+    });
 </script>
