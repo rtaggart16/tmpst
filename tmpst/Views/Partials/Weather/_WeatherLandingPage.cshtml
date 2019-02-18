@@ -1,5 +1,5 @@
 ﻿@model tmpst.Models.ApixuConfiguration
-
+<link href="~/css/Weather/weather.css" rel="stylesheet" />
 @*
     Author Info:
 
@@ -12,8 +12,7 @@
     Page that will contain all weather associated views
 *@
 
+
 <div id="weather-query-container">
     @await Html.PartialAsync("~/Views/Partials/Weather/_WeatherQueryBuilder.cshtml", Model)
-
 </div>
-<link href="~/css/Weather/weather.css" rel="stylesheet" />

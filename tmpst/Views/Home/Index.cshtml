@@ -3,6 +3,7 @@
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/Layout/_Layout.cshtml";
 }
+<link href="~/css/Overview/overview.css" rel="stylesheet" />
 
 @*
     Author Info:
@@ -15,7 +16,6 @@
     Description:
     Page that will contain all partial views in use within the application
 *@
-<div id="main-page">
 <div id="overview-page">
     <div id="overview-title-container" class="text-center">
         <h3>tmpst</h3>
@@ -26,11 +26,9 @@
         @await Html.PartialAsync("~/Views/Partials/Overview/_OverviewLandingPartial.cshtml")
     </div>
 </div>
-    <div style="display:none;" id="weather-page">
-        @await Html.PartialAsync("~/Views/Partials/Weather/_WeatherLandingPage.cshtml", Model.Apixu)
-    </div>
+<div style="display:none;" class="new-page" id="weather-page">
+    @await Html.PartialAsync("~/Views/Partials/Weather/_WeatherLandingPage.cshtml", Model.Apixu)
 </div>
-<link href="~/css/Overview/overview.css" rel="stylesheet" />
 <script>
     $('#weather-container').on('click', function () {
         $('#overview-page').fadeOut(300).promise().done(function () {
