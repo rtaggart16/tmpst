@@ -4,15 +4,46 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using tmpst.Models;
 
 namespace tmpst.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApixuConfiguration _config;
+        private readonly AllEarthquakeModels _earthquakeConfig;
+        private readonly PopulationAPIUrl _populationConfig;
+        private readonly TrafficAPIKeys _trafficConfig;
+        private readonly UserSecretCollection _allSecrets;
+
+        public HomeController(IOptions<ApixuConfiguration> config, IOptions<EarthquakeHourlyUrls> hourly, IOptions<EarthquakeDailyUrls> daily,
+            IOptions<EarthquakeWeeklyUrls> weekly, IOptions<EarthquakeMonthlyUrls> monthly, IOptions<PopulationAPIUrl> population,
+            IOptions<TrafficAPIKeys> traffic)
+        {
+            _config = config.Value;
+            _earthquakeConfig = new AllEarthquakeModels
+            {
+                HourlyUrls = hourly.Value,
+                DailyUrls = daily.Value,
+                WeeklyUrls = weekly.Value,
+                MonthlyUrls = monthly.Value
+            };
+            _populationConfig = population.Value;
+            _trafficConfig = traffic.Value;
+
+            _allSecrets = new UserSecretCollection
+            {
+                Apixu = _config,
+                Population = _populationConfig,
+                Earthquakes = _earthquakeConfig,
+                Traffic = _trafficConfig
+            };
+        }
+
         public IActionResult Index()
         {
-            return View();
+            return View(_allSecrets);
         }
 
         public IActionResult About()

@@ -18,6 +18,17 @@ namespace tmpst.Models
      */
 
     /// <summary>
+    /// Model which contains all the information of all the APIs
+    /// </summary>
+    public class UserSecretCollection
+    {
+        public ApixuConfiguration Apixu { get; set; }
+        public AllEarthquakeModels Earthquakes { get; set; }
+        public PopulationAPIUrl Population { get; set; }
+        public TrafficAPIKeys Traffic { get; set; }
+    }
+
+    /// <summary>
     /// Class which contains the API key required to communicate with the APIXU API
     /// </summary>
     public class ApixuConfiguration
