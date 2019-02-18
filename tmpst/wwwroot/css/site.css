@@ -28,6 +28,7 @@
 body {
     padding-top: 55px;
     padding-bottom: 20px;
+    background: #e2e1e0;
 }
 
 .body-content {
@@ -43,6 +44,7 @@ body {
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;
 }
+
 
 /* QR code generator */
 #qrCode {

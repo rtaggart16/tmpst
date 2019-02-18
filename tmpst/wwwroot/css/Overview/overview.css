@@ -1,0 +1,51 @@
+﻿/*
+    Author Info:
+
+    Name(s) - Ross Taggart
+    Student Number - S1828840
+    Date Created - 17/02/2019
+    Version - 1.0.0
+
+    Description:
+    The css file which contains styles applicable to the overview section of the application
+*/
+
+/*------------------------------------------------------
+>>> TABLE OF CONTENTS:
+--------------------------------------------------------
+# Common
+# Page Specific
+    ## Placeholder Style
+    ## Page Container Style
+--------------------------------------------------------
+*/
+
+/*--------------------------------------------------------------------------
+    # Common
+---------------------------------------------------------------------------*/
+body {
+    padding-top: 55px;
+    padding-bottom: 20px;
+    background: #e2e1e0;
+}
+/*--------------------------------------------------------------------------
+    END: # Common
+---------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------
+    # Page Specific
+---------------------------------------------------------------------------*/
+.placeholder {
+    background: #e2e1e0;
+    padding-top: 55px !important;
+    padding-bottom: 20px !important;
+}
+
+.overview-card-container {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+/*--------------------------------------------------------------------------
+    END: # Common
+---------------------------------------------------------------------------*/
