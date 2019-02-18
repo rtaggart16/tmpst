@@ -26,9 +26,9 @@
     # Common
 ---------------------------------------------------------------------------*/
 body {
-    padding-top: 55px;
+    padding-top: 55px !important;
     padding-bottom: 20px;
-    background: #e2e1e0;
+    background-color: #4d648d !important;
 }
 
 .body-content {
@@ -73,16 +73,38 @@ body {
 
     .navbar-item-expand:hover {
         transform: scale(1.1);
-        color: blue !important;
+        color: #d0e1f9 !important;
     }
 
-.navbar-dropdown-item-expand:hover {
-    color: blue !important;
+.navbar-dropdown-item-expand{
+    color:white !important;
 }
+
+    .navbar-dropdown-item-expand:hover {
+        color: #283655 !important;
+    }
+
+.navbar-dropdown-custom {
+    background-color: #343A40 !important;
+    color:white !important;
+}
+
+.navbar-dropdown-custom:hover {
+    background-color: #343A40 !important;
+    color: white !important;
+}
+
+#tmpst-title{
+    color:white !important;
+}
+
+#tmpst-desc{
+    color:white !important;
+}
+
 /*--------------------------------------------------------------------------
     END: # Navbar
 ---------------------------------------------------------------------------*/
-
 /*--------------------------------------------------------------------------
     # Containers
 ---------------------------------------------------------------------------*/
@@ -121,7 +143,7 @@ body {
 {
     .navbar-item-expand:hover {
         transform: none;
-        color: blue !important;
+        color: #d0e1f9 !important;
     }
 }
 /*--------------------------------------------------------------------------
