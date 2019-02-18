@@ -1,0 +1,17 @@
+﻿@model tmpst.Models.ApixuConfiguration
+@*
+    Author Info:
+
+    Name(s) - Mark Riley
+    Student Number - S1829984
+    Date Created - 18/02/2019
+    Version - 1.0.0
+
+    Description:
+    Page that will contain all weather associated views
+*@
+
+<div id="weather-query-container">
+    @await Html.PartialAsync("~/Views/Partials/Weather/_WeatherQueryBuilder.cshtml")
+
+</div>

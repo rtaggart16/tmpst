@@ -15,7 +15,7 @@
     Description:
     Page that will contain all partial views in use within the application
 *@
-
+<div id="main-page">
 <div id="overview-page">
     <div id="overview-title-container" class="text-center">
         <h3>tmpst</h3>
@@ -26,4 +26,11 @@
         @await Html.PartialAsync("~/Views/Partials/Overview/_OverviewLandingPartial.cshtml")
     </div>
 </div>
+    <div id="weather-page">
+        @await Html.PartialAsync("~/Views/Partials/Weather/_WeatherLandingPage.cshtml")
+    </div>
+</div>
 <link href="~/css/Overview/overview.css" rel="stylesheet" />
+<script>
+
+</script>
