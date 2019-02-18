@@ -12,9 +12,43 @@
 *@
 <div class="row">
     <div class="col-12">
-    <div class="card">
+        <div class="card">
+            <div id="input-container">
+                <input class="form-control" id="location-input" placeholder="Glasgow" />
+                <br />
+                <button onclick="getCurrentWeather()">Get Weather</button>
+            </div>
 
-    </div>
+            <div id="weather-data-container">
+                <div id="weather-icon-container" style="display:none">
+
+                </div>
+
+            </div>
+        </div>
 </div>
 </div>
+<script>
+    let key = '@Model.API_Key';
 
+    function getCurrentWeather() {
+        let location = $('#location-input').val();
+        contactAPI(location);
+    }
+
+
+    function contactAPI(location) {
+        console.log(key)
+        $.getJSON('https://api.apixu.com/v1/current.json?key=' + key + '&q=' + location, function (data) {
+
+            console.log('DATA: ', data);
+
+            // Icon looks cute
+            $('#weather-icon-container').append('<img src="' + data.current.condition.icon + '"></img>').promise().done(function () {
+                $('#weather-icon-container').fadeIn(300);
+            });
+
+        });
+    }
+
+</script>
