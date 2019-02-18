@@ -1,0 +1,47 @@
+﻿@model tmpst.Models.UserSecretCollection
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div style="height:400px" id="result-map">
+                <button class="btn btn-success" onclick="analysePlaceData()">Analyse Data</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function initMap(latitude, longitude, placeName) {
+        console.log('Lat: ', latitude);
+        console.log('Lon: ', longitude);
+
+        let myLatLng;
+
+        if (latitude != undefined || longitude != undefined) {
+            myLatLng = { lat: latitude, lng: longitude };
+            
+            var map = new google.maps.Map(document.getElementById('result-map'), {
+                zoom: 4,
+                center: myLatLng
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Weather Location'
+            });
+
+            let infoWindow = new google.maps.InfoWindow({
+                content: '<h2>' + placeName + '</h2>' +
+                    '<button class>Analyse Data</button>'
+                        
+            });
+
+            $('#weather-map-container').fadeIn(300);
+        }
+        
+        
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6yo58EUHrSdjTIMKz_lP2jt77KE-NfOI&callback=initMap">
+</script>

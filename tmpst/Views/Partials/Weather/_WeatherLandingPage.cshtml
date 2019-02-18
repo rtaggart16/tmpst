@@ -1,4 +1,4 @@
-﻿@model tmpst.Models.ApixuConfiguration
+﻿@model tmpst.Models.UserSecretCollection
 <link href="~/css/Weather/weather.css" rel="stylesheet" />
 @*
     Author Info:
@@ -12,7 +12,19 @@
     Page that will contain all weather associated views
 *@
 
+<div id="weather-page">
+    <div id="weather-title-container" class="text-center">
+        <h3 class="tmpst-title">Weather Analysis</h3>
+        <p class="tmpst-desc">Analyse current and future weather</p>
+    </div>
 
-<div id="weather-query-container">
-    @await Html.PartialAsync("~/Views/Partials/Weather/_WeatherQueryBuilder.cshtml", Model)
+    <div id="weather-query-container">
+        @await Html.PartialAsync("~/Views/Partials/Weather/_WeatherQueryBuilder.cshtml", Model)
+    </div>
+
+    <div style="display:none" id="weather-map-container">
+        @await Html.PartialAsync("~/Views/Partials/Weather/Results/_MapResultContainer.cshtml")
+    </div>
+
 </div>
+

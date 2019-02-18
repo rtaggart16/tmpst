@@ -26,6 +26,7 @@ namespace tmpst.Models
         public AllEarthquakeModels Earthquakes { get; set; }
         public PopulationAPIUrl Population { get; set; }
         public TrafficAPIKeys Traffic { get; set; }
+        public GoogleMapsKey Maps { get; set; }
     }
 
     /// <summary>
@@ -110,5 +111,13 @@ namespace tmpst.Models
     {
         public string App_ID { get; set; }
         public string App_Code { get; set; }
+    }
+
+    /// <summary>
+    /// Class which contains the API key of the google map
+    /// </summary>
+    public class GoogleMapsKey
+    {
+        public string Api_Key { get; set; }
     }
 }

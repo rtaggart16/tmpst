@@ -1,4 +1,4 @@
-﻿@model tmpst.Models.ApixuConfiguration
+﻿@model tmpst.Models.UserSecretCollection
 @*
     Author Info:
 
@@ -29,7 +29,7 @@
 </div>
 </div>
 <script>
-    let key = '@Model.API_Key';
+    let key = '@Model.Apixu.API_Key';
 
     function getCurrentWeather() {
         let location = $('#location-input').val();
@@ -47,6 +47,8 @@
             $('#weather-icon-container').append('<img src="' + data.current.condition.icon + '"></img>').promise().done(function () {
                 $('#weather-icon-container').fadeIn(300);
             });
+
+            initMap(data.location.lat, data.location.lon);
 
         });
     }
