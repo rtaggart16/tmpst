@@ -150,6 +150,13 @@
 
         $.getJSON(requestUrl, function (data) {
 
+            if (requestType == 'forecast') {
+                /* MARK: Do your thing
+                 *  Use $('#[id]').append('[Your code]')
+                 *  Use data attributes in email
+                 * */
+            }
+
             console.log('DATA: ', data);
             
             //initMap(data.location.lat, data.location.lon);
