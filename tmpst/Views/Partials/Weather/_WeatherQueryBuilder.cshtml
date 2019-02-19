@@ -10,6 +10,8 @@
     Description:
     Page that will container which builds query for user
 *@
+
+
 <div class="row">
     <div class="col-12">
         <div class="card weather-card-container">
@@ -142,6 +144,8 @@
 
     function contactAPI(requestType, location) {
 
+        // TODO: Clear dynamic fields
+
         let requestUrl = 'https://api.apixu.com/v1/' + requestType + '.json?key=' + key + '&q=' + location;
 
         if (requestType == 'forecast') {
@@ -149,47 +153,98 @@
         }
 
         $.getJSON(requestUrl, function (data) {
-            
+
             if (requestType == 'forecast') {
                 /* MARK: Do your thing
                  *  Use $('#[id]').append('[Your code]')
                  *  Use data attributes in email
                  * */
+                let forecastDates = [];
 
-                let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-                let counter = 0
-                let firstPass = true;
-                let isComplete = false;
+                $.each(data.forecast.forecastday, function (key, val) {
+                    let dateObject = new Date(val.date);
+                    forecastDates.push(dateObject);
+                });
+                updateForecastTableHead(forecastDates);
+                updateForecastTableBody(data.forecast.forecastday);
 
-
-                for (let i = data.current.is_day; counter != 7; i++) {
-                    if (firstPass == true) {
-                        $('#forecast-tbl-head').append('<tr id="temp-tbl-head-row"></tr>');
-                        firstPass = false;
-                    }
-                    if (isComplete == true) {
-                        i = 0;
-                    }
-                    let day = days[i];
-                    console.log(day);
-                    
-                    if (i == 6) {
-                        i = 0;
-                        isComplete = true;
-
-                    }
-                
-                    $('#temp-tbl-head-row').append('<th>' + day + '</th>')
-                    counter++
-                }
-
+                $('#wizard-collapse-expand').click().promise().done(function () {
+                    initMap(data.location.lat, data.location.lon);
+                    $('#weather-forecast-data-container').fadeIn(300);
+                });
             }
 
             console.log('DATA: ', data);
-            
+
             //initMap(data.location.lat, data.location.lon);
 
         });
+    }
+
+    function updateForecastTableHead(dates) {
+        let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        let counter = 0
+        let firstPass = true;
+        let isComplete = false;
+
+        $('#forecast-tbl-head').append('<tr id="temp-tbl-head-row"></tr>');
+
+        $.each(dates, function (key, val) {
+            let day = days[val.getDay()];
+            $('#temp-tbl-head-row').append('<th>' + day + '</th>')
+        });
+        
+    }
+
+    function updateForecastTableBody(apiData) {
+        let icons = [];
+        let avgTemps = [];
+        let maxTemps = [];
+        let conditionTexts = [];
+
+        $.each(apiData, function (key, val) {
+            icons.push(val.day.condition.icon);
+            avgTemps.push(val.day.avgtemp_c);
+            maxTemps.push(val.day.maxtemp_c);
+            conditionTexts.push(val.day.condition.text);
+        });
+
+        console.log('ICONS', icons);
+        console.log('AVGTEMPS', avgTemps);
+        console.log('MAXTEMPS', maxTemps);
+        console.log('CONDITIONS', conditionTexts);
+
+        $('#forecast-tbl-body').append('<tr><td><img src="' + icons[0] + '" /></td>' +
+            '<td><img src="' + icons[1] + '" /></td>' +
+            '<td><img src="' + icons[2] + '" /></td>' +
+            '<td><img src="' + icons[3] + '" /></td>' +
+            '<td><img src="' + icons[4] + '" /></td>' +
+            '<td><img src="' + icons[5] + '" /></td>' +
+            '<td><img src="' + icons[6] + '" /></td></tr>');
+
+        $('#forecast-tbl-body').append('<tr><td>' + conditionTexts[0] + '</td>' +
+            '<td>' + conditionTexts[0] + '</td>' +
+            '<td>' + conditionTexts[0] + '</td>' +
+            '<td>' + conditionTexts[0] + '</td>' +
+            '<td>' + conditionTexts[0] + '</td>' +
+            '<td>' + conditionTexts[0] + '</td>' +
+            '<td>' + conditionTexts[0] + '</td></tr>');
+
+        $('#forecast-tbl-body').append('<tr><td><strong>Max Temp</strong> - ' + maxTemps[0] + '</td>' +
+            '<td><strong>Max Temp</strong> - ' + maxTemps[1] + '&#8451</td>' + 
+            '<td><strong>Max Temp</strong> - ' + maxTemps[2] + '&#8451</td>' + 
+            '<td><strong>Max Temp</strong> - ' + maxTemps[3] + '&#8451</td>' + 
+            '<td><strong>Max Temp</strong> - ' + maxTemps[4] + '&#8451</td>' + 
+            '<td><strong>Max Temp</strong> - ' + maxTemps[5] + '&#8451</td>' + 
+            '<td><strong>Max Temp</strong> - ' + maxTemps[6] + '&#8451</td></tr>');
+
+        $('#forecast-tbl-body').append('<tr><td><strong>Avg Temp</strong> - ' + avgTemps[0] + '</td>' +
+            '<td><strong>Avg Temp</strong> - ' + avgTemps[1] + '&#8451</td>' + 
+            '<td><strong>Avg Temp</strong> - ' + avgTemps[2] + '&#8451</td>' +
+            '<td><strong>Avg Temp</strong> - ' + avgTemps[3] + '&#8451</td>' +
+            '<td><strong>Avg Temp</strong> - ' + avgTemps[4] + '&#8451</td>' +
+            '<td><strong>Avg Temp</strong> - ' + avgTemps[5] + '&#8451</td>' +
+            '<td><strong>Avg Temp</strong> - ' + avgTemps[6] + '&#8451</td></tr>');
     }
 
 </script>
