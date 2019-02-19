@@ -149,6 +149,41 @@
         }
 
         $.getJSON(requestUrl, function (data) {
+            
+            if (requestType == 'forecast') {
+                /* MARK: Do your thing
+                 *  Use $('#[id]').append('[Your code]')
+                 *  Use data attributes in email
+                 * */
+
+                let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+                let counter = 0
+                let firstPass = true;
+                let isComplete = false;
+
+
+                for (let i = data.current.is_day; counter != 7; i++) {
+                    if (firstPass == true) {
+                        $('#forecast-tbl-head').append('<tr id="temp-tbl-head-row"></tr>');
+                        firstPass = false;
+                    }
+                    if (isComplete == true) {
+                        i = 0;
+                    }
+                    let day = days[i];
+                    console.log(day);
+                    
+                    if (i == 6) {
+                        i = 0;
+                        isComplete = true;
+
+                    }
+                
+                    $('#temp-tbl-head-row').append('<th>' + day + '</th>')
+                    counter++
+                }
+
+            }
 
             console.log('DATA: ', data);
             
