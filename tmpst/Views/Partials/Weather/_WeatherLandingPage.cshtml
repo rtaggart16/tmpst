@@ -3,10 +3,10 @@
 @*
     Author Info:
 
-    Name(s) - Mark Riley
-    Student Number - S1829984
+    Name(s) - Mark Riley, Ross Taggart
+    Student Number - S1829984, S1828840
     Date Created - 18/02/2019
-    Version - 1.0.0
+    Version - 1.0.1
 
     Description:
     Page that will contain all weather associated views
@@ -24,6 +24,11 @@
 
     <div style="display:none" id="weather-map-container">
         @await Html.PartialAsync("~/Views/Partials/Weather/Results/_MapResultContainer.cshtml")
+    </div>
+
+    <!-- Only used when the user requests forecast data -->
+    <div style="display:none" id="weather-forecast-data-container">
+        @await  Html.PartialAsync("~/Views/Partials/Weather/Results/_ForecastResultContainer.cshtml")
     </div>
 
 </div>

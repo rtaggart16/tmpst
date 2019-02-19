@@ -2,34 +2,137 @@
 @*
     Author Info:
 
-    Name(s) - Mark Riley
-    Student Number - S1829984
+    Name(s) - Mark Riley, Ross Taggart
+    Student Number - S1829984, S1828840
     Date Created - 18/02/2019
-    Version - 1.0.0
+    Version - 1.0.1
 
     Description:
     Page that will container which builds query for user
 *@
 <div class="row">
     <div class="col-12">
-        <div class="card">
-            <div id="input-container">
-                <input class="form-control" id="location-input" placeholder="Glasgow" />
-                <br />
-                <button onclick="getCurrentWeather()">Get Weather</button>
+        <div class="card weather-card-container">
+            <div class="row">
+                <div id="collapsed-text-container" class="col-11 text-center">
+                    <h5 style="display:none" id="weather-wizard-collapsed-title">Weather Wizard</h5>
+                </div>
+                <div id="wizard-collapse-expand" class="col-1 text-right tmpst-clickable">
+                    <i id="weather-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i>
+                    <i style="display:none" id="weather-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                </div>
             </div>
+            <div id="weather-wizard-container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h5>Weather Wizard</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <select class="form-control" id="method-type-select">
+                            <option value="current">Current Conditions</option>
+                            <option value="forecast">Forecast</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-control" id="input-type-select">
+                            <option value="plcName">Place Name</option>
+                            <option value="latlng">Latitude and Longitude</option>
+                            <option value="pstcode">Postcode</option>
+                        </select>
+                    </div>
+                </div>
 
-            <div id="weather-data-container">
-                <div id="weather-icon-container" style="display:none">
+                <div id="input-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h6>Input</h6>
+                        </div>
+                    </div>
+                    <div style="display:none;" id="lat-long-input-container">
+                        <div class="row">
+                            <div class="col">
+                                <input id="latitude-input" class="form-control" placeholder="Latitude" />
+                            </div>
+                            <div class="col">
+                                <input id="longitude-input" class="form-control" placeholder="Longitude" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="name-and-postcode-input-container">
+                        <div class="row">
+                            <div class="col">
+                                <input id="name-or-postcode-input" class="form-control" placeholder="Name or Postcode" />
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
 
+                <div id="submit-weather-request-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <button id="submit-weather-request-btn" onclick="submitWeatherRequest()" class="btn btn-success w-100">Submit</button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
-</div>
+    </div>
 </div>
 <script>
     let key = '@Model.Apixu.API_Key';
+
+    $('#input-type-select').on('change', function () {
+        console.log($('#input-type-select').val());
+
+        let chosenType = $('#input-type-select').val();
+
+        if (chosenType == 'latlng') {
+            $('#name-and-postcode-input-container').fadeOut(300).promise().done(function () {
+                $('#lat-long-input-container').fadeIn(300);
+            });
+        }
+        else {
+            $('#lat-long-input-container').fadeOut(300).promise().done(function () {
+                $('#name-and-postcode-input-container').fadeIn(300);
+            });
+        }
+    });
+
+    $('#wizard-collapse-expand').click(function () {
+        $('#weather-wizard-container').slideToggle("slow", function () {
+            if (!$('#weather-wizard-container').is(':visible')) {
+                $('#weather-wizard-arrow-up').fadeOut().promise().done(function () {
+                    $('#weather-wizard-arrow-down').fadeIn();
+                    $('#weather-wizard-collapsed-title').fadeIn();
+                });
+            }
+            else {
+                $('#weather-wizard-arrow-down').fadeOut().promise().done(function () {
+                    $('#weather-wizard-arrow-up').fadeIn();
+                    $('#weather-wizard-collapsed-title').fadeOut();
+                });
+            }
+        });
+    });
+
+    function submitWeatherRequest() {
+        let dataType = $('#method-type-select').val();
+        let inputType = $('#input-type-select').val();
+        let location = '';
+
+        if (inputType == 'latlng') {
+            location = $('#latitude-input').val() + ',' + $('#longitude-input').val();
+        }
+        else {
+            location = $('#name-or-postcode-input').val();
+        }
+
+        contactAPI(dataType, location);
+    }
 
     function getCurrentWeather() {
         let location = $('#location-input').val();
@@ -37,18 +140,19 @@
     }
 
 
-    function contactAPI(location) {
-        console.log(key)
-        $.getJSON('https://api.apixu.com/v1/current.json?key=' + key + '&q=' + location, function (data) {
+    function contactAPI(requestType, location) {
+
+        let requestUrl = 'https://api.apixu.com/v1/' + requestType + '.json?key=' + key + '&q=' + location;
+
+        if (requestType == 'forecast') {
+            requestUrl = requestUrl + '&days=7';
+        }
+
+        $.getJSON(requestUrl, function (data) {
 
             console.log('DATA: ', data);
-
-            // Icon looks cute
-            $('#weather-icon-container').append('<img src="' + data.current.condition.icon + '"></img>').promise().done(function () {
-                $('#weather-icon-container').fadeIn(300);
-            });
-
-            initMap(data.location.lat, data.location.lon);
+            
+            //initMap(data.location.lat, data.location.lon);
 
         });
     }
