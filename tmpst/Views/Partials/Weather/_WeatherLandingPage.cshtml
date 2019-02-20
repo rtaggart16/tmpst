@@ -21,10 +21,6 @@
         @await Html.PartialAsync("~/Views/Partials/Weather/_WeatherQueryBuilder.cshtml", Model)
     </div>
 
-    <div style="display:none" id="weather-current-data-container">
-        @await  Html.PartialAsync("~/Views/Partials/Weather/Results/_CurrentWeatherResult.cshtml")
-    </div>
-
     <div style="display:none" id="weather-map-container">
         @await Html.PartialAsync("~/Views/Partials/Weather/Results/_MapResultContainer.cshtml")
     </div>
@@ -34,5 +30,8 @@
         @await  Html.PartialAsync("~/Views/Partials/Weather/Results/_ForecastResultContainer.cshtml")
     </div>
 
+    <div style="display:none" id="weather-current-data-container">
+        @await  Html.PartialAsync("~/Views/Partials/Weather/Results/_CurrentWeatherResult.cshtml")
+    </div>
 </div>
 

@@ -122,6 +122,7 @@
     });
 
     function submitWeatherRequest() {
+        
         let dataType = $('#method-type-select').val();
         let inputType = $('#input-type-select').val();
         let location = '';
@@ -132,8 +133,11 @@
         else {
             location = $('#name-or-postcode-input').val();
         }
-
-        contactAPI(dataType, location);
+        resetWeatherPage();
+        setTimeout(function () {
+            contactAPI(dataType, location);
+        }, 500);
+        
     }
 
     function getCurrentWeather() {
@@ -155,10 +159,6 @@
         $.getJSON(requestUrl, function (data) {
 
             if (requestType == 'forecast') {
-                /* MARK: Do your thing
-                 *  Use $('#[id]').append('[Your code]')
-                 *  Use data attributes in email
-                 * */
                 let forecastDates = [];
 
                 $.each(data.forecast.forecastday, function (key, val) {
@@ -169,8 +169,21 @@
                 updateForecastTableBody(data.forecast.forecastday);
 
                 $('#wizard-collapse-expand').click().promise().done(function () {
-                    initMap(data.location.lat, data.location.lon);
-                    $('#weather-forecast-data-container').fadeIn(300);
+                    initMap(data.location.lat, data.location.lon, data.location.name, 'result-map');
+                    console.log('REACHED FADE INS');
+                    $('#weather-map-container').fadeIn(300).promise().done(function () {
+                        console.log('MAP FADED IN');
+                        $('#weather-forecast-data-container').fadeIn(300);
+                        console.log('');
+                    });
+                    
+                });
+            }
+            else {
+                updateCurrentWeatherDataContainers(data);
+                $('#wizard-collapse-expand').click().promise().done(function () {
+                    initMap(data.location.lat, data.location.lon, data.location.name, 'current-weather-result-map');
+                    $('#weather-current-data-container').fadeIn(300);
                 });
             }
 
@@ -179,6 +192,15 @@
             //initMap(data.location.lat, data.location.lon);
 
         });
+    }
+
+    function updateCurrentWeatherDataContainers(data) {
+        $('#current-weather-icon-container').append('<img src="' + data.current.condition.icon + '" />');
+        $('#current-weather-condition-container').append('<span><strong>Condition: </strong>' + data.current.condition.text + '</span>');
+        $('#current-weather-temp-container').append('<span><strong>Temperature: </strong>' + data.current.temp_c + '&#8451</span>');
+        $('#current-weather-feel-temp-container').append('<span><strong>Feels Like: </strong>' + data.current.feelslike_c + '&#8451</span>');
+        $('#current-weather-wind-dir-container').append('<span><strong>Wind Direction: </strong>' + data.current.wind_dir + '</span>');
+        $('#current-weather-wind-speed-container').append('<span><strong>Wind Speed(mph): </strong>' + data.current.wind_mph + '</span>');
     }
 
     function updateForecastTableHead(dates) {
@@ -223,12 +245,12 @@
             '<td><img src="' + icons[6] + '" /></td></tr>');
 
         $('#forecast-tbl-body').append('<tr><td>' + conditionTexts[0] + '</td>' +
-            '<td>' + conditionTexts[0] + '</td>' +
-            '<td>' + conditionTexts[0] + '</td>' +
-            '<td>' + conditionTexts[0] + '</td>' +
-            '<td>' + conditionTexts[0] + '</td>' +
-            '<td>' + conditionTexts[0] + '</td>' +
-            '<td>' + conditionTexts[0] + '</td></tr>');
+            '<td>' + conditionTexts[1] + '</td>' +
+            '<td>' + conditionTexts[2] + '</td>' +
+            '<td>' + conditionTexts[3] + '</td>' +
+            '<td>' + conditionTexts[4] + '</td>' +
+            '<td>' + conditionTexts[5] + '</td>' +
+            '<td>' + conditionTexts[6] + '</td></tr>');
 
         $('#forecast-tbl-body').append('<tr><td><strong>Max Temp</strong> - ' + maxTemps[0] + '</td>' +
             '<td><strong>Max Temp</strong> - ' + maxTemps[1] + '&#8451</td>' + 

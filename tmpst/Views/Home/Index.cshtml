@@ -30,6 +30,42 @@
     @await Html.PartialAsync("~/Views/Partials/Weather/_WeatherLandingPage.cshtml", Model)
 </div>
 <script>
+
+    // Weather Clean Up
+    const allWeatherViews = $('#weather-query-container').add($('#weather-current-data-container'))
+        .add($('#weather-map-container'))
+        .add($('#weather-forecast-data-container'))
+        .add($('#weather-current-data-container'));
+
+    const allDynamicWeatherViews = $('#weather-current-data-container').add($('#weather-map-container'))
+        .add($('#weather-forecast-data-container'))
+        .add($('#weather-current-data-container'));
+
+    const allDynamicWeatherElements = $('#latitude-input').add($('#longitude-input'))
+        .add($('#name-or-postcode-input'))
+        .add($('#current-weather-icon-container'))
+        .add($('#current-weather-condition-container'))
+        .add($('#current-weather-temp-container'))
+        .add($('#current-weather-feel-temp-container'))
+        .add($('#current-weather-wind-dir-container'))
+        .add($('#current-weather-wind-speed-container'))
+        .add($('#forecast-tbl-head'))
+        .add($('#forecast-tbl-body'))
+
+    function fadeDynamicWeatherViews() {
+        allDynamicWeatherViews.fadeOut(300);
+    }
+
+    function clearDynamicWeatherElements() {
+        allDynamicWeatherElements.empty();
+    }
+
+    function resetWeatherPage() {
+        fadeDynamicWeatherViews();
+        clearDynamicWeatherElements();
+    }
+    // END: Weather Clean Up
+
     $('#weather-container').on('click', function () {
         $('#overview-page').fadeOut(300).promise().done(function () {
             $('#weather-page').fadeIn(300);

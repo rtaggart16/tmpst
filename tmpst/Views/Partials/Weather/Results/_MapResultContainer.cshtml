@@ -13,7 +13,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card weather-card-container">
-            <div style="height:400px" id="result-map">
+            <div style="height:300px" id="result-map">
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
      *  - placeName: Name of the place that weather is being requested for
      * DESCRIPTION: Function to initialise the map which displays where in the world a user has requested weather from
     */
-    function initMap(latitude, longitude, placeName) {
+    function initMap(latitude, longitude, placeName, containerID) {
         console.log('Lat: ', latitude);
         console.log('Lon: ', longitude);
 
@@ -39,7 +39,7 @@
             myLatLng = { lat: latitude, lng: longitude };
 
             // Create a new map targeting the result-map element
-            var map = new google.maps.Map(document.getElementById('result-map'), {
+            var map = new google.maps.Map(document.getElementById(containerID), {
                 zoom: 4,
                 center: myLatLng
             });
@@ -62,9 +62,8 @@
             google.maps.event.addListener(marker, 'click', function () {
                 infoWindow.open(map, marker);
             });
-
-            // Fade the map container in
-            $('#weather-map-container').fadeIn(300);
+            
+            
         }
 
 
