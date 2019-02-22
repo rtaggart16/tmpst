@@ -87,6 +87,9 @@
 <script>
     let key = '@Model.Apixu.API_Key';
 
+    let currentForecastData = {};
+    
+
     $('#input-type-select').on('change', function () {
         console.log($('#input-type-select').val());
 
@@ -175,6 +178,7 @@
                         console.log('MAP FADED IN');
                         $('#weather-forecast-data-container').fadeIn(300);
                         console.log('');
+                        currentForecastData = data.forecast.forecastday;
                     });
                     
                 });
