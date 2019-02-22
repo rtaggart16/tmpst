@@ -1,6 +1,18 @@
-﻿<div class="row">
+﻿@*
+    Author Info:
+
+    Name(s) - Ross Taggart
+    Student Number - S1828840
+    Date Created - 19/02/2019
+    Version - 1.0.0
+
+    Description:
+    Partial view that makes calls to our other partial views for the current weather and map and places the results into divs
+*@
+
+<div class="row">
     <div class="col-5">
-        @await  Html.PartialAsync("~/Views/Partials/Weather/Results/_CurrentWeatherOverviewContainer.cshtml")
+        @await Html.PartialAsync("~/Views/Partials/Weather/Results/_CurrentWeatherOverviewContainer.cshtml")
     </div>
     <div class="col-7">
         @await Html.PartialAsync("~/Views/Partials/Weather/Results/_CurrentWeatherMapResult.cshtml")
