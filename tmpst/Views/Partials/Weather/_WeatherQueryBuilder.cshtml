@@ -85,6 +85,7 @@
     </div>
 </div>
 <script>
+    
     let key = '@Model.Apixu.API_Key';
 
     let currentForecastData = {};
@@ -94,12 +95,13 @@
         console.log($('#input-type-select').val());
 
         let chosenType = $('#input-type-select').val();
-
+        //if user selects input based on latitutde and longitude, fade out name field
         if (chosenType == 'latlng') {
             $('#name-and-postcode-input-container').fadeOut(300).promise().done(function () {
                 $('#lat-long-input-container').fadeIn(300);
             });
         }
+        //fade in name field if lat/long not selected
         else {
             $('#lat-long-input-container').fadeOut(300).promise().done(function () {
                 $('#name-and-postcode-input-container').fadeIn(300);
@@ -109,6 +111,7 @@
     //Slide animation for the weather search, which allows more information to be displayed on the page by increasing page real estate
     $('#wizard-collapse-expand').click(function () {
         $('#weather-wizard-container').slideToggle("slow", function () {
+            //if container is visible, show an arrow that allows the container to be minimised
             if (!$('#weather-wizard-container').is(':visible')) {
                 $('#weather-wizard-arrow-up').fadeOut().promise().done(function () {
                     $('#weather-wizard-arrow-down').fadeIn();
@@ -124,6 +127,27 @@
         });
     });
 
+    //allows the user to press enter to search
+    let nameInput = document.getElementById("name-or-postcode-input");
+    let longInput = document.getElementById("longitude-input")
+
+    //once the input has been filled for the name/postcode, pressing enter will trigger a button click
+    nameInput.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("submit-weather-request-btn").click();
+        }
+    });
+
+    //once the input has been filled for the lat/long, pressing enter will trigger a button click
+    longInput.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("submit-weather-request-btn").click();
+        }
+    });
+
+
     /* FUNCTION: submitWeatherRequest
      * PARAMS:
      * DESCRIPTION: Function to submit user input, either lat/long or name
@@ -134,17 +158,19 @@
         let dataType = $('#method-type-select').val();
         let inputType = $('#input-type-select').val();
         let location = '';
-
+        //if the selection type is lat/long, set the location values to the lat and long
         if (inputType == 'latlng') {
             location = $('#latitude-input').val() + ',' + $('#longitude-input').val();
         }
         else {
+            //set the location value to name/postcode
             location = $('#name-or-postcode-input').val();
         }
+        //contact the api with the location request
         resetWeatherPage();
         setTimeout(function () {
             contactAPI(dataType, location);
-        }, 500);
+        }, 250);
         
     }
 
@@ -157,6 +183,7 @@
     */
 
     function getCurrentWeather() {
+        //sets the location variable to the users input
         let location = $('#location-input').val();
         contactAPI(location);
     }
@@ -165,16 +192,15 @@
      * PARAMS:
      *  - requestType: type of request user will make
      *  - location: location user inputs
-     *  
      * DESCRIPTION: Function to initialise the API and request information about the users inputted location, such as their 7 day forecast or current weather statistics
     */
    
     function contactAPI(requestType, location) {
 
         // TODO: Clear dynamic fields
-
+        //variable for api url
         let requestUrl = 'https://api.apixu.com/v1/' + requestType + '.json?key=' + key + '&q=' + location;
-
+        //if user selects forecast, set the api to fetch data for next 7 days
         if (requestType == 'forecast') {
             requestUrl = requestUrl + '&days=7';
         }
@@ -278,6 +304,7 @@
         console.log('MAXTEMPS', maxTemps);
         console.log('CONDITIONS', conditionTexts);
 
+        //appends the forecast icons to the table
         $('#forecast-tbl-body').append('<tr><td><img src="' + icons[0] + '" /></td>' +
             '<td><img src="' + icons[1] + '" /></td>' +
             '<td><img src="' + icons[2] + '" /></td>' +
@@ -286,6 +313,7 @@
             '<td><img src="' + icons[5] + '" /></td>' +
             '<td><img src="' + icons[6] + '" /></td></tr>');
 
+        //appends the conditions information to table
         $('#forecast-tbl-body').append('<tr><td>' + conditionTexts[0] + '</td>' +
             '<td>' + conditionTexts[1] + '</td>' +
             '<td>' + conditionTexts[2] + '</td>' +
@@ -294,6 +322,7 @@
             '<td>' + conditionTexts[5] + '</td>' +
             '<td>' + conditionTexts[6] + '</td></tr>');
 
+        //appends the max temp to the table
         $('#forecast-tbl-body').append('<tr><td><strong>Max Temp</strong> - ' + maxTemps[0] + '</td>' +
             '<td><strong>Max Temp</strong> - ' + maxTemps[1] + '&#8451</td>' + 
             '<td><strong>Max Temp</strong> - ' + maxTemps[2] + '&#8451</td>' + 
@@ -302,6 +331,7 @@
             '<td><strong>Max Temp</strong> - ' + maxTemps[5] + '&#8451</td>' + 
             '<td><strong>Max Temp</strong> - ' + maxTemps[6] + '&#8451</td></tr>');
 
+        //appends the average temp to the table
         $('#forecast-tbl-body').append('<tr><td><strong>Avg Temp</strong> - ' + avgTemps[0] + '</td>' +
             '<td><strong>Avg Temp</strong> - ' + avgTemps[1] + '&#8451</td>' + 
             '<td><strong>Avg Temp</strong> - ' + avgTemps[2] + '&#8451</td>' +
