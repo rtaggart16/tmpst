@@ -10,7 +10,7 @@
     Consistent navbar used throughout the application for navigation
 *@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#"><img src="~/images/logo/Logo - 680x680.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+    <a class="navbar-brand" href="#" onclick="fadeInSpecifiedView('overview-page')"><img src="~/images/logo/Logo - 680x680.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -18,14 +18,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link navbar-item-expand" asp-action="Index" asp-controller="Home">Overview<span class="sr-only">(current)</span></a>
+                <a class="nav-link navbar-item-expand" href="#" onclick="fadeInSpecifiedView('overview-page')">Overview<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle navbar-item-expand" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Resources
                 </a>
                 <div class="dropdown-menu navbar-dropdown-custom" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item navbar-dropdown-item-expand" href="#">Weather</a>
+                    <a onclick="fadeInSpecifiedView('weather-page')" class="dropdown-item navbar-dropdown-item-expand" href="#">Weather</a>
                     <a class="dropdown-item navbar-dropdown-item-expand" href="#">Earthquakes</a>
                     <a class="dropdown-item navbar-dropdown-item-expand" href="#">Traffic</a>
                     <a class="dropdown-item navbar-dropdown-item-expand" href="#">Population</a>
