@@ -357,7 +357,7 @@ function updateForecastTableBodyMobile(apiData) {
         let dateObject = new Date(val.date);
         let day = days[dateObject.getDay()];
         $('#forecast-tbl-body-mobile').append('<tr><td><strong>' + day + '</strong></td><td><img src="' + val.day.condition.icon + '" /></td>' +
-            '<td><strong>Avg. Temp: </strong>' + val.day.avgtemp_c + '</td>');
+            '<td><strong>Avg. Temp: </strong>' + val.day.avgtemp_c + '&#8451 </td>');
     });
 }
 
