@@ -31,7 +31,7 @@
                 </div>
                 <div class="row earthquake-card-item">
                     <div class="col-6">
-                        <select class="form-control" id="method-type-select">
+                        <select class="form-control" id="occurence-type-select">
                             <option value="hourly">Hourly</option>
                             <option value="daily">Daily</option>
                             <option value="weekly">Weekly</option>
@@ -39,7 +39,7 @@
                         </select>
                     </div>
                     <div class="col-6">
-                        <select class="form-control" id="hourly-earthquake-select">
+                        <select class="form-control" id="hourly-type-select">
                             <option value="@Model.HourlyUrls.Significant_Quakes">Significant Earthquakes</option>
                             <option value="@Model.HourlyUrls.Magnitude_Four_Point_Five">Magnitude 4.5</option>
                             <option value="@Model.HourlyUrls.Magnitude_Two_Point_Five">Magnitude 2.5</option>
@@ -89,6 +89,12 @@
 </div>
 
 <script>
+    let requestType = 'hourly';
+
+    let allSelects = $('#hourly-type-select').add($('#daily-type-select'))
+        .add($('#weekly-type-select'))
+        .add($('#monthly-type-select'));
+
     $('#earthquake-collapse-expand').click(function () {
         $('#earthquake-wizard-container').slideToggle("slow", function () {
             //if container is visible, show an arrow that allows the container to be minimised
@@ -106,4 +112,42 @@
             }
         });
     });
+
+    $('#occurence-type-select').on('change', function () {
+        console.log($('#occurence-type-select').val());
+
+        requestType = $('#occurence-type-select').val();
+
+        allSelects.fadeOut(300).promise().done(function () {
+            $('#' + requestType + '-type-select').fadeIn(300);
+        });
+    });
+
+    function submitEarthquakeRequest() {
+        let url = $('#' + requestType + '-type-select').val();
+        console.log(url);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/vnd.geo+json",
+            success: function (result) {
+                console.log('AJAX Response: ', result);
+
+                
+            },
+            error: function (errorResult) {
+                console.log('ERROR: ', errorResult.statusText);
+
+                if (errorResult.statusText == 'error') {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Data Request Error',
+                        text: 'An error has occurred when submitting your request. Please try again with different criteria'
+                    })
+                }
+            }
+        });
+        
+    }
+    
 </script>
