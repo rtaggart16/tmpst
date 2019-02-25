@@ -1,0 +1,18 @@
+﻿@*
+    Author Info:
+
+    Name(s) - Ross Taggart
+    Student Number - S1828840
+    Date Created - 25/02/2019
+    Version - 1.0.1
+
+    Description: Page that will contain partial weather analysis views
+*@
+
+<div style="display:none" id="current-weather-analysis-landing">
+   
+</div>
+
+<div style="display:none" id="forecast-weather-analysis-landing">
+    @await Html.PartialAsync("~/Views/Partials/Weather/Analysis/Forecast/_ForecastAnalysisLanding.cshtml")
+</div>

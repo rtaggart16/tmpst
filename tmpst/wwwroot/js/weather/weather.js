@@ -33,6 +33,8 @@
     # Event Handlers
 ---------------------------------------------------------------------------*/
 
+let currentForecastDataset = {};
+
 //Allows the user to chose their input type, either latitude and longitutde of name of place
 $('#input-type-select').on('change', function () {
     console.log($('#input-type-select').val());
