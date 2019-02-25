@@ -9,6 +9,7 @@ let allViews = $('#overview-page').add($('#weather-page')).add($('#earthquake-pa
 
 function fadeInSpecifiedView(viewID) {
     resetWeatherPage();
+    resetEarthquakePage();
     allViews.fadeOut(300).promise().done(function () {
         $('#' + viewID).fadeIn(300);
     });
@@ -56,10 +57,16 @@ function resetWeatherPage() {
 // END: Weather Clean Up
 
 //Earthquake Clean Up
-const allEarthquakeViews = $('#earthquake-query-container');
+const allEarthquakeViews = $('#earthquake-query-container').add($('#earthquake-cluster-map-container'));
+
+const allDynamicEarthquakeViews = $('#earthquake-cluster-map-container');
 
 function fadeDynamicEarthquakeViews() {
     allDynamicEarthquakeViews.fadeOut(300);
+}
+
+function resetEarthquakePage() {
+    fadeDynamicEarthquakeViews();
 }
 
 

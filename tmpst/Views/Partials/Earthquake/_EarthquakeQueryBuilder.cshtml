@@ -133,7 +133,11 @@
             success: function (result) {
                 console.log('AJAX Response: ', result);
 
-                
+                createClusterMap(result.features);
+
+                $('#earthquake-wizard-arrow-up').click().promise().done(function () {
+                    $('#earthquake-cluster-map-container').fadeIn(300);
+                });
             },
             error: function (errorResult) {
                 console.log('ERROR: ', errorResult.statusText);
@@ -151,3 +155,4 @@
     }
     
 </script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
