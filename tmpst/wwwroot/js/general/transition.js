@@ -1,7 +1,7 @@
 ﻿// Container Variables
 
 // IMPORTANT - Will be added to as more views get added
-let allViews = $('#overview-page').add($('#weather-page'));
+let allViews = $('#overview-page').add($('#weather-page')).add($('#earthquake-page'));
 
 // END: Container Variables
 
@@ -54,3 +54,14 @@ function resetWeatherPage() {
     clearDynamicWeatherElements();
 }
 // END: Weather Clean Up
+
+//Earthquake Clean Up
+const allEarthquakeViews = $('#earthquake-query-container');
+
+function fadeDynamicEarthquakeViews() {
+    allDynamicEarthquakeViews.fadeOut(300);
+}
+
+
+    
+

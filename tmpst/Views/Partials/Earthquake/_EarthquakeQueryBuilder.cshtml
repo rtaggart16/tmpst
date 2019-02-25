@@ -1,0 +1,109 @@
+﻿@model tmpst.Models.AllEarthquakeModels
+@*
+    Author Info:
+
+    Name(s) - Mark Riley, Ross Taggart
+    Student Number - S1829984, S1828840
+    Date Created - 25/02/2019
+    Version - 1.0.1
+
+    Description:
+    Page that will container which builds query for user
+*@
+
+<div class="row">
+    <div class="col-12">
+        <div class="card earthquake-card-container">
+            <div class="row earthquake-card-item">
+                <div id="collapsed-text-container" class="col-11 text-center">
+                    <h5 style="display:none" id="earthquake-wizard-collapsed-title">Earthquake Wizard</h5>
+                </div>
+                <div id="earthquake-collapse-expand" class="col-1 text-right tmpst-clickable">
+                    <i id="earthquake-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i>
+                    <i style="display:none" id="earthquake-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                </div>
+            </div>
+            <div id="earthquake-wizard-container">
+                <div class="row earthquake-card-item">
+                    <div class="col-12 text-center">
+                        <h5>Earthquake Wizard</h5>
+                    </div>
+                </div>
+                <div class="row earthquake-card-item">
+                    <div class="col-6">
+                        <select class="form-control" id="method-type-select">
+                            <option value="hourly">Hourly</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <select class="form-control" id="hourly-earthquake-select">
+                            <option value="@Model.HourlyUrls.Significant_Quakes">Significant Earthquakes</option>
+                            <option value="@Model.HourlyUrls.Magnitude_Four_Point_Five">Magnitude 4.5</option>
+                            <option value="@Model.HourlyUrls.Magnitude_Two_Point_Five">Magnitude 2.5</option>
+                            <option value="@Model.HourlyUrls.Magnitude_One">Magnitude 1</option>
+                            <option value="@Model.HourlyUrls.All_Earthquakes">All Earthquakes</option>
+                        </select>
+
+                        <select class="form-control" id="daily-type-select" style="display:none;">
+                            <option value="@Model.DailyUrls.Significant_Quakes">Significant Earthquakes</option>
+                            <option value="@Model.DailyUrls.Magnitude_Four_Point_Five">Magnitude 4.5</option>
+                            <option value="@Model.DailyUrls.Magnitude_Two_Point_Five">Magnitude 2.5</option>
+                            <option value="@Model.DailyUrls.Magnitude_One">Magnitude 1</option>
+                            <option value="@Model.DailyUrls.All_Earthquakes">All Earthquakes</option>
+                        </select>
+
+                        <select class="form-control" id="weekly-type-select" style="display:none;">
+                            <option value="@Model.WeeklyUrls.Significant_Quakes">Significant Earthquakes</option>
+                            <option value="@Model.WeeklyUrls.Magnitude_Four_Point_Five">Magnitude 4.5</option>
+                            <option value="@Model.WeeklyUrls.Magnitude_Two_Point_Five">Magnitude 2.5</option>
+                            <option value="@Model.WeeklyUrls.Magnitude_One">Magnitude 1</option>
+                            <option value="@Model.WeeklyUrls.All_Earthquakes">All Earthquakes</option>
+                        </select>
+
+                        <select class="form-control" id="monthly-type-select" style="display:none;">
+                            <option value="@Model.MonthlyUrls.Significant_Quakes">Significant Earthquakes</option>
+                            <option value="@Model.MonthlyUrls.Magnitude_Four_Point_Five">Magnitude 4.5</option>
+                            <option value="@Model.MonthlyUrls.Magnitude_Two_Point_Five">Magnitude 2.5</option>
+                            <option value="@Model.MonthlyUrls.Magnitude_One">Magnitude 1</option>
+                            <option value="@Model.MonthlyUrls.All_Earthquakes">All Earthquakes</option>
+                        </select>
+                    </div>
+                </div>
+
+                
+
+                <div id="submit-earthquake-request-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <button id="submit-earthquake-request-btn" onclick="submitEarthquakeRequest()" class="btn btn-success w-100">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#earthquake-collapse-expand').click(function () {
+        $('#earthquake-wizard-container').slideToggle("slow", function () {
+            //if container is visible, show an arrow that allows the container to be minimised
+            if (!$('#earthquake-wizard-container').is(':visible')) {
+                $('#earthquake-wizard-arrow-up').fadeOut().promise().done(function () {
+                    $('#earthquake-wizard-arrow-down').fadeIn();
+                    $('#earthquake-wizard-collapsed-title').fadeIn();
+                });
+            }
+            else {
+                $('#earthquake-wizard-arrow-down').fadeOut().promise().done(function () {
+                    $('#earthquake-wizard-arrow-up').fadeIn();
+                    $('#earthquake-wizard-collapsed-title').fadeOut();
+                });
+            }
+        });
+    });
+</script>
