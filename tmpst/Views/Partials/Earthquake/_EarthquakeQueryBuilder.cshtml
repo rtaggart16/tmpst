@@ -133,11 +133,21 @@
             success: function (result) {
                 console.log('AJAX Response: ', result);
 
-                createClusterMap(result.features);
+                if (result.features.length > 0) {
+                    createClusterMap(result.features);
 
-                $('#earthquake-wizard-arrow-up').click().promise().done(function () {
-                    $('#earthquake-cluster-map-container').fadeIn(300);
-                });
+                    $('#earthquake-wizard-arrow-up').click().promise().done(function () {
+                        $('#earthquake-cluster-map-container').fadeIn(300);
+                    });
+                }
+                else {
+                    Swal.fire({
+                        type: 'warning',
+                        title: 'No Data',
+                        text: 'There is no data available for your request. Please submit another request'
+                    })
+                }
+                
             },
             error: function (errorResult) {
                 console.log('ERROR: ', errorResult.statusText);
