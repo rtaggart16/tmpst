@@ -58,7 +58,9 @@ function createClusterMap(data) {
         lat = val.geometry.coordinates[0];
         lon = val.geometry.coordinates[1];
 
-        locations.push({ lat: lat, lng: lon });
+        let latlng = lat + ', ' + lon;
+
+        locations.push({ latlng: { lat: lat, lng: lon }, title: val.properties.title, url: val.properties.url });
     });
 
     // Create an array of alphabetical characters used to label the markers.
@@ -69,10 +71,20 @@ function createClusterMap(data) {
     // create an array of markers based on a given "locations" array.
     // The map() method here has nothing to do with the Google Maps API.
     var markers = locations.map(function (location, i) {
-        return new google.maps.Marker({
-            position: location,
+        console.log('LOCATION ', location);
+        let marker = new google.maps.Marker({
+            position: location.latlng,
             label: labels[i % labels.length]
         });
+
+        var infowindow = new google.maps.InfoWindow({
+            content: "<h3>" + location.title + "</h3><p><a href='" + location.url + "'>Details</a></p>"
+        });
+        marker.addListener('click', function (data) {
+            infowindow.open(map, marker); // Open the Google maps marker infoWindow
+        });
+
+        return marker;
     });
 
     // Add a marker clusterer to manage the markers.
