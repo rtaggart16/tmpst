@@ -88,6 +88,8 @@
     </div>
 </div>
 
+
+
 <script>
     let requestType = 'hourly';
 
@@ -134,7 +136,15 @@
                 console.log('AJAX Response: ', result);
 
                 if (result.features.length > 0) {
-                    createClusterMap(result.features);
+                    Swal.fire({
+                        type: 'warning',
+                        title: 'Processing Data',
+                        html: '<i class="fas fa-spinner fa-spin fa-2x"></i>'
+                    })
+
+                    setTimeout(function () {
+                        createClusterMap(result.features);
+                    }, 100);
 
                     $('#earthquake-wizard-arrow-up').click().promise().done(function () {
                         $('#earthquake-cluster-map-container').fadeIn(300);
