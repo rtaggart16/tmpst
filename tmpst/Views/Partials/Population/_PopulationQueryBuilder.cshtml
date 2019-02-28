@@ -30,7 +30,8 @@
                 </div>
                 <div class="row population-card-item">
                     <div class="col-4">
-                        <input id="country-input" class="form-control" placeholder="Country" required />
+                        <select id="country-input" class="form-control" required>
+                        </select>
                     </div>
                     <div class="col-4">
                         <input id="year-input" class="form-control" placeholder="Year" required />
@@ -63,7 +64,25 @@
 
 <script>
 
-    
+    let dropdown = $('#country-input');
+
+    dropdown.empty();
+
+    dropdown.append('<option selected="true" disabled>Select Country</option>');
+    dropdown.prop('selectedIndex', 0);
+
+    const url = 'https://api.population.io/1.0/countries';
+
+    // Populate dropdown with list of provinces
+    $.getJSON(url, function (data) {
+        $.each(data.countries, function (key, entry) {
+            console.log("hello");
+            console.log(entry);
+            dropdown.append($('<option></option>').attr('value', entry).text(entry));
+        })
+    });
+
+    //Arrow up and down
     $('#population-collapse-expand').click(function () {
         $('#population-wizard-container').slideToggle("slow", function () {
             //if container is visible, show an arrow that allows the container to be minimised
@@ -82,16 +101,8 @@
         });
     });
 
-    
-    $('#occurence-type-select').on('change', function () {
-        console.log($('#occurence-type-select').val());
 
-        requestType = $('#occurence-type-select').val();
 
-        allSelects.fadeOut(300).promise().done(function () {
-            $('#' + requestType + '-type-select').fadeIn(300);
-        });
-    });
 
     function submitPopulationRequest() {
         //GET Data 
@@ -126,4 +137,3 @@
     }
 
 </script>
-<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>

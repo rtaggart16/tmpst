@@ -17,12 +17,11 @@
 <script src="https://d3js.org/d3.v5.min.js"></script>
 
 <div>
+    <p id="bananas"></p><!--D3 TEST-->
     <div id="population-title-container" class="text-center">
         <h3 class="tmpst-title">Population Analysis</h3>
         <p class="tmpst-desc">Analyse current population data</p>
     </div>
-
-    <p id="bananas"></p>
 
     <div id="population-query-container">
         @await Html.PartialAsync("~/Views/Partials/Population/_PopulationQueryBuilder.cshtml", Model.Population)
@@ -38,6 +37,6 @@
 
     $(function () {
         //Creates the chart based on the data provided
-        d3.select("#bananas").style("color", "red");
+        d3.select("#bananas").style("color", "red"); //D3 Test
     });
 </script>
