@@ -1,4 +1,5 @@
-﻿@*
+﻿@model tmpst.Models.PopulationAPIUrl
+@*
     Author Info:
 
     Name(s) - Mark Riley, Ross Taggart, Aidan Marshall
@@ -30,8 +31,7 @@
                 </div>
                 <div class="row population-card-item">
                     <div class="col-4">
-                        <select id="country-input" class="form-control" required>
-                        </select>
+                        <select id="country-input" class="form-control" required></select>
                     </div>
                     <div class="col-4">
                         <input id="year-input" class="form-control" placeholder="Year" required />
@@ -76,8 +76,6 @@
     // Populate dropdown with list of provinces
     $.getJSON(url, function (data) {
         $.each(data.countries, function (key, entry) {
-            console.log("hello");
-            console.log(entry);
             dropdown.append($('<option></option>').attr('value', entry).text(entry));
         })
     });
@@ -105,20 +103,26 @@
 
 
     function submitPopulationRequest() {
-        //GET Data 
-        let url = $('#' + requestType + '-type-select').val();
+        //GET Data
+        let year = $('#year-input').val();
+        let country = $('#country-input').val();
+        console.log(year, country);
+
+        let url = 'https://api.population.io/1.0/population/' + year + '/' + country + '/?format=jsonp';
         console.log(url);
         $.ajax({
             type: "GET",
             url: url,
-            contentType: "application/vnd.geo+json",
+            crossDomain: true,
+            dataType: 'jsonp',
+            contentType: "application/json",
             success: function (result) {
                 console.log('AJAX Response: ', result);
 
                 createClusterMap(result.features);
 
                 $('#population-wizard-arrow-up').click().promise().done(function () {
-                    $('#population-cluster-map-container').fadeIn(300);
+                    $('#population-chart-container').fadeIn(300);
                 });
             },
             error: function (errorResult) {
@@ -135,5 +139,6 @@
         });
 
     }
+
 
 </script>

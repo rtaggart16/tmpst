@@ -8,8 +8,7 @@
     Date Created - 26/02/2019
     Version - 1.0.1
 
-    Description:
-    Page that will contain all population associated views
+    Description: Page that will contain all population associated views
 *@
 
 @*Hi Ross I just stuck the script below give me a shout if you want me to move it*@
@@ -27,7 +26,7 @@
         @await Html.PartialAsync("~/Views/Partials/Population/_PopulationQueryBuilder.cshtml", Model.Population)
     </div>
 
-    <div id="population-cluster-map-container" style="display:none">
+    <div id="population-chart-container" style="display:none">
         @await Html.PartialAsync("~/Views/Partials/Population/Results/_PopulationChartContainer.cshtml")
     </div>
 
