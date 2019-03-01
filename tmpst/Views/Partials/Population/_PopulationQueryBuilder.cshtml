@@ -39,10 +39,10 @@
                     <div class="col-4">
                         <select id="visualisation-input" class="form-control" required>
                             <option value="" disabled selected>Select Visualisation</option>
-                            <option value="">D3 Visualisation</option>
-                            <option value="">D3 Visualisation</option>
-                            <option value="">D3 Visualisation</option>
-                            <option value="">D3 Visualisation</option>
+                            <option value="show-reel">Show Reel</option>
+                            <option value="bubble-chart">Bubble Chart</option>
+                            <option value="radar-chart">Radar Chart</option>
+                            <option value="multi-packaging">Multi-Packaging</option>
                         </select>
                     </div>
                 </div>
@@ -82,6 +82,7 @@
 
     //Arrow up and down
     $('#population-collapse-expand').click(function () {
+
         $('#population-wizard-container').slideToggle("slow", function () {
             //if container is visible, show an arrow that allows the container to be minimised
             if (!$('#population-wizard-container').is(':visible')) {
@@ -105,8 +106,9 @@
     function submitPopulationRequest() {
         //GET Data
         let year = $('#year-input').val();
+        let visualisation = $('#visualisation-input').val();
         let country = $('#country-input').val();
-        console.log(year, country);
+        console.log(year, country, visualisation);
 
         let url = 'https://api.population.io/1.0/population/' + year + '/' + country + '/?format=jsonp';
         console.log(url);
@@ -119,7 +121,8 @@
             success: function (result) {
                 console.log('AJAX Response: ', result);
 
-                createClusterMap(result.features);
+                //Creates visualisation
+                createD3Visualisation(result, visualisation);
 
                 $('#population-wizard-arrow-up').click().promise().done(function () {
                     $('#population-chart-container').fadeIn(300);
