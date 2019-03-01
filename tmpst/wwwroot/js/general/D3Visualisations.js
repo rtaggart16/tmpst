@@ -1,12 +1,5 @@
 ﻿function createD3Visualisation(data, D3Type) {
 
-    var para = document.createElement("p");
-    var node = document.createTextNode("Chart");
-    para.appendChild(node);
-
-    var chart = document.getElementById("population-chart");
-    chart.appendChild(para);
-
     console.log(data, D3Type);
 
     //Chooses Visualisation
@@ -35,17 +28,17 @@
 
 
 function showReelBuilder(data) {
-    //Laura - this function is for your visualisation
+    //Laura - this function is for your show reel visualisation
 }
 
 function bubbleChartBuilder(data) {
-    //Laura - this function is for your visualisation
+    //Laura - this function is for your bubble chart visualisation
 }
 
 function radarChartBuilder(data) {
-    //Aidan - this function is for your visualisation
+    //Aidan - this function is for your radar chart visualisation
 }
 
 function multiPackagingBuilder(data) {
-    //Aidan - this function is for your visualisation
+    //Aidan - this function is for your multi packaging visualisation
 }
