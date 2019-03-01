@@ -1,53 +1,58 @@
 ﻿/*
     Author Info:
 
-    Name(s) - Ross Taggart, Aidan Marshall, 
-    Student Number - S1828840, S1828601
-    Date Created - 17/02/2019
-    Version - 1.0.0
+    Name(s) - Mark Riley, Ross Taggart, Aidan Marshall
+    Student Number - S1829984, S1828840, S1828601
+    Date Created - 25/02/2019
+    Version - 1.0.1
 
     Description:
-    The css file which contains styles applicable to the overview section of the application
+    The population css file for the application
 */
 
 /*------------------------------------------------------
 >>> TABLE OF CONTENTS:
 --------------------------------------------------------
 # Common
-# Page Specific
-    ## Placeholder Style
-    ## Page Container Style
+# Containers
+    ## population Card Container
 --------------------------------------------------------
 */
 
 /*--------------------------------------------------------------------------
     # Common
 ---------------------------------------------------------------------------*/
+
+.new-page {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
 body {
     padding-top: 55px;
     padding-bottom: 20px;
-    background: #e2e1e0;
+}
+
+.body-content {
+    padding-left: 0px;
+    padding-right: 0px;
 }
 /*--------------------------------------------------------------------------
     END: # Common
 ---------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------
-    # Page Specific
+    # Containers
 ---------------------------------------------------------------------------*/
-.placeholder {
-    background: #e2e1e0;
-    padding-top: 55px !important;
-    padding-bottom: 20px !important;
-}
-
-.overview-card-container {
-    margin-left: 5px;
-    margin-right: 5px;
+.population-card-container {
+    padding-left: 10px;
+    padding-right: 10px;
     margin-bottom: 10px;
 }
 
-
+.population-card-item{
+    padding-bottom:10px;
+}
 /*--------------------------------------------------------------------------
-    END: # Common
+    END: # Containers
 ---------------------------------------------------------------------------*/
