@@ -1,0 +1,29 @@
+﻿@model tmpst.Models.UserSecretCollection
+
+@*
+    @*
+        Author Info:
+
+        Name(s) - Mark Riley, Ross Taggart, Aidan Marshall
+        Student Number - S1829984, S1828840, S1828601
+        Date Created - 25/02/2019
+        Version - 1.0.1
+
+        Description:
+        Page that will contain all earthquake associated views
+*@
+<div>
+    <div id="traffic-title-container" class="text-center">
+        <h3 class="tmpst-title">Traffic Analysis</h3>
+        <p class="tmpst-desc">Analyse current earthquake data</p>
+    </div>
+
+    <div id="traffic-route-query-container">
+        @await Html.PartialAsync("~/Views/Partials/Traffic/_TrafficRouteQueryBuilder.cshtml", Model.Traffic)
+    </div>
+
+    <div id="traffic-incidents-query-container">
+        @await Html.PartialAsync("~/Views/Partials/Traffic/_TrafficIncidentsQueryBuilder.cshtml", Model.Traffic)
+    </div>
+
+</div>

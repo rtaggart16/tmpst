@@ -10,6 +10,7 @@ let allViews = $('#overview-page').add($('#weather-page')).add($('#earthquake-pa
 function fadeInSpecifiedView(viewID) {
     resetWeatherPage();
     resetEarthquakePage();
+    //resetTrafficPage();
     allViews.fadeOut(300).promise().done(function () {
         $('#' + viewID).fadeIn(300);
     });
@@ -56,6 +57,21 @@ function resetWeatherPage() {
 }
 // END: Weather Clean Up
 
+//Traffic Clean Up
+//const allTrafficViews = $('#traffic-route-query-container').add($('#traffic-incidents-query-container'));
+
+//const allDynamicTrafficViews = $('#traffic-incidents-query-container');
+
+//function fadeDynamicTrafficViews() {
+    //allTrafficViews.fadeOut(300);
+//}
+
+//function resetTrafficPage() {
+    //fadeDynamicTrafficViews();
+//}
+
+//END: Traffic Clean Up
+
 //Earthquake Clean Up
 const allEarthquakeViews = $('#earthquake-query-container').add($('#earthquake-cluster-map-container'));
 
@@ -68,6 +84,8 @@ function fadeDynamicEarthquakeViews() {
 function resetEarthquakePage() {
     fadeDynamicEarthquakeViews();
 }
+
+//END: Earthquake Clean Up
 
 
     
