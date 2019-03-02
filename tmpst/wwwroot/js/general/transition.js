@@ -1,7 +1,8 @@
 ﻿// Container Variables
 
 // IMPORTANT - Will be added to as more views get added
-let allViews = $('#overview-page').add($('#weather-page')).add($('#earthquake-page'));
+let allViews = $('#overview-page').add($('#weather-page')).add($('#earthquake-page'))
+    .add($('#traffic-page'));
 
 // END: Container Variables
 
