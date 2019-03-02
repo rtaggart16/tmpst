@@ -56,8 +56,8 @@ function createClusterMap(data) {
             let lat = '';
             let lon = '';
 
-            lat = val.geometry.coordinates[0];
-            lon = val.geometry.coordinates[1];
+            lat = val.geometry.coordinates[1];
+            lon = val.geometry.coordinates[0];
 
             let latlng = lat + ', ' + lon;
 
