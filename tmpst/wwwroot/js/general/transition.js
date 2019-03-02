@@ -24,12 +24,14 @@ const allWeatherViews = $('#weather-query-container').add($('#weather-current-da
     .add($('#weather-map-container'))
     .add($('#weather-forecast-data-container'))
     .add($('#weather-current-data-container'))
-    .add($('#weather-forecast-data-container-mobile'));
+    .add($('#weather-forecast-data-container-mobile'))
+    .add($('#weather-analysis-landing'));
 
 const allDynamicWeatherViews = $('#weather-current-data-container').add($('#weather-map-container'))
     .add($('#weather-forecast-data-container'))
     .add($('#weather-current-data-container'))
-    .add($('#weather-forecast-data-container-mobile'));
+    .add($('#weather-forecast-data-container-mobile'))
+    .add($('#weather-analysis-landing'));
 
 const allDynamicWeatherElements = $('#latitude-input').add($('#longitude-input'))
     .add($('#name-or-postcode-input'))
@@ -41,7 +43,9 @@ const allDynamicWeatherElements = $('#latitude-input').add($('#longitude-input')
     .add($('#current-weather-wind-speed-container'))
     .add($('#forecast-tbl-head'))
     .add($('#forecast-tbl-body'))
-    .add($('#forecast-tbl-body-mobile'));
+    .add($('#forecast-tbl-body-mobile'))
+    .add($('#forecast-overall-chart'))
+    .add($('#current-day-chart'));
 
 function fadeDynamicWeatherViews() {
     allDynamicWeatherViews.fadeOut(300);
