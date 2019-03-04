@@ -25,4 +25,7 @@
         @await Html.PartialAsync("~/Views/Partials/Traffic/_TrafficIncidentsQueryBuilder.cshtml", Model.Traffic)
     </div>
 
+    <div style="display:none" id="traffic-incidents-result-map-container">
+        @await Html.PartialAsync("~/Views/Partials/Traffic/Results/_TrafficIncidentMapResultContainer.cshtml")
+    </div>
 </div>

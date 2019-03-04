@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Partials\Traffic\Results\" />
     <Folder Include="wwwroot\css\Overview\" />
   </ItemGroup>
 

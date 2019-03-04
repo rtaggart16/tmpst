@@ -30,19 +30,23 @@
                     </div>
                 </div>
                 <div class="row traffic-card-item">
-
+                    <div class="col-6">
+                        <input class="form-control" id="traffic-incident-lat-input" placeholder="Latitude" />
+                    </div>
+                    <div class="col-6">
+                        <input class="form-control" id="traffic-incident-lon-input" placeholder="Longitude" />
+                    </div>
                 </div>
                 <div id="submit-traffic-incidents-request-container">
                     <div class="row">
                         <div class="col-12">
-                            <button id="submit-traffic-incidents-request-btn" class="btn btn-success w-100">Submit</button>
+                            <button id="submit-traffic-incidents-request-btn" onclick="submitTrafficIncidentRequest()" class="btn btn-success w-100">Submit</button>
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
-
     </div>
 </div>
 
@@ -64,4 +68,51 @@
             }
         });
     });
+
+    function submitTrafficIncidentRequest() {
+        var platform = new H.service.Platform({
+        'app_id': '@Model.App_ID',
+        'app_code': '@Model.App_Code'
+        });
+
+        let latitude = $('#traffic-incident-lat-input').val();
+        let longitude = $('#traffic-incident-lon-input').val();
+
+        let dataValid = validateLatLon(latitude, longitude);
+
+        if (dataValid) {
+            // Obtain the default map types from the platform object:
+            var defaultLayers = platform.createDefaultLayers();
+
+            // Instantiate (and display) a map object:
+            var map = new H.Map(
+                document.getElementById('traffic-incident-result-map'),
+                defaultLayers.normal.map,
+                {
+                    zoom: 10,
+                    center: { lat: latitude, lng: longitude }
+                });
+
+            // Add incident overlay to map
+            map.addLayer(defaultLayers.incidents);
+
+            $('#traffic-incidents-result-map-container').fadeIn(300);
+        }
+        else {
+            Swal.fire({
+                type: 'error',
+                title: 'Invalid Request',
+                text: 'You must specify both a latitude and a longitude'
+            })
+        }
+    }
+
+    function validateLatLon(lat, lon) {
+        if ((lat == '' || lat == ' ') || (lon == '' || lon == ' ')) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 </script>
