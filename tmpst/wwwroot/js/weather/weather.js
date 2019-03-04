@@ -85,6 +85,8 @@ $('#wizard-collapse-expand').click(function () {
     });
 });
 
+
+
 // Checks if the user has pressed enter while inside the place name/postcode input field
 $('#name-or-postcode-input').on('keypress', function (e) {
     if (e.which == 13) {
@@ -462,8 +464,16 @@ function analyseForecastData() {
     });
 }
 
+$('btn btn-success w-100').click(function () {
+    $('current-map-collapse-expand').click();
+    $('current-weather-collapse-expand').click();
+
+});
+
 function analyseCurrentDayData() {
-    let labels = ['Current Temp', 'Feels Like', 'Humidity', 'Wind (mph)'];
+   
+
+    let labels = [];
 
     let data = [currentDayDataset.temp_c, currentDayDataset.feelslike_c, currentDayDataset.humidity, currentDayDataset.wind_mph];
     
@@ -481,15 +491,26 @@ function analyseCurrentDayData() {
     var currentDayChart = new Chart(ctx, {
         type: 'bar',
         data: {
+            labels: ['Current Temp', 'Feels Like', 'Humidity', 'Wind (mph)'],
             datasets: [{
                 label: labels,
                 data: data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)'],
                 borderColor: colours
+
             }
             ],
-            labels: labels
+            
         },
         options: {
+            legend: {
+                display: false,
+            },
             maintainAspectRatio: false
         }
     });
@@ -544,3 +565,4 @@ function validateLocationInput(inputType) {
 /*--------------------------------------------------------------------------
     END: # Validation
 ---------------------------------------------------------------------------*/
+
