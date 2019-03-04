@@ -96,7 +96,9 @@ function submitEarthquakeRequest() {
                 Swal.fire({
                     type: 'warning',
                     title: 'Processing Data',
-                    html: '<i class="fas fa-spinner fa-spin fa-2x"></i>'
+                    html: '<i class="fas fa-spinner fa-spin fa-2x"></i>',
+                    timer: 1500
+                    
                 })
 
                 setTimeout(function () {
@@ -106,6 +108,8 @@ function submitEarthquakeRequest() {
                 $('#earthquake-wizard-arrow-up').click().promise().done(function () {
                     $('#earthquake-cluster-map-container').fadeIn(300);
                 });
+                result.dismiss === Swal.DismissReason.timer
+                
             }
             else {
                 Swal.fire({
