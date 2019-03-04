@@ -64,7 +64,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <button class="btn btn-success w-100" onclick="analyseCurrentDayData()">Analyse Data</button>
+                <button class="btn btn-success w-100" id="submitCurrentDay" onclick="analyseCurrentDayData()">Analyse Data</button>
             </div>
         </div>
     </div>
@@ -88,5 +88,11 @@
                 });
             }
         });
+    });
+
+    $('#submitCurrentDay').click(function () {
+        $('#current-map-collapse-expand').click();
+        $('#current-weather-collapse-expand').click();
+
     });
 </script>

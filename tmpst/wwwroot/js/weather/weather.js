@@ -464,9 +464,14 @@ function analyseForecastData() {
     });
 }
 
-function analyseCurrentDayData() {
+$('btn btn-success w-100').click(function () {
     $('current-map-collapse-expand').click();
     $('current-weather-collapse-expand').click();
+
+});
+
+function analyseCurrentDayData() {
+   
 
     let labels = [];
 
@@ -560,3 +565,4 @@ function validateLocationInput(inputType) {
 /*--------------------------------------------------------------------------
     END: # Validation
 ---------------------------------------------------------------------------*/
+
