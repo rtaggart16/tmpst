@@ -16,11 +16,12 @@ namespace tmpst.Controllers
         private readonly PopulationAPIUrl _populationConfig;
         private readonly TrafficAPIKeys _trafficConfig;
         private readonly GoogleMapsKey _maps;
+        private readonly MapQuestKeys _mapQuest;
         private readonly UserSecretCollection _allSecrets;
 
         public HomeController(IOptions<ApixuConfiguration> config, IOptions<EarthquakeHourlyUrls> hourly, IOptions<EarthquakeDailyUrls> daily,
             IOptions<EarthquakeWeeklyUrls> weekly, IOptions<EarthquakeMonthlyUrls> monthly, IOptions<PopulationAPIUrl> population,
-            IOptions<TrafficAPIKeys> traffic, IOptions<GoogleMapsKey> maps)
+            IOptions<TrafficAPIKeys> traffic, IOptions<GoogleMapsKey> maps, IOptions<MapQuestKeys> mapQuest)
         {
             _config = config.Value;
             _earthquakeConfig = new AllEarthquakeModels
@@ -33,6 +34,7 @@ namespace tmpst.Controllers
             _populationConfig = population.Value;
             _trafficConfig = traffic.Value;
             _maps = maps.Value;
+            _mapQuest = mapQuest.Value;
 
             _allSecrets = new UserSecretCollection
             {
@@ -40,7 +42,8 @@ namespace tmpst.Controllers
                 Population = _populationConfig,
                 Earthquakes = _earthquakeConfig,
                 Traffic = _trafficConfig,
-                Maps = _maps
+                Maps = _maps,
+                MapQuest = _mapQuest
             };
         }
 

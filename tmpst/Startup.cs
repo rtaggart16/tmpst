@@ -46,6 +46,7 @@ namespace tmpst
             services.Configure<EarthquakeMonthlyUrls>(Configuration.GetSection("EarthquakeMonthlyUrls"));
             services.Configure<PopulationAPIUrl>(Configuration.GetSection("PopulationAPIUrl"));
             services.Configure<TrafficAPIKeys>(Configuration.GetSection("TrafficAPIKeys"));
+            services.Configure<MapQuestKeys>(Configuration.GetSection("MapQuestKeys"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
