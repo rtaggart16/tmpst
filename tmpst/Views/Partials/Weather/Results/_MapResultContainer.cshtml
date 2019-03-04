@@ -13,13 +13,53 @@
 <div class="row">
     <div class="col-12">
         <div class="card weather-card-container">
-            <div style="height:300px" id="result-map">
+            <div class="row">
+
+                <div id="collapsed-text-container" class="col-11 text-center">
+                    <h5 style="display:none" id="forecast-map-wizard-collapsed-title">Map</h5>
+                </div>
+
+                <div id="forecast-map-collapse-expand" class="col-1 text-right tmpst-clickable">
+                    <i id="forecast-map-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i>
+                    <i style="display:none" id="forecast-map-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                </div>
+            </div>
+            <div id="forecast-map-wizard-container">
+                <div class="row weather-card-item">
+                    <div class="col-12 text-center">
+                        <div style="height:300px" id="result-map">
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
+
     </div>
 </div>
 
 
 <script defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6yo58EUHrSdjTIMKz_lP2jt77KE-NfOI&callback=initMap">
+</script>
+<script>
+    $('#forecast-map-collapse-expand').click(function () {
+        $('#forecast-map-wizard-container').slideToggle("slow", function () {
+
+            //if container is visible, show an arrow that allows the container to be minimised
+            if (!$('#forecast-map-wizard-container').is(':visible')) {
+                $('#forecast-map-wizard-arrow-up').fadeOut().promise().done(function () {
+                    $('#forecast-map-wizard-arrow-down').fadeIn();
+                    $('#forecast-map-wizard-collapsed-title').fadeIn();
+                });
+            }
+            else {
+                $('#forecast-map-wizard-arrow-down').fadeOut().promise().done(function () {
+                    $('#forecast-map-wizard-arrow-up').fadeIn();
+                    $('#forecast-map-wizard-collapsed-title').fadeOut();
+                });
+            }
+        });
+    });
 </script>

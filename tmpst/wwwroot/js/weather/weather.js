@@ -466,11 +466,12 @@ function analyseCurrentDayData() {
     let labels = ['Current Temp', 'Feels Like', 'Humidity', 'Wind (mph)'];
 
     let data = [currentDayDataset.temp_c, currentDayDataset.feelslike_c, currentDayDataset.humidity, currentDayDataset.wind_mph];
+    
 
     let colours = [currentDayAnalysisPallet.Current_Temp, currentDayAnalysisPallet.Feels_Like, currentDayAnalysisPallet.Humidity, currentDayAnalysisPallet.Wind_Speed];
 
     let dataset = {
-        label: labels,
+        
         data: data,
         borderColor: colours
     };
@@ -481,23 +482,9 @@ function analyseCurrentDayData() {
         type: 'bar',
         data: {
             datasets: [{
-                label: labels[0],
-                data: data[0],
-                borderColor: colours[0]
-            }, {
-                label: labels[1],
-                data: data[1],
-                borderColor: colours[1]
-            },
-            {
-                label: labels[2],
-                data: data[2],
-                borderColor: colours[2]
-            },
-            {
-                label: labels[3],
-                data: data[3],
-                borderColor: colours[3]
+                label: labels,
+                data: data,
+                borderColor: colours
             }
             ],
             labels: labels
