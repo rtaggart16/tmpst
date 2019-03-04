@@ -1,19 +1,40 @@
 ﻿function createD3Visualisation(data, D3Type) {
 
-    console.log("Data Passed In To D3Visualisations.js: ", data, ", Visualisation: ", D3Type);
+
+    //Removes existing headers and sub-headers
+    d3.select("#population-text-header").remove();
+    d3.select("#population-text-subheader").remove();
+
+
+    //Sets the header and sub-header
+    d3.select("#population-header").append("h2")
+        .attr("id", "population-text-header")
+        .style("text-align", "center");
+
+    var subheader = "Year: " + data[0].year + " - Location: " + data[0].country;
+    
+    d3.select("#population-header").append("h6")
+        .attr("id", "population-text-subheader")
+        .style("text-align", "center")
+        .text(subheader);
 
     //Chooses Visualisation
     switch (D3Type){
         case D3Type = "show-reel":
+            d3.select("#population-text-header").text("Show Reel");
+            
             showReelBuilder(data);
             break;
         case D3Type = "bubble-chart":
+            d3.select("#population-text-header").text("Bubble Chart");
             bubbleChartBuilder(data);
             break;
         case D3Type = "radar-chart":
+            d3.select("#population-text-header").text("Radar Chart");
             radarChartBuilder(data);
             break;
         case D3Type = "multi-packaging":
+            d3.select("#population-text-header").text("Multi-Packaging");
             multiPackagingBuilder(data);
             break;
         default:
@@ -42,7 +63,37 @@ function radarChartBuilder(data) {
      /* Radar chart design created by Nadieh Bremer - VisualCinnamon.com */
     //Call function to drawv the Radar chart
 
-    console.log("HIT--------------------------");
+
+    var dataInArray = [[]];
+
+    
+    for (i = 0; i < 10; i++) {
+        //Adds the value and axis to the dataInArray which is the correctly formatted method (eg. 10 - 19)
+
+        var groupedTotal = 0;
+
+        for (e = 0; e < 10; e++) {
+            //Adds the values of the points on the chart (eg. 10+11+12+13+14...etc...)
+
+            groupedTotal += data[(i * 10) + e].total;
+        
+        };
+
+        var ageElement = i * 10;
+
+        //Adds the name of the axis (eg. 10 - 19)
+        let radarItem = {
+            axis: data[ageElement].age + " - " + data[ageElement + 9].age,
+            value: groupedTotal,
+        };
+
+        dataInArray[0].push(radarItem);
+    };
+
+    
+
+   
+
 
     try {
 
@@ -53,7 +104,7 @@ function radarChartBuilder(data) {
             height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
 
         var color = d3.scale.ordinal()
-            .range(["#EDC951", "#CC333F", "#00A0B0"]);
+            .range(["#4d648d", "#4d648d", "#4d648d"]);
 
         var options = {
             w: width,
@@ -83,7 +134,7 @@ function radarChartBuilder(data) {
             color: d3.scale.category10()	//Color function, 0
         };
 
-        console.log("Data: ", data, ", ID: ", id, ", CFG: ", cfg);
+        
 
 
         //Put all of the options into a variable called cfg
@@ -93,31 +144,30 @@ function radarChartBuilder(data) {
             }//for i
         }//if
 
-        console.log("i = ", i);
+        
 
         //If the supplied maxValue is smaller than the actual one, replace by the max in the data
+
         var maxValue = 0;
 
-        for (index = 0; index < data.length; index++) {
-            if (data[index].total > maxValue) {
-                maxValue = data[index].total;
+        for (index = 0; index < dataInArray[0].length; index++) {
+            if (dataInArray[0][index].value > maxValue) {
+                maxValue = dataInArray[0][index].value;
             };
         } 
 
         cfg.maxValue = maxValue;
 
-        console.log("Max Value - ", maxValue);
-        console.log(data[0]);
+        
 
 
-        var allAxis = (data.map(function (i, j) { return i.age })),	//Names of each axis
+        var allAxis = (dataInArray[0].map(function (i, j) { return i.axis })),	//Names of each axis
             total = allAxis.length,					//The number of different axes
             radius = Math.min(cfg.w / 2, cfg.h / 2), 	//Radius of the outermost circle
-            Format = d3.format('%'),			 	//Percentage formatting
+            Format = d3.format(',d'),			 	//Percentage formatting
             angleSlice = Math.PI * 2 / total;		//The width in radians of each "slice"
 
-        console.log("Age Count: ", total);
-        console.log("Axis: ", allAxis);
+        
 
         //Scale for the radius
         var rScale = d3.scale.linear()
@@ -137,7 +187,7 @@ function radarChartBuilder(data) {
 
     try {
         //Remove whatever chart with the same id/class was present before
-        console.log("ID: ", id);
+        
         d3.select(id).select("svg").remove();
 
         //Initiate the radar chart SVG
@@ -145,7 +195,7 @@ function radarChartBuilder(data) {
             .attr("width", cfg.w + cfg.margin.left + cfg.margin.right) //cfg.w + cfg.margin.left + cfg.margin.right
             .attr("height", cfg.h + cfg.margin.bottom + cfg.margin.top)
             .attr("class", "radar" + id);
-        console.log("SVG: ", svg);
+        
         //Append a g element
         var g = svg.append("g")
             .attr("transform", "translate(" + (cfg.w / 2 + cfg.margin.left) + "," + (cfg.h / 2 + cfg.margin.top) + ")");
@@ -257,18 +307,24 @@ function radarChartBuilder(data) {
         //The radial line function
         var radarLine = d3.svg.line.radial()
             .interpolate("linear-closed")
-            .radius(function (d) { return rScale(d.value); })
+            .radius(function (d) {
+                return rScale(d.value);
+            })
             .angle(function (d, i) { return i * angleSlice; });
 
         if (cfg.roundStrokes) {
             radarLine.interpolate("cardinal-closed");
         }
 
+        //Must add data to array to show number of blobs (1)
+
+
         //Create a wrapper for the blobs	
         var blobWrapper = g.selectAll(".radarWrapper")
-            .data(data)
+            .data(dataInArray)
             .enter().append("g")
             .attr("class", "radarWrapper");
+
 
         //Append the backgrounds	
         blobWrapper
@@ -318,14 +374,14 @@ function radarChartBuilder(data) {
         console.log(error);
     }
 
-    ///////////////////////////////////////////////////////////
-    ////////// Append invisible circles for tooltip ///////////
-    ///////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////
+    //////////// Append invisible circles for tooltip ///////////
+    /////////////////////////////////////////////////////////////
 
     try {
         //Wrapper for the invisible circles on top
         var blobCircleWrapper = g.selectAll(".radarCircleWrapper")
-            .data(data)
+            .data(dataInArray)
             .enter().append("g")
             .attr("class", "radarCircleWrapper");
 
@@ -363,12 +419,12 @@ function radarChartBuilder(data) {
         console.log(error);
     }
 
-    ///////////////////////////////////////////////////////////
-    ///////////////////// Helper Function /////////////////////
-    ///////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////
+    /////////////////////// Helper Function /////////////////////
+    /////////////////////////////////////////////////////////////
 
-    ////Taken from http://bl.ocks.org/mbostock/7555321
-    ////Wraps SVG text	
+    //////Taken from http://bl.ocks.org/mbostock/7555321
+    //////Wraps SVG text	
     function wrap(text, width) {
         text.each(function () {
             var text = d3.select(this),
