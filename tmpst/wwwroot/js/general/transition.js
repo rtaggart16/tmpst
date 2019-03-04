@@ -1,7 +1,8 @@
 ﻿// Container Variables
 
 // IMPORTANT - Will be added to as more views get added
-let allViews = $('#overview-page').add($('#weather-page')).add($('#earthquake-page')).add($('#population-page'));
+let allViews = $('#overview-page').add($('#weather-page')).add($('#earthquake-page'))
+    .add($('#traffic-page'));
 
 // END: Container Variables
 
@@ -10,6 +11,7 @@ let allViews = $('#overview-page').add($('#weather-page')).add($('#earthquake-pa
 function fadeInSpecifiedView(viewID) {
     resetWeatherPage();
     resetEarthquakePage();
+    //resetTrafficPage();
     allViews.fadeOut(300).promise().done(function () {
         $('#' + viewID).fadeIn(300);
     });
@@ -23,12 +25,14 @@ const allWeatherViews = $('#weather-query-container').add($('#weather-current-da
     .add($('#weather-map-container'))
     .add($('#weather-forecast-data-container'))
     .add($('#weather-current-data-container'))
-    .add($('#weather-forecast-data-container-mobile'));
+    .add($('#weather-forecast-data-container-mobile'))
+    .add($('#weather-analysis-landing'));
 
 const allDynamicWeatherViews = $('#weather-current-data-container').add($('#weather-map-container'))
     .add($('#weather-forecast-data-container'))
     .add($('#weather-current-data-container'))
-    .add($('#weather-forecast-data-container-mobile'));
+    .add($('#weather-forecast-data-container-mobile'))
+    .add($('#weather-analysis-landing'));
 
 const allDynamicWeatherElements = $('#latitude-input').add($('#longitude-input'))
     .add($('#name-or-postcode-input'))
@@ -40,7 +44,9 @@ const allDynamicWeatherElements = $('#latitude-input').add($('#longitude-input')
     .add($('#current-weather-wind-speed-container'))
     .add($('#forecast-tbl-head'))
     .add($('#forecast-tbl-body'))
-    .add($('#forecast-tbl-body-mobile'));
+    .add($('#forecast-tbl-body-mobile'))
+    .add($('#forecast-overall-chart'))
+    .add($('#current-day-chart'));
 
 function fadeDynamicWeatherViews() {
     allDynamicWeatherViews.fadeOut(300);
@@ -56,6 +62,21 @@ function resetWeatherPage() {
 }
 // END: Weather Clean Up
 
+//Traffic Clean Up
+//const allTrafficViews = $('#traffic-route-query-container').add($('#traffic-incidents-query-container'));
+
+//const allDynamicTrafficViews = $('#traffic-incidents-query-container');
+
+//function fadeDynamicTrafficViews() {
+    //allTrafficViews.fadeOut(300);
+//}
+
+//function resetTrafficPage() {
+    //fadeDynamicTrafficViews();
+//}
+
+//END: Traffic Clean Up
+
 //Earthquake Clean Up
 const allEarthquakeViews = $('#earthquake-query-container').add($('#earthquake-cluster-map-container'));
 
@@ -68,6 +89,8 @@ function fadeDynamicEarthquakeViews() {
 function resetEarthquakePage() {
     fadeDynamicEarthquakeViews();
 }
+
+//END: Earthquake Clean Up
 
 
     

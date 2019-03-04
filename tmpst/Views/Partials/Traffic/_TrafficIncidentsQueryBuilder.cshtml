@@ -1,0 +1,118 @@
+﻿@model tmpst.Models.TrafficAPIKeys
+@*
+    Author Info:
+
+    Name(s) - Mark Riley, Ross Taggart, Aidan Marshall
+    Student Number - S1829984, S1828840, S1828601
+    Date Created - 01/03/2019
+    Version - 1.0.0
+
+    Description:
+    Page that will builds query for user
+*@
+
+<div class="row">
+    <div class="col-12">
+        <div class="card traffic-card-container">
+            <div class="row traffic-card-item">
+                <div id="collapsed-text-container" class="col-11 text-center">
+                    <h5 style="display:none" id="traffic-incidents-wizard-collapsed-title">Traffic Incidents Wizard</h5>
+                </div>
+                <div id="traffic-incidents-collapse-expand" class="col-1 text-right tmpst-clickable">
+                    <i id="traffic-incidents-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i>
+                    <i style="display:none" id="traffic-incidents-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                </div>
+            </div>
+            <div id="traffic-incidents-wizard-container">
+                <div class="row traffic-card-item">
+                    <div class="col-12 text-center">
+                        <h5>Traffic Incidents Wizard</h5>
+                    </div>
+                </div>
+                <div class="row traffic-card-item">
+                    <div class="col-6">
+                        <input class="form-control" id="traffic-incident-lat-input" placeholder="Latitude" />
+                    </div>
+                    <div class="col-6">
+                        <input class="form-control" id="traffic-incident-lon-input" placeholder="Longitude" />
+                    </div>
+                </div>
+                <div id="submit-traffic-incidents-request-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <button id="submit-traffic-incidents-request-btn" onclick="submitTrafficIncidentRequest()" class="btn btn-success w-100">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#traffic-incidents-collapse-expand').click(function () {
+        $('#traffic-incidents-wizard-container').slideToggle("slow", function () {
+            //if container is visible, show an arrow that allows the container to be minimised
+            if (!$('#traffic-incidents-wizard-container').is(':visible')) {
+                $('#traffic-incidents-wizard-arrow-up').fadeOut().promise().done(function () {
+                    $('#traffic-incidents-wizard-arrow-down').fadeIn();
+                    $('#traffic-incidents-wizard-collapsed-title').fadeIn();
+                });
+            }
+            else {
+                $('#traffic-incidents-wizard-arrow-down').fadeOut().promise().done(function () {
+                    $('#traffic-incidents-wizard-arrow-up').fadeIn();
+                    $('#traffic-incidents-wizard-collapsed-title').fadeOut();
+                });
+            }
+        });
+    });
+
+    function submitTrafficIncidentRequest() {
+        var platform = new H.service.Platform({
+        'app_id': '@Model.App_ID',
+        'app_code': '@Model.App_Code'
+        });
+
+        let latitude = $('#traffic-incident-lat-input').val();
+        let longitude = $('#traffic-incident-lon-input').val();
+
+        let dataValid = validateLatLon(latitude, longitude);
+
+        if (dataValid) {
+            // Obtain the default map types from the platform object:
+            var defaultLayers = platform.createDefaultLayers();
+
+            // Instantiate (and display) a map object:
+            var map = new H.Map(
+                document.getElementById('traffic-incident-result-map'),
+                defaultLayers.normal.map,
+                {
+                    zoom: 10,
+                    center: { lat: latitude, lng: longitude }
+                });
+
+            // Add incident overlay to map
+            map.addLayer(defaultLayers.incidents);
+
+            $('#traffic-incidents-result-map-container').fadeIn(300);
+        }
+        else {
+            Swal.fire({
+                type: 'error',
+                title: 'Invalid Request',
+                text: 'You must specify both a latitude and a longitude'
+            })
+        }
+    }
+
+    function validateLatLon(lat, lon) {
+        if ((lat == '' || lat == ' ') || (lon == '' || lon == ' ')) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>

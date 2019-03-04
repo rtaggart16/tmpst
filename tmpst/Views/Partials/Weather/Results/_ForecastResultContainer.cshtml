@@ -23,9 +23,16 @@
             </table>
             <div class="row">
                 <div class="col-12 weather-card-container">
-                    <button class="btn btn-success w-100" onclick="analyseForecastData()">Analyse Data</button>
+                    <button class="btn btn-success w-100" id="submitForecast" onclick="analyseForecastData()">Analyse Data</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $('#submitForecast').click(function () {
+        console.log('click')
+        $('#forecast-map-collapse-expand').click();
+
+    });
+</script>
