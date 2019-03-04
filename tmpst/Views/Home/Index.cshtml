@@ -3,6 +3,7 @@
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/Layout/_Layout.cshtml";
 }
+<link href="~/css/Overview/overview.css" rel="stylesheet" />
 
 @*
     Author Info:
@@ -28,25 +29,21 @@
     </div>
 </div>
 <!-- END: Overview Page -->
-
 <!-- Weather Pages -->
-
 <!-- Main Weather Landing Page -->
 <div style="display:none;" class="new-page" id="weather-page">
     @await Html.PartialAsync("~/Views/Partials/Weather/_WeatherLandingPage.cshtml", Model)
 </div>
 <!-- END: Main Weather Landing Page -->
-
 <!-- END: Weather Pages -->
-
 <!-- Main Earthquake Landing Page -->
 <div style="display:none;" class="new-page" id="earthquake-page">
     @await Html.PartialAsync("~/Views/Partials/Earthquake/_EarthquakeLandingPage.cshtml", Model)
 </div>
 <!-- END: Main Weather Landing Page -->
-
-<!-- Main Traffic Landing Page -->
-<div style="display:none;" class="new-page" id="traffic-page">
-    @await Html.PartialAsync("~/Views/Partials/Traffic/_TrafficLandingPage.cshtml", Model)
+<!-- Population Pages -->
+<!-- Main Population Landing Page -->
+<div style="display:none;" class="new-page" id="population-page">
+    @await Html.PartialAsync("~/Views/Partials/Population/_PopulationLandingPage.cshtml", Model)
 </div>
-<!-- END: Main Traffic Landing Page -->
+<!-- END: Main Population Landing Page -->
