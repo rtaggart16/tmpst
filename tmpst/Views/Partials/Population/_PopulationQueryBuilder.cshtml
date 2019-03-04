@@ -108,10 +108,10 @@
         let year = $('#year-input').val();
         let visualisation = $('#visualisation-input').val();
         let country = $('#country-input').val();
-        console.log(year, country, visualisation);
+        console.log("Year: ", year, ", Country: ", country, ", Visualisation: ", visualisation);
 
         let url = 'https://api.population.io/1.0/population/' + year + '/' + country + '/?format=jsonp';
-        console.log(url);
+        console.log("Created URL from user Input: " + url);
         $.ajax({
             type: "GET",
             url: url,
@@ -135,13 +135,23 @@
                     Swal.fire({
                         type: 'error',
                         title: 'Data Request Error',
-                        text: 'An error has occurred when submitting your request. Please try again with different criteria'
+                        text: 'An error has occurred when submitting your request. Please try again with different criteria.'
+                    })
+                }
+                else if (errorResult.statusText == 'load') {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Load Error',
+                        text: 'An error has occurred when loading the data from our sources. Please refresh your screen.'
                     })
                 }
             }
         });
 
     }
+
+
+        
 
 
 </script>
