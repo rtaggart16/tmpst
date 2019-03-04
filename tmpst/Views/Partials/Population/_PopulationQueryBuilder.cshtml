@@ -108,7 +108,8 @@
         let year = $('#year-input').val();
         let visualisation = $('#visualisation-input').val();
         let country = $('#country-input').val();
-        console.log("Year: ", year, ", Country: ", country, ", Visualisation: ", visualisation);
+
+        if (country == "Australia/New Zealand") { country = "New Zealand"; }
 
         let url = 'https://api.population.io/1.0/population/' + year + '/' + country + '/?format=jsonp';
         console.log("Created URL from user Input: " + url);
@@ -119,7 +120,6 @@
             dataType: 'jsonp',
             contentType: "application/json",
             success: function (result) {
-                console.log('AJAX Response: ', result);
 
                 //Creates visualisation
                 createD3Visualisation(result, visualisation);
