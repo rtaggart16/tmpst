@@ -17,6 +17,7 @@
 # Page Specific
     ## Placeholder Style
     ## Page Container Style
+    ## Banner Style
 --------------------------------------------------------
 */
 
@@ -47,7 +48,53 @@ body {
     margin-bottom: 10px;
 }
 
+.banner-outer {
+    height: 80vh;
+    text-align:center;
+}
 
+.banner-header {
+    color: #4d648d;
+    width: 200px;
+    text-align: center;
+    display: inline-block;
+    border-color: #fff;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 1em;
+    margin-bottom:1em;
+}
+
+.banner-header p{
+    margin-bottom:0px;
+}
+
+.banner-body-tile {
+    color: #fff;
+    text-align: left;
+    display: inline-block;
+    border-radius: 5px;
+    background-color: #343a40; /*# 4d648d */
+    width: 100%;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    padding: 0.8em;
+}
+
+.banner-body-tile img {
+    height:40px;
+    width:40px;
+    float:right;
+
+}
+
+.banner-body-tile:hover {
+    -ms-transform: translate(0px,-5px); /* IE 9 */
+    -webkit-transform: translate(0px,-5px); /* Safari */
+    transform: translate(0px, -5px); /* Standard syntax */
+}
 /*--------------------------------------------------------------------------
     END: # Common
 ---------------------------------------------------------------------------*/
