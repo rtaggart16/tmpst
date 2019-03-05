@@ -76,7 +76,7 @@ body {
     text-align: left;
     display: inline-block;
     border-radius: 5px;
-    background-color: #343a40; /*# 4d648d */
+    background-color: #4d648d; /*# 4d648d */
     width: 100%;
     margin-bottom: 0.5em;
     margin-top: 0.5em;
@@ -90,11 +90,30 @@ body {
 
 }
 
+.banner-body-tile p {
+    float:left;
+}
+
 .banner-body-tile:hover {
     -ms-transform: translate(0px,-5px); /* IE 9 */
     -webkit-transform: translate(0px,-5px); /* Safari */
     transform: translate(0px, -5px); /* Standard syntax */
 }
+
+@media only screen and (max-width: 365px)  {
+    .banner-body-tile p{
+        display:none;
+    }
+
+    .banner-body-tile {
+        text-align:center;
+    }
+    .banner-body-tile img {
+        float: none;
+    }
+
+}
+
 /*--------------------------------------------------------------------------
     END: # Common
 ---------------------------------------------------------------------------*/
