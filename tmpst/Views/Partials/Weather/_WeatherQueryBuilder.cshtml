@@ -14,21 +14,14 @@
 <div class="row">
     <div class="col-12">
         <div class="card weather-card-container">
-            <div class="row weather-card-item">
-                <div id="collapsed-text-container" class="col-11 text-center">
-                    <h5 style="display:none" id="weather-wizard-collapsed-title">Weather Wizard</h5>
-                </div>
-                <div id="wizard-collapse-expand" class="col-1 text-right tmpst-clickable">
-                    <i id="weather-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i>
-                    <i style="display:none" id="weather-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+            <div class="row weather-card-item tmpst-clickable text-center">
+                <div class="col-12 text-center">
+                    <span>
+                        <strong>Weather Wizard</strong> <i onclick="collapseExpandToggle('weather-wizard-arrow-up', 'weather-wizard-arrow-down', 'weather-wizard-container')" id="weather-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i><i onclick="collapseExpandToggle('weather-wizard-arrow-down', 'weather-wizard-arrow-up', 'weather-wizard-container')" style="display:none" id="weather-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                    </span>
                 </div>
             </div>
             <div id="weather-wizard-container">
-                <div class="row weather-card-item">
-                    <div class="col-12 text-center">
-                        <h5>Weather Wizard</h5>
-                    </div>
-                </div>
                 <div class="row weather-card-item">
                     <div class="col">
                         <select class="form-control" id="method-type-select">
