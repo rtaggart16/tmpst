@@ -2,7 +2,7 @@
 
 // IMPORTANT - Will be added to as more views get added
 let allViews = $('#overview-page').add($('#weather-page')).add($('#earthquake-page'))
-    .add($('#traffic-page')).add($('#population-page'));
+    .add($('#traffic-page')).add($('#population-page')).add('#general-page');
 
 // END: Container Variables
 

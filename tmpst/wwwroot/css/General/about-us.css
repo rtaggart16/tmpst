@@ -1,0 +1,86 @@
+﻿/*
+    Author Info:
+
+    Name(s) - Ross Taggart, Aidan Marshall, 
+    Student Number - S1828840, S1828601
+    Date Created - 17/02/2019
+    Version - 1.0.0
+
+    Description:
+    The css file which contains styles applicable to the overview section of the application
+*/
+
+/*------------------------------------------------------
+>>> TABLE OF CONTENTS:
+--------------------------------------------------------
+# Common
+# Page Specific
+    ## 
+--------------------------------------------------------
+*/
+
+/*--------------------------------------------------------------------------
+    # Common
+---------------------------------------------------------------------------*/
+body {
+    padding-top: 55px;
+    padding-bottom: 20px;
+    background: #e2e1e0;
+}
+/*--------------------------------------------------------------------------
+    END: # Common
+---------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------
+    # Page Specific
+---------------------------------------------------------------------------*/
+/*marc: turquoise -- katy: green -- aidan:orange -- mark: hot pink -- ross: red*/
+
+/*3/4*/
+
+.image-greyscale {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
+
+.image-greyscale:hover {
+    -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(0%);
+}
+
+
+
+
+.people-background {
+    width: 200px;
+    height: 200px; /*1 -Left;Down*/
+    -webkit-clip-path: polygon(50px 0, 25px 200px, 175px 200px, 200px 0px);
+    margin-left: -70px;
+    
+}
+
+.people-background:hover{
+    -webkit-clip-path: polygon(50px 0, 25px 200px, 175px 200px, 200px 0px);
+    margin-left: -70px;
+}
+
+.first-people-background {
+    margin-left: -30px;
+    width: 200px;
+    height: 200px; /*1 -Left;Down*/
+    -webkit-clip-path: polygon(0px 0px, 0px 200px, 175px 200px, 200px 0px);
+}
+
+.last-people-background {
+    margin-left: -75px;
+    width: 200px;
+    height: 200px; /*1 -Left;Down*/
+    -webkit-clip-path: polygon(50px 0px, 25px 200px, 200px 200px, 200px 0px);
+}
+
+
+
+
+/*--------------------------------------------------------------------------
+    END: # Common
+---------------------------------------------------------------------------*/
