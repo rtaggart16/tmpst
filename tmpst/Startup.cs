@@ -21,6 +21,8 @@ namespace tmpst
             Configuration = configuration;
         }
 
+        readonly string APISpecificOrigins = "_apiSpecificOrigins";
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -35,6 +37,15 @@ namespace tmpst
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(APISpecificOrigins,
+                builder =>
+                {
+                    builder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+                });
+            });
 
             services.AddMvc();
 
@@ -64,6 +75,8 @@ namespace tmpst
             }
 
             app.UseStaticFiles();
+
+            app.UseCors(APISpecificOrigins);
 
             app.UseAuthentication();
             

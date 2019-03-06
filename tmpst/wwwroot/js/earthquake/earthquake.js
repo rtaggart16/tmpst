@@ -135,6 +135,42 @@ function submitEarthquakeRequest() {
 
 }
 
+function viewCountryInfo(lat, lon) {
+    console.log('Lat Object ', lat);
+    console.log('Lon Object ', lon);
+
+    let url = 'http://api.geonames.org/countryCode?lat=' + lat + '&lng=' + lon +'&username=tmpst';
+
+    
+    $.ajax({
+        type: "GET",
+        url: url,
+        contentType: "application/json",
+        success: function (result) {
+            console.log('AJAX Result: ', result);
+
+        },
+        error: function (errorResult) {
+            console.log('ERROR: ', errorResult.statusText);
+            
+        }
+    });
+
+    /*var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://api.geonames.org/countryCode?lat=47.03&lon=10.2&username=tmpst",
+        "method": "GET",
+        "headers": {
+            "cache-control": "no-cache"
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log('AJAX Response ', response);
+    });*/
+}
+
 /*--------------------------------------------------------------------------
     END: # API Requests
 ---------------------------------------------------------------------------*/

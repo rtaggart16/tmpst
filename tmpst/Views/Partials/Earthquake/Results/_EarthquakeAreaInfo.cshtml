@@ -1,0 +1,43 @@
+﻿@*
+    Author Info:
+
+    Name(s) - Ross Taggart, Aidan Marshall,
+    Student Number - S1828840, S1828601,
+    Date Created - 19/02/2019
+    Version - 1.0.0
+
+    Description:
+    Partial View that contains the data of a country that an earthquake has occurred in
+*@
+
+<div class="row text-center">
+    <button class="btn btn-info">Back to Earthquakes</button>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card earthquake-card-container">
+            <div class="row">
+                <div class="col-12 earthquake-card-item text-center">
+                    <span>
+                        <strong>Country Information</strong> <i onclick="collapseExpandToggle('country-information-arrow-up', 'country-information-arrow-down', 'country-information-container')" id="country-information-arrow-up" class="fas fa-caret-up fa-2x tmpst-clickable"></i><i onclick="collapseExpandToggle('country-information-arrow-down', 'country-information-arrow-up', 'country-information-container')" style="display:none" id="country-information-arrow-down" class="fas fa-caret-down fa-2x tmpst-clickable"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="country-information-container">
+                <div class="row">
+                    <div class="col-12">
+                        <p id="country-information-summary"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <table class="w-100 table-striped">
+                            <tbody id="country-info-tbl-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
