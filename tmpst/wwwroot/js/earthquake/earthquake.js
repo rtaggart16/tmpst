@@ -139,36 +139,99 @@ function viewCountryInfo(lat, lon) {
     console.log('Lat Object ', lat);
     console.log('Lon Object ', lon);
 
-    let url = 'http://api.geonames.org/countryCode?lat=' + lat + '&lng=' + lon +'&username=tmpst';
-
+    let url = 'https://secure.geonames.org/countryCode?type=JSON&lat=' + lat + '&lng=' + lon +'&username=tmpst';
     
     $.ajax({
         type: "GET",
         url: url,
-        contentType: "application/json",
+        dataType: "jsonp",
         success: function (result) {
             console.log('AJAX Result: ', result);
 
+            $.ajax({
+                type: "GET",
+                url: 'https://restcountries.eu/rest/v2/alpha/' + result.countryCode,
+                dataType: "json",
+                success: function (result) {
+                    $('#country-flag-container').empty();
+                    console.log('Country Result: ', result);
+
+                    let summaryText = result.name + ' is a country which is part of ' + result.region + '. ' + result.name + ' is also part of the subregion ' + result.subregion + '. ';
+
+                    if (result.altSpellings.length > 0) {
+                        summaryText += result.name + ' is also called ';
+                        $.each(result.altSpellings, function (key, val) {
+                            if ((key + 1) == result.altSpellings.length) {
+                                summaryText += val + '. ';
+                            }
+                            else {
+                                summaryText += val + ', ';
+                            }
+                            
+                        });
+                    }
+
+                    summaryText += result.name + '\'s native name is ' + result.nativeName;
+
+                    $('#country-information-summary').text(summaryText);
+                    
+                    $('#country-flag-container').append('<img class="img-fluid" src="' + result.flag + '" />');
+                    
+                    
+
+                    let capital = result.capital;
+                    let population = result.population;
+                    let currencies = '';
+
+                    if (result.currencies.length > 0) {
+                        $.each(result.currencies, function (key, val) {
+                            if ((key + 1) == result.currencies.length) {
+                                let currencyText = val.name + ' (' + val.symbol + ')'
+                                currencies += currencyText;
+                            }
+                            else {
+                                let currencyText = val.name + ' (' + val.symbol + '), '
+                                currencies += currencyText;;
+                            }
+                        });
+                    }
+
+                    let demonym = result.demonym;
+
+                    let languages = '';
+
+                    if (result.languages.length > 0) {
+                        $.each(result.languages, function (key, val) {
+                            if ((key + 1) == result.currencies.length) {
+                                let languageText = val.name + ' (' + val.nativeName + ')'
+                                languages += languageText;
+                            }
+                            else {
+                                let languageText = val.name + ' (' + val.nativeName + '), '
+                                languages += languageText;;
+                            }
+                        });
+                    }
+
+                    $('#country-info-tbl-body').append('<tr><td>Capital</td><td>' + capital + '</td></tr>' +
+                        '<tr><td>Population</td><td>' + population + '</td></tr>' +
+                        '<tr><td>Currencies</td><td>' + currencies + '</td></tr>' +
+                        '<tr><td>Demonym</td><td>' + demonym + '</td></tr>' +
+                        '<tr><td>Languages</td><td>' + languages + '</td></tr>');
+
+                    $('#earthquake-are-info-container').fadeIn(300);
+                },
+                error: function (errorResult) {
+                    console.log('ERROR: ', errorResult.statusText);
+
+                }
+            });
         },
         error: function (errorResult) {
             console.log('ERROR: ', errorResult.statusText);
             
         }
     });
-
-    /*var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "http://api.geonames.org/countryCode?lat=47.03&lon=10.2&username=tmpst",
-        "method": "GET",
-        "headers": {
-            "cache-control": "no-cache"
-        }
-    }
-
-    $.ajax(settings).done(function (response) {
-        console.log('AJAX Response ', response);
-    });*/
 }
 
 /*--------------------------------------------------------------------------
