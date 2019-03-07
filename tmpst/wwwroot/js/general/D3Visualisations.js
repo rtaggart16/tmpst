@@ -20,22 +20,14 @@
 
     //Chooses Visualisation
     switch (D3Type){
-        case D3Type = "show-reel":
-            d3.select("#population-text-header").text("Show Reel");
-            
-            showReelBuilder(data);
-            break;
-        case D3Type = "bubble-chart":
-            d3.select("#population-text-header").text("Bubble Chart");
-            bubbleChartBuilder(data);
-            break;
+        
         case D3Type = "radar-chart":
             d3.select("#population-text-header").text("Radar Chart");
             radarChartBuilder(data);
             break;
-        case D3Type = "multi-packaging":
-            d3.select("#population-text-header").text("Multi-Packaging");
-            multiPackagingBuilder(data);
+        case D3Type = "bar-chart":
+            d3.select("#population-text-header").text("Bar Chart");
+            barChartBuilder(data);
             break;
         default:
             Swal.fire({
@@ -48,14 +40,6 @@
     }
 }
 
-
-function showReelBuilder(data) {
-    //Laura - this function is for your show reel visualisation
-}
-
-function bubbleChartBuilder(data) {
-    //Laura - this function is for your bubble chart visualisation
-}
 
 function radarChartBuilder(data) {
     //Aidan - this function is for your radar chart visualisation
@@ -454,6 +438,6 @@ function radarChartBuilder(data) {
     
 }
 
-function multiPackagingBuilder(data) {
-    //Aidan - this function is for your multi packaging visualisation
+function barChartBuilder(data) {
+ 
 }
