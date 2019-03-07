@@ -34,13 +34,13 @@ body {
 /*--------------------------------------------------------------------------
     # Page Specific
 ---------------------------------------------------------------------------*/
-/*marc: turquoise -- katy: green -- aidan:orange -- mark: hot pink -- ross: red*/
-
-/*3/4*/
 
 .image-greyscale {
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     filter: grayscale(100%);
+    overflow: auto;
+    white-space: nowrap;
+    text-align: center;
 }
 
 .image-greyscale:hover {
@@ -51,35 +51,86 @@ body {
 
 
 
+
+
+
 .people-background {
     width: 200px;
     height: 200px; /*1 -Left;Down*/
     -webkit-clip-path: polygon(50px 0, 25px 200px, 175px 200px, 200px 0px);
-    margin-left: -70px;
+    margin-left: -75px;
     
 }
 
-.people-background:hover{
-    -webkit-clip-path: polygon(50px 0, 25px 200px, 175px 200px, 200px 0px);
-    margin-left: -70px;
-}
-
 .first-people-background {
-    margin-left: -30px;
     width: 200px;
     height: 200px; /*1 -Left;Down*/
-    -webkit-clip-path: polygon(0px 0px, 0px 200px, 175px 200px, 200px 0px);
+    -webkit-clip-path: polygon(25px 0px, 25px 200px, 175px 200px, 200px 0px);
 }
 
 .last-people-background {
     margin-left: -75px;
     width: 200px;
     height: 200px; /*1 -Left;Down*/
-    -webkit-clip-path: polygon(50px 0px, 25px 200px, 200px 200px, 200px 0px);
+    -webkit-clip-path: polygon(50px 0px, 25px 200px, 175px 200px, 175px 0px);
+}
+
+
+.person {
+    width: calc(100%-2em);
+    margin-top: 1em;
+    padding: 2em;
+    text-align: center;
+    border-radius:5px;
+}
+
+.person img {
+    height:150px;
+    float:right;
 }
 
 
 
+.aidan { background-color: #FF9933; }
+.katie { background-color: #008000; }
+.ross { background-color: #FF0000; }
+.marc { background-color: #0099FF; }
+.mark { background-color: #FF0066; }
+
+
+.team-header {
+    text-align:center;
+    color:white;
+}
+
+
+.person a { color:black; }
+
+
+
+
+@media only screen and (max-width: 770px) {
+    .people-background {
+        width: 100px;
+        height: 100px; /*1 -Left;Down*/
+        -webkit-clip-path: polygon(25px 0, 12.5px 100px, 87.5px 100px, 100px 0px);
+        margin-left: -37.5px;
+    }
+
+    .first-people-background {
+        margin-left: -12.5px;
+        width: 100px;
+        height: 100px; /*1 -Left;Down*/
+        -webkit-clip-path: polygon(12.5px 0px, 12.5px 100px, 87.5px 100px, 100px 0px);
+    }
+
+    .last-people-background {
+        margin-left: -37.5px;
+        width: 100px;
+        height: 100px; /*1 -Left;Down*/
+        -webkit-clip-path: polygon(25px 0px, 12.5px 100px, 87.5px 100px, 87.5px 0px);
+    }
+}
 
 /*--------------------------------------------------------------------------
     END: # Common
