@@ -70,6 +70,44 @@
     });
 
     function submitTrafficIncidentRequest() {
+        let latitude = $('#traffic-incident-lat-input').val();
+        let longitude = $('#traffic-incident-lon-input').val();
+
+        let minLatLon = calculateMinMaxLatLon(latitude, longitude);
+
+        let requestUrl = 'https://traffic.api.here.com/traffic/6.3/incidents.json?app_id=' + '@Model.App_ID' + '&app_code=' + '@Model.App_Code' + '&bbox=' + latitude + ',' + longitude + ',' + minLatLon.minLat + ',' + minLatLon.minLon;
+
+        $.ajax({
+            type: "GET",
+            url: requestUrl,
+            contentType: "application/json",
+            success: function (result) {
+                console.log('AJAX Response: ', result);
+                
+            },
+            error: function (errorResult) {
+                console.log('ERROR: ', errorResult);
+                
+            }
+        });
+    }
+
+    function calculateMinMaxLatLon(lat, lon) {
+        let parsedLat = parseFloat(lat);
+        let parsedLon = parseFloat(lon);
+        alert(parsedLat);
+        alert(parsedLon);
+        let minLatLon = {
+            minLat: parseFloat((parsedLat - 0.005)),
+            minLon: parseFloat((parsedLon - 0.055))
+        };
+
+        return minLatLon;
+    }
+
+    @*
+    function submitTrafficIncidentRequest() {
+        
         var platform = new H.service.Platform({
         'app_id': '@Model.App_ID',
         'app_code': '@Model.App_Code'
@@ -114,5 +152,5 @@
         else {
             return true;
         }
-    }
+    }*@
 </script>

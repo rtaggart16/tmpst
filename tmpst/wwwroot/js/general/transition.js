@@ -6,6 +6,25 @@ let allViews = $('#overview-page').add($('#weather-page')).add($('#earthquake-pa
 
 // END: Container Variables
 
+// Generic Collapse Function
+
+function collapseExpandToggle(currentID, fadeInID, containerID) {
+    $('#' + containerID).slideToggle("slow", function () {
+        $('#' + currentID).fadeOut(300).promise().done(function () {
+            $('#' + fadeInID).fadeIn(300);
+        });
+    });
+
+    if (currentID == 'forecast-result-arrow-up' && fadeInID == 'forecast-result-arrow-down') {
+        $('#forecast-head-only-tbl').fadeIn(300);
+    }
+    else if (currentID == 'forecast-result-arrow-down' && fadeInID == 'forecast-result-arrow-up') {
+        $('#forecast-head-only-tbl').fadeOut(300);
+    }
+}
+
+// END: Generic Collapse Function
+
 // General Transition
 
 function fadeInSpecifiedView(viewID) {
@@ -32,7 +51,8 @@ const allDynamicWeatherViews = $('#weather-current-data-container').add($('#weat
     .add($('#weather-forecast-data-container'))
     .add($('#weather-current-data-container'))
     .add($('#weather-forecast-data-container-mobile'))
-    .add($('#weather-analysis-landing'));
+    .add($('#weather-analysis-landing')
+    .add($('#forecast-head-only-tbl')));
 
 const allDynamicWeatherElements = $('#latitude-input').add($('#longitude-input'))
     .add($('#name-or-postcode-input'))
@@ -46,7 +66,8 @@ const allDynamicWeatherElements = $('#latitude-input').add($('#longitude-input')
     .add($('#forecast-tbl-body'))
     .add($('#forecast-tbl-body-mobile'))
     .add($('#forecast-overall-chart'))
-    .add($('#current-day-chart'));
+    .add($('#current-day-chart')
+    .add($('#forecast-head-only')));
 
 function fadeDynamicWeatherViews() {
     allDynamicWeatherViews.fadeOut(300);
@@ -55,6 +76,7 @@ function fadeDynamicWeatherViews() {
 function clearDynamicWeatherElements() {
     allDynamicWeatherElements.empty();
 }
+
 
 function resetWeatherPage() {
     fadeDynamicWeatherViews();
