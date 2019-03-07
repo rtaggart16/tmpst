@@ -17,15 +17,17 @@
         <p class="tmpst-desc">Analyse current earthquake data</p>
     </div>
 
-    <div id="earthquake-query-container">
-        @await Html.PartialAsync("~/Views/Partials/Earthquake/_EarthquakeQueryBuilder.cshtml", Model.Earthquakes)
-    </div>
+    <div id="earthquake-query-and-map-container">
+        <div id="earthquake-query-container">
+            @await Html.PartialAsync("~/Views/Partials/Earthquake/_EarthquakeQueryBuilder.cshtml", Model.Earthquakes)
+        </div>
 
-    <div id="earthquake-cluster-map-container" style="display:none">
-        @await Html.PartialAsync("~/Views/Partials/Earthquake/Results/_EarthquakeClusterMapContainer.cshtml")
+        <div id="earthquake-cluster-map-container" style="display:none">
+            @await Html.PartialAsync("~/Views/Partials/Earthquake/Results/_EarthquakeClusterMapContainer.cshtml")
+        </div>
     </div>
-
-    <div id="earthquake-are-info-container" style="display:none">
+    
+    <div id="earthquake-are-info-container" class="text-center" style="display:none">
         @await Html.PartialAsync("~/Views/Partials/Earthquake/Results/_EarthquakeAreaInfo.cshtml")
     </div>
 </div>

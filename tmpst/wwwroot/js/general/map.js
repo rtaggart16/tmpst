@@ -31,9 +31,7 @@ function initMap(latitude, longitude, placeName, containerID) {
 
         // Create an info window that will be displayed when a marker is clicked
         let infoWindow = new google.maps.InfoWindow({
-            content: '<h2>' + placeName + '</h2>' +
-                '<button class="btn btn-success">Analyse Data</button>'
-
+            content: '<h2>' + placeName + '</h2>'
         });
 
         // Add an event listener to check when a marker is clicked

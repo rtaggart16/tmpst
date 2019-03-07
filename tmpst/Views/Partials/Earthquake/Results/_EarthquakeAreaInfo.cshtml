@@ -11,7 +11,9 @@
 *@
 
 <div class="row text-center">
-    <button class="btn btn-info">Back to Earthquakes</button>
+    <div class="col-12">
+        <button class="btn btn-info text-center earthquake-card-item" onclick="redisplayEarthquakes()">Back to Earthquakes</button>
+    </div>
 </div>
 
 <div class="row">
@@ -26,10 +28,16 @@
             </div>
             <div id="country-information-container" class="earthquake-card-item">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-12">
                         <p id="country-information-summary"></p>
                     </div>
-                    <div id="country-flag-container" class="col-4">
+                </div>
+                <div class="row earthquake-card-item">
+                    <div id="country-flag-container" class="col-6">
+                    </div>
+                    <div class="col-6 text-center">
+                        <div class="container-fluid" style="height:100%" id="country-capital-map">
+                        </div>
                     </div>
                 </div>
                 <div class="row earthquake-card-item">
