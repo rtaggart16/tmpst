@@ -1,0 +1,79 @@
+﻿@*
+    Author Info:
+
+    Name(s) - Ross Taggart
+    Student Number - S1828840
+    Date Created - 22/02/2019
+    Version - 1.0.1
+
+    Description:
+    JavaScript file which contains the functions and event handlers for the weather system
+*@
+<div class="row text-center">
+    <div class="col-12">
+        <div id="tutorial-title-container" class="text-center">
+            <h3 class="tmpst-title">Tutorials</h3>
+            <p class="tmpst-desc">Understand tmpst better</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-4 card" style="overflow:auto">
+        <div id="tutorial-menu-container">
+            <ul>
+                <li>
+                    Overview
+                    <ul>
+                        <li id="single-page-desc-li">Single Page Applications</li>
+                        <li id="user-secret-desc-li">User Secrets</li>
+                    </ul>
+                </li>
+                <li>Pre-requisites</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="card tutorial-card-container">
+            <div id="tutorial-text-container">
+                <div style="display:none; height:300px; overflow-x:hidden" id="single-page-application-tutorial">
+                    @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Overview/_SinglePageApplicationsTutorial.cshtml")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let allTutorialPages = $('#single-page-application-tutorial');
+    $(function () {
+        $('#tutorial-menu-container').jstree({
+            "core": {
+                "themes": {
+                    "variant": "large"
+                }
+            },
+            "checkbox": {
+                "keep_selected_style": false
+            }
+        });
+
+        $('#tutorial-menu-container').on("changed.jstree", function (e, data) {
+            console.log(data.node.id);
+            processNodeRequest(data.node.id);
+        });
+    });
+
+    function processNodeRequest(id) {
+        console.log('ID: ' + id);
+        if (id == 'single-page-desc-li') {
+            fadeSpecifiiedTut('single-page-application-tutorial');
+        }
+    }
+
+    function fadeSpecifiiedTut(viewID) {
+        allTutorialPages.fadeOut(300).promise().done(function () {
+            $('#' + viewID).fadeIn(300);
+        });
+    }
+</script>
