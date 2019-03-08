@@ -20,9 +20,9 @@
 <!-- Overview Page -->
 <div id="overview-page">
     @*<div id="overview-title-container" class="text-center">
-        <h3 class="tmpst-title">tmpst</h3>
-        <p class="tmpst-desc">Weather processing platform</p>
-    </div>*@
+            <h3 class="tmpst-title">tmpst</h3>
+            <p class="tmpst-desc">Weather processing platform</p>
+        </div>*@
 
     <div>
         @await Html.PartialAsync("~/Views/Partials/Overview/_OverviewLandingPartial.cshtml")
@@ -53,9 +53,11 @@
     @await Html.PartialAsync("~/Views/Partials/Traffic/_TrafficLandingPage.cshtml", Model)
 </div>
 <!-- END: Main Population Landing Page -->
-
-<!-- Tutorial Pages -->
-<!-- Tutorial Landing Page -->
+<!-- Traffic Pages -->
+<!-- Main Population Landing Page -->
+<div style="display:none;" class="new-page" id="general-page">
+    @await Html.PartialAsync("~/Views/Partials/General/_AboutUsPage.cshtml", Model)
+</div>
 <div style="display:none" class="new-page" id="tutorial-page">
     @await Html.PartialAsync("~/Views/Partials/Tutorials/_TutorialLandingPage.cshtml")
 </div>
