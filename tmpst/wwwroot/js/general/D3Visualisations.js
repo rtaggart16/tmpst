@@ -5,6 +5,8 @@
     d3.select("#population-text-header").remove();
     d3.select("#population-text-subheader").remove();
 
+    $("#population-inner-chart").empty();
+    $("#population-label").empty();
 
     //Sets the header and sub-header
     d3.select("#population-header").append("h2")
@@ -20,22 +22,14 @@
 
     //Chooses Visualisation
     switch (D3Type){
-        case D3Type = "show-reel":
-            d3.select("#population-text-header").text("Show Reel");
-            
-            showReelBuilder(data);
-            break;
-        case D3Type = "bubble-chart":
-            d3.select("#population-text-header").text("Bubble Chart");
-            bubbleChartBuilder(data);
-            break;
+        
         case D3Type = "radar-chart":
             d3.select("#population-text-header").text("Radar Chart");
             radarChartBuilder(data);
             break;
-        case D3Type = "multi-packaging":
-            d3.select("#population-text-header").text("Multi-Packaging");
-            multiPackagingBuilder(data);
+        case D3Type = "bar-chart":
+            d3.select("#population-text-header").text("Bar Chart");
+            barChartBuilder(data);
             break;
         default:
             Swal.fire({
@@ -49,18 +43,9 @@
 }
 
 
-function showReelBuilder(data) {
-    //Laura - this function is for your show reel visualisation
-}
-
-function bubbleChartBuilder(data) {
-    //Laura - this function is for your bubble chart visualisation
-}
-
 function radarChartBuilder(data) {
     //Aidan - this function is for your radar chart visualisation
     //Radar chart sourced from https://gist.github.com/nbremer/21746a9668ffdf6d8242 
-     /* Radar chart design created by Nadieh Bremer - VisualCinnamon.com */
     //Call function to drawv the Radar chart
 
 
@@ -141,8 +126,8 @@ function radarChartBuilder(data) {
         if ('undefined' !== typeof options) {
             for (var i in options) {
                 if ('undefined' !== typeof options[i]) { cfg[i] = options[i]; }
-            }//for i
-        }//if
+            }
+        }
 
         
 
@@ -181,9 +166,8 @@ function radarChartBuilder(data) {
         // Note - error messages will vary depending on browser
     };
 
-    ///////////////////////////////////////////////////////////
-    ////////////// Create the container SVG and g /////////////
-    ///////////////////////////////////////////////////////////
+    
+    //Create the container SVG and g 
 
     try {
         //Remove whatever chart with the same id/class was present before
@@ -206,11 +190,7 @@ function radarChartBuilder(data) {
         
         
 
-    /////////////////////////////////////////////////////////////
-    ////////////// Glow filter for some extra pizzazz ///////////
-    /////////////////////////////////////////////////////////////
-
-    ////Filter for the outside glow
+    //Filter for the outside glow
     try {
         var filter = g.append('defs').append('filter').attr('id', 'glow'),
             feGaussianBlur = filter.append('feGaussianBlur').attr('stdDeviation', '2.5').attr('result', 'coloredBlur'),
@@ -223,11 +203,9 @@ function radarChartBuilder(data) {
     }
     
 
-    /////////////////////////////////////////////////////////////
-    /////////////////// Draw the Circular grid //////////////////
-    /////////////////////////////////////////////////////////////
+    //Draw the Circular grid
 
-    ////Wrapper for the grid & axes
+    //Wrapper for the grid & axes
 
     try {
         var axisGrid = g.append("g").attr("class", "axisWrapper");
@@ -261,9 +239,7 @@ function radarChartBuilder(data) {
     }
     
 
-    /////////////////////////////////////////////////////////////
-    //////////////////////// Draw the axes //////////////////////
-    /////////////////////////////////////////////////////////////
+    //Draw the axes
     
     try {
         //Create the straight lines radiating outward from the center
@@ -298,9 +274,7 @@ function radarChartBuilder(data) {
     }
     
 
-    /////////////////////////////////////////////////////////////
-    ///////////////// Draw the radar chart blobs ////////////////
-    /////////////////////////////////////////////////////////////
+    //Draw the radar chart blobs
 
     try {
 
@@ -374,9 +348,7 @@ function radarChartBuilder(data) {
         console.log(error);
     }
 
-    /////////////////////////////////////////////////////////////
-    //////////// Append invisible circles for tooltip ///////////
-    /////////////////////////////////////////////////////////////
+    // Append invisible circles for tooltip
 
     try {
         //Wrapper for the invisible circles on top
@@ -419,12 +391,9 @@ function radarChartBuilder(data) {
         console.log(error);
     }
 
-    /////////////////////////////////////////////////////////////
-    /////////////////////// Helper Function /////////////////////
-    /////////////////////////////////////////////////////////////
-
-    //////Taken from http://bl.ocks.org/mbostock/7555321
-    //////Wraps SVG text	
+    //Helper Function
+    
+    //Wraps SVG text	
     function wrap(text, width) {
         text.each(function () {
             var text = d3.select(this),
@@ -449,11 +418,82 @@ function radarChartBuilder(data) {
                 }
             }
         });
-    }//wrap	
+    }
     
     
 }
 
-function multiPackagingBuilder(data) {
-    //Aidan - this function is for your multi packaging visualisation
+function barChartBuilder(data) {
+
+
+    //Finds out the width of the screen
+    var margin = { top: 50, right: 50, bottom: 50, left: 50 },
+        width = Math.min(400, window.innerWidth - 50) - margin.left - margin.right,
+        height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
+
+    var labelsInArray = [];
+    for (i = 0; i < 10; i++) {
+        //Adds the value and axis to the dataInArray which is the correctly formatted method (eg. 10 - 19)
+
+        var ageElement = i * 10;
+
+        //Adds the name of the axis (eg. 10 - 19)
+
+        var label = data[ageElement].age + " - " + data[ageElement + 9].age;
+
+        labelsInArray.push(label);
+    };
+
+
+
+    //Sorts raw data
+    var dataInArray = [];
+
+
+
+    for (i = 0; i < 10; i++) {
+        //Adds the value and axis to the dataInArray which is the correctly formatted method (eg. 10 - 19)
+
+        var groupedTotal = 0;
+
+        for (e = 0; e < 10; e++) {
+            //Adds the values of the points on the chart (eg. 10+11+12+13+14...etc...)
+
+            groupedTotal += data[(i * 10) + e].total;
+
+        };
+
+
+        dataInArray.push(groupedTotal);
+    };
+
+    //Creates the labels on the side
+    labelsInArray.forEach(function (element) {
+
+        $('#population-label').css({ width : 50 + "px" });
+
+        d3.select('#population-label')
+            .append('div')
+            .text(element);
+    });
+
+    
+
+
+    var x = d3.scale.linear()
+        .domain([0, d3.max(dataInArray)])
+        .range([0, width]);
+
+    console.log(width);
+
+    d3.select("#population-inner-chart")
+        .selectAll("div")
+        .data(dataInArray)
+        .enter().append("div")
+        .style("width", function (d) { return x(d) + "px"; })
+        .style("margin-left", "55px;")
+        .text(function (d) { return d; });
+
+
+
 }
