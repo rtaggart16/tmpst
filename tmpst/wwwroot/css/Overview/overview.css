@@ -96,7 +96,7 @@ body {
     float:left;
 }
 
-.banner-body-tile:hover {
+.banner-body-tile-container:hover {
     -ms-transform: translate(0px,-5px); /* IE 9 */
     -webkit-transform: translate(0px,-5px); /* Safari */
     transform: translate(0px, -5px); /* Standard syntax */
