@@ -1,6 +1,5 @@
 ﻿@model tmpst.Models.UserSecretCollection
 @*
-    @*
         Author Info:
 
         Name(s) - Mark Riley, Ross Taggart, Aidan Marshall
@@ -55,9 +54,9 @@
         $('#ross').fadeOut();
         $('#marc').fadeOut();
         $('#mark').fadeOut();  
-
-        $('#aidan').fadeIn();
-
+        
+        setTimeout(function () { $('#aidan').fadeIn(); }, 400);
+        
         
     });
 
@@ -67,7 +66,7 @@
         $('#marc').fadeOut();
         $('#mark').fadeOut();
         
-        $('#katie').fadeIn();
+        setTimeout(function () { $('#katie').fadeIn(); }, 400);
     });
 
     $('#rossPicture').click(function () {
@@ -76,7 +75,7 @@
         $('#marc').fadeOut();
         $('#mark').fadeOut();    
 
-        $('#ross').fadeIn();
+        setTimeout(function () { $('#ross').fadeIn(); }, 400);
     });
     $('#marcPicture').click(function () {
         $('#aidan').fadeOut();
@@ -84,7 +83,7 @@
         $('#ross').fadeOut();
         $('#mark').fadeOut(); 
 
-        $('#marc').fadeIn();
+        setTimeout(function () { $('#marc').fadeIn(); }, 400);
     });
     $('#markPicture').click(function () {
         $('#aidan').fadeOut();
@@ -92,7 +91,7 @@
         $('#ross').fadeOut();
         $('#marc').fadeOut();
         
-        $('#mark').fadeIn();          
+        setTimeout(function () { $('#mark').fadeIn(); }, 400);
     });
 
 
