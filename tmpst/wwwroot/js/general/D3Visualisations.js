@@ -5,8 +5,10 @@
     d3.select("#population-text-header").remove();
     d3.select("#population-text-subheader").remove();
 
+
     $("#population-inner-chart").empty();
     $("#population-label").empty();
+    d3.select("svg").remove();
 
     //Sets the header and sub-header
     d3.select("#population-header").append("h2")
