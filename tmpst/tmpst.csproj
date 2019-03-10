@@ -25,6 +25,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Partials\General\Cards\_AboutRossCard.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\General\Cards\_AboutKatieCard.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\General\Cards\_AboutMarcCard.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\General\Cards\_AboutMarkCard.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\General\Cards\_AboutAidanCard.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\General\_AboutUsPage.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Partials\Overview\_OverviewLandingPartial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
