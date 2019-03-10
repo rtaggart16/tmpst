@@ -4,6 +4,13 @@
     margin-bottom: 10px;
 }
 
-.weather-card-item {
+.tutorial-para {
     padding-bottom: 10px;
+    padding-left: 25px;
 }
+.tutorial-page:fullscreen {
+    background-color: white;
+    color:black;
+    overflow:auto;
+}
+
