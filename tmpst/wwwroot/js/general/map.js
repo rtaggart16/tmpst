@@ -31,9 +31,7 @@ function initMap(latitude, longitude, placeName, containerID) {
 
         // Create an info window that will be displayed when a marker is clicked
         let infoWindow = new google.maps.InfoWindow({
-            content: '<h2>' + placeName + '</h2>' +
-                '<button class="btn btn-success">Analyse Data</button>'
-
+            content: '<h2>' + placeName + '</h2>'
         });
 
         // Add an event listener to check when a marker is clicked
@@ -56,8 +54,8 @@ function createClusterMap(data) {
             let lat = '';
             let lon = '';
 
-            lat = val.geometry.coordinates[0];
-            lon = val.geometry.coordinates[1];
+            lat = val.geometry.coordinates[1];
+            lon = val.geometry.coordinates[0];
 
             let latlng = lat + ', ' + lon;
 
@@ -66,11 +64,7 @@ function createClusterMap(data) {
 
         // Create an array of alphabetical characters used to label the markers.
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-        // Add some markers to the map.
-        // Note: The code uses the JavaScript Array.prototype.map() method to
-        // create an array of markers based on a given "locations" array.
-        // The map() method here has nothing to do with the Google Maps API.
+    
         var markers = locations.map(function (location, i) {
             console.log('LOCATION ', location);
             let marker = new google.maps.Marker({
@@ -78,11 +72,15 @@ function createClusterMap(data) {
                 label: labels[i % labels.length]
             });
 
+            let content = '<h3>' + location.title + '</h3><p><a onclick="viewCountryInfo(' + location.latlng + ')"</a><p>';
+
             var infowindow = new google.maps.InfoWindow({
-                content: "<h3>" + location.title + "</h3><p><a href='" + location.url + "'>Details</a></p>"
+                content: '<h2>' + location.title + '</h2>' +
+                    '<button class="btn btn-success" onclick="viewCountryInfo(' + location.latlng.lat + ', ' + location.latlng.lng + ')">Analyse Data</button>'
             });
             marker.addListener('click', function (data) {
                 infowindow.open(map, marker); // Open the Google maps marker infoWindow
+                
             });
 
             return marker;
@@ -91,6 +89,6 @@ function createClusterMap(data) {
         // Add a marker clusterer to manage the markers.
         var markerCluster = new MarkerClusterer(map, markers,
             { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-
+              
     
 }

@@ -39,10 +39,8 @@
                     <div class="col-4">
                         <select id="visualisation-input" class="form-control" required>
                             <option value="" disabled selected>Select Visualisation</option>
-                            <option value="show-reel">Show Reel</option>
-                            <option value="bubble-chart">Bubble Chart</option>
                             <option value="radar-chart">Radar Chart</option>
-                            <option value="multi-packaging">Multi-Packaging</option>
+                            <option value="bar-chart">Bar Chart</option>
                         </select>
                     </div>
                 </div>
@@ -108,7 +106,8 @@
         let year = $('#year-input').val();
         let visualisation = $('#visualisation-input').val();
         let country = $('#country-input').val();
-        console.log("Year: ", year, ", Country: ", country, ", Visualisation: ", visualisation);
+
+        if (country == "Australia/New Zealand") { country = "New Zealand"; }
 
         let url = 'https://api.population.io/1.0/population/' + year + '/' + country + '/?format=jsonp';
         console.log("Created URL from user Input: " + url);
@@ -119,7 +118,6 @@
             dataType: 'jsonp',
             contentType: "application/json",
             success: function (result) {
-                console.log('AJAX Response: ', result);
 
                 //Creates visualisation
                 createD3Visualisation(result, visualisation);
@@ -149,9 +147,5 @@
         });
 
     }
-
-
-        
-
 
 </script>

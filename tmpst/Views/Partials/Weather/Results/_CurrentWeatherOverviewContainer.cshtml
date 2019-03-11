@@ -10,46 +10,85 @@
     Partial view that contains the card container for the current weather data requested
 *@
 <div class="card weather-card-container">
-    @*Div that contains the current weather icon*@
-    <div class="row weather-card-item text-center">
-        <div id="current-weather-icon-container" class="col-12">
-
-        </div>
-    </div>
     <div class="row weather-card-item">
-        @*Div that contains the current condition*@
-        <div id="current-weather-condition-container" class="col-12">
+        <div class="col-12 text-center">
+            <span>
+                <strong>Current Weather </strong> <i onclick="collapseExpandToggle('current-result-overview-up', 'current-result-overview-down', 'current-weather-wizard-container')" id="current-result-overview-up" class="fas fa-caret-up fa-2x tmpst-clickable"></i><i onclick="collapseExpandToggle('current-result-overview-down', 'current-result-overview-up', 'current-weather-wizard-container')" style="display:none" id="current-result-overview-down" class="fas fa-caret-down fa-2x tmpst-clickable"></i>
+            </span>
+        </div>
+    </div>
 
-        </div>
-    </div>
-    <div class="row weather-card-item">
-        @*Div that contains the current temperature*@
-        <div id="current-weather-temp-container" class="col-12">
+    <div id="current-weather-wizard-container">
 
-        </div>
-    </div>
-    <div class="row weather-card-item">
-        @*Div that contains the current feels like temperature*@
-        <div id="current-weather-feel-temp-container" class="col-12">
 
-        </div>
-    </div>
-    <hr />
-    <div class="row weather-card-item">
-        @*Div that contains the current wind direction*@
-        <div id="current-weather-wind-dir-container" class="col-12">
+        @*Div that contains the current weather icon*@
+        <div class="row weather-card-item text-center">
+            <div id="current-weather-icon-container" class="col-12">
 
+            </div>
         </div>
-    </div>
-    <div class="row weather-card-item">
-        @*Div that contains the current wind speed*@
-        <div id="current-weather-wind-speed-container" class="col-12">
+        <div class="row weather-card-item">
+            @*Div that contains the current condition*@
+            <div id="current-weather-condition-container" class="col-12">
 
+            </div>
+        </div>
+        <div class="row weather-card-item">
+            @*Div that contains the current temperature*@
+            <div id="current-weather-temp-container" class="col-12">
+
+            </div>
+        </div>
+        <div class="row weather-card-item">
+            @*Div that contains the current feels like temperature*@
+            <div id="current-weather-feel-temp-container" class="col-12">
+
+            </div>
+        </div>
+        <hr />
+        <div class="row weather-card-item">
+            @*Div that contains the current wind direction*@
+            <div id="current-weather-wind-dir-container" class="col-12">
+
+            </div>
+        </div>
+        <div class="row weather-card-item">
+            @*Div that contains the current wind speed*@
+            <div id="current-weather-wind-speed-container" class="col-12">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-success w-100" id="submitCurrentDay" onclick="analyseCurrentDayData()">Analyse Data</button>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <button class="btn btn-success w-100">Analyse Data</button>
-        </div>
     </div>
-</div>
+
+<script>
+    $('#current-weather-collapse-expand').click(function () {
+        $('#current-weather-wizard-container').slideToggle("slow", function () {
+
+            //if container is visible, show an arrow that allows the container to be minimised
+            if (!$('#current-weather-wizard-container').is(':visible')) {
+                $('#current-weather-wizard-arrow-up').fadeOut().promise().done(function () {
+                    $('#current-weather-wizard-arrow-down').fadeIn();
+                    $('#current-weather-wizard-collapsed-title').fadeIn();
+                });
+            }
+            else {
+                $('#current-weather-wizard-arrow-down').fadeOut().promise().done(function () {
+                    $('#current-weather-wizard-arrow-up').fadeIn();
+                    $('#current-weather-wizard-collapsed-title').fadeOut();
+                });
+            }
+        });
+    });
+
+    $('#submitCurrentDay').click(function () {
+        $('#current-map-collapse-expand').click();
+        $('#current-weather-collapse-expand').click();
+
+    });
+</script>

@@ -9,9 +9,102 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/css/Earthquake/earthquake.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/Earthquake/earthquake.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/Overview/overview.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/Overview/overview.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/Traffic/traffic.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/Traffic/traffic.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/Weather/weather.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/Weather/weather.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/js/site.min.js",
     "inputFiles": [
       "wwwroot/js/site.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/general/map.min.js",
+    "inputFiles": [
+      "wwwroot/js/general/map.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/general/transition.min.js",
+    "inputFiles": [
+      "wwwroot/js/general/transition.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/general/pallet.min.js",
+    "inputFiles": [
+      "wwwroot/js/general/pallet.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/weather/weather.min.js",
+    "inputFiles": [
+      "wwwroot/js/weather/weather.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/earthquake/earthquake.min.js",
+    "inputFiles": [
+      "wwwroot/js/earthquake/earthquake.js"
     ],
     // Optionally specify minification options
     "minify": {
