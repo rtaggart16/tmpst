@@ -1,0 +1,63 @@
+﻿@*
+    Author Info:
+
+    Name(s) - Ross Taggart
+    Student Number - S1828840
+    Date Created - 22/02/2019
+    Version - 1.0.1
+
+    Description:
+    JavaScript file which contains the functions and event handlers for the weather system
+*@
+<div class="row text-center">
+    <div class="col-12">
+        <div id="tutorial-title-container" class="text-center">
+            <h3 class="tmpst-title">Tutorials</h3>
+            <p class="tmpst-desc">Understand tmpst better</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 card tutorial-card-container">
+        <div id="tutorial-menu-container">
+            <ul>
+                <li>
+                    Overview
+                    <ul>
+                        <li id="single-page-desc-li">Single Page Applications</li>
+                        <li id="user-secret-desc-li">User Secrets</li>
+                        <li id="partial-view-desc-li">Partial Views</li>
+                        <li id="asp-net-core-desc-li">ASP.NET Core</li>
+                        <li id="bootstrap-4-desc-li">Bootstrap 4</li>
+                    </ul>
+                </li>
+                <li>Pre-requisites</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 card tutorial-card-container">
+        <div id="tutorial-text-container" style="height:300px; overflow-x:hidden">
+            <div style="display:none;" class="tutorial-page" id="single-page-application-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Overview/_SinglePageApplicationsTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="user-secret-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Overview/_UserSecretsTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="partial-view-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Overview/_PartialViewTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="asp-core-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Overview/_ASPCoreTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="bootstrap-4-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Overview/_Bootstrap4Tutorial.cshtml")
+            </div>
+        </div>
+    </div>
+</div>
+
+

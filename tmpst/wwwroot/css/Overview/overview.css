@@ -1,8 +1,8 @@
 ﻿/*
     Author Info:
 
-    Name(s) - Ross Taggart, Katie King
-    Student Number - S1828840, S1827986
+    Name(s) - Ross Taggart, Aidan Marshall, 
+    Student Number - S1828840, S1828601
     Date Created - 17/02/2019
     Version - 1.0.0
 
@@ -17,6 +17,7 @@
 # Page Specific
     ## Placeholder Style
     ## Page Container Style
+    ## Banner Style
 --------------------------------------------------------
 */
 
@@ -47,6 +48,80 @@ body {
     margin-bottom: 10px;
 }
 
+.banner-outer {
+    width:100%;
+    text-align:center;
+}
+
+.banner-header {
+    color: #4d648d;
+    width: 200px;
+    text-align: center;
+    display: inline-block;
+    border-color: #fff;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 1em;
+    margin-bottom:1em;
+}
+
+
+
+.banner-header div {
+    margin-bottom: 0px;
+}
+
+.banner-body-tile {
+    color: #fff;
+    text-align: left;
+    display: inline-block;
+    border-radius: 5px;
+    background-color: #4d648d; /*# 4d648d */
+    width: 100%;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    padding: 0.8em;
+}
+
+.banner-body-tile img {
+    height:40px;
+    width:40px;
+    float:right;
+
+}
+
+.banner-body-tile p {
+    float:left;
+}
+
+.banner-body-tile-container:hover {
+    -ms-transform: translate(0px,-5px); /* IE 9 */
+    -webkit-transform: translate(0px,-5px); /* Safari */
+    transform: translate(0px, -5px); /* Standard syntax */
+}
+
+@media only screen and (max-width: 365px)  {
+    .banner-body-tile p{
+        display:none;
+    }
+
+    .banner-body-tile {
+        text-align:center;
+    }
+    .banner-body-tile img {
+        float: none;
+    }
+
+}
+
+@media only screen and (min-width: 1200px) {
+    .padded-row {
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+}
 
 /*--------------------------------------------------------------------------
     END: # Common

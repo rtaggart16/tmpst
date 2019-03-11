@@ -1,82 +1,92 @@
 ﻿<!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@ViewData["Title"] - tmpst</title>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>@ViewData["Title"] - tmpst</title>
 
-        <environment include="Development">
-            <link rel="stylesheet" href="~/css/site.css" />
-            <script src="~/lib/jquery/jquery-3.3.1.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <environment include="Development">
+        <!-- Script Files -->
+        <script src="~/lib/jquery/jquery-3.3.1.min.js" async></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" defer></script>
+        <script src="~/lib/bootstrap/js/bootstrap.js" defer></script>
+        <script src="~/js/site.js" asp-append-version="true" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js" defer></script>
+        <script src="~/js/general/transition.js" defer></script>
+        <script src="~/js/general/map.js" defer></script>
+        <script src="~/js/weather/weather.js" defer></script>
+        <script src="~/js/general/pallet.js" defer></script>
+        <script src="~/js/earthquake/earthquake.js" defer></script>
+        <script src="~/lib/sweetalert2/sweetalert2.all.min.js" defer></script>
+        <script src="~/lib/here/mapsjs-core.js"></script>
+        <script src="~/lib/here/mapsjs-service.js"></script>
+        <script src="~/lib/D3/d3-3.5.6.js"></script>
+        <script src="~/js/general/D3Visualisations.js"></script>
+        <script src="~/lib/jstree/jstree.js"></script>
+        <script src="~/js/tutorial/tutorial.js"></script>
+        <script src="~/lib/prism/prism.js" defer></script>
+        <!-- END: Script Files -->
+        <!-- Stylesheet Files -->
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link href="~/css/Overview/overview.css" rel="stylesheet" />
+        <link href="~/css/Weather/weather.css" rel="stylesheet" />
+        <link href="~/css/Traffic/traffic.css" rel="stylesheet" />
+        <link href="~/css/Earthquake/earthquake.css" rel="stylesheet" />
+        <link href="~/css/Tutorials/tutorial.css" rel="stylesheet" />
+        <link href="~/lib/jstree/themes/default/style.css" rel="stylesheet" />
+        <link href="~/lib/prism/prism.css" rel="stylesheet" />
+        <link href="~/css/General/about-us.css" rel="stylesheet" />
 
-            <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-        </environment>
-        <environment exclude="Development">
-            @*
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-        <link href="~/css/site.css" rel="stylesheet" />*@
-            <link rel="stylesheet" href="~/css/site.css" />
-            <script src="~/lib/jquery/jquery-3.3.1.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <!-- END: Stylesheet Files -->
+    </environment>
+    <environment exclude="Development">
+        <!-- Script Files -->
+        <script src="~/lib/jquery/jquery-3.3.1.min.js" async></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" defer></script>
+        <script src="~/lib/bootstrap/js/bootstrap.js" defer></script>
+        <script src="~/js/site.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js" defer></script>
+        <script src="~/js/general/transition.js" defer></script>
+        <script src="~/js/general/map.min.js" defer></script>
+        <script src="~/js/weather/weather.js" defer></script>
+        <script src="~/js/general/pallet.min.js" defer></script>
+        <script src="~/js/earthquake/earthquake.min.js" defer></script>
+        <script src="~/lib/sweetalert2/sweetalert2.all.min.js" defer></script>
+        <script src="~/lib/D3/d3-3.5.6.min.js"></script>
+        <script src="~/js/general/D3Visualisations.js"></script>
+        <script src="~/lib/jstree/jstree.js" defer></script>
+        <script src="~/js/tutorial/tutorial.js" defer></script>
+        <script src="~/lib/prism/prism.js" defer></script>
+        <!-- END: Script Files -->
+        <!-- Stylesheet Files -->
+        <link href="~/css/site.min.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link href="~/css/Overview/overview.min.css" rel="stylesheet" />
+        <link href="~/css/Weather/weather.min.css" rel="stylesheet" />
+        <link href="~/css/Traffic/traffic.min.css" rel="stylesheet" />
+        <link href="~/css/Earthquake/earthquake.min.css" rel="stylesheet" />
+        <link href="~/css/Tutorials/tutorial.css" rel="stylesheet" />
+        <link href="~/lib/jstree/themes/default/style.css" rel="stylesheet" />
+        <link href="~/lib/prism/prism.css" rel="stylesheet" />
+        <link href="~/css/General/about-us.min.css" rel="stylesheet" />
+        <!-- END: Stylesheet Files -->
+    </environment>
+</head>
+<body>
+    @await Html.PartialAsync("~/Views/Shared/Layout/_Navbar.cshtml")
+    <div class="container body-content">
+        @RenderBody()
 
-            <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-        </environment>
-    </head>
-    <body>
-        @await Html.PartialAsync("~/Views/Shared/Layout/_Navbar.cshtml")
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            @await Html.PartialAsync("~/Views/Shared/Layout/_Footer.cshtml")
-        </div>
+        <hr />
+        @await Html.PartialAsync("~/Views/Shared/Layout/_Footer.cshtml")
 
-        <environment include="Development">
-            <script src="~/lib/jquery/jquery-3.3.1.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-            <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
-            <script src="~/lib/bootstrap/js/bootstrap.js"></script>
-            <link href="~/css/site.css" rel="stylesheet" />
-            <script src="~/js/site.js" asp-append-version="true"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-            <script src="~/js/general/transition.js"></script>
-            <script src="~/js/general/map.js"></script>
-            <script src="~/js/weather/weather.js"></script>
-            <script src="~/lib/sweetalert2/sweetalert2.all.min.js"></script>
-        </environment>
-        <environment exclude="Development">
-            @*<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-                asp-fallback-src="~/lib/jquery/jquery-3.3.1.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-            *@
-            <script src="~/lib/bootstrap/js/bootstrap.js"></script>
-            <script src="~/js/site.js" asp-append-version="true"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-            <script src="~/js/general/transition.js"></script>
-            <script src="~/js/general/map.js"></script>
-            <script src="~/js/weather/weather.js"></script>
-            <script src="~/lib/sweetalert2/sweetalert2.all.min.js"></script>
-        </environment>
+    </div>
 
-        @RenderSection("Scripts", required: false)
-    </body>
-    </html>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
 

@@ -18,11 +18,13 @@
                 <div id="collapsed-text-container" class="col-11 text-center">
                     <h5 style="display:none" id="earthquake-wizard-collapsed-title">Earthquake Wizard</h5>
                 </div>
+
                 <div id="earthquake-collapse-expand" class="col-1 text-right tmpst-clickable">
                     <i id="earthquake-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i>
                     <i style="display:none" id="earthquake-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
                 </div>
             </div>
+
             <div id="earthquake-wizard-container">
                 <div class="row earthquake-card-item">
                     <div class="col-12 text-center">
@@ -88,81 +90,4 @@
     </div>
 </div>
 
-<script>
-    let requestType = 'hourly';
-
-    let allSelects = $('#hourly-type-select').add($('#daily-type-select'))
-        .add($('#weekly-type-select'))
-        .add($('#monthly-type-select'));
-
-    $('#earthquake-collapse-expand').click(function () {
-        $('#earthquake-wizard-container').slideToggle("slow", function () {
-            //if container is visible, show an arrow that allows the container to be minimised
-            if (!$('#earthquake-wizard-container').is(':visible')) {
-                $('#earthquake-wizard-arrow-up').fadeOut().promise().done(function () {
-                    $('#earthquake-wizard-arrow-down').fadeIn();
-                    $('#earthquake-wizard-collapsed-title').fadeIn();
-                });
-            }
-            else {
-                $('#earthquake-wizard-arrow-down').fadeOut().promise().done(function () {
-                    $('#earthquake-wizard-arrow-up').fadeIn();
-                    $('#earthquake-wizard-collapsed-title').fadeOut();
-                });
-            }
-        });
-    });
-
-    $('#occurence-type-select').on('change', function () {
-        console.log($('#occurence-type-select').val());
-
-        requestType = $('#occurence-type-select').val();
-
-        allSelects.fadeOut(300).promise().done(function () {
-            $('#' + requestType + '-type-select').fadeIn(300);
-        });
-    });
-
-    function submitEarthquakeRequest() {
-        let url = $('#' + requestType + '-type-select').val();
-        console.log(url);
-        $.ajax({
-            type: "GET",
-            url: url,
-            contentType: "application/vnd.geo+json",
-            success: function (result) {
-                console.log('AJAX Response: ', result);
-
-                if (result.features.length > 0) {
-                    createClusterMap(result.features);
-
-                    $('#earthquake-wizard-arrow-up').click().promise().done(function () {
-                        $('#earthquake-cluster-map-container').fadeIn(300);
-                    });
-                }
-                else {
-                    Swal.fire({
-                        type: 'warning',
-                        title: 'No Data',
-                        text: 'There is no data available for your request. Please submit another request'
-                    })
-                }
-                
-            },
-            error: function (errorResult) {
-                console.log('ERROR: ', errorResult.statusText);
-
-                if (errorResult.statusText == 'error') {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Data Request Error',
-                        text: 'An error has occurred when submitting your request. Please try again with different criteria'
-                    })
-                }
-            }
-        });
-        
-    }
-    
-</script>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>

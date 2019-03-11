@@ -1,0 +1,155 @@
+﻿@model tmpst.Models.PopulationAPIUrl
+@*
+    Author Info:
+
+    Name(s) - Mark Riley, Ross Taggart, Aidan Marshall
+    Student Number - S1829984, S1828840, S1828601
+    Date Created - 25/02/2019
+    Version - 1.0.1
+
+    Description:
+    Page that will container which builds query for user
+*@
+
+<div class="row">
+    <div class="col-12">
+        <div class="card population-card-container">
+            <div class="row population-card-item">
+                <div id="collapsed-text-container" class="col-11 text-center">
+                    <h5 style="display:none" id="population-wizard-collapsed-title">Population Wizard</h5>
+                </div>
+                <div id="population-collapse-expand" class="col-1 text-right tmpst-clickable">
+                    <i id="population-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i>
+                    <i style="display:none" id="population-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                </div>
+            </div>
+            <div id="population-wizard-container">
+                <div class="row population-card-item">
+                    <div class="col-12 text-center">
+                        <h5>Population Wizard</h5>
+                    </div>
+                </div>
+                <div class="row population-card-item">
+                    <div class="col-4">
+                        <select id="country-input" class="form-control" required></select>
+                    </div>
+                    <div class="col-4">
+                        <input id="year-input" class="form-control" placeholder="Year" required />
+                    </div>
+                    <div class="col-4">
+                        <select id="visualisation-input" class="form-control" required>
+                            <option value="" disabled selected>Select Visualisation</option>
+                            <option value="radar-chart">Radar Chart</option>
+                            <option value="bar-chart">Bar Chart</option>
+                        </select>
+                    </div>
+                </div>
+
+
+
+                <div id="submit-population-request-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <button id="submit-population-request-btn" onclick="submitPopulationRequest()" class="btn btn-success w-100">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    let dropdown = $('#country-input');
+
+    dropdown.empty();
+
+    dropdown.append('<option selected="true" disabled>Select Country</option>');
+    dropdown.prop('selectedIndex', 0);
+
+    const url = 'https://api.population.io/1.0/countries';
+
+    // Populate dropdown with list of provinces
+    $.getJSON(url, function (data) {
+        $.each(data.countries, function (key, entry) {
+            dropdown.append($('<option></option>').attr('value', entry).text(entry));
+        })
+    });
+
+    //Arrow up and down
+    $('#population-collapse-expand').click(function () {
+
+        $('#population-wizard-container').slideToggle("slow", function () {
+            //if container is visible, show an arrow that allows the container to be minimised
+            if (!$('#population-wizard-container').is(':visible')) {
+                $('#population-wizard-arrow-up').fadeOut().promise().done(function () {
+                    $('#population-wizard-arrow-down').fadeIn();
+                    $('#population-wizard-collapsed-title').fadeIn();
+                });
+            }
+            else {
+                $('#population-wizard-arrow-down').fadeOut().promise().done(function () {
+                    $('#population-wizard-arrow-up').fadeIn();
+                    $('#population-wizard-collapsed-title').fadeOut();
+                });
+            }
+        });
+    });
+
+
+
+
+    function submitPopulationRequest() {
+        //GET Data
+        let year = $('#year-input').val();
+        let visualisation = $('#visualisation-input').val();
+        let country = $('#country-input').val();
+
+        if (country == "Australia/New Zealand") { country = "New Zealand"; }
+
+        let url = 'https://api.population.io/1.0/population/' + year + '/' + country + '/?format=jsonp';
+        console.log("Created URL from user Input: " + url);
+        $.ajax({
+            type: "GET",
+            url: url,
+            crossDomain: true,
+            dataType: 'jsonp',
+            contentType: "application/json",
+            success: function (result) {
+
+                //Creates visualisation
+                createD3Visualisation(result, visualisation);
+
+                $('#population-wizard-arrow-up').click().promise().done(function () {
+                    $('#population-chart-container').fadeIn(300);
+                });
+            },
+            error: function (errorResult) {
+                console.log('ERROR: ', errorResult.statusText);
+
+                if (errorResult.statusText == 'error') {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Data Request Error',
+                        text: 'An error has occurred when submitting your request. Please try again with different criteria.'
+                    })
+                }
+                else if (errorResult.statusText == 'load') {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Load Error',
+                        text: 'An error has occurred when loading the data from our sources. Please refresh your screen.'
+                    })
+                }
+            }
+        });
+
+    }
+
+
+        
+
+
+</script>

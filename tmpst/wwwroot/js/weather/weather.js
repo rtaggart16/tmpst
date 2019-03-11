@@ -4,7 +4,7 @@
     Name(s) - Ross Taggart
     Student Number - S1828840
     Date Created - 22/02/2019
-    Version - 1.0.0
+    Version - 1.0.1
 
     Description:
     JavaScript file which contains the functions and event handlers for the weather system
@@ -13,6 +13,9 @@
 /*------------------------------------------------------
 >>> TABLE OF CONTENTS:
 --------------------------------------------------------
+# Global Variable Declarations
+    ## Current Forecast Object
+    ## Current Day Object
 # Event Handlers
     ## Select Events
     ## Font Awesome Events
@@ -30,10 +33,19 @@
 */
 
 /*--------------------------------------------------------------------------
-    # Event Handlers
+    # Global Variable Declarations
 ---------------------------------------------------------------------------*/
 
 let currentForecastDataset = {};
+let currentDayDataset = {};
+
+/*--------------------------------------------------------------------------
+    END: # Global Variable Declarations
+---------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------
+    # Event Handlers
+---------------------------------------------------------------------------*/
 
 //Allows the user to chose their input type, either latitude and longitutde of name of place
 $('#input-type-select').on('change', function () {
@@ -52,25 +64,6 @@ $('#input-type-select').on('change', function () {
             $('#name-and-postcode-input-container').fadeIn(300);
         });
     }
-});
-
-//Slide animation for the weather search, which allows more information to be displayed on the page by increasing page real estate
-$('#wizard-collapse-expand').click(function () {
-    $('#weather-wizard-container').slideToggle("slow", function () {
-        //if container is visible, show an arrow that allows the container to be minimised
-        if (!$('#weather-wizard-container').is(':visible')) {
-            $('#weather-wizard-arrow-up').fadeOut().promise().done(function () {
-                $('#weather-wizard-arrow-down').fadeIn();
-                $('#weather-wizard-collapsed-title').fadeIn();
-            });
-        }
-        else {
-            $('#weather-wizard-arrow-down').fadeOut().promise().done(function () {
-                $('#weather-wizard-arrow-up').fadeIn();
-                $('#weather-wizard-collapsed-title').fadeOut();
-            });
-        }
-    });
 });
 
 // Checks if the user has pressed enter while inside the place name/postcode input field
@@ -227,6 +220,7 @@ function contactAPI(requestType, location, key) {
             }
             else {
                 updateCurrentWeatherDataContainers(result);
+                currentDayDataset = result.current;
                 $('#wizard-collapse-expand').click().promise().done(function () {
                     initMap(result.location.lat, result.location.lon, result.location.name, 'current-weather-result-map');
                     $('#weather-current-data-container').fadeIn(300);
@@ -312,6 +306,14 @@ function updateForecastTableBody(apiData) {
     console.log('MAXTEMPS', maxTemps);
     console.log('CONDITIONS', conditionTexts);
 
+    $('#forecast-head-only').append('<tr><td><img src="' + icons[0] + '" /></td>' +
+        '<td><img src="' + icons[1] + '" /></td>' +
+        '<td><img src="' + icons[2] + '" /></td>' +
+        '<td><img src="' + icons[3] + '" /></td>' +
+        '<td><img src="' + icons[4] + '" /></td>' +
+        '<td><img src="' + icons[5] + '" /></td>' +
+        '<td><img src="' + icons[6] + '" /></td></tr>');
+
     //appends the forecast icons to the table
     $('#forecast-tbl-body').append('<tr><td><img src="' + icons[0] + '" /></td>' +
         '<td><img src="' + icons[1] + '" /></td>' +
@@ -349,6 +351,11 @@ function updateForecastTableBody(apiData) {
         '<td><strong>Avg Temp</strong> - ' + avgTemps[6] + '&#8451</td></tr>');
 }
 
+/* FUNCTION: analyseForecastData
+ * PARAMS:
+ *  - apiData: information from the api
+ * DESCRIPTION: Updates the forecast chart with the data from the latest query
+*/
 function updateForecastTableBodyMobile(apiData) {
 
     let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -361,9 +368,11 @@ function updateForecastTableBodyMobile(apiData) {
     });
 }
 
-/*
+/* FUNCTION: analyseForecastData
+ * PARAMS:
+ * DESCRIPTION: Updates the forecast chart with the data from the latest query
+*/
 function analyseForecastData() {
-    console.log('CCCCCCCCCCCCCCCHHHHHHHHHHHHHHHHHHHHHHHAAAAAAAAAAAAAAAAAAAAAAARRRRRRTTTTTTTTT', currentForecastDataset);
 
     let labels = [];
 
@@ -392,50 +401,117 @@ function analyseForecastData() {
     console.log('HUMIDIDTY', avgHumidityArray);
     console.log('VISIBILITY', avgVisArray);
 
-    var ctx = $('#forecast-overall-chart');
+    var ctx = document.getElementById("forecast-overall-chart").getContext('2d');
 
     var mixedChart = new Chart(ctx, {
         type: 'bar',
         data: {
             datasets: [{
                 label: 'Average Temperature',
-                data: avgTempArray
+                data: avgTempArray,
+                borderColor: forecastAnalysisPallet.Avg_Temp
             }, {
                 label: 'Max Temperature',
                 data: maxTempArray,
-
+                borderColor: forecastAnalysisPallet.Max_Temp,
                 // Changes this dataset to become a line
                 type: 'line'
-                },
-                {
-                    label: 'Min Temperature',
-                    data: minTempArray,
-
-                    // Changes this dataset to become a line
-                    type: 'line'
-                },
-                {
-                    label: 'Humidity',
-                    data: avgHumidityArray,
-
-                    // Changes this dataset to become a line
-                    type: 'line'
-                },
-                {
-                    label: 'Visibility',
-                    data: avgVisArray,
-
-                    // Changes this dataset to become a line
-                    type: 'line'
-                }
+            },
+            {
+                label: 'Min Temperature',
+                data: minTempArray,
+                borderColor: forecastAnalysisPallet.Min_Temp,
+                // Changes this dataset to become a line
+                type: 'line'
+            },
+            {
+                label: 'Humidity',
+                data: avgHumidityArray,
+                borderColor: forecastAnalysisPallet.Humidity,
+                // Changes this dataset to become a line
+                type: 'line'
+            },
+            {
+                label: 'Visibility',
+                data: avgVisArray,
+                borderColor: forecastAnalysisPallet.Visibility,
+                // Changes this dataset to become a line
+                type: 'line'
+            }
             ],
             labels: labels
         },
+        options: {
+            maintainAspectRatio: false
+        }
     });
 
-    $('#forecast-weather-analysis-landing').fadeIn(300);
+    $('#forecast-weather-analysis-landing').fadeIn(300).promise().done(function () {
+        $('#weather-analysis-landing').fadeIn(300);
+    });
 }
-*/
+
+$('btn btn-success w-100').click(function () {
+    $('current-map-collapse-expand').click();
+    $('current-weather-collapse-expand').click();
+
+});
+
+function analyseCurrentDayData() {
+   
+
+    let labels = [];
+
+    let data = [currentDayDataset.temp_c, currentDayDataset.feelslike_c, currentDayDataset.humidity, currentDayDataset.wind_mph];
+    
+
+    let colours = [currentDayAnalysisPallet.Current_Temp, currentDayAnalysisPallet.Feels_Like, currentDayAnalysisPallet.Humidity, currentDayAnalysisPallet.Wind_Speed];
+
+    let dataset = {
+        
+        data: data,
+        borderColor: colours
+    };
+
+    var ctx = document.getElementById("current-day-chart").getContext('2d');
+
+    var currentDayChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Current Temp', 'Feels Like', 'Humidity', 'Wind (mph)'],
+            datasets: [{
+                label: labels,
+                data: data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'],
+
+                borderColor: ['rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 206, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(153, 102, 255)']
+
+            }
+            ],
+            
+        },
+        options: {
+            legend: {
+                display: false,
+            },
+            maintainAspectRatio: false
+        }
+    });
+
+    $('#current-weather-analysis-landing').fadeIn(300).promise().done(function () {
+        $('#weather-analysis-landing').fadeIn(300);
+    });
+}
+
 
 /*--------------------------------------------------------------------------
     END: # Dynamic Data Functions
@@ -481,3 +557,4 @@ function validateLocationInput(inputType) {
 /*--------------------------------------------------------------------------
     END: # Validation
 ---------------------------------------------------------------------------*/
+
