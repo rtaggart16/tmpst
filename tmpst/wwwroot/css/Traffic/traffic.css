@@ -7,7 +7,7 @@
     Version - 1.0.1
 
     Description:
-    The traffic css file for the application
+    The pollution css file for the application
 */
 
 /*------------------------------------------------------
@@ -15,7 +15,7 @@
 --------------------------------------------------------
 # Common
 # Containers
-    ## traffic Card Container
+    ## pollution Card Container
 --------------------------------------------------------
 */
 
@@ -44,14 +44,14 @@ body {
 /*--------------------------------------------------------------------------
     # Containers
 ---------------------------------------------------------------------------*/
-.traffic-card-container {
+.pollution-card-container {
     padding-left: 10px;
     padding-right: 10px;
     margin-bottom: 10px;
 }
 
-.traffic-card-item{
-    padding-bottom:10px;
+.pollution-card-item {
+    padding-bottom: 10px;
 }
 /*--------------------------------------------------------------------------
     END: # Containers

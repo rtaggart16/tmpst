@@ -1,0 +1,112 @@
+﻿@*
+    Author Info:
+
+    Name(s) - Mark Riley, Ross Taggart, Aidan Marshall
+    Student Number - S1829984, S1828840, S1828601
+    Date Created - 01/03/2019
+    Version - 1.0.0
+
+    Description:
+    Page that will builds query for user
+*@
+
+<div class="row">
+    <div class="col-12">
+        <div class="card pollution-card-container">
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#pollution-collapse-expand').click(function () {
+        $('#pollution-wizard-container').slideToggle("slow", function () {
+            //if container is visible, show an arrow that allows the container to be minimised
+            if (!$('#pollution-wizard-container').is(':visible')) {
+                $('#pollution-wizard-arrow-up').fadeOut().promise().done(function () {
+                    $('#pollution-wizard-arrow-down').fadeIn();
+                    $('#pollution-wizard-collapsed-title').fadeIn();
+                });
+            }
+            else {
+                $('#pollution-wizard-arrow-down').fadeOut().promise().done(function () {
+                    $('#pollution-wizard-arrow-up').fadeIn();
+                    $('#pollution-wizard-collapsed-title').fadeOut();
+                });
+            }
+        });
+    });
+
+    function submitTrafficIncidentRequest() {
+        let latitude = $('#traffic-incident-lat-input').val();
+        let longitude = $('#traffic-incident-lon-input').val();
+
+        let minLatLon = calculateMinMaxLatLon(latitude, longitude);
+
+        let requestUrl = 'https://traffic.api.here.com/traffic/6.3/incidents.json?app_id=';
+
+        $.ajax({
+            type: "GET",
+            url: requestUrl,
+            contentType: "application/json",
+            success: function (result) {
+                console.log('AJAX Response: ', result);
+                
+            },
+            error: function (errorResult) {
+                console.log('ERROR: ', errorResult);
+                
+            }
+        });
+    }
+
+
+    @*
+    function submitTrafficIncidentRequest() {
+        
+        var platform = new H.service.Platform({
+        'app_id': '@Model.App_ID',
+        'app_code': '@Model.App_Code'
+        });
+
+        let latitude = $('#traffic-incident-lat-input').val();
+        let longitude = $('#traffic-incident-lon-input').val();
+
+        let dataValid = validateLatLon(latitude, longitude);
+
+        if (dataValid) {
+            // Obtain the default map types from the platform object:
+            var defaultLayers = platform.createDefaultLayers();
+
+            // Instantiate (and display) a map object:
+            var map = new H.Map(
+                document.getElementById('traffic-incident-result-map'),
+                defaultLayers.normal.map,
+                {
+                    zoom: 10,
+                    center: { lat: latitude, lng: longitude }
+                });
+
+            // Add incident overlay to map
+            map.addLayer(defaultLayers.incidents);
+
+            $('#traffic-incidents-result-map-container').fadeIn(300);
+        }
+        else {
+            Swal.fire({
+                type: 'error',
+                title: 'Invalid Request',
+                text: 'You must specify both a latitude and a longitude'
+            })
+        }
+    }
+
+    function validateLatLon(lat, lon) {
+        if ((lat == '' || lat == ' ') || (lon == '' || lon == ' ')) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }*@
+</script>
