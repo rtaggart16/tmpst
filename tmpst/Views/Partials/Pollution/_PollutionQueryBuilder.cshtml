@@ -13,12 +13,113 @@
 <div class="row">
     <div class="col-12">
         <div class="card pollution-card-container">
+            <div class="row pollution-card-item">
+                <div id="collapsed-text-container" class="col-11 text-center">
+                    <h5 style="display:none" id="pollution-wizard-collapsed-title">Pollution Wizard</h5>
+                </div>
+                <div id="pollution-collapse-expand" class="col-1 text-right tmpst-clickable">
+                    <i id="pollution-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i>
+                    <i style="display:none" id="pollution-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                </div>
+            </div>
+            <div id="pollution-wizard-container">
+                <div class="row pollution-card-item">
+                    <div class="col-12 text-center">
+                        <h5>Pollution Wizard</h5>
+                    </div>
+                </div>
+                <div class="row pollution-card-item">
+                    <div class="col-6">
+                        <select id="pollution-country-input" class="form-control" required></select>
+                    </div>
+                    <div class="col-6">
+                        <select id="pollution-location-input" class="form-control" required></select>
+                    </div>
+                </div>
+                <div id="submit-pollution-request-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <button id="submit-pollution-request-btn" onclick="submitPollutionRequest()" class="btn btn-success w-100">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
 </div>
 
+
+
 <script>
+
+    let countryDropdown = $('#pollution-country-input');
+    let locationDropdown = $('#pollution-location-input');
+
+    countryDropdown.empty();
+
+    countryDropdown.append('<option selected="true" disabled>Select Country</option>');
+    countryDropdown.prop('selectedIndex', 0);
+
+    const pollutionCountryUrl = 'https://api.openaq.org/v1/countries';
+
+    
+
+    //// Populate dropdown with list of provinces
+    //$.getJSON(pollutionCountryUrl, function (data) {
+    //    $.each(data.results, function (key, entry) {
+    //        countryDropdown.append($('<option></option>').attr('value', entry.code).text(entry.name));
+    //    })
+    //}); -- Talk about efficienttstyy 
+
+    $.ajax({
+        type: "GET",
+        url: pollutionCountryUrl,
+        crossDomain: true,
+        dataType: 'json',
+        contentType: "application/json",
+        success: function (result) {
+            $.each(result.results, function (key, entry) {
+                countryDropdown.append($('<option value=' + entry.code + '>' + entry.name + '</option>'));
+            })
+        },
+        error: function (result) {
+            Swal.fire({
+                type: 'error',
+                title: 'Data Request Error',
+                text: 'An error has occurred when submitting your request. Please try again with different criteria.'
+            })
+        }
+    });
+
+
+    countryDropdown.change(function () {
+        console.log(countryDropdown.val());
+        $.ajax({
+            type: "GET",
+            url: 'https://api.openaq.org/v1/locations?country[]=' + countryDropdown.val(),
+            crossDomain: true,
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (result) {
+                locationDropdown.empty();
+                $.each(result.results, function (key, entry) {
+                    locationDropdown.append($('<option value=' + entry.location + '>' + entry.location + '</option>'));
+                });
+            },
+            error: function (result) {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Data Request Error',
+                    text: 'An error has occurred when submitting your request. Please try again with different criteria.'
+                })
+            }
+        });
+
+    });
+
+
+
     $('#pollution-collapse-expand').click(function () {
         $('#pollution-wizard-container').slideToggle("slow", function () {
             //if container is visible, show an arrow that allows the container to be minimised
@@ -37,76 +138,57 @@
         });
     });
 
-    function submitTrafficIncidentRequest() {
-        let latitude = $('#traffic-incident-lat-input').val();
-        let longitude = $('#traffic-incident-lon-input').val();
-
-        let minLatLon = calculateMinMaxLatLon(latitude, longitude);
-
-        let requestUrl = 'https://traffic.api.here.com/traffic/6.3/incidents.json?app_id=';
-
-        $.ajax({
-            type: "GET",
-            url: requestUrl,
-            contentType: "application/json",
-            success: function (result) {
-                console.log('AJAX Response: ', result);
-                
-            },
-            error: function (errorResult) {
-                console.log('ERROR: ', errorResult);
-                
-            }
-        });
-    }
-
-
-    @*
-    function submitTrafficIncidentRequest() {
         
-        var platform = new H.service.Platform({
-        'app_id': '@Model.App_ID',
-        'app_code': '@Model.App_Code'
-        });
 
-        let latitude = $('#traffic-incident-lat-input').val();
-        let longitude = $('#traffic-incident-lon-input').val();
+    
 
-        let dataValid = validateLatLon(latitude, longitude);
 
-        if (dataValid) {
-            // Obtain the default map types from the platform object:
-            var defaultLayers = platform.createDefaultLayers();
 
-            // Instantiate (and display) a map object:
-            var map = new H.Map(
-                document.getElementById('traffic-incident-result-map'),
-                defaultLayers.normal.map,
-                {
-                    zoom: 10,
-                    center: { lat: latitude, lng: longitude }
-                });
 
-            // Add incident overlay to map
-            map.addLayer(defaultLayers.incidents);
+    function submitPollutionRequest() {
+//            //GET Data
+        let country = $('#population-country-input').val();
 
-            $('#traffic-incidents-result-map-container').fadeIn(300);
-        }
-        else {
-            Swal.fire({
-                type: 'error',
-                title: 'Invalid Request',
-                text: 'You must specify both a latitude and a longitude'
-            })
-        }
-    }
+        let pollutionUrl = 'https://api.openaq.org/v1/measurements?country=' + country;
+        console.log("Created URL from user Input: " + pollutionUrl);
+//        $.ajax({
+//            type: "GET",
+//            url: pollutionUrl,
+//        crossDomain: true,
+//        dataType: 'jsonp',
+//        contentType: "application/json",
+//            success: function (result) {
 
-    function validateLatLon(lat, lon) {
-        if ((lat == '' || lat == ' ') || (lon == '' || lon == ' ')) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }*@
+//            //Creates visualisation
+//            createD3Visualisation(result, visualisation);
+
+//        $('#population-wizard-arrow-up').click().promise().done(function () {
+//            $('#population-chart-container').fadeIn(300);
+//        });
+//    },
+//            error: function (errorResult) {
+//            console.log('ERROR: ', errorResult.statusText);
+
+//        if (errorResult.statusText == 'error') {
+//            Swal.fire({
+//                type: 'error',
+//                title: 'Data Request Error',
+//                text: 'An error has occurred when submitting your request. Please try again with different criteria.'
+//            })
+//        }
+//        else if (errorResult.statusText == 'load') {
+//            Swal.fire({
+//                type: 'error',
+//                title: 'Load Error',
+//                text: 'An error has occurred when loading the data from our sources. Please refresh your screen.'
+//            })
+//        }
+//        }
+//    });
+
+}
+
+
+
+
 </script>
