@@ -158,7 +158,7 @@
         let measurementsUrl = 'https://api.openaq.org/v1/measurements?location=' + location + '&date_from=' + utc;
 
         function formatCountryName(countryName) {
-            let formattedCountryName = countryName.replace(" ", "%20"); //.replace(/-/g, '/')
+            let formattedCountryName = countryName.replace(/ /g, '%20');
             return formattedCountryName;
         };
 
@@ -176,10 +176,10 @@
                 //Creates visualisation
                 console.log(result);
 
-                //pollutionJS CALLER
+                createPollutionChart(result);
 
-                $('#population-wizard-arrow-up').click().promise().done(function () {
-                    $('#population-chart-container').fadeIn(300);
+                $('#pollution-wizard-arrow-up').click().promise().done(function () {
+                    $('#pollution-chart-container').fadeIn(300);
                 });
             },
             error: function (errorResult) {
