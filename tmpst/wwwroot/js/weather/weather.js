@@ -33,6 +33,8 @@
     # Event Handlers
 ---------------------------------------------------------------------------*/
 
+let currentForecastDataset = {};
+
 //Allows the user to chose their input type, either latitude and longitutde of name of place
 $('#input-type-select').on('change', function () {
     console.log($('#input-type-select').val());
@@ -155,7 +157,7 @@ function submitWeatherRequest(key) {
             })
         }
     }
-    
+
 }
 
 /* FUNCTION: contactAPI
@@ -183,6 +185,8 @@ function contactAPI(requestType, location, key) {
             if (requestType == 'forecast') {
                 let forecastDates = [];
 
+                currentForecastDataset = result.forecast;
+
                 $.each(result.forecast.forecastday, function (key, val) {
                     let dateObject = new Date(val.date);
                     forecastDates.push(dateObject);
@@ -204,9 +208,11 @@ function contactAPI(requestType, location, key) {
                     });
                 }
                 else {
+                    currentForecastDataset = result.forecast;
+
                     updateForecastTableHead(forecastDates);
                     updateForecastTableBody(result.forecast.forecastday);
-                    
+
                     $('#wizard-collapse-expand').click().promise().done(function () {
                         initMap(result.location.lat, result.location.lon, result.location.name, 'result-map');
                         console.log('REACHED FADE INS');
@@ -217,7 +223,7 @@ function contactAPI(requestType, location, key) {
 
                     });
                 }
-                
+
             }
             else {
                 updateCurrentWeatherDataContainers(result);
@@ -351,9 +357,85 @@ function updateForecastTableBodyMobile(apiData) {
         let dateObject = new Date(val.date);
         let day = days[dateObject.getDay()];
         $('#forecast-tbl-body-mobile').append('<tr><td><strong>' + day + '</strong></td><td><img src="' + val.day.condition.icon + '" /></td>' +
-            '<td><strong>Avg. Temp: </strong>' + val.day.avgtemp_c + '</td>');
+            '<td><strong>Avg. Temp: </strong>' + val.day.avgtemp_c + '&#8451 </td>');
     });
 }
+
+/*
+function analyseForecastData() {
+    console.log('CCCCCCCCCCCCCCCHHHHHHHHHHHHHHHHHHHHHHHAAAAAAAAAAAAAAAAAAAAAAARRRRRRTTTTTTTTT', currentForecastDataset);
+
+    let labels = [];
+
+    let avgTempArray = [];
+    let maxTempArray = [];
+    let minTempArray = [];
+    let avgHumidityArray = [];
+    let avgVisArray = [];
+
+    $.each(currentForecastDataset.forecastday, function (key, val) {
+        labels.push(val.date);
+
+        console.log('VAL ', val);
+
+        avgTempArray.push(val.day.avgtemp_c);
+        maxTempArray.push(val.day.maxtemp_c);
+        minTempArray.push(val.day.mintemp_c);
+        avgHumidityArray.push(val.day.avghumidity);
+        avgVisArray.push(val.day.avgvis_miles);
+    });
+
+    console.log('LABELS ', labels);
+    console.log('AVG TEMP ', avgTempArray);
+    console.log('MAX TEMP ', maxTempArray);
+    console.log('MIN TEMP', minTempArray);
+    console.log('HUMIDIDTY', avgHumidityArray);
+    console.log('VISIBILITY', avgVisArray);
+
+    var ctx = $('#forecast-overall-chart');
+
+    var mixedChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            datasets: [{
+                label: 'Average Temperature',
+                data: avgTempArray
+            }, {
+                label: 'Max Temperature',
+                data: maxTempArray,
+
+                // Changes this dataset to become a line
+                type: 'line'
+                },
+                {
+                    label: 'Min Temperature',
+                    data: minTempArray,
+
+                    // Changes this dataset to become a line
+                    type: 'line'
+                },
+                {
+                    label: 'Humidity',
+                    data: avgHumidityArray,
+
+                    // Changes this dataset to become a line
+                    type: 'line'
+                },
+                {
+                    label: 'Visibility',
+                    data: avgVisArray,
+
+                    // Changes this dataset to become a line
+                    type: 'line'
+                }
+            ],
+            labels: labels
+        },
+    });
+
+    $('#forecast-weather-analysis-landing').fadeIn(300);
+}
+*/
 
 /*--------------------------------------------------------------------------
     END: # Dynamic Data Functions
