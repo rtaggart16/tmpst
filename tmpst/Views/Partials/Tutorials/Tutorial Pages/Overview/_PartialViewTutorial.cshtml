@@ -1,0 +1,424 @@
+﻿<div class="text-center">
+    <h2>Partial Views</h2>
+    <hr />
+</div>
+
+<div class="row text-center">
+    <div class="col-12 tutorial-para">
+        <button onclick="downloadPDF('Partial_Views.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
+        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('partial-view-tutorial')">Go Full Screen</button>
+        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('partial-view-tutorial')">Exit Full Screen</button>
+    </div>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            As mentioned previously, tmpst is a single page application which means you are only interacting with one HTML page. However, putting all of the HTML required into
+            one file would be messy and hard to manage. To make sure our page is easy to manage, tmpst uses partial views to separate sections of HTML.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            A partial view is a .cshtml file that contains HTML to be rendered within another .html or .cshtml page. Tmpst uses partial views to separate the different resources
+            that we provide (weather, earthquakes etc.) as well as the content required within these services as in partial views within partial views.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span>
+            <strong>Advantages</strong>
+        </span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Partial views provide various advantages as detailed below:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Separate logic within large files - By using partial views, logical systems (such as the previously mentioned tmpst systems) can be split up into smaller modules.
+                    This means that a “Landing Page”, such as the tmpst weather or earthquake system, would contain references to all the partial views that it requires, such as query
+                    builder and result containers, without containing (much) complex HTML within itself
+                </li>
+                <li>
+                    Reduce HTML duplication - By using partial views, any HTML that needs to be rendered for multiple pages can be encapsulated within a partial view and rendered as many times as required
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Usage:</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <pre>
+        <code class="html">
+                Html.PartialAsync("{Partial_Name}")
+            </code>
+        </pre>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span>In this tutorial:</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span>Pre-requisites:</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Visual Studio 2017 (Community, Professional or Enterprise)
+                </li>
+                <li>
+                    .NET Core v2.2
+                </li>
+                <li>
+                    HTML you wish to render as a partial view
+                </li>
+                <li>
+                    ASP.NET Core Web Application
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span>Aims:</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Learn how to create a partial view
+                </li>
+                <li>
+                    Learn how to reference a partial view
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 1: Create a View</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>In order to render a partial view, we will need to create one.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span>Steps:</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ol>
+                <li>
+                    Right click on the view folder that you want to add the partial to (it is often good practice to have a separate folder for partial views)
+                </li>
+                <li>
+                    Select “Add New Item” from the context menu
+                </li>
+                <li>
+                    Name the partial view (it is good practice to prefix the name with an underscore (_)) such as “_ShoppingCartPartial”
+                </li>
+            </ol>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>Below is a breakdown of all the above mentioned steps:</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/Overview/Partial Views/Step 1 pt1 - Click Context Menu.png" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>Above is an example of accessing the context menu</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/Overview/Partial Views/Step 1 pt2 - Name the partial view.png" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>Above is an example of naming the partial view</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 2: Populate the Partial View</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>Now that the partial view has been created, we need to add content that we want to render. Currently the partial view we created should look like this:</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/Overview/Partial Views/Step 2 pt1 - empty partial.png" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>There is no actual HTML within the partial, so referencing it would make no difference. As a simple example add a header to the partial as is shown below:</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <pre>
+        <code class="language-html">
+                &lt;div&gt;
+                    &lt;h2&gt;Your Cart&lt;/h2&gt;
+                &lt;/div&gt;
+            </code>
+        </pre>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>The code block above shows some simple HTML that, when referenced, will display the text "Your Cart" in heading 2 format</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 3 (Final Step): Reference Partial</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>Before continuing with this step, ensure that you have the following setup:</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    A partial view with content - Make sure that you have a partial content with valid HTML inside. Your HTML content does not have to be the same as the examples given
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>If you have completed all of the above items, then you can proceed to actually reference the partial view in another HTML page.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>Note: For this section of the tutorial, we will be referencing our partial view in the Index.cshtml view as this is often the page that is configured to display first</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span>Steps:</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ol>
+                <li>
+                    Remove all predefined HTML from the index view
+                </li>
+                <li>
+                    Reference the partial view
+                </li>
+            </ol>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>After removing all of the predefined HTML form the index view, add a reference to the partial view using the syntax mentioned in the usage section of this tutorial</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/Overview/Partial Views/Step 3 pt 1- reference partial.png" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>After you have added this line to your chosen view, run the application and you should see a result similar to the one below:</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/Overview/Partial Views/Step 3 pt 2 - app run result.png" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Conclusion</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            That is the code required to create and reference a partial view. The content, complexity and number of partial views in an application depend on the developer’s choice. We use the
+            await Html.PartialAsync as this ensures that the partial is fully loaded before the line after is processed, which prevents lock ups and unresponsive pages
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span>Common Issues:</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>Normally, partial views can be created an referenced without too much difficulty, however, some of the most common issues are detailed below:</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Referencing the path - In our example we reference the _ShoppingCartPartial which is in the Partials folder of the Views folder. If we instead try and reference the
+                    _ShoppingCartPartial view in just the Views folder we will get an error. If the path to the chosen partial view is incorrect, then the application will crash and throw an error
+                </li>
+                <li>
+                    Forgetting to reference - Sometimes an error can occur purely because the partial was not referenced at all. It is generally good practice to reference a partial as soon as it
+                    is created to mitigate errors like this
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Outcomes</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span>You should now be able to:</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Create a partial view
+                </li>
+                <li>
+                    Reference a partial view
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>References</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>Although we hope this tutorial has been all the help you need, here are some useful links that may be of use:</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Useful Resources:</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    <span><button class="btn btn-secondary" onclick="openTutorialLink('https://docs.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-2.2')">Microsoft Docs</button> - Microsoft's Partial View Documentation</span>
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
