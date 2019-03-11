@@ -1,0 +1,28 @@
+﻿@model tmpst.Models.UserSecretCollection
+<link href="~/css/Population/population.css" rel="stylesheet" />
+@*
+    Author Info:
+
+    Name(s) - Mark Riley, Ross Taggart, Aidan Marshall, Katie King
+    Student Number - S1829984, S1828840, S1828601, S1827986
+    Date Created - 26/02/2019
+    Version - 1.0.1
+
+    Description: Page that will contain all population associated views
+*@
+
+<div>
+    <div id="population-title-container" class="text-center">
+        <h3 class="tmpst-title">Population Analysis</h3>
+        <p class="tmpst-desc">Analyse current population data</p>
+    </div>
+
+    <div id="population-query-container">
+        @await Html.PartialAsync("~/Views/Partials/Population/_PopulationQueryBuilder.cshtml", Model.Population)
+    </div>
+
+    <div id="population-chart-container" style="display:none">
+        @await Html.PartialAsync("~/Views/Partials/Population/Results/_PopulationChartContainer.cshtml")
+    </div>
+
+</div>

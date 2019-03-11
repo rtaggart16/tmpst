@@ -1,0 +1,103 @@
+﻿@*
+    Author Info:
+
+    Name(s) - Ross Taggart, Aidan Marshall, Katie King
+    Student Number - S1828840, S1828601, S1827986
+    Date Created - 17/02/2019
+    Version - 1.0.0
+
+    Description:
+    Partial view containing static content which describes the application
+*@
+
+<div id="weather-analysis-container" class="overview-card-container row col-12">
+    <h4>Weather Analysis</h4>
+    <div class="row">
+        <div class="col-8">
+            <p>
+                Tmpst provides weather data analysis by using our custom algorithms and data visualisation tools to present data received from an API, APIXU. We can provide
+                detailed analysis of any geographical location as well as just providing you with the week's forecast
+            </p>
+        </div>
+        <div class="col-4">
+            <div id="weather-container" onclick="fadeInSpecifiedView('weather-page')" class="w-100 h-100 text-center tmpst-clickable">
+                <img src="~/images/API Icons/weather.png" class="h-75 w-100" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="earthquake-analysis-container" class="overview-card-container row col-12">
+
+    <h4>Earthquake Analysis</h4>
+
+    <div class="row">
+        <div class="col-4">
+            <div class="w-100 h-100 text-center tmpst-clickable" onclick="fadeInSpecifiedView('earthquake-page')">
+                <img src="~/images/API Icons/earthquake.png" class="h-75 w-100" />
+            </div>
+        </div>
+        <div class="col-8">
+            <p>
+                Tmpst provides real-time analysis and collation of earthquake data. We can pinpoint the real-time location of the earthquake to inform and warn
+                people
+            </p>
+        </div>
+    </div>
+</div>
+
+<div id="population-analysis-container" class="overview-card-container row col-12">
+
+    <h4>Population Analysis</h4>
+
+    <div class="row">
+        <div class="col-8">
+            <p>
+                Tmpst provides analysis of a country's population statistics such as life expectancy. We can also predict a country's future population statistics
+                such as life expectancy and estimated number of people
+            </p>
+        </div>
+        <div class="col-4">
+            <div class="w-100 h-100 text-center tmpst-clickable" onclick="fadeInSpecifiedView('population-page')">
+                <img src="~/images/API Icons/population.png" class="h-75 w-100" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="traffic-analysis-container" class="overview-card-container row col-12">
+
+    <h4>Traffic Analysis</h4>
+
+    <div class="row">
+        <div class="col-4">
+            <div class="w-100 h-100 text-center tmpst-clickable" onclick="fadeInSpecifiedView('traffic-page')">
+                <img src="~/images/API Icons/traffic.png" class="h-75 w-100" />
+            </div>
+        </div>
+        <div class="col-8">
+            <p>
+                Tmpst provides real-time analysis and collation of traffic data. We can pinpoint real-time traffic issues in requested areas to provide users
+                with useful and up-to-date information to help them plan a better journey
+            </p>
+        </div>
+    </div>
+</div>
+
+<div id="news-analysis-container" class="overview-card-container row col-12">
+
+    <h4>News Analysis</h4>
+
+    <div class="row">
+        <div class="col-4">
+            <div class="w-100 h-100 text-center tmpst-clickable" onclick="fadeInSpecifiedView('news-page')">
+                <img src="~/images/API Icons/traffic.png" class="h-75 w-100" />
+            </div>
+        </div>
+        <div class="col-8">
+            <p>
+                Tmpst provides real-time analysis and collation of news data.
+            </p>
+        </div>
+    </div>
+</div>

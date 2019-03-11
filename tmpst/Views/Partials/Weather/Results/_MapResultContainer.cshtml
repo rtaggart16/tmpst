@@ -13,15 +13,11 @@
 <div class="row">
     <div class="col-12">
         <div class="card weather-card-container">
-            <div class="row">
-
-                <div id="collapsed-text-container" class="col-11 text-center">
-                    <h5 style="display:none" id="forecast-map-wizard-collapsed-title">Map</h5>
-                </div>
-
-                <div id="forecast-map-collapse-expand" class="col-1 text-right tmpst-clickable">
-                    <i id="forecast-map-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i>
-                    <i style="display:none" id="forecast-map-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+            <div class="row weather-card-item text-center">
+                <div class="col-12 text-center">
+                    <span>
+                        <strong>Map </strong> <i onclick="collapseExpandToggle('forecast-map-wizard-arrow-up', 'forecast-map-wizard-arrow-down', 'forecast-map-wizard-container')" id="forecast-map-wizard-arrow-up" class="fas fa-caret-up fa-2x tmpst-clickable"></i><i onclick="collapseExpandToggle('forecast-map-wizard-arrow-down', 'forecast-map-wizard-arrow-up', 'forecast-map-wizard-container')" style="display:none" id="forecast-map-wizard-arrow-down" class="fas fa-caret-down fa-2x tmpst-clickable"></i>
+                    </span>
                 </div>
             </div>
             <div id="forecast-map-wizard-container">

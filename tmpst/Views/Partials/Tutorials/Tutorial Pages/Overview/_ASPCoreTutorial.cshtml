@@ -1,0 +1,113 @@
+﻿<div class="text-center">
+    <h2>ASP.NET Core</h2>
+    <hr />
+</div>
+
+<div class="row text-center">
+    <div class="col-12 tutorial-para">
+        <button onclick="downloadPDF('ASP_NET_Core.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
+        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('asp-core-tutorial')">Go Full Screen</button>
+        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('asp-core-tutorial')">Exit Full Screen</button>
+    </div>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Tmpst is built as an ASP.NET Core application. ASP.NET Core is a cross platform development framework used mainly to create cloud-based applications. 
+            ASP.NET Core can run on Windows, Linux and macOS. By using ASP.NET Core, tmpst is able to take advantage of features such as user secrets.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>What is ASP.NET Core</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            As mentioned earlier, ASP.NET Core is a cross-platform development framework which is also open source. Core was released as a re-designed version of the ASP.NET Framework which only runs on Windows machines.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Advantages</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Below is a list of the advantages of using ASP.NET Core:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Performance - When compiling ASP.NET Core code, the application’s code will automatically be optimised by the compiler. Also, according to <button class="btn btn-secondary" onclick="openTutorialLink('https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=plaintext')">TechEmpower</button>, ASP.NET Core ranked 7th out of 297 
+                    frameworks when it comes to processing plaintext. .NET Core had a 99.7% performance score out of 100.
+                </li>
+                <li>
+                    Cross Platform - As mentioned earlier, ASP.NET Core applications can run on Windows, Linux and macOS
+                </li>
+                <li>
+                    Writing Less Code - ASP.NET Core offers tools such as LINQ which removes the need for lots of for and foreach loops. With LINQ, a query to find the first of instance of an item in a
+                    collection (List, Array, etc.) can be written as NAME_OF_LIST.FirstOrDefault(); This line of code would have to be written as a multi-line for or foreach loop without LINQ
+                    <pre>
+                        <code class="language-dotnet">
+                            exampleList.FirstOrDefault();
+                        </code>
+                    </pre>
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>References</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Hopefully, this tutorial has helped you understand ASP.NET Core better, however, below is a list of useful resources:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    <button class="btn btn-secondary" onclick="openTutorialLink('https://cynicaldeveloper.com/blog/what-is-net-core/')">Cynical Developer</button> - What is .NET Core?
+                </li>
+                <li>
+                    <button class="btn btn-secondary" onclick="openTutorialLink('https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/intro')">Micrososft Tutorial</button> - Create First .NET Core app
+                </li>
+                <li>
+                    <button class="btn btn-secondary" onclick="openTutorialLink('https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=plaintext')">TechEmpower</button> - Performnce Results
+                </li>
+                <li>
+                    <button class="btn btn-secondary" onclick="openTutorialLink('https://dzone.com/articles/4-benefits-of-migrating-to-aspnet-core-20')">DZone</button> - Why Migrate to .NET Core?
+                </li>
+                <li>
+                    <button class="btn btn-secondary" onclick="openTutorialLink('https://www.fortech.ro/top-advantages-net-core/')">Fortech</button> - Advantages of .NET Core
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>

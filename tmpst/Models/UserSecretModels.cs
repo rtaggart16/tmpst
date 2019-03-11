@@ -27,6 +27,8 @@ namespace tmpst.Models
         public PopulationAPIUrl Population { get; set; }
         public TrafficAPIKeys Traffic { get; set; }
         public GoogleMapsKey Maps { get; set; }
+        public MapQuestKeys MapQuest { get; set; }
+        public NewsAPIKeys NewsKeys { get; set; }
     }
 
     /// <summary>
@@ -119,5 +121,23 @@ namespace tmpst.Models
     public class GoogleMapsKey
     {
         public string Api_Key { get; set; }
+    }
+
+    /// <summary>
+    /// Class which contains the Consumer Key and Secret for MapQuest
+    /// </summary>
+    public class MapQuestKeys
+    {
+        public string Consumer_Key { get; set; }
+        public string Consumer_Secret { get; set; }
+    }
+
+
+    /// <summary>
+    /// Class which contains the Consumer Key and Secret for MapQuest
+    /// </summary>
+    public class NewsAPIKeys
+    {
+        public string App_Key { get; set; }
     }
 }

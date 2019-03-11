@@ -31,9 +31,7 @@ function initMap(latitude, longitude, placeName, containerID) {
 
         // Create an info window that will be displayed when a marker is clicked
         let infoWindow = new google.maps.InfoWindow({
-            content: '<h2>' + placeName + '</h2>' +
-                '<button class="btn btn-success">Analyse Data</button>'
-
+            content: '<h2>' + placeName + '</h2>'
         });
 
         // Add an event listener to check when a marker is clicked
@@ -74,11 +72,15 @@ function createClusterMap(data) {
                 label: labels[i % labels.length]
             });
 
+            let content = '<h3>' + location.title + '</h3><p><a onclick="viewCountryInfo(' + location.latlng + ')"</a><p>';
+
             var infowindow = new google.maps.InfoWindow({
-                content: "<h3>" + location.title + "</h3><p><a href='" + location.url + "'>Details</a></p>"
+                content: '<h2>' + location.title + '</h2>' +
+                    '<button class="btn btn-success" onclick="viewCountryInfo(' + location.latlng.lat + ', ' + location.latlng.lng + ')">Analyse Data</button>'
             });
             marker.addListener('click', function (data) {
                 infowindow.open(map, marker); // Open the Google maps marker infoWindow
+                
             });
 
             return marker;

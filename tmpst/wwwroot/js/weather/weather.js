@@ -66,27 +66,6 @@ $('#input-type-select').on('change', function () {
     }
 });
 
-//Slide animation for the weather search, which allows more information to be displayed on the page by increasing page real estate
-$('#wizard-collapse-expand').click(function () {
-    $('#weather-wizard-container').slideToggle("slow", function () {
-        //if container is visible, show an arrow that allows the container to be minimised
-        if (!$('#weather-wizard-container').is(':visible')) {
-            $('#weather-wizard-arrow-up').fadeOut().promise().done(function () {
-                $('#weather-wizard-arrow-down').fadeIn();
-                $('#weather-wizard-collapsed-title').fadeIn();
-            });
-        }
-        else {
-            $('#weather-wizard-arrow-down').fadeOut().promise().done(function () {
-                $('#weather-wizard-arrow-up').fadeIn();
-                $('#weather-wizard-collapsed-title').fadeOut();
-            });
-        }
-    });
-});
-
-
-
 // Checks if the user has pressed enter while inside the place name/postcode input field
 $('#name-or-postcode-input').on('keypress', function (e) {
     if (e.which == 13) {
@@ -326,6 +305,14 @@ function updateForecastTableBody(apiData) {
     console.log('AVGTEMPS', avgTemps);
     console.log('MAXTEMPS', maxTemps);
     console.log('CONDITIONS', conditionTexts);
+
+    $('#forecast-head-only').append('<tr><td><img src="' + icons[0] + '" /></td>' +
+        '<td><img src="' + icons[1] + '" /></td>' +
+        '<td><img src="' + icons[2] + '" /></td>' +
+        '<td><img src="' + icons[3] + '" /></td>' +
+        '<td><img src="' + icons[4] + '" /></td>' +
+        '<td><img src="' + icons[5] + '" /></td>' +
+        '<td><img src="' + icons[6] + '" /></td></tr>');
 
     //appends the forecast icons to the table
     $('#forecast-tbl-body').append('<tr><td><img src="' + icons[0] + '" /></td>' +

@@ -3,6 +3,7 @@
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/Layout/_Layout.cshtml";
 }
+<link href="~/css/Overview/overview.css" rel="stylesheet" />
 
 @*
     Author Info:
@@ -18,35 +19,47 @@
 
 <!-- Overview Page -->
 <div id="overview-page">
-    <div id="overview-title-container" class="text-center">
-        <h3 class="tmpst-title">tmpst</h3>
-        <p class="tmpst-desc">Weather processing platform</p>
-    </div>
+    @*<div id="overview-title-container" class="text-center">
+            <h3 class="tmpst-title">tmpst</h3>
+            <p class="tmpst-desc">Weather processing platform</p>
+        </div>*@
 
-    <div class="card w-100">
+    <div>
         @await Html.PartialAsync("~/Views/Partials/Overview/_OverviewLandingPartial.cshtml")
     </div>
 </div>
 <!-- END: Overview Page -->
-
 <!-- Weather Pages -->
-
 <!-- Main Weather Landing Page -->
 <div style="display:none;" class="new-page" id="weather-page">
     @await Html.PartialAsync("~/Views/Partials/Weather/_WeatherLandingPage.cshtml", Model)
 </div>
 <!-- END: Main Weather Landing Page -->
-
 <!-- END: Weather Pages -->
-
 <!-- Main Earthquake Landing Page -->
 <div style="display:none;" class="new-page" id="earthquake-page">
     @await Html.PartialAsync("~/Views/Partials/Earthquake/_EarthquakeLandingPage.cshtml", Model)
 </div>
 <!-- END: Main Weather Landing Page -->
-
-<!-- Main Traffic Landing Page -->
+<!-- Population Pages -->
+<!-- Main Population Landing Page -->
+<div style="display:none;" class="new-page" id="population-page">
+    @await Html.PartialAsync("~/Views/Partials/Population/_PopulationLandingPage.cshtml", Model)
+</div>
+<!-- END: Main Population Landing Page -->
+<!-- Traffic Pages -->
+<!-- Main Population Landing Page -->
 <div style="display:none;" class="new-page" id="traffic-page">
     @await Html.PartialAsync("~/Views/Partials/Traffic/_TrafficLandingPage.cshtml", Model)
 </div>
-<!-- END: Main Traffic Landing Page -->
+<!-- END: Main Population Landing Page -->
+<!-- Traffic Pages -->
+<!-- Main Population Landing Page -->
+<div style="display:none;" class="new-page" id="general-page">
+    @await Html.PartialAsync("~/Views/Partials/General/_AboutUsPage.cshtml", Model)
+</div>
+<div style="display:none" class="new-page" id="tutorial-page">
+    @await Html.PartialAsync("~/Views/Partials/Tutorials/_TutorialLandingPage.cshtml")
+</div>
+<!-- END: Tutorial Landing Page -->
+<!-- END: Tutorial Pages -->

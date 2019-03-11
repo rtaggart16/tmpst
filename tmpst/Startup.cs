@@ -21,6 +21,8 @@ namespace tmpst
             Configuration = configuration;
         }
 
+        readonly string APISpecificOrigins = "_apiSpecificOrigins";
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -36,6 +38,15 @@ namespace tmpst
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(APISpecificOrigins,
+                builder =>
+                {
+                    builder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+                });
+            });
+
             services.AddMvc();
 
             // Secrets
@@ -46,6 +57,7 @@ namespace tmpst
             services.Configure<EarthquakeMonthlyUrls>(Configuration.GetSection("EarthquakeMonthlyUrls"));
             services.Configure<PopulationAPIUrl>(Configuration.GetSection("PopulationAPIUrl"));
             services.Configure<TrafficAPIKeys>(Configuration.GetSection("TrafficAPIKeys"));
+            services.Configure<MapQuestKeys>(Configuration.GetSection("MapQuestKeys"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,8 +76,10 @@ namespace tmpst
 
             app.UseStaticFiles();
 
-            app.UseAuthentication();
+            app.UseCors(APISpecificOrigins);
 
+            app.UseAuthentication();
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

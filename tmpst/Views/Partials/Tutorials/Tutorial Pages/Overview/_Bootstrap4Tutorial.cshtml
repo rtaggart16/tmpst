@@ -1,0 +1,945 @@
+﻿<div class="text-center">
+    <h2>Bootstrap 4</h2>
+    <hr />
+</div>
+
+<div class="row text-center">
+    <div class="col-12 tutorial-para">
+        <button onclick="downloadPDF('Bootstrap_4.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
+        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('bootstrap-4-tutorial')">Go Full Screen</button>
+        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('bootstrap-4-tutorial')">Exit Full Screen</button>
+    </div>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Tmpst uses Bootstrap 4 as the main frontend framework for the application. Tmpst uses Bootstrap to create the consistent Navbar throughout the application as well as
+            using the grid system to align the containers of the pages correctly for both desktop and mobile users.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Bootstrap 4 is a framework for front-end languages such as JavaScript, CSS as well as HTML. Bootstrap is the most popular framework for these languages and with the new release
+            of  Bootstrap 4 is better than ever at providing a framework for mobile-first application
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In this tutorial:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Pre-requisites:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Visual Studio 2017 (Community, Professional or Enterprise)
+                </li>
+                <li>
+                    .NET Core v2.2
+                </li>
+                <li>
+                    .html or .cshtml files you want to add bootstrap to
+                </li>
+                <li>
+                    ASP.NET Core Web Application
+                </li>
+                <li>
+                    <button class="btn btn-secondary" onclick="openTutorialLink('https://getbootstrap.com/docs/4.0/getting-started/download/')">Bootstrap Source files</button>
+                </li>
+                <li>
+                    <button class="btn btn-secondary" onclick="openTutorialLink('https://getbootstrap.com/docs/4.0/getting-started/download/')">Popper.js</button>
+                </li>
+                <li>
+                    <button class="btn btn-secondary" onclick="openTutorialLink('https://jquery.com/')">JQuery v3.3.1</button>
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Aims:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Learn how to create a Bootstrap 4 Navbar
+                </li>
+                <li>
+                    Learn how to create a page using the Bootstrap 4 grid system
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Note: In this tutorial, the code used as an example is similar to that which is on the Bootstrap website. There will be links to other tutorials if this one does not suit your specific needs
+        </p>
+    </div>
+</div>
+
+<div class="text-center">
+    <h3>Navbar Tutorial</h3>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In this tutorial, we will create a sample bootstrap navbar using basic ASP links to controller methods
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Steps:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ol>
+                <li>
+                    Remove any pre-existing navbar
+                </li>
+                <li>
+                    Add Bootstrap 4 source files to _Layout (or other view used as a layout page)
+                </li>
+                <li>
+                    Add Navbar code to application
+                </li>
+            </ol>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 1: Remove any pre-existing navbar</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            If you have just created a new web application for this tutorial, or are using a pre-existing app with limited content, the chances are that you will already have a Bootstrap navbar setup. However,
+            this navbar will have been defaulted to Bootstrap version 3 which is no longer the most up-to-date version. A default version 3 navbar will look something like what is displayed below:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <pre>
+        <code class="language-html">
+                &lt;nav class="navbar navbar-inverse navbar-fixed-top"&gt;
+                    &lt;div class="container"&gt;
+                        &lt;div class="navbar-header"&gt;
+                            &lt;button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"&gt;
+                                &lt;span class="sr-only"&gt;Toggle navigation&lt;/span&gt;
+                                &lt;span class="icon-bar"&gt;&lt;/span&gt;
+                                &lt;span class="icon-bar"&gt;&lt;/span&gt;
+                                &lt;span class="icon-bar"&gt;&lt;/span&gt;
+                            &lt;/button&gt;
+                            &lt;a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"&gt;tutorialApp&lt;/a&gt;
+                        &lt;/div&gt;
+                        &lt;div class="navbar-collapse collapse"&gt;
+                            &lt;ul class="nav navbar-nav"&gt;
+                                &lt;li&gt;&lt;a asp-area="" asp-controller="Home" asp-action="Index"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a asp-area="" asp-controller="Home" asp-action="About"&gt;About&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a asp-area="" asp-controller="Home" asp-action="Contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/nav&gt;
+            </code>
+        </pre>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            You can go ahead and remove this code as we will be replacing it. If you want to be cautious you can comment it out rather than outright deleting it, but, we won’t be using it again in this tutorial
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 2: Add Bootstrap 4 source files to _Layout (or other view used as a layout page)</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Now that the old navbar has been deleted, we need to set up the application to use Bootstrap 4. The Bootstrap used by the old navbar had to be referenced somewhere by the application.
+            Chances are that if you open the root directory of your application and navigate to the lib folder, you should find a pre-existing bootstrap folder that contains all the JavaScript and CSS required
+            for Bootstrap version 3. We no longer need this version of Bootstrap, however, it would be a good idea to keep the folder there until we have successfully setup Bootstrap 4.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Create a new folder in the lib folder called bootstrap4 and add the css and js folders located in bootsrap-x-x-x/dist/ to our new folder. Your new solution explorer should look like this:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/Overview/Bootstrap 4/Step 2 pt1 - existing bootstrap in se.png" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Now that the folder has been added, we will need to add a reference to Bootstrap 4 into the same file that is referencing the original version 3. If you navigate to your _Layout where our
+            version 3 navbar was originally you should see the following:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Head:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <pre>
+        <code class="language-html">
+        &lt;environment include="Development"&gt;
+            &lt;link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" /&gt;
+            &lt;link rel="stylesheet" href="~/css/site.css" /&gt;
+        &lt;/environment&gt;
+        &lt;environment exclude="Development"&gt;
+            &lt;link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+                asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+                asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" /&gt;
+            &lt;link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" /&gt;
+        &lt;/environment&gt;
+            </code>
+        </pre>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The code above will load the locally stored version 3 bootstrap css file when the application is development. When the application is not in Development (Staging or Production),
+            the application will load a minified version of the version 3 css through cdn. If, for whatever reason, the application cannot obtain the css file through cdn it will load the locally
+            stored minified version instead.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Body:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <pre>
+        <code class="language-html">
+        &lt;environment include="Development"&gt;
+            &lt;script src="~/lib/jquery/dist/jquery.js"&gt;&lt;/script&gt;
+            &lt;script src="~/lib/bootstrap/dist/js/bootstrap.js"&gt;&lt;/script&gt;
+            &lt;script src="~/js/site.js" asp-append-version="true"&gt;&lt;/script&gt;
+        &lt;/environment&gt;
+        &lt;environment exclude="Development"&gt;
+            &lt;script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk"&gt;
+            &lt;/script&gt;
+            &lt;script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"&gt;
+            &lt;/script&gt;
+            &lt;script src="~/js/site.min.js" asp-append-version="true"&gt;&lt;/script&gt;
+        &lt;/environment&gt;
+        </code>
+        </pre>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            As with the references in the head, the application will load a local version of the bootstrap.js file when in development and the minified version through cdn when not in development
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Reference Version 4:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            As mentioned in the pre-requisites, we require the Bootstrap 4 files, JQuery and popper.js. All of these to be referenced <strong>in the correct order</strong> to ensure that Bootstrap 4 is loaded correctly.
+            For this example I will load the unminified local files for development use and the minified file for production use and keep the JavaScript defined in the body and the css in the head.
+            As stated earlier, the references have to be done in a certain order or it will not work:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ol>
+                <li>
+                    JQuery (minified or unminified)
+                </li>
+                <li>
+                    Popper.js (minified or unminified)
+                </li>
+                <li>
+                    Bootstrap.js (minified or unminified)
+                </li>
+            </ol>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            As you may be able to tell, the order only applies to the JavaScript files. There is not order required for the css file as it is the only file of its type that is required. Your _Layout should like similar to the following:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Head:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <pre>
+        <code class="language-html">
+        &lt;environment include="Development"&gt;
+            &lt;link href="~/lib/bootstrap4/css/bootstrap.css" rel="stylesheet" /&gt;
+        &lt;/environment&gt;
+
+        &lt;environment exclude="Development"&gt;
+            &lt;link href="~/lib/bootstrap4/css/bootstrap.min.css" rel="stylesheet" /&gt;
+        &lt;/environment&gt;
+        </code>
+        </pre>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The code above shows how to reference our local version of the Bootstrap 4 .css file both in development and outwith. For tutorial purposes, the reference to site.css has been removed
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Body:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <pre>
+        <code class="language-html">
+        &lt;environment include="Development"&gt;
+            &lt;script src="~/lib/jquery/dist/jquery.js"&gt;&lt;/script&gt;
+            &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"&gt;&lt;/script&gt;
+            &lt;script src="~/lib/bootstrap4/js/bootstrap.js"&gt;&lt;/script&gt;
+        &lt;/environment&gt;
+        &lt;environment exclude="Development"&gt;
+            &lt;script src="~/lib/jquery/dist/jquery.min.js"&gt;&lt;/script&gt;
+            &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"&gt;&lt;/script&gt;
+            &lt;script src="~/lib/bootstrap4/js/bootstrap.min.js"&gt;&lt;/script&gt;
+        &lt;/environment&gt;
+        </code>
+        </pre>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The code above shows how to reference our local version of the Bootstrap 4 .js file  along with popper.js and JQuery both in development and outwith. For tutorial purposes,
+            the reference to site.js has been removed. As mentioned earlier, these references must be in order for this to work
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Make sure that you have removed the references to the version 3 Bootstrap so that there is not conflicting scripts. If you run the app now you will not notice much difference
+            as there is still no navbar. You should check your developer console to ensure no errors have occurred during referencing.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 3: Add Navbar code to application</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Now that the necessary files have been referenced we can go ahead and add a navbar in. In this example we will use the sample navbar referenced on Bootstrap page and then make some aesthetic changes.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Steps:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ol>
+                <li>
+                    Add example navbar from Bootstrap website
+                </li>
+                <li>
+                    Change style of Navbar (e.g. light to dark)
+                </li>
+            </ol>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            First of all, we need the example navbar from Bootstrap’s website. Copy the first example navbar as is from <button class="btn btn-secondary" onclick="openTutorialLink('https://getbootstrap.com/docs/4.0/components/navbar/')">Example Navbar</button> and add it to where the version 3 navbar was. Your _Layout should look like this:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <pre>
+        <code class="language-html">
+        &lt;nav class="navbar navbar-expand-lg navbar-light bg-light"&gt;
+            &lt;a class="navbar-brand" href="#"&gt;Navbar&lt;/a&gt;
+            &lt;button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"&gt;
+                &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+            &lt;/button&gt;
+
+            &lt;div class="collapse navbar-collapse" id="navbarSupportedContent"&gt;
+                &lt;ul class="navbar-nav mr-auto"&gt;
+                    &lt;li class="nav-item active"&gt;
+                        &lt;a class="nav-link" href="#"&gt;Home &lt;span class="sr-only"&gt;(current)&lt;/span&gt;&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item dropdown"&gt;
+                        &lt;a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"&gt;
+                            Dropdown
+                        &lt;/a&gt;
+                        &lt;div class="dropdown-menu" aria-labelledby="navbarDropdown"&gt;
+                            &lt;a class="dropdown-item" href="#"&gt;Action&lt;/a&gt;
+                            &lt;a class="dropdown-item" href="#"&gt;Another action&lt;/a&gt;
+                            &lt;div class="dropdown-divider"&gt;&lt;/div&gt;
+                            &lt;a class="dropdown-item" href="#"&gt;Something else here&lt;/a&gt;
+                        &lt;/div&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+                &lt;form class="form-inline my-2 my-lg-0"&gt;
+                    &lt;input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"&gt;
+                    &lt;button class="btn btn-outline-success my-2 my-sm-0" type="submit"&gt;Search&lt;/button&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/nav&gt;
+        </code>
+        </pre>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            If you run your application now you will have a navbar the same as the example given on the Bootstrap site. However, what if we want a different theme? After all the default background for an ASP web application is white.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Bootstrap offers multiple themes that can be used to change the appearance of one of their navbars. The full list is available here <button class="btn btn-secondary" onclick="openTutorialLink('https://getbootstrap.com/docs/4.0/components/navbar/#color-schemes')">Colour Schemes</button>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            For this tutorial we will use the dark theme. This theme contrasts nicely with the default white background. To use the dark theme remove the navbar-light bg-dark theme from the nav declaration and replace with navbar-dark and bg-dark
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Light Theme:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <pre>
+        <code class="language-html">
+        &lt;nav class="navbar navbar-expand-lg navbar-light bg-light"&gt;
+        </code>
+        </pre>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Dark Theme:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <pre>
+        <code class="language-html">
+        &lt;nav class="navbar navbar-expand-lg navbar-dark bg-dark"&gt;
+        </code>
+        </pre>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Now you can run the application and see something to what is displayed below:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/Overview/Bootstrap 4/Step 3 pt4 - nav run result.png" />
+    </div>
+</div>
+
+<div class="text-center">
+    <h3>Grid Tutorial</h3>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In this tutorial, we will create a container that contains column to separate. This tutorial assumes that you have already referenced Bootstrap 4 in your _Layout page correctly.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Steps:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ol>
+                <li>
+                    Create a row to contain the columns
+                </li>
+                <li>
+                    Add the columns to the row
+                </li>
+            </ol>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            As mentioned earlier, Bootstrap 4 offers a grid system for making content suitable for both desktop and mobile. There are a few rules that need to be considered when using the grid system:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ol>
+                <li>
+                    Columns (class=”col”) <strong>must be</strong> direct children of rows
+                </li>
+                <li>
+                    Columns within a particular row cannot exceed 12
+                </li>
+            </ol>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 1: Create Row</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            As stated in the rules of the grid system, if we want to use columns we first need to create a row to contain them. Select an view you want that uses the view that references Bootstrap 4 as its layout.
+            For this tutorial I will be using the Index page. Add a div tag to your chosen page which has the class “row” as shown below:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <pre>
+        <code class="language-html">
+        &lt;div class="row"&gt;
+
+        &lt;/div&gt;
+        </code>
+        </pre>
+    </div>
+    <div class="col-6 tutorial-para">
+        <p>
+            The code to the left will not do anything in particular just now. The class informs the DOM that the div is a Bootstrap row
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 2: Add Columns to the Row</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The content and the size of the columns is completely up to you. For the example I will create two columns which both take up 6 columns of the grid which adds up to exactly 12. The syntax for declaring columns is shown below:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <pre>
+        <code class="language-html">
+        &lt;div class="col-{SIZE_OF_COLUMN}"&gt;
+
+        &lt;/div&gt;
+        </code>
+        </pre>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Alternatively, you can declare a column as just “col”. This will auto adjust the column depending on the other contents of the row. For example:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <pre>
+        <code class="language-html">
+        &lt;div class="row"&gt;
+            &lt;div class="col"&gt;
+                &lt;h2&gt;Some Text&lt;/h2&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        </code>
+        </pre>
+    </div>
+    <div class="col-6 tutorial-para">
+        <p>
+            The image to the left shows a column with no number assignment. As there are no other columns contained within the parent row, the column will be interpreted as a col-12(full width) at runtime
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <pre>
+        <code class="language-html">
+        &lt;div class="row"&gt;
+            &lt;div class="col"&gt;
+                &lt;h2&gt;Some Text&lt;/h2&gt;
+            &lt;/div&gt;
+            &lt;div class="col"&gt;
+                &lt;h2&gt;Some More Text&lt;/h2&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        </code>
+        </pre>
+    </div>
+    <div class="col-6 tutorial-para">
+        <p>
+            The image to the left shows two columns with no number assignment. As there is two columns in the parent row, the columns will both be interpreted as col-6s. The number assigned to each column is calculated as:
+            12/(Number of columns)
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            If you know the size you want the columns to be, it is always better to specify it. Using just col can be useful when dynamically updating the DOM with JQuery or when using a List if items.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In my column example I have added the following:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <pre>
+        <code class="language-html">
+        &lt;div class="row"&gt;
+            &lt;div class="col-6"&gt;
+                &lt;h2&gt;tmpst&lt;/h2&gt;
+            &lt;/div&gt;
+            &lt;div class="col-6"&gt;
+                &lt;h2&gt;Bootstrap tutorial&lt;/h2&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        </code>
+        </pre>
+    </div>
+    <div class="col-6 tutorial-para">
+        <p>
+            The image on the left shows two explicitly defined columns which both contain a basic header 2 element
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The result of this code is shown below:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/Overview/Bootstrap 4/Step 1b pt5 - example columns run.png" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Conclusion</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            That is the code required to implement Bootstrap 4’s navbar and utilise the column system. The complexity of columns and rows are up to the developer
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Common Issues:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Normally, implementing Bootstrap 4 does not cause too many problems, however, some of the most common issues are detailed below:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Referencing script in the wrong order - As mentioned in the navbar tutorial, the JQuery, popper and Bootstrap scripts have to be referenced in order
+                </li>
+                <li>
+                    Not putting column within row - As mentioned in the grid tutorial, columns have to be direct children of rows or they will not work as intended
+                </li>
+                <li>
+                    Exceeding column limit - As mentioned in the grid tutorial, the columns of a row can only add up to a maximum of 12 before they are knocked down into a new row. 
+                    If an element is not displayed properly it may be because you have added too many columns to a row
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Outcomes</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            You should now be able to:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Create a Bootstrap 4 Navbar
+                </li>
+                <li>
+                    Create a page using the Bootstrap 4 grid system
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>References</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Although we hope this tutorial has been all the help you need, here are some useful links that may be of use:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Useful Resources:</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    <button class="btn btn-secondary" onclick="openTutorialLink('https://getbootstrap.com/docs/4.0/components/navbar/')">Bootstrap Navbar</button> - Bootstrap Navbar Docs
+                </li>
+                <li>
+                    <button class="btn btn-secondary" onclick="openTutorialLink('https://getbootstrap.com/docs/4.0/getting-started/download/')">Bootstrap Download</button> - Bootstrap and Popper Download
+                </li>
+                <li>
+                    <button class="btn btn-secondary" onclick="openTutorialLink('https://jquery.com/')">JQuery</button> - JQuery Download
+                </li>
+                <li>
+                    <button class="btn btn-secondary" onclick="openTutorialLink('https://getbootstrap.com/docs/4.0/components/navbar/#color-schemes')">Colour Schemes</button> - Navbar Colour Schemes
+                </li>
+                <li>
+                    <button class="btn btn-secondary" onclick="openTutorialLink('https://www.w3schools.com/bootstrap4/')">Tutorial</button> - Bootstrap Tutorial
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>

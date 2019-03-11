@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>@ViewData["Title"] - tmpst</title>
 
     <environment include="Development">
@@ -20,8 +21,12 @@
         <script src="~/lib/sweetalert2/sweetalert2.all.min.js" defer></script>
         <script src="~/lib/here/mapsjs-core.js"></script>
         <script src="~/lib/here/mapsjs-service.js"></script>
+        <script src="~/lib/D3/d3-3.5.6.js"></script>
+        <script src="~/js/general/D3Visualisations.js"></script>
+        <script src="~/lib/jstree/jstree.js"></script>
+        <script src="~/js/tutorial/tutorial.js"></script>
+        <script src="~/lib/prism/prism.js" defer></script>
         <!-- END: Script Files -->
-
         <!-- Stylesheet Files -->
         <link rel="stylesheet" href="~/css/site.css" />
         <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
@@ -30,6 +35,11 @@
         <link href="~/css/Weather/weather.css" rel="stylesheet" />
         <link href="~/css/Traffic/traffic.css" rel="stylesheet" />
         <link href="~/css/Earthquake/earthquake.css" rel="stylesheet" />
+        <link href="~/css/Tutorials/tutorial.css" rel="stylesheet" />
+        <link href="~/lib/jstree/themes/default/style.css" rel="stylesheet" />
+        <link href="~/lib/prism/prism.css" rel="stylesheet" />
+        <link href="~/css/General/about-us.css" rel="stylesheet" />
+
         <!-- END: Stylesheet Files -->
     </environment>
     <environment exclude="Development">
@@ -39,14 +49,18 @@
         <script src="~/lib/bootstrap/js/bootstrap.js" defer></script>
         <script src="~/js/site.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js" defer></script>
-        <script src="~/js/general/transition.min.js" defer></script>
+        <script src="~/js/general/transition.js" defer></script>
         <script src="~/js/general/map.min.js" defer></script>
         <script src="~/js/weather/weather.js" defer></script>
         <script src="~/js/general/pallet.min.js" defer></script>
         <script src="~/js/earthquake/earthquake.min.js" defer></script>
         <script src="~/lib/sweetalert2/sweetalert2.all.min.js" defer></script>
+        <script src="~/lib/D3/d3-3.5.6.min.js"></script>
+        <script src="~/js/general/D3Visualisations.js"></script>
+        <script src="~/lib/jstree/jstree.js" defer></script>
+        <script src="~/js/tutorial/tutorial.js" defer></script>
+        <script src="~/lib/prism/prism.js" defer></script>
         <!-- END: Script Files -->
-
         <!-- Stylesheet Files -->
         <link href="~/css/site.min.css" rel="stylesheet" />
         <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -55,6 +69,10 @@
         <link href="~/css/Weather/weather.min.css" rel="stylesheet" />
         <link href="~/css/Traffic/traffic.min.css" rel="stylesheet" />
         <link href="~/css/Earthquake/earthquake.min.css" rel="stylesheet" />
+        <link href="~/css/Tutorials/tutorial.css" rel="stylesheet" />
+        <link href="~/lib/jstree/themes/default/style.css" rel="stylesheet" />
+        <link href="~/lib/prism/prism.css" rel="stylesheet" />
+        <link href="~/css/General/about-us.min.css" rel="stylesheet" />
         <!-- END: Stylesheet Files -->
     </environment>
 </head>

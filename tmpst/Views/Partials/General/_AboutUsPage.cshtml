@@ -1,0 +1,98 @@
+﻿@model tmpst.Models.UserSecretCollection
+@*
+        Author Info:
+
+        Name(s) - Mark Riley, Ross Taggart, Aidan Marshall, Katie King
+        Student Number - S1829984, S1828840, S1828601, S1827986
+        Date Created - 25/02/2019
+        Version - 1.0.1
+
+        Description:
+        Page that will contain all author associated views
+*@
+
+
+<div>
+    <h1 class="team-header">Meet The Team</h1>
+</div>
+
+<div class="image-greyscale">
+    <img id ="aidanPicture" src="~/images/About Us/Aidan.PNG" class="tmpst-clickable first-people-background image-greyscale"  />
+    <img id ="katiePicture" src="~/images/About Us/Katie.PNG" class="tmpst-clickable people-background image-greyscale" />
+    <img id ="rossPicture" src="~/images/About Us/Ross.PNG" class="tmpst-clickable people-background image-greyscale" />
+    <img id ="marcPicture" src="~/images/About Us/Marc.PNG" class="tmpst-clickable people-background image-greyscale" />
+    <img id ="markPicture" src="~/images/About Us/Mark.PNG" class="tmpst-clickable last-people-background image-greyscale" />
+</div>
+
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div id="aidan" style="display:none;">
+            @await Html.PartialAsync("~/Views/Partials/General/Cards/_AboutAidanCard.cshtml")
+        </div>
+        <div id="katie" style="display:none;">
+            @await Html.PartialAsync("~/Views/Partials/General/Cards/_AboutKatieCard.cshtml")
+        </div>
+        <div id="ross" style="display:none;">
+            @await Html.PartialAsync("~/Views/Partials/General/Cards/_AboutRossCard.cshtml")
+        </div>
+        <div id="marc" style="display:none;">
+            @await Html.PartialAsync("~/Views/Partials/General/Cards/_AboutMarcCard.cshtml")
+        </div>
+        <div id="mark" style="display:none;">
+            @await Html.PartialAsync("~/Views/Partials/General/Cards/_AboutMarkCard.cshtml")
+        </div>
+
+    </div>
+    <div class="col-2"></div>
+</div>
+
+<script>
+
+    $('#aidanPicture').click(function () {
+        $('#katie').fadeOut();
+        $('#ross').fadeOut();
+        $('#marc').fadeOut();
+        $('#mark').fadeOut();  
+        
+        setTimeout(function () { $('#aidan').fadeIn(); }, 400);
+        
+        
+    });
+
+    $('#katiePicture').click(function () {
+        $('#aidan').fadeOut();
+        $('#ross').fadeOut();
+        $('#marc').fadeOut();
+        $('#mark').fadeOut();
+        
+        setTimeout(function () { $('#katie').fadeIn(); }, 400);
+    });
+
+    $('#rossPicture').click(function () {
+        $('#aidan').fadeOut();
+        $('#katie').fadeOut();
+        $('#marc').fadeOut();
+        $('#mark').fadeOut();    
+
+        setTimeout(function () { $('#ross').fadeIn(); }, 400);
+    });
+    $('#marcPicture').click(function () {
+        $('#aidan').fadeOut();
+        $('#katie').fadeOut();
+        $('#ross').fadeOut();
+        $('#mark').fadeOut(); 
+
+        setTimeout(function () { $('#marc').fadeIn(); }, 400);
+    });
+    $('#markPicture').click(function () {
+        $('#aidan').fadeOut();
+        $('#katie').fadeOut();
+        $('#ross').fadeOut();
+        $('#marc').fadeOut();
+        
+        setTimeout(function () { $('#mark').fadeIn(); }, 400);
+    });
+
+
+</script>

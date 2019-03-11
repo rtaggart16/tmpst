@@ -1,0 +1,74 @@
+﻿<div class="text-center">
+    <h2>Single Page Applications</h2>
+    <hr />
+</div>
+
+<div class="row text-center">
+    <div class="col-12 tutorial-para">
+        <button onclick="downloadPDF('Single_Page_Applications.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
+        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('single-page-application-tutorial')">Go Full Screen</button>
+    </div>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            tmpst, as you may have noticed, does not support the use of the browser back button to return to the previous page. This is because tmpst was built to be a single page application
+            which handles navigation through JQuery. Throughout your time using the tmpst site, you are only actually interacting with one HTML page.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="text-center">
+            <h3>Why?</h3>
+        </div>
+    </div>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            tmpst <i>could</i> function as a traditional application that uses multiple HTMl pages served by Http gets and posts <strong>BUT</strong> single page applications allow for many
+            benefits that can't be easily utilised by traditional applications.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            As tmpst mainly consists of API calls and analysis, making use of AJAX calls to fetch data from specific APIs makes the most sense. AJAX can be used in traditional applications, 
+            however, using AJAX in tmpst ensures that DOM elements can be dynamically created and updated without having to post and/or get
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            By implementing tmpst as a single page application, the application is incredibly efficient as the cloud hosting provider, in our case Azure, only has to serve a user with
+            one page (Index.cshtml). Because of this, a user on the site will never suffer from pages hanging between loads which means they are less frustrated and more likely to stay
+            on the site. Below is a short list of the main advantages of single page applications that tmpst utilises:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li><strong>Responsive</strong> - A single page application will often only declare the necessary scripts, both CSS and JavaScript, once when the application is requested.
+                Which means the user only has to experience this wait once. Tmpst uses this to ensure that the complex scripts required for the application to run only needed to be loaded once</li>
+                <li><strong>State Control</strong> - A single page application, using JQuery, has almost full control of DOM elements within its single page. This means user requests for data can
+                be retained (in case they need to view it again imminently) or discarded (they are being transitioned to an unrelated section of the page). Tmpst uses this to ensure that users have
+                control over the data they request, for example, when a user requests country information from the result of an earthquake query, they are able to go back and the original earthquake
+                result is still present</li>
+            </ul>
+        </p>
+    </div>
+</div>
+

@@ -1,0 +1,16 @@
+﻿.tutorial-card-container {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+.tutorial-para {
+    padding-bottom: 10px;
+    padding-left: 25px;
+}
+.tutorial-page:fullscreen {
+    background-color: white;
+    color:black;
+    overflow:auto;
+}
+
