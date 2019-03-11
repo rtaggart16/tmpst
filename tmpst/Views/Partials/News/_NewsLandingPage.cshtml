@@ -1,0 +1,35 @@
+﻿@model tmpst.Models.UserSecretCollection
+@*
+    @*
+        Author Info:
+    
+        Name(s) - Mark Riley, Ross Taggart, Aidan Marshall, Katie King
+        Student Number - S1829984, S1828840, S1828601, S1827986
+        Date Created - 25/02/2019
+        Version - 1.0.1
+
+        Description:
+        Page that will contain all news associated views
+*@
+<div>
+    <div id="news-title-container" class="text-center">
+        <h3 class="tmpst-title">News Analysis</h3>
+        <p class="tmpst-desc">Analyse current news data</p>
+    </div>
+
+    @* @<div id="news-query-and-map-container">
+        <div id="earthquake-query-container">
+            @await Html.PartialAsync("~/Views/Partials/News/_NewsQueryBuilder.cshtml", Model.NewsKeys)
+        </div>
+    
+
+    <div id="news-cluster-map-container" style="display:none">
+        @await Html.PartialAsync("~/Views/Partials/News/Results/_NewsChartContainer.cshtml")
+    </div>
+</div>
+        *@
+
+    <div id="news-are-info-container" class="text-center" style="display:none">
+        @await Html.PartialAsync("~/Views/Partials/News/Results/_NewsChartContainer.cshtml")
+    </div>
+</div>>
