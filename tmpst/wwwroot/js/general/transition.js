@@ -183,7 +183,7 @@ function clearEarthquakeCountryInfo() {
 
 //News Clean Up
 function resetNewsPage() {
-    fadeDynamicNewsViews();
+    //fadeDynamicNewsViews();
 }
 //END: News Clean Up
 
