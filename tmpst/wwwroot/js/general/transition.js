@@ -1,8 +1,8 @@
 ﻿/*
     Author Info:
 
-    Name(s) - Ross Taggart
-    Student Number - S1828840
+    Name(s) - Ross Taggart, Katie King
+    Student Number - S1828840, S1827986
     Date Created - 20/02/2019
     Version - 1.0.5
 
@@ -70,6 +70,7 @@ function collapseExpandToggle(currentID, fadeInID, containerID) {
 function fadeInSpecifiedView(viewID) {
     resetWeatherPage();
     resetEarthquakePage();
+    resetNewsPage();
     allViews.fadeOut(300).promise().done(function () {
         $('#' + viewID).fadeIn(300);
     });
@@ -118,6 +119,7 @@ const allWeatherViews = $('#weather-query-container').add($('#weather-current-da
     .add($('#weather-current-data-container'))
     .add($('#weather-forecast-data-container-mobile'))
     .add($('#weather-analysis-landing'));
+  
 
 const allDynamicWeatherViews = $('#weather-current-data-container').add($('#weather-map-container'))
     .add($('#weather-forecast-data-container'))
@@ -177,6 +179,13 @@ function clearEarthquakeCountryInfo() {
 }
 
 // END: Earthquake Clean Up
+
+
+//News Clean Up
+function resetNewsPage() {
+    fadeDynamicNewsViews();
+}
+//END: News Clean Up
 
 /*--------------------------------------------------------------------------
     END: # API System Cleanup
