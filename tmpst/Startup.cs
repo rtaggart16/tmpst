@@ -58,6 +58,7 @@ namespace tmpst
             services.Configure<PopulationAPIUrl>(Configuration.GetSection("PopulationAPIUrl"));
             services.Configure<TrafficAPIKeys>(Configuration.GetSection("TrafficAPIKeys"));
             services.Configure<MapQuestKeys>(Configuration.GetSection("MapQuestKeys"));
+            services.Configure<NewsAPIKeys>(Configuration.GetSection("NewsAPIKeys"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
