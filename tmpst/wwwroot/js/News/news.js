@@ -10,6 +10,9 @@
     JavaScript file which contains the functions and event handlers for the weather system
 */
 
+let currentHeadlinesDataset = {};
+
+
 function submitNewsRequest(key) {
 
     //contact the api with the location request
@@ -19,5 +22,5 @@ function submitNewsRequest(key) {
 };
 
 function contactAPI(key) {
-    
+    let requestURL = 'https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=ff66547bdfe04a5ebb049e7743482186' + '.json?key=' + key;
 }
