@@ -1,44 +1,50 @@
-﻿var width = 960,
-    height = 500,
-    padding = 1.5, // separation between same-color circles
-    clusterPadding = 6, // separation between different-color circles
-    maxRadius = 12;
+﻿function main (){
 
-var n = 200, // total number of circles
-    m = 10; // number of distinct clusters
+    var width = 960,
+        height = 500,
+        padding = 1.5, // separation between same-color circles
+        clusterPadding = 6, // separation between different-color circles
+        maxRadius = 12;
 
-var color = d3.scale.category10()
-    .domain(d3.range(m));
+    var n = 200, // total number of circles
+        m = 10; // number of distinct clusters
 
-// The largest node for each cluster.
-var clusters = new Array(m);
+    var color = d3.scale.category10()
+        .domain(d3.range(m));
 
-var nodes = d3.range(n).map(function () {
-    var i = Math.floor(Math.random() * m),
-        r = Math.sqrt((i + 1) / m * -Math.log(Math.random())) * maxRadius,
-        d = { cluster: i, radius: r };
-    if (!clusters[i] || (r > clusters[i].radius)) clusters[i] = d;
-    return d;
-});
+    // The largest node for each cluster.
+    var clusters = new Array(m);
 
-var force = d3.layout.force()
-    .nodes(nodes)
-    .size([width, height])
-    .gravity(0)
-    .charge(0)
-    .on("tick", tick)
-    .start();
+    var nodes = d3.range(n).map(function () {
+        var i = Math.floor(Math.random() * m),
+            r = Math.sqrt((i + 1) / m * -Math.log(Math.random())) * maxRadius,
+            d = { cluster: i, radius: r };
+        if (!clusters[i] || (r > clusters[i].radius)) clusters[i] = d;
+        return d;
+    });
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    var force = d3.layout.force()
+        .nodes(nodes)
+        .size([width, height])
+        .gravity(0)
+        .charge(0)
+        .on("tick", tick)
+        .start();
 
-var circle = svg.selectAll("circle")
-    .data(nodes)
-    .enter().append("circle")
-    .attr("r", function (d) { return d.radius; })
-    .style("fill", function (d) { return color(d.cluster); })
-    .call(force.drag);
+    var svg = d3.select("body").append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    var circle = svg.selectAll("circle")
+        .data(nodes)
+        .enter().append("circle")
+        .attr("r", function (d) { return d.radius; })
+        .style("fill", function (d) { return color(d.cluster); })
+        .call(force.drag);
+
+
+}
+
 
 function tick(e) {
     circle
