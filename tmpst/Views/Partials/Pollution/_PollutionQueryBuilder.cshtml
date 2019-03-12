@@ -104,7 +104,7 @@
             success: function (result) {
                 locationDropdown.empty();
                 $.each(result.results, function (key, entry) {
-                    locationDropdown.append($('<option value=' + entry.location + '>' + entry.location + '</option>'));
+                    locationDropdown.append($('<option value="' + entry.location + '">' + entry.location + '</option>'));
                 });
             },
             error: function (result) {
@@ -146,47 +146,54 @@
 
 
     function submitPollutionRequest() {
-//            //GET Data
-        let country = $('#population-country-input').val();
+        //GET Data
 
-        let pollutionUrl = 'https://api.openaq.org/v1/measurements?country=' + country;
-        console.log("Created URL from user Input: " + pollutionUrl);
-//        $.ajax({
-//            type: "GET",
-//            url: pollutionUrl,
-//        crossDomain: true,
-//        dataType: 'jsonp',
-//        contentType: "application/json",
-//            success: function (result) {
+        console.log(locationDropdown.val());
 
-//            //Creates visualisation
-//            createD3Visualisation(result, visualisation);
+        let location = formatCountryName(locationDropdown.val());
 
-//        $('#population-wizard-arrow-up').click().promise().done(function () {
-//            $('#population-chart-container').fadeIn(300);
-//        });
-//    },
-//            error: function (errorResult) {
-//            console.log('ERROR: ', errorResult.statusText);
+        var utc = new Date().toJSON().slice(0, 10);
+        console.log(utc);
 
-//        if (errorResult.statusText == 'error') {
-//            Swal.fire({
-//                type: 'error',
-//                title: 'Data Request Error',
-//                text: 'An error has occurred when submitting your request. Please try again with different criteria.'
-//            })
-//        }
-//        else if (errorResult.statusText == 'load') {
-//            Swal.fire({
-//                type: 'error',
-//                title: 'Load Error',
-//                text: 'An error has occurred when loading the data from our sources. Please refresh your screen.'
-//            })
-//        }
-//        }
-//    });
+        let measurementsUrl = 'https://api.openaq.org/v1/measurements?location=' + location + '&date_from=' + utc;
 
-}
+        function formatCountryName(countryName) {
+            let formattedCountryName = countryName.replace(/ /g, '%20');
+            return formattedCountryName;
+        };
+
+        console.log("Created URL - " + measurementsUrl);
+
+
+        $.ajax({
+            type: "GET",
+            url: measurementsUrl,
+            crossDomain: true,
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (result) {
+
+                //Creates visualisation
+                console.log(result);
+
+                createPollutionChart(result);
+
+                $('#pollution-wizard-arrow-up').click().promise().done(function () {
+                    $('#pollution-chart-container').fadeIn(300);
+                });
+            },
+            error: function (errorResult) {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Data Request Error',
+                    text: 'An error has occurred when submitting your request. Please try again with different criteria.'
+                });
+            }   
+        
+        
+        });
+
+    }
 
 
 
