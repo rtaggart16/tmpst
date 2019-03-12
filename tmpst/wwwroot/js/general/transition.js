@@ -1,8 +1,8 @@
 ﻿/*
     Author Info:
 
-    Name(s) - Ross Taggart
-    Student Number - S1828840
+    Name(s) - Ross Taggart, Aidan Marshall
+    Student Number - S1828840, S1828601
     Date Created - 20/02/2019
     Version - 1.0.5
 
@@ -34,7 +34,7 @@
 
 // IMPORTANT - Will be added to as more views get added
 let allViews = $('#overview-page').add($('#weather-page')).add($('#earthquake-page')).add($('#population-page'))
-    .add($('#tutorial-page').add('#general-page'));
+    .add($('#tutorial-page').add('#general-page').add('#pollution-page'));
 
 /*--------------------------------------------------------------------------
     END: # Global Container Variables
