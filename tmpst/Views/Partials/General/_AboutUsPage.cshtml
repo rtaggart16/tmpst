@@ -50,48 +50,48 @@
 <script>
 
     $('#aidanPicture').click(function () {
-        $('#katie').fadeOut();
-        $('#ross').fadeOut();
-        $('#marc').fadeOut();
-        $('#mark').fadeOut();  
+        $('#katie').fadeOut(10, function () { $('#aidan').fadeIn(100); });
+        $('#ross').fadeOut(10, function () { $('#aidan').fadeIn(100); });
+        $('#marc').fadeOut(10, function () { $('#aidan').fadeIn(100); });
+        $('#mark').fadeOut(10, function () { $('#aidan').fadeIn(100); });
         
-        setTimeout(function () { $('#aidan').fadeIn(); }, 400);
+        //setTimeout(function () { $('#aidan').fadeIn(); }, 10);
         
         
     });
 
     $('#katiePicture').click(function () {
-        $('#aidan').fadeOut();
-        $('#ross').fadeOut();
-        $('#marc').fadeOut();
-        $('#mark').fadeOut();
+        $('#aidan').fadeOut(10, function () { $('#katie').fadeIn(100); });
+        $('#ross').fadeOut(10, function () { $('#katie').fadeIn(100); });
+        $('#marc').fadeOut(10, function () { $('#katie').fadeIn(100); });
+        $('#mark').fadeOut(10, function () { $('#katie').fadeIn(100); });
         
-        setTimeout(function () { $('#katie').fadeIn(); }, 400);
+        //setTimeout(function () { $('#katie').fadeIn(); }, 10);
     });
 
     $('#rossPicture').click(function () {
-        $('#aidan').fadeOut();
-        $('#katie').fadeOut();
-        $('#marc').fadeOut();
-        $('#mark').fadeOut();    
+        $('#aidan').fadeOut(10, function () { $('#ross').fadeIn(100); });
+        $('#katie').fadeOut(10, function () { $('#ross').fadeIn(100); });
+        $('#marc').fadeOut(10, function () { $('#ross').fadeIn(100); });
+        $('#mark').fadeOut(10, function () { $('#ross').fadeIn(100); });
 
-        setTimeout(function () { $('#ross').fadeIn(); }, 400);
+        //setTimeout(function () { $('#ross').fadeIn(); }, 10);
     });
     $('#marcPicture').click(function () {
-        $('#aidan').fadeOut();
-        $('#katie').fadeOut();
-        $('#ross').fadeOut();
-        $('#mark').fadeOut(); 
+        $('#aidan').fadeOut(10, function () { $('#marc').fadeIn(100); });
+        $('#katie').fadeOut(10, function () { $('#marc').fadeIn(100); });
+        $('#ross').fadeOut(10, function () { $('#marc').fadeIn(100); });
+        $('#mark').fadeOut(10, function () { $('#marc').fadeIn(100); });
 
-        setTimeout(function () { $('#marc').fadeIn(); }, 400);
+        //setTimeout(function () { $('#marc').fadeIn(); }, 10);
     });
     $('#markPicture').click(function () {
-        $('#aidan').fadeOut();
-        $('#katie').fadeOut();
-        $('#ross').fadeOut();
-        $('#marc').fadeOut();
+        $('#aidan').fadeOut(10, function () { $('#mark').fadeIn(100); });
+        $('#katie').fadeOut(10, function () { $('#mark').fadeIn(100); });
+        $('#ross').fadeOut(10, function () { $('#mark').fadeIn(100); });
+        $('#marc').fadeOut(10, function () { $('#mark').fadeIn(100); });
         
-        setTimeout(function () { $('#mark').fadeIn(); }, 400);
+        //setTimeout(function () { $('#mark').fadeIn(); }, 10);
     });
 
 
