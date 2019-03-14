@@ -161,6 +161,7 @@
             url: requestUrl,
             dataType: "json",
             success: function (result) {
+                newsVisualization(result);
                 console.log(result);
             },
             error: function (errorResult) {
