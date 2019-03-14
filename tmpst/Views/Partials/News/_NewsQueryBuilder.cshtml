@@ -33,19 +33,52 @@
                 </div>
                 <div class="row news-card-item">
                     <div class="col-6">
-                        <select class="form-control" id="occurence-type-select">
-                            <option value="hourly">Hourly</option>
+                        <select class="form-control" id="news-country-select">
+                            <option value="" disabled selected>Select Country</option>
+                            <option value="ae">Daily</option>
+                            <option value="ar">Weekly</option>
+                            <option value="at">Monthly</option>
+                            <option value="au">Daily</option>
+                            <option value="be">Weekly</option>
+                            <option value="bg">Monthly</option>
+                            <option value="br">Daily</option>
+                            <option value="ca">Weekly</option>
+                            <option value="ch">Monthly</option>
+                            <option value="cn">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
                             <option value="daily">Daily</option>
                             <option value="weekly">Weekly</option>
                             <option value="monthly">Monthly</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                                      co cu cz de eg fr gb gr hk hu id ie il in it jp kr lt lv ma mx my ng nl no nz ph pl pt ro rs ru sa se sg si sk th tr tw ua us ve za
                         </select>
                     </div>
                     <div class="col-6">
-                        <select class="form-control" id="hourly-type-select">
-                            <option value="hourly">Hourly</option>
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
+                        <select class="form-control" id="news-category-select">
+                            <option value="" disabled selected>Select Category</option>
+                            <option value="business">Business</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="general">General</option>
+                            <option value="health">Health</option>
+                            <option value="general">General</option>
+                            <option value="science">Science</option>
+                            <option value="sports">Sports</option>
+                            <option value="technology">Technology</option>
                         </select>
                     </div>
                 </div>
@@ -64,3 +97,144 @@
         </div>
     </div>
 </div>
+
+
+<script>
+
+    const callURL = 'https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=ff66547bdfe04a5ebb049e7743482186';
+
+
+
+    //// Populate dropdown with list of provinces
+    //$.getJSON(pollutionCountryUrl, function (data) {
+    //    $.each(data.results, function (key, entry) {
+    //        countryDropdown.append($('<option></option>').attr('value', entry.code).text(entry.name));
+    //    })
+    //}); -- Talk about efficienttstyy
+
+    $.ajax({
+        type: "GET",
+        url: callURL,
+        crossDomain: true,
+        dataType: 'json',
+        contentType: "application/json",
+        success: function (result) {
+            newsVisualisation(result);
+            console.log(result);
+        },
+        error: function (result) {
+            Swal.fire({
+                type: 'error',
+                title: 'Data Request Error',
+                text: 'An error has occurred when submitting your request. Please try again with different criteria.'
+            })
+        }
+    });
+
+
+    //countryDropdown.change(function () {
+    //    console.log(countryDropdown.val());
+    //    $.ajax({
+    //        type: "GET",
+    //        url: 'https://api.openaq.org/v1/locations?country[]=' + countryDropdown.val(),
+    //        crossDomain: true,
+    //        dataType: 'json',
+    //        contentType: "application/json",
+    //        success: function (result) {
+    //            locationDropdown.empty();
+    //            $.each(result.results, function (key, entry) {
+    //                locationDropdown.append($('<option value="' + entry.location + '">' + entry.location + '</option>'));
+    //            });
+    //        },
+    //        error: function (result) {
+    //            Swal.fire({
+    //                type: 'error',
+    //                title: 'Data Request Error',
+    //                text: 'An error has occurred when submitting your request. Please try again with different criteria.'
+    //            })
+    //        }
+    //    });
+
+    //});
+
+
+
+    //$('#pollution-collapse-expand').click(function () {
+    //    $('#pollution-wizard-container').slideToggle("slow", function () {
+    //        //if container is visible, show an arrow that allows the container to be minimised
+    //        if (!$('#pollution-wizard-container').is(':visible')) {
+    //            $('#pollution-wizard-arrow-up').fadeOut().promise().done(function () {
+    //                $('#pollution-wizard-arrow-down').fadeIn();
+    //                $('#pollution-wizard-collapsed-title').fadeIn();
+    //            });
+    //        }
+    //        else {
+    //            $('#pollution-wizard-arrow-down').fadeOut().promise().done(function () {
+    //                $('#pollution-wizard-arrow-up').fadeIn();
+    //                $('#pollution-wizard-collapsed-title').fadeOut();
+    //            });
+    //        }
+    //    });
+    //});
+
+
+
+
+
+
+
+
+    //function submitPollutionRequest() {
+    //    //GET Data
+
+    //    console.log(locationDropdown.val());
+
+    //    let location = formatCountryName(locationDropdown.val());
+
+    //    var utc = new Date().toJSON().slice(0, 10);
+    //    console.log(utc);
+
+    //    let measurementsUrl = 'https://api.openaq.org/v1/measurements?location=' + location + '&date_from=' + utc;
+
+    //    function formatCountryName(countryName) {
+    //        let formattedCountryName = countryName.replace(/ /g, '%20');
+    //        return formattedCountryName;
+    //    };
+
+    //    console.log("Created URL - " + measurementsUrl);
+
+
+    //    $.ajax({
+    //        type: "GET",
+    //        url: measurementsUrl,
+    //        crossDomain: true,
+    //        dataType: 'json',
+    //        contentType: "application/json",
+    //        success: function (result) {
+
+    //            //Creates visualisation
+    //            console.log(result);
+
+    //            createPollutionChart(result);
+
+    //            $('#pollution-wizard-arrow-up').click().promise().done(function () {
+    //                $('#pollution-chart-container').fadeIn(300);
+    //            });
+    //        },
+    //        error: function (errorResult) {
+    //            Swal.fire({
+    //                type: 'error',
+    //                title: 'Data Request Error',
+    //                text: 'An error has occurred when submitting your request. Please try again with different criteria.'
+    //            });
+    //        }
+
+
+    //    });
+
+    //}
+
+
+
+
+</script>
