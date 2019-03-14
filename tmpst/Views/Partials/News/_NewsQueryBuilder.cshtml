@@ -33,7 +33,7 @@
                 </div>
                 <div class="row news-card-item">
                     <div class="col-6">
-                        <select class="form-control" id="news-country-select">
+                        <select class="form-control" id="news-country-input">
                             <option value="" disabled selected>Select Country</option>
                             <option value="ae">Daily</option>
                             <option value="ar">Weekly</option>
@@ -80,7 +80,7 @@
                             <option value="sa">Weekly</option>
                             <option value="se">Monthly</option>
                             <option value="sg">Daily</option>
-                            <option value="si">Weekly</option> <!---->
+                            <option value="si">Weekly</option>
                             <option value="gr">Monthly</option>
                             <option value="hk">Daily</option>
                             <option value="hu">Weekly</option>
@@ -94,11 +94,19 @@
                             <option value="lt">Daily</option>
                             <option value="lv">Weekly</option>
                             <option value="ma">Monthly</option>
-                                                sk th tr tw ua us ve za
+                            <option value="sk">Weekly</option>
+                            <option value="th">Monthly</option>
+                            <option value="tr">Daily</option>
+                            <option value="tw">Weekly</option>
+                            <option value="ua">Monthly</option>
+                            <option value="us">Daily</option>
+                            <option value="ve">Weekly</option>
+                            <option value="za">Monthly</option>
+                                                       
                         </select>
                     </div>
                     <div class="col-6">
-                        <select class="form-control" id="news-category-select">
+                        <select class="form-control" id="news-category-input">
                             <option value="" disabled selected>Select Category</option>
                             <option value="business">Business</option>
                             <option value="entertainment">Entertainment</option>
@@ -130,8 +138,7 @@
 
 <script>
 
-    const callURL = 'https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=ff66547bdfe04a5ebb049e7743482186';
-
+    
 
 
     //// Populate dropdown with list of provinces
@@ -143,18 +150,22 @@
 
     function submitNewsRequest() {
 
+        let countryDropdown = $('#news-country-input').val();
+        let categoryDropdown = $('#news-category-input').val();
+
+        let requestUrl = 'https://newsapi.org/v2/top-headlines?country=' + countryDropdown + '&category=' + categoryDropdown + '&apiKey=' + '@Model.App_Key';
+
+
         $.ajax({
             type: "GET",
-            url: callURL,
-            crossDomain: true,
-            dataType: 'jsonp',
-            contentType: "application/json",
+            url: requestUrl,
+            dataType: "json",
             success: function (result) {
                 console.log(result);
             },
-            error: function (result) {
+            error: function (errorResult) {
 
-                console.log(result);
+                console.log(errorResult);
 
                 Swal.fire({
                     type: 'error',
