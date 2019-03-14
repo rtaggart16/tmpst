@@ -130,7 +130,7 @@
 
 <script>
 
-    const callURL = 'https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=ff66547bdfe04a5ebb049e7743482186';
+    const callURL = 'https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=ff66547bdfe04a5ebb049e7743482186';
 
 
 
@@ -143,12 +143,14 @@
 
     function submitNewsRequest() {
 
+       // Access - Control - Allow - Headers: XMLHttpRequest;
+
         $.ajax({
             type: "GET",
             url: callURL,
             crossDomain: true,
-            dataType: 'jsonp',
-            contentType: "application/json",
+            dataType: 'json',
+            //contentType: "application/json",
             success: function (result) {
                 console.log(result);
             },
