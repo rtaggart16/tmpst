@@ -45,27 +45,56 @@
                             <option value="ca">Weekly</option>
                             <option value="ch">Monthly</option>
                             <option value="cn">Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
-                                      co cu cz de eg fr gb gr hk hu id ie il in it jp kr lt lv ma mx my ng nl no nz ph pl pt ro rs ru sa se sg si sk th tr tw ua us ve za
+                            <option value="co">Weekly</option>
+                            <option value="cu">Monthly</option>
+                            <option value="cz">Daily</option>
+                            <option value="de">Weekly</option>
+                            <option value="eg">Monthly</option>
+                            <option value="fr">Daily</option>
+                            <option value="gb">Weekly</option>
+                            <option value="gr">Monthly</option>
+                            <option value="hk">Daily</option>
+                            <option value="hu">Weekly</option>
+                            <option value="id">Monthly</option>
+                            <option value="ie">Daily</option>
+                            <option value="il">Weekly</option>
+                            <option value="in">Monthly</option>
+                            <option value="it">Daily</option>
+                            <option value="jp">Weekly</option>
+                            <option value="kr">Monthly</option>
+                            <option value="lt">Daily</option>
+                            <option value="lv">Weekly</option>
+                            <option value="ma">Monthly</option>
+                            <option value="mx">Weekly</option>
+                            <option value="my">Monthly</option>
+                            <option value="ng">Daily</option>
+                            <option value="nl">Weekly</option>
+                            <option value="no">Monthly</option>
+                            <option value="nz">Daily</option>
+                            <option value="ph">Weekly</option>
+                            <option value="pl">Monthly</option>
+                            <option value="pt">Daily</option>
+                            <option value="ro">Weekly</option>
+                            <option value="rs">Monthly</option>
+                            <option value="ru">Daily</option>
+                            <option value="sa">Weekly</option>
+                            <option value="se">Monthly</option>
+                            <option value="sg">Daily</option>
+                            <option value="si">Weekly</option> <!---->
+                            <option value="gr">Monthly</option>
+                            <option value="hk">Daily</option>
+                            <option value="hu">Weekly</option>
+                            <option value="id">Monthly</option>
+                            <option value="ie">Daily</option>
+                            <option value="il">Weekly</option>
+                            <option value="in">Monthly</option>
+                            <option value="it">Daily</option>
+                            <option value="jp">Weekly</option>
+                            <option value="kr">Monthly</option>
+                            <option value="lt">Daily</option>
+                            <option value="lv">Weekly</option>
+                            <option value="ma">Monthly</option>
+                                                sk th tr tw ua us ve za
                         </select>
                     </div>
                     <div class="col-6">
@@ -88,7 +117,7 @@
                 <div id="submit-news-request-container">
                     <div class="row">
                         <div class="col-12">
-                            <button id="submit-news-request-btn" onclick="submitEarthquakeRequest()" class="btn btn-success w-100">Submit</button>
+                            <button id="submit-news-request-btn" onclick="submitNewsRequest()" class="btn btn-success w-100">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -112,24 +141,30 @@
     //    })
     //}); -- Talk about efficienttstyy
 
-    $.ajax({
-        type: "GET",
-        url: callURL,
-        crossDomain: true,
-        dataType: 'json',
-        contentType: "application/json",
-        success: function (result) {
-            newsVisualisation(result);
-            console.log(result);
-        },
-        error: function (result) {
-            Swal.fire({
-                type: 'error',
-                title: 'Data Request Error',
-                text: 'An error has occurred when submitting your request. Please try again with different criteria.'
-            })
-        }
-    });
+    function submitNewsRequest() {
+
+        $.ajax({
+            type: "GET",
+            url: callURL,
+            crossDomain: true,
+            dataType: 'jsonp',
+            contentType: "application/json",
+            success: function (result) {
+                console.log(result);
+            },
+            error: function (result) {
+
+                console.log(result);
+
+                Swal.fire({
+                    type: 'error',
+                    title: 'Data Request Error',
+                    text: 'An error has occurred when submitting your request. Please try again with different criteria.'
+                })
+            }
+        });
+
+    }
 
 
     //countryDropdown.change(function () {
@@ -184,7 +219,7 @@
 
 
 
-    //function submitPollutionRequest() {
+    //function submitNewsRequest() {
     //    //GET Data
 
     //    console.log(locationDropdown.val());
