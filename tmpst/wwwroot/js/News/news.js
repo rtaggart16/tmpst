@@ -1,6 +1,4 @@
-﻿function newsVisualization (){
-
-    var data = 
+﻿function newsVisualization (data){
 
     var width = 960,
         height = 500,
