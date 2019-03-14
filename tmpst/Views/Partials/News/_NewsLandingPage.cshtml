@@ -22,8 +22,8 @@
             @await Html.PartialAsync("~/Views/Partials/News/_NewsQueryBuilder.cshtml", Model.NewsKeys)
         </div>
 
-        <div id="news-are-info-container" class="text-center" style="display:none">
-            @await Html.PartialAsync("~/Views/Partials/News/Results/_NewsChartContainer.cshtml")
+        <div id="news-card-container" class="text-center" style="display:none">
+            @await Html.PartialAsync("~/Views/Partials/News/Results/_NewsCardContainer.cshtml")
         </div>
     </div>
-</div>  
+</div>
