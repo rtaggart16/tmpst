@@ -99,7 +99,6 @@
                             <option value="entertainment">Entertainment</option>
                             <option value="general">General</option>
                             <option value="health">Health</option>
-                            <option value="general">General</option>
                             <option value="science">Science</option>
                             <option value="sports">Sports</option>
                             <option value="technology">Technology</option>
@@ -129,7 +128,7 @@
 
         let countryDropdown = $('#news-country-input').val();
         let categoryDropdown = $('#news-category-input').val();
-
+        
         
 
         if (countryDropdown == null || categoryDropdown == null)
@@ -152,8 +151,11 @@
                     $('#news-wizard-arrow-up').click().promise().done(function () {
                         $('#news-card-container').fadeIn(300);
                     });
-                    newsVisualization(result);
-                    console.log(result);
+
+                    //Passes in the name of the options for the wordchart
+                    let countryName = $('#news-country-input option:selected').text();
+                    let categoryName = $('#news-category-input option:selected').text();
+                    newsVisualization(result, countryName, categoryName);
                 },
                 error: function (errorResult) {
 
