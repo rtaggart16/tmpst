@@ -224,7 +224,7 @@ function newsVisualization(data, country, category) {
         }],
         tooltip: {
             headerFormat: "",
-            pointFormat: '{point.name} {point.value}'
+            pointFormat: '{point.name} - Articles: {point.value}'
         }
     });
 } 
