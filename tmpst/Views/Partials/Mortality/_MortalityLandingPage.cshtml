@@ -1,0 +1,12 @@
+﻿@model tmpst.Models.UserSecretCollection
+
+<div>
+    <div id="mortality-title-container" class="text-center">
+        <h3 class="tmpst-title">Mortality Analysis</h3>
+        <p class="tmpst-desc">Analyse current mortality data</p>
+    </div>
+
+    <div id="mortality-query-builder-container" class="text-center">
+        @await Html.PartialAsync("~/Views/Partials/Mortality/_MortalityQueryBuilder.cshtml")
+    </div>
+</div>

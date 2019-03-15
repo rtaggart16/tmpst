@@ -1,0 +1,59 @@
+﻿@*
+    Author Info:
+
+    Name(s) - Mark Riley, Ross Taggart, Aidan Marshall, Katie King
+    Student Number - S1829984, S1828840, S1828601, S1827986
+    Date Created - 25/02/2019
+    Version - 1.0.1
+
+    Description:
+    Page that will container which builds query for user
+*@
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mortality-card-container">
+            <div class="row mortality-card-item">
+                <div id="collapsed-text-container" class="col-11 text-center">
+                    <h5 style="display:none" id="mortality-wizard-collapsed-title">Mortality Wizard</h5>
+                </div>
+
+                <div id="mortality-collapse-expand" class="col-1 text-right tmpst-clickable">
+                    <i id="mortality-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i>
+                    <i style="display:none" id="mortality-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                </div>
+            </div>
+
+            <div id="mortality-wizard-container">
+                <div class="row mortality-card-item">
+                    <div class="col-12 text-center">
+                        <h5>mortality Wizard</h5>
+                    </div>
+                </div>
+                <div class="row mortality-card-item">
+                    <div class="col-4">
+                        <select id="mortality-country-select" class="form-control"></select>
+                    </div>
+                    <div class="col-4">
+                        <select id="mortality-sex-select" class="form-control"></select>
+                    </div>
+                    <div class="col-4">
+                        <select id="mortality-age-select" class="form-control"></select>
+                    </div>
+                </div>
+
+
+
+                <div id="submit-mortality-request-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <button id="submit-mortality-request-btn" onclick="submitmortalityRequest()" class="btn btn-success w-100">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
