@@ -100,10 +100,10 @@ function newsVisualization(data, country, category) {
         
         var source =
         {
-            'name': val.source.name,
-            'id': "1."+id,
-            //'val': 1,
+            'id': "1." + id,
             'parent': '0.0',
+            'name': val.source.name,
+            //'val': 1,
             //color: colors[sources.length+1],
         };
 
@@ -149,10 +149,11 @@ function newsVisualization(data, country, category) {
 
         var article =
         {
-            'name': val.title,
             'id': "2." + articles.length,
-            'val': 1,
             'parent': "1." + parent,
+            'name': val.title,
+            'value': 1,
+            
         };
 
         articles.push(article);
@@ -173,8 +174,7 @@ function newsVisualization(data, country, category) {
     Highcharts.chart('chart', {
 
         chart: {
-            height: '100%',
-            chart: 'pie',
+            height: '100%'
         },
 
         title: {
@@ -183,44 +183,48 @@ function newsVisualization(data, country, category) {
         subtitle: {
             text: 'By Source'
         },
-        plotOptions: {
-            sunburst: {}
-        },
         series: [{
             type: "sunburst",
             data: dataArray,
             allowDrillToNode: true,
             cursor: 'pointer',
             dataLabels: {
-                /**
-                 * A custom formatter that returns the name only if the inner arc
-                 * is longer than a certain pixel size, so the shape has place for
-                 * the label.
-                 */
-                //formatter: function () {
-                //    var shape = this.point.node.shapeArgs;
-
-                //    var innerArcFraction = (shape.end - shape.start) / (2 * Math.PI);
-                //    var perimeter = 2 * Math.PI * shape.innerR;
-
-                //    var innerArcPixels = innerArcFraction * perimeter;
-
-                //    if (innerArcPixels > 16) {
-                //        return this.point.name;
-                //    }
-                //}
+                format: '{point.name}', 
+                filter: {
+                    property: 'innerArcLength',
+                    operator: '>',
+                    value: 16,
+                }
             },
-            levels: [{
-                level: 1,
-            }, {
-                 level: 2,
-            }, {
-                 level: 3,
-            }],
+            levels: [
+                {
+                    level: 1,
+                    levelIsConstant: false,
+                    dataLabels: {
+                        filter: {
+                            property: 'outerArcLength',
+                            operator: '>',
+                            value: 64,
+                        }
+                    }
+                },
+                {
+                    level: 2,
+                    colorByPoint: true,
+                },
+
+                //{
+                //    level: 3,
+                //        colorVariation: {
+                //            key: 'brightness',
+                //            to: -0.5,
+                //        }
+                //}
+            ],
         }],
         tooltip: {
             headerFormat: "",
-            pointFormat: '{point.name} {point.value}'
+            pointFormat: '{point.name} - Articles: {point.value}'
         }
     });
 } 
