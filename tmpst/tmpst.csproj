@@ -43,6 +43,9 @@
     <Content Update="Views\Partials\General\_AboutUsPage.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Partials\News\_NewsQueryBuilder.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Partials\Overview\_OverviewLandingPartial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

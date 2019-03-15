@@ -1,8 +1,8 @@
 ﻿/*
     Author Info:
 
-    Name(s) - Ross Taggart, Aidan Marshall
-    Student Number - S1828840, S1828601
+    Name(s) - Ross Taggart, Katie King, Aidan Marshall
+    Student Number - S1828840, S1827986, S1828601
     Date Created - 20/02/2019
     Version - 1.0.5
 
@@ -33,8 +33,14 @@
 ---------------------------------------------------------------------------*/
 
 // IMPORTANT - Will be added to as more views get added
-let allViews = $('#overview-page').add($('#weather-page')).add($('#earthquake-page')).add($('#population-page'))
-    .add($('#tutorial-page').add('#general-page').add('#pollution-page'));
+let allViews = $('#overview-page')
+    .add($('#weather-page'))
+    .add($('#earthquake-page'))
+    .add($('#population-page'))
+    .add($('#news-page'))
+    .add($('#tutorial-page'))
+    .add($('#pollution-page'))
+    .add($('#general-page'));
 
 /*--------------------------------------------------------------------------
     END: # Global Container Variables
@@ -70,6 +76,7 @@ function collapseExpandToggle(currentID, fadeInID, containerID) {
 function fadeInSpecifiedView(viewID) {
     resetWeatherPage();
     resetEarthquakePage();
+    resetNewsPage();
     allViews.fadeOut(300).promise().done(function () {
         $('#' + viewID).fadeIn(300);
     });
@@ -118,6 +125,7 @@ const allWeatherViews = $('#weather-query-container').add($('#weather-current-da
     .add($('#weather-current-data-container'))
     .add($('#weather-forecast-data-container-mobile'))
     .add($('#weather-analysis-landing'));
+  
 
 const allDynamicWeatherViews = $('#weather-current-data-container').add($('#weather-map-container'))
     .add($('#weather-forecast-data-container'))
@@ -177,6 +185,13 @@ function clearEarthquakeCountryInfo() {
 }
 
 // END: Earthquake Clean Up
+
+
+//News Clean Up
+function resetNewsPage() {
+    //fadeDynamicNewsViews();
+}
+//END: News Clean Up
 
 /*--------------------------------------------------------------------------
     END: # API System Cleanup
