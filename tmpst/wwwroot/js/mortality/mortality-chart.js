@@ -15,7 +15,7 @@
         title: {
             text: 'Mortality Percentage(%) for ' + sex + 's in ' + country,
             left: 'center',
-            top: 5,
+            top: 20,
             textStyle: {
                 color: '#ccc'
             }
@@ -29,9 +29,9 @@
         visualMap: {
             show: false,
             min: 0,
-            max: 100,
+            max: 50,
             inRange: {
-                colorLightness: [0, 1]
+                colorLightness: [0, 2]
             }
         },
         series: [

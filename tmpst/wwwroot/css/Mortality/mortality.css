@@ -1,0 +1,47 @@
+﻿.new-page {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+body {
+    padding-top: 55px;
+    padding-bottom: 20px;
+}
+
+.body-content {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+/*--------------------------------------------------------------------------
+    END: # Common
+---------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------
+    # Containers
+---------------------------------------------------------------------------*/
+.morality-card-container {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+.morality-card-item {
+    padding-bottom: 10px;
+}
+
+.chart div {
+    font: 10px sans-serif;
+    background-color: steelblue;
+    text-align: right;
+    padding: 3px;
+    margin: 1px;
+    color: white;
+    margin-left: 50px;
+}
+
+.label div {
+    font: 10px sans-serif;
+    padding: 3px;
+    margin: 1px;
+    float: left;
+}
