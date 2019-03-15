@@ -7,6 +7,6 @@
     </div>
 
     <div id="mortality-query-builder-container" class="text-center">
-        @await Html.PartialAsync("~/Views/Partials/Mortality/_MortalityQueryBuilder.cshtml")
+        @await Html.PartialAsync("~/Views/Partials/Mortality/_MortalityQueryBuilder.cshtml", Model.Population)
     </div>
 </div>
