@@ -7,19 +7,27 @@
     console.log(country + ' ' + sex);
 
     let requestUrl = url + country + '/' + sex + '/' + 0 + '/today/';
-    console.log(requestUrl);
+    
+    /*$('#mortality-country-select option').each(function () {
+        let country = $(this).val();
+        let requestUrl = url + country + '/male/' + 0 + '/today/';
 
-    $.ajax({
-        type: "GET",
-        url: requestUrl,
-        dataType: "jsonp",
-        contentType: "application/json",
-        success: function (result) {
-            console.log(result);
-
-        },
-        error: function (errorResult) {
-
-        }
+        $.ajax({
+            url: requestUrl,
+            dataType: 'json',
+            success: function (result) {
+                console.log('SUCCESS: ', result);
+            },
+            error: function (result) {
+                console.log('ERROR: ', result);
+                console.log(country);
+                errorCountries.push(country);
+                console.log(errorCountries);
+            }
+        });
+    });*/
+    
+    $.getJSON(requestUrl, function (data) {
+        console.log('DATA: ', data);
     });
 }
