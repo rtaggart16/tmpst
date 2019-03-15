@@ -1,0 +1,16 @@
+﻿@model tmpst.Models.UserSecretCollection
+    @*<link href="~/css/Morality/morality.css" rel="stylesheet" />*@
+<div>
+    <div id="mortality-title-container" class="text-center">
+        <h3 class="tmpst-title">Mortality Analysis</h3>
+        <p class="tmpst-desc">Analyse current mortality data</p>
+    </div>
+
+    <div id="mortality-query-builder-container" class="text-center">
+        @await Html.PartialAsync("~/Views/Partials/Mortality/_MortalityQueryBuilder.cshtml", Model.Population)
+    </div>
+
+    <div id="mortality-percentage-chart-result" class="text-center" style="display:none">
+        @await Html.PartialAsync("~/Views/Partials/Mortality/_MortalityPercentageResult.cshtml")
+    </div>
+</div>

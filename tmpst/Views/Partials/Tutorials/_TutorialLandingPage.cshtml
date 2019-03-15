@@ -32,7 +32,14 @@
                         <li id="bootstrap-4-desc-li">Bootstrap 4</li>
                     </ul>
                 </li>
-                <li>Pre-requisites</li>
+                <li>
+                    Pre-requisites
+                    <ul>
+                        <li id="visual-studio-desc-li">Visual Studio</li>
+                        <li id="net-sdk-desc-li">.NET SDK</li>
+                    </ul>
+                </li>
+                
             </ul>
         </div>
     </div>
@@ -55,6 +62,12 @@
             </div>
             <div style="display:none" class="tutorial-page" id="bootstrap-4-tutorial">
                 @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Overview/_Bootstrap4Tutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="visual-studio-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Pre-requisites/_VisualStudioTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="net-sdk-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Pre-requisites/_NetSdkTutorial.cshtml")
             </div>
         </div>
     </div>

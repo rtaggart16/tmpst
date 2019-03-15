@@ -43,6 +43,12 @@ function processNodeRequest(id) {
     if (id == 'bootstrap-4-desc-li') {
         fadeSpecifiiedTut('bootstrap-4-tutorial');
     }
+    if (id == 'visual-studio-desc-li') {
+        fadeSpecifiiedTut('visual-studio-tutorial');
+    }
+    if (id == 'net-sdk-desc-li') {
+        fadeSpecifiiedTut('net-sdk-tutorial');
+    }
 }
 
 function tutRemoveFullSCreen(elmID) {
@@ -62,7 +68,7 @@ function openTutorialLink(address) {
 
 function downloadPDF(fileName) {
     event.preventDefault();
-    window.open('https://localhost:44359/tutorials/Overview/' + fileName);
+    window.open('https://localhost:44359/tutorials/' + fileName);
 }
 
 function fadeSpecifiiedTut(viewID) {
