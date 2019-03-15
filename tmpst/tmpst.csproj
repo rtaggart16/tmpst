@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\css\Overview\" />
+    <Folder Include="wwwroot\js\News\" />
   </ItemGroup>
 
   <ItemGroup>
