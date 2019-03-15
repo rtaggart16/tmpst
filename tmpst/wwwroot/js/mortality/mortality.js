@@ -29,5 +29,7 @@
     
     $.getJSON(requestUrl, function (data) {
         console.log('DATA: ', data);
+
+        createMortalityChart(country, sex, data.mortality_distribution);
     });
 }

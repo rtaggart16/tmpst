@@ -1,4 +1,4 @@
-﻿function createMortalityChart(country, data) {
+﻿function createMortalityChart(country, sex, data) {
     let dataobject = [];
     $.each(data, function (key, val) {
         let mortalityobject = {
@@ -7,13 +7,15 @@
         };
         dataobject.push(mortalityobject);
     });
+    var myChart = echarts.init(document.getElementById('mortality-chart-container'));
+
     option = {
-        backgroundColor: '#2c343c',
+        backgroundColor: '#fff',
 
         title: {
-            text: 'Mortality Percentage(%) for ' + country,
+            text: 'Mortality Percentage(%) for ' + sex + 's in ' + country,
             left: 'center',
-            top: 20,
+            top: 5,
             textStyle: {
                 color: '#ccc'
             }
@@ -26,8 +28,8 @@
 
         visualMap: {
             show: false,
-            min: 80,
-            max: 600,
+            min: 0,
+            max: 100,
             inRange: {
                 colorLightness: [0, 1]
             }
@@ -43,14 +45,14 @@
                 label: {
                     normal: {
                         textStyle: {
-                            color: 'rgba(255, 255, 255, 0.3)'
+                            color: 'rgba(0, 0, 0, 0.3)'
                         }
                     }
                 },
                 labelLine: {
                     normal: {
                         lineStyle: {
-                            color: 'rgba(255, 255, 255, 0.3)'
+                            color: 'rgba(0, 0, 0, 0.3)'
                         },
                         smooth: 0.2,
                         length: 10,
@@ -61,7 +63,7 @@
                     normal: {
                         color: '#c23531',
                         shadowBlur: 200,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        shadowColor: 'rgb(68, 153, 237)'
                     }
                 },
 
@@ -73,4 +75,8 @@
             }
         ]
     };
+
+    myChart.setOption(option);
+
+    $('#mortality-percentage-chart-result').fadeIn(300);
 }
