@@ -60,7 +60,10 @@ function newsVisualization(data, country, category) {
 
 
 
-
+    // Initialising the arrays for data modification
+    var sources = [];
+    var articles = [];
+    var colors = Highcharts.getOptions().colors;
 
     // Added the parent of the chart
     var sourceParent = {
@@ -69,12 +72,10 @@ function newsVisualization(data, country, category) {
         'name': 'Sources'
     };
 
-    //filteredData.push(sourceParent);
+    sources.push(sourceParent);
 
 
-    // Initialising the arrays for data modification
-    var sources = [];
-    var articles = [];
+    
 
     
 
@@ -95,48 +96,75 @@ function newsVisualization(data, country, category) {
 
         //One source can have many articles
 
-
-
+        var id = sources.length.toString();
+        
         var source =
         {
             'name': val.source.name,
-            'id': sources.length,
+            'id': id,
             'val': 1,
-            'parent' : '0.0',
+            'parent': '0.0',
+            //color: colors[sources.length+1],
         };
 
         //If the source is a new source in array,
         //Add to array
         //Else - Get the id of the element
+        var repeatingSource = -1;
 
-        function findIndex(element) {
-            return element == sources;
-        }
-
-        console.log("IDs of repeaing data" + sources.findIndex(findIndex));
-        // expected output: 3
-
+        $.each(sources, function (key, val) {
+            if (val.name == source.name) {
+                repeatingSource = key;
+            }
+        });
 
 
-        if (repeatingSource != -1) {
-            console.log("FOUND DUP __"+ source);
+        if(repeatingSource != -1) {
+            console.log("FOUND DUPLICATE - Name: " + source.name + " - ID in Array: " + repeatingSource);
         }
         else {
             sources.push(source);
         }
-
-        var array1 = [5, 12, 8, 130, 44];
-
         
+    
 
+        //The source for the article should now be in the 'sources' array
+        //Now the aritcle needs to be inserted in the 'articles' array with appropriate attributes
+
+        //Get the id of the sources element and appending it to the front of the articles ID
+        //If the source has been repeated, then the key is already in use with 'repeatingSource'
+        //If not, the key needs to be found
+
+        var parent = "";
+
+        if (repeatingSource != -1) {
+
+            parent = repeatingSource.toString();
+        }
+        else {
+            parent = sources.length.toString();
+            
+        }
+
+        var article =
+        {
+            'name': val.description,
+            'id': parent + "." + articles.length,
+            'val': 1,
+            'parent': parent,
+        };
+
+        articles.push(article);
         
         
     });
-
-    console.log(sources);
+    var dataArray = sources.concat(articles);
+    
+    console.log(dataArray);
+    
     
 
-    var colors = Highcharts.getOptions().colors;
+    
     // Splice in transparent for the center circle
     Highcharts.getOptions().colors.splice(0, 0, 'transparent');
 
@@ -144,7 +172,8 @@ function newsVisualization(data, country, category) {
     Highcharts.chart('chart', {
 
         chart: {
-            height: '100%'
+            height: '100%',
+            type: 'pie'
         },
 
         title: {
@@ -158,79 +187,7 @@ function newsVisualization(data, country, category) {
         },
         series: [{
             type: "sunburst",
-            data: [{
-                id: '0.0',
-                name: 'Highlights',
-                parent: '',
-            }, {
-                id: '1.0',
-                parent: '0.0',
-                name: 'Consumer',
-                color: colors[1],
-                value: 1
-            }, {
-                parent: '1.0',
-                name: 'Furniture',
-                value: 1
-            }, {
-                parent: '1.0',
-                name: 'Office Supplies',
-                value: 1
-            }, {
-                parent: '1.0',
-                name: 'Technology',
-                value: 1
-            }, {
-                id: '2.0',
-                name: 'Corporate',
-                parent: '0.0',
-                color: colors[2],
-                value: 1
-            }, {
-                parent: '2.0',
-                name: 'Furniture',
-                value: 1
-            }, {
-                parent: '2.0',
-                name: 'Office Supplies',
-                value: 1
-            }, {
-                parent: '2.0',
-                name: 'Technology',
-                value: 1
-            }, {
-                id: '3.0',
-                name: 'Home office',
-                parent: '0.0',
-                color: colors[3],
-                value: 1
-            }, {
-                parent: '3.0',
-                name: 'Furniture',
-                value: 1
-            }, {
-                parent: '3.0',
-                name: 'Office Supplies',
-                value: 1
-            }, {
-                parent: '3.0',
-                name: 'Technology',
-                value: 1
-            }, {
-                id: '4.0',
-                name: 'Small Business',
-                parent: '0.0',
-                color: colors[4],
-                value: 1
-            }, {
-                parent: '4.0',
-                name: 'Office Supplies',
-                value: 1
-            }, {
-                parent: '4.0',
-                name: 'Technology',
-                value: 1
-            }],
+            data: dataArray,
             allowDrillToNode: true,
             cursor: 'pointer',
             dataLabels: {
@@ -253,23 +210,23 @@ function newsVisualization(data, country, category) {
                 }
             },
             levels: [{
-                level: 2,
+                level: 1,
                 dataLabels: {
-                    rotationMode: 'parallel'
+                    rotationMode: "parallel"
                 }
-            }, {
-                level: 3,
-                colorVariation: {
-                    key: 'brightness',
-                    to: -0.4 //Tells the gradation extent
-                }
-            }, {
-                level: 4,
-                colorVariation: {
-                    key: 'brightness',
-                    to: 0.5 //Tells the gradation extent
-                }
-            }]
+            },
+             {
+                 level: 2,
+                 colorVariation: {
+                     key: 'brightness',
+                     to: -0.4 
+            },
+             {
+                 level: 3,
+                 colorVariation: {
+                     key: 'brightness',
+                     to: 0.5
+            }],
         }],
         tooltip: {
             headerFormat: "",
