@@ -173,7 +173,6 @@ function newsVisualization(data, country, category) {
 
         chart: {
             height: '100%',
-            type: 'pie'
         },
 
         title: {
@@ -214,18 +213,18 @@ function newsVisualization(data, country, category) {
                 dataLabels: {
                     rotationMode: "parallel"
                 }
-            },
-             {
+            }, {
                  level: 2,
                  colorVariation: {
                      key: 'brightness',
-                     to: -0.4 
-            },
-             {
+                     to: -0.4
+                 }
+            }, {
                  level: 3,
                  colorVariation: {
                      key: 'brightness',
                      to: 0.5
+                 }
             }],
         }],
         tooltip: {
