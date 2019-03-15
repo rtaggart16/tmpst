@@ -101,8 +101,8 @@ function newsVisualization(data, country, category) {
         var source =
         {
             'name': val.source.name,
-            'id': id,
-            'val': 1,
+            'id': "1."+id,
+            //'val': 1,
             'parent': '0.0',
             //color: colors[sources.length+1],
         };
@@ -142,16 +142,17 @@ function newsVisualization(data, country, category) {
             parent = repeatingSource.toString();
         }
         else {
-            parent = sources.length.toString();
+            var len = sources.length - 1;
+            parent = len.toString();
             
         }
 
         var article =
         {
-            'name': val.description,
-            'id': parent + "." + articles.length,
+            'name': val.title,
+            'id': "2." + articles.length,
             'val': 1,
-            'parent': parent,
+            'parent': "1." + parent,
         };
 
         articles.push(article);
@@ -173,7 +174,7 @@ function newsVisualization(data, country, category) {
 
         chart: {
             height: '100%',
-            type: 'pie'
+            chart: 'pie',
         },
 
         title: {
@@ -196,36 +197,25 @@ function newsVisualization(data, country, category) {
                  * is longer than a certain pixel size, so the shape has place for
                  * the label.
                  */
-                formatter: function () {
-                    var shape = this.point.node.shapeArgs;
+                //formatter: function () {
+                //    var shape = this.point.node.shapeArgs;
 
-                    var innerArcFraction = (shape.end - shape.start) / (2 * Math.PI);
-                    var perimeter = 2 * Math.PI * shape.innerR;
+                //    var innerArcFraction = (shape.end - shape.start) / (2 * Math.PI);
+                //    var perimeter = 2 * Math.PI * shape.innerR;
 
-                    var innerArcPixels = innerArcFraction * perimeter;
+                //    var innerArcPixels = innerArcFraction * perimeter;
 
-                    if (innerArcPixels > 16) {
-                        return this.point.name;
-                    }
-                }
+                //    if (innerArcPixels > 16) {
+                //        return this.point.name;
+                //    }
+                //}
             },
             levels: [{
                 level: 1,
-                dataLabels: {
-                    rotationMode: "parallel"
-                }
-            },
-             {
+            }, {
                  level: 2,
-                 colorVariation: {
-                     key: 'brightness',
-                     to: -0.4 
-            },
-             {
+            }, {
                  level: 3,
-                 colorVariation: {
-                     key: 'brightness',
-                     to: 0.5
             }],
         }],
         tooltip: {
