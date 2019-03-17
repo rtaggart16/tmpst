@@ -40,7 +40,8 @@ let allViews = $('#overview-page')
     .add($('#news-page'))
     .add($('#tutorial-page'))
     .add($('#pollution-page'))
-    .add($('#general-page'));
+    .add($('#general-page')
+    .add($('#mortality-page')));
 
 /*--------------------------------------------------------------------------
     END: # Global Container Variables

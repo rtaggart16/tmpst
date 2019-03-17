@@ -76,7 +76,13 @@
         ]
     };
 
+    let sizeOptions = {
+        width: 'auto',
+        height: 'auto',
+    }
+
     myChart.setOption(option);
+    myChart.resize(sizeOptions);
 
     $('#mortality-percentage-chart-result').fadeIn(300);
 }

@@ -1,4 +1,29 @@
-﻿.new-page {
+﻿/*
+    Author Info:
+
+    Name(s) - Mark Riley, Ross Taggart, Aidan Marshall
+    Student Number - S1829984, S1828840, S1828601
+    Date Created - 25/02/2019
+    Version - 1.0.1
+
+    Description:
+    The earthquake css file for the application
+*/
+
+/*------------------------------------------------------
+>>> TABLE OF CONTENTS:
+--------------------------------------------------------
+# Common
+# Containers
+    ## earthquake Card Container
+--------------------------------------------------------
+*/
+
+/*--------------------------------------------------------------------------
+    # Common
+---------------------------------------------------------------------------*/
+
+.new-page {
     padding-top: 20px;
     padding-bottom: 10px;
 }
@@ -19,29 +44,15 @@ body {
 /*--------------------------------------------------------------------------
     # Containers
 ---------------------------------------------------------------------------*/
-.morality-card-container {
+.mortality-card-container {
     padding-left: 10px;
     padding-right: 10px;
     margin-bottom: 10px;
 }
 
-.morality-card-item {
+.mortality-card-item {
     padding-bottom: 10px;
 }
-
-.chart div {
-    font: 10px sans-serif;
-    background-color: steelblue;
-    text-align: right;
-    padding: 3px;
-    margin: 1px;
-    color: white;
-    margin-left: 50px;
-}
-
-.label div {
-    font: 10px sans-serif;
-    padding: 3px;
-    margin: 1px;
-    float: left;
-}
+/*--------------------------------------------------------------------------
+    END: # Containers
+---------------------------------------------------------------------------*/
