@@ -5,6 +5,10 @@
     <UserSecretsId>aspnet-tmpst-3C4C65C6-2B1D-4691-93A0-D3282F53333E</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\js\News\news.js" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.3.1" />
