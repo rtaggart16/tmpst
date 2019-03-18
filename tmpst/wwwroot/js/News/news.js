@@ -50,4 +50,7 @@ function newsVisualization(data, country, category) {
             text: category + ' Headlines in ' + country,
         }
     });
+
+
+
 } 
