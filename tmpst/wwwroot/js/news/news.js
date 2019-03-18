@@ -38,7 +38,6 @@ function wordcloudNewsVisualization(data, country, category) {
 
     var first25Data = data.slice(0, 99);
 
-
     Highcharts.chart('chart', {
         series: [{
             type: 'wordcloud',
