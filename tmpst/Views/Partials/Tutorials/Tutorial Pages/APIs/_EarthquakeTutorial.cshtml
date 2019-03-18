@@ -15,11 +15,9 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            In the earthquake system, tmpst uses an API to fetch data depending on a user’s query.
-            The API used is provided by USGS (U.S Geological Survey). The USGS API provides multiple
-            endpoints for different levels of earthquake magnitude as well as for different time
-            periods such as hourly which return GeoJSON. The USGS data feeds do not require keys
-            to be accessed and can be requested as many times as required.
+            Each time format has a magnitude level endpoint which 
+            provides up to date information which is update every 5 minutes. 
+            Monthly data is updated every 5 minutes.
         </p>
     </div>
 </div>
@@ -27,16 +25,16 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            The available USGS feed categories are shown below:
+            In this tutorial:
         </p>
     </div>
 </div>
 
-
-
 <div class="row">
     <div class="col-12 tutorial-para">
-        <span><strong>Time Format</strong></span>
+        <p>
+            <span><strong>Pre-Requisites</strong></span>
+        </p>
     </div>
 </div>
 
@@ -44,10 +42,15 @@
     <div class="col-12 tutorial-para">
         <p>
             <ul>
-                <li>Hourly</li>
-                <li>Daily</li>
-                <li>Weekly</li>
-                <li>Monthly</li>
+                <li>
+                    Understanding of GeoJSON format
+                </li>
+                <li>
+                    A USGS API endpoint address (<a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php">https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php</a>)
+                </li>
+                <li>
+                    A suitable method for making a request (Postman: <a href="https://www.getpostman.com/downloads/">https://www.getpostman.com/downloads/</a> or in new tab)
+                </li>
             </ul>
         </p>
     </div>
