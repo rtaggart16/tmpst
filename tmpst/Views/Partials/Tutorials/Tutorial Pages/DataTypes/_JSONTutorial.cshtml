@@ -5,9 +5,9 @@
 
 <div class="row text-center">
     <div class="col-12 tutorial-para">
-        <button onclick="downloadPDF('ASP_NET_Core.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
-        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('asp-core-tutorial')">Go Full Screen</button>
-        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('asp-core-tutorial')">Exit Full Screen</button>
+        <button onclick="downloadPDF('DataTypes/JSON.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
+        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('json-tutorial')">Go Full Screen</button>
+        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('json-tutorial')">Exit Full Screen</button>
     </div>
     <hr />
 </div>
@@ -15,36 +15,11 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            Tmpst is built as an ASP.NET Core application. ASP.NET Core is a cross platform development framework used mainly to create cloud-based applications.
-            ASP.NET Core can run on Windows, Linux and macOS. By using ASP.NET Core, tmpst is able to take advantage of features such as user secrets.
-        </p>
-    </div>
-</div>
+            When exchanging data between a user’s browser and a server, the data passed can only be text.
+            JSON provides the ability to convert a JavaScript object into text and then send this information
+            to a server and vice versa. As JSON is text it is easy for humans to read and write as it uses
+            understandable language and an understandable and readable format.
 
-<div class="row">
-    <div class="col-12 tutorial-para">
-        <span><strong>What is ASP.NET Core</strong></span>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12 tutorial-para">
-        <p>
-            As mentioned earlier, ASP.NET Core is a cross-platform development framework which is also open source. Core was released as a re-designed version of the ASP.NET Framework which only runs on Windows machines.
-        </p>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12 tutorial-para">
-        <span><strong>Advantages</strong></span>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12 tutorial-para">
-        <p>
-            Below is a list of the advantages of using ASP.NET Core:
         </p>
     </div>
 </div>
@@ -52,24 +27,95 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
+            JSON is built on two structures:
             <ul>
                 <li>
-                    Performance - When compiling ASP.NET Core code, the application’s code will automatically be optimised by the compiler. Also, according to <button class="btn btn-secondary" onclick="openTutorialLink('https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=plaintext')">TechEmpower</button>, ASP.NET Core ranked 7th out of 297
-                    frameworks when it comes to processing plaintext. .NET Core had a 99.7% performance score out of 100.
+                    A collection of name/value pairs. Similar to objects, records, dictionaries and hash tables in other programming languages
                 </li>
                 <li>
-                    Cross Platform - As mentioned earlier, ASP.NET Core applications can run on Windows, Linux and macOS
-                </li>
-                <li>
-                    Writing Less Code - ASP.NET Core offers tools such as LINQ which removes the need for lots of for and foreach loops. With LINQ, a query to find the first of instance of an item in a
-                    collection (List, Array, etc.) can be written as NAME_OF_LIST.FirstOrDefault(); This line of code would have to be written as a multi-line for or foreach loop without LINQ
-                    <pre>
-                    <code class="language-dotnet">
-                            exampleList.FirstOrDefault();
-                        </code>
-                    </pre>
+                    An ordered list of values, like an array
                 </li>
             </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Once a JSON file is received from an external source, we can use JavaScript
+            to store this information in an Array, which we can then use in different
+            ways later on within other functions by referencing the array index we need.
+            To do this we need to first make a call to an external API by calling its
+            endpoint, which will return a JSON file. When making calls to API’s we would use an Ajax call like this:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <pre>
+            <code class="language-javascript">
+$.ajax({
+    type: "GET",
+    url: “{JSON_API_ENDPOINT}”,
+    contentType: "application/json",
+    success: function (result) {
+        console.log(‘JSON result: ’, result);
+    },
+    Error: function (result) {
+        console.log(‘Error Result’)
+    }
+});
+
+                </code>
+            </pre>
+        </p>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The code above specifies that the request is expecting a response
+            of JSON from this endpoint and would provide us with information that looks like this:
+        </p>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <pre>
+            <code class="language-json">
+{
+    "name": "Mark",
+    "age": "25",
+    "city": "Glasgow"
+},
+{
+    "name": "Ross",
+    "age": "19",
+    "city": "Glasgow"
+},
+
+                </code>
+            </pre>
+        </p>
+    </div>
+</div> 
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The code above specifies that the request is expecting a response
+            of JSON from this endpoint and would provide us with information that looks like this:
         </p>
     </div>
 </div>
@@ -83,31 +129,27 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            Hopefully, this tutorial has helped you understand ASP.NET Core better, however, below is a list of useful resources:
+            Although we hope this tutorial has been all the help you need, here are some useful links that may be of use:
         </p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
-        <p>
-            <ul>
-                <li>
-                    <button class="btn btn-secondary" onclick="openTutorialLink('https://cynicaldeveloper.com/blog/what-is-net-core/')">Cynical Developer</button> - What is .NET Core?
-                </li>
-                <li>
-                    <button class="btn btn-secondary" onclick="openTutorialLink('https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/intro')">Micrososft Tutorial</button> - Create First .NET Core app
-                </li>
-                <li>
-                    <button class="btn btn-secondary" onclick="openTutorialLink('https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=plaintext')">TechEmpower</button> - Performnce Results
-                </li>
-                <li>
-                    <button class="btn btn-secondary" onclick="openTutorialLink('https://dzone.com/articles/4-benefits-of-migrating-to-aspnet-core-20')">DZone</button> - Why Migrate to .NET Core?
-                </li>
-                <li>
-                    <button class="btn btn-secondary" onclick="openTutorialLink('https://www.fortech.ro/top-advantages-net-core/')">Fortech</button> - Advantages of .NET Core
-                </li>
-            </ul>
-        </p>
+        <span><strong>Useful Resources:</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <ul>
+            <li>
+                Introducing JSON, JSON Data Interchange Standard:  <a href="https://www.json.org/">https://www.json.org/</a>
+            </li>
+            <li>
+                W3Schools, JSON Introduction: <a href="https://www.w3schools.com/js/js_json_intro.asp">https://www.w3schools.com/js/js_json_intro.asp</a>
+            </li>
+            
+        </ul>
     </div>
 </div>
