@@ -2,3 +2,129 @@
     <h2>GeoJSON Tutorial</h2>
     <hr />
 </div>
+
+
+<div class="row text-center">
+    <div class="col-12 tutorial-para">
+        <button onclick="downloadPDF('DataTypes/GeoJSON.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
+        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('geojson-tutorial')">Go Full Screen</button>
+        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('geojson-tutorial')">Exit Full Screen</button>
+    </div>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            GeoJSON allows for the encoding of geographic locations. Locations can be in the form of a feature, 
+            singular or collection, a property or a combination of both. Properties normally specify a location’s 
+            name or region in text such as “British Isles” whereas features tend to store the geometry of a location 
+            such as a latitude or longitude. As the name suggests, GeoJSON is a JSON format meaning it can be parsed 
+            and stringified making it ideal for API calls and processing.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            GeoJSON allows for the encoding of geographic locations. Locations can be in the form of a feature, 
+            singular or collection, a property or a combination of both. Properties normally specify a location’s 
+            name or region in text such as “British Isles” whereas features tend to store the geometry of a location 
+            such as a latitude or longitude. As the name suggests, GeoJSON is a JSON format meaning it can be parsed 
+            and stringified making it ideal for API calls and processing.
+        </p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <pre>
+            <code class="language-javascript">
+$.ajax({
+        type: "GET",
+        url: “{GEO_JSON_API_ENDPOINT}”,
+        contentType: "application/vnd.geo+json",
+        success: function (result) { 
+	console.log(‘GeoJSON result: ’, result);
+        },
+        Error: function (result) {
+	console.log(‘Error Result’)
+        }
+});
+                </code>
+            </pre>
+        </p>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The code above specifies that the request is expecting a response of GeoJSON from this endpoint. 
+            Below is an example of a GeoJSON response:
+        </p>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <pre>
+            <code class="language-json">
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [55.8668183, -4.2521489]
+  },
+  "properties": {
+    "name": "Glasgow Caledonian University"
+  }
+}
+                </code>
+            </pre>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>References</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Although we hope this tutorial has been all the help you need, here are some useful links that may be of use:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Useful Resources</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <ul>
+            <li>
+                USGS, an API that supports GeoJSON -   <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php">https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php</a>
+            </li>
+            <li>
+                Official GeoJSON website - <a href="http://geojson.org/">http://geojson.org/</a>
+            </li>
+
+        </ul>
+    </div>
+</div>
