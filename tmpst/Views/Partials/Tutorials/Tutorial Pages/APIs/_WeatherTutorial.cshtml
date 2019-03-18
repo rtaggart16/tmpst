@@ -6,8 +6,8 @@
 <div class="row text-center">
     <div class="col-12 tutorial-para">
         <button onclick="downloadPDF('APIs/Weather_API.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
-        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('Weather Tutorial')">Go Full Screen</button>
-        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('Weather Tutorial')">Exit Full Screen</button>
+        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('Weather_API')">Go Full Screen</button>
+        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('Weather_API')">Exit Full Screen</button>
     </div>
     <hr />
 </div>
@@ -149,4 +149,87 @@
 <div class="text-center">
     <h3> Postman Request Tutorial</h3>
     <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In this tutorial, we will create a request to an APIXU feed using the postman
+            application on Windows. Before proceeding with this tutorial, please ensure you
+            have access to the Postman application or are using the online version.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                Steps:
+
+                <li>
+                    Choose endpoint to request data from
+                </li>
+                <li>
+                    Construct request in Postman
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 1: Choose endpoint to request data from</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            As mentioned earlier, APIXU offers different weather feed endpoints to choose
+            from. In this tutorial, not all sources will be shown because the request format
+            is similar for all. It is important to keep in mind that not these sources should
+            have data at the time of request that is either up to date or recent. For example,
+            making a request for current weather should always return information as APIXU provides
+            real-time data on the weather as it occurs. With that in mind, the endpoint that will be
+            used for this tutorial is all current weather. This endpoint will almost always have data
+            so it is good as an example. The endpoint is shown below, APIXU requires you search a city
+            name, postcode, lat/long so in this example, we will just use Glasgow:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            http://api.apixu.com/v1/current.json?key=[YOUR KEY HERE]&q=Glasgow
+
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step : Construct request in Postman</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            This tutorial assumes that you have a basic understanding of how to use Postman.
+            If not, we provide a tutorial on how to utilise Postman properly that you may
+            wish to read before you continue with this tutorial. If you know how to use
+            Postman, create a new GET request and give it an appropriate name. The name
+            I will use in this tutorial is “APIXU Current Weather Request”. If you have
+            set up the request properly you should see the following:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/APIs/Weather/Step2_Construct_request_in_Postman.png" />
+    </div>
 </div>
