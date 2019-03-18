@@ -7,13 +7,75 @@
         };
         dataobject.push(mortalityobject);
     });
-    var myChart = echarts.init(document.getElementById('mortality-chart-container'));
+    //var myChart = echarts.init(document.getElementById('mortality-chart-container'));
+
+    //option = {
+    //    backgroundColor: '#fff',
+
+        
+
+    //    tooltip: {
+    //        trigger: 'item',
+    //        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    //    },
+
+    //    visualMap: {
+    //        show: false,
+    //        min: 0,
+    //        max: 50,
+    //        inRange: {
+    //            colorLightness: [0, 2]
+    //        }
+    //    },
+    //    series: [
+    //        {
+    //            name: 'Mortality Percentage',
+    //            type: 'pie',
+    //            radius: '80%',
+    //            center: ['50%', '50%'],
+    //            data: dataobject.sort(function (a, b) { return a.value - b.value; }),
+                
+    //            label: {
+    //                normal: {
+    //                    textStyle: {
+    //                        color: 'rgba(0, 0, 0, 0.3)'
+    //                    }
+    //                }
+    //            },
+    //            labelLine: {
+    //                normal: {
+    //                    lineStyle: {
+    //                        color: 'rgba(0, 0, 0, 0.3)'
+    //                    },
+    //                    smooth: 0.2,
+    //                    length: 10,
+    //                    length2: 20
+    //                }
+    //            },
+    //            itemStyle: {
+    //                normal: {
+    //                    color: '#c23531',
+    //                    shadowBlur: 200,
+    //                    shadowColor: 'rgb(68, 153, 237)'
+    //                }
+    //            },
+
+    //            animationType: 'scale',
+    //            animationEasing: 'elasticOut',
+    //            animationDelay: function (idx) {
+    //                return Math.random() * 200;
+    //            }
+    //        }
+    //    ]
+    //};
+
+    //myChart.setOption(option);
+
+     var myChart = echarts.init(document.getElementById('mortality-chart-container'));
 
     option = {
-        backgroundColor: '#fff',
-
         title: {
-            text: 'Mortality Percentage(%) for ' + sex + 's in ' + country,
+            text: 'Mortality Rate',
             left: 'center',
             top: 20,
             textStyle: {
@@ -23,59 +85,48 @@
 
         tooltip: {
             trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
+            formatter: "{a} <br/>{b}: {c} ({d}%)",
+            position: function (pos, params, dom, rect, size) {
+                // tooltip will be fixed on the right if mouse hovering on the left,
+                // and on the left if hovering on the right.
+                var obj = { top: 60 };
+                obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+                return obj;
+            },
+            
         },
+        
 
-        visualMap: {
-            show: false,
-            min: 0,
-            max: 50,
-            inRange: {
-                colorLightness: [0, 2]
-            }
-        },
         series: [
             {
                 name: 'Mortality Percentage',
                 type: 'pie',
-                radius: '60%',
-                center: ['50%', '50%'],
-                data: dataobject.sort(function (a, b) { return a.value - b.value; }),
-                roseType: 'radius',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
                 label: {
                     normal: {
+                        show: false,
+                        position: 'center'
+                        
+                    },
+                    emphasis: {
+                        show: true,
                         textStyle: {
-                            color: 'rgba(0, 0, 0, 0.3)'
+                            fontSize: '30',
+                            fontWeight: 'bold'
                         }
                     }
                 },
                 labelLine: {
                     normal: {
-                        lineStyle: {
-                            color: 'rgba(0, 0, 0, 0.3)'
-                        },
-                        smooth: 0.2,
-                        length: 10,
-                        length2: 20
+                        show: false
                     }
                 },
-                itemStyle: {
-                    normal: {
-                        color: '#c23531',
-                        shadowBlur: 200,
-                        shadowColor: 'rgb(68, 153, 237)'
-                    }
-                },
-
-                animationType: 'scale',
-                animationEasing: 'elasticOut',
-                animationDelay: function (idx) {
-                    return Math.random() * 200;
-                }
+                data: dataobject.sort(function (a, b) { return a.value - b.value; }),
+                
             }
         ]
     };
-
     myChart.setOption(option);
 
     $('#mortality-percentage-chart-result').fadeIn(300);

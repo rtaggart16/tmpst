@@ -78,6 +78,7 @@ function fadeInSpecifiedView(viewID) {
     resetWeatherPage();
     resetEarthquakePage();
     resetNewsPage();
+    resetMortalityPage();
     allViews.fadeOut(300).promise().done(function () {
         $('#' + viewID).fadeIn(300);
     });
@@ -193,6 +194,23 @@ function resetNewsPage() {
     //fadeDynamicNewsViews();
 }
 //END: News Clean Up
+
+
+    
+    const allMortalityViews = $('#mortality-query-builder-container').add($('#mortality-percentage-chart-result'));
+
+    const allDynamicMortalityViews = $('#mortality-percentage-chart-result');
+
+    function fadeDynamicMortalityViews() {
+        allDynamicMortalityViews.fadeOut(300);
+    }
+
+    function resetMortalityPage() {
+        fadeDynamicMortalityViews();
+    }
+
+    
+
 
 /*--------------------------------------------------------------------------
     END: # API System Cleanup
