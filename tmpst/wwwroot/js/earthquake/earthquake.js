@@ -40,6 +40,8 @@ let allSelects = $('#hourly-type-select').add($('#daily-type-select'))
     .add($('#weekly-type-select'))
     .add($('#monthly-type-select'));
 
+let countryInfoWindow;
+
 /*--------------------------------------------------------------------------
     END: # Global Variable Declarations
 ---------------------------------------------------------------------------*/
@@ -160,11 +162,28 @@ function viewCountryInfo(lat, lon) {
                     clearEarthquakeCountryInfo();
                     console.log('Country Result: ', result);
 
+                    let countryInfo = result;
+
+                    window.globalCountryInfo = countryInfo;
+
+                    if (typeof (countryInfoWindow) == 'undefined' || countryInfoWindow.closed) {
+
+                        window.isBuilt = false;
+
+                        // window is not open: insert scripts and HTML
+                        viewWindow = window.open('');
+
+                        viewWindow.document.write('<html><head><title>Country Info</title><script src="../../../../../../lib/jquery/jquery-3.3.1.min.js" async><\/script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" defer><\/script><script src="../../../../../lib/bootstrap/js/bootstrap.js" defer><\/script><link rel="stylesheet" href="../../../../../../../lib/bootstrap/css/bootstrap.css" /><link href="../../../../../css/Earthquake/countryInfo.css" rel="stylesheet" /><script src="../../../../../../js/earthquake/countryInfo.js"><\/script><script src="../../../../../../js/general/map.js"><\/script><script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6yo58EUHrSdjTIMKz_lP2jt77KE-NfOI&callback=initMap"><\/script ></head><body>');
+
+                        viewWindow.document.write('<body><div id="country-info-container"></div></body></html>');
+                    }
+
+                    /*
                     createCountrySummary(result);
                     createCountryMapAndFlag(result);
                     createCountryInfoTable(result);
 
-                    displayCountryInfoPage();
+                    displayCountryInfoPage();*/
                 },
                 error: function (errorResult) {
                     Swal.fire({
@@ -257,6 +276,10 @@ function createCountryInfoTable(result) {
         '<tr><td><strong>Currencies</strong></td><td>' + currencies + '</td></tr>' +
         '<tr><td><strong>Demonym</strong></td><td>' + demonym + '</td></tr>' +
         '<tr><td><strong>Languages</strong></td><td>' + languages + '</td></tr>');
+}
+
+function openNewWindow() {
+
 }
 
 /*--------------------------------------------------------------------------
