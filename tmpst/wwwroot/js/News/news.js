@@ -39,7 +39,6 @@ function newsVisualization(data, country, category) {
     var first25Data = data.slice(0, 24);
 
 
-
     Highcharts.chart('chart', {
         series: [{
             type: 'wordcloud',
@@ -47,10 +46,7 @@ function newsVisualization(data, country, category) {
             name: 'Occurrences'
         }],
         title: {
-            text: category + ' Headlines in ' + country,
+            text: category + ' Headlines in ' + country
         }
     });
-
-
-
 } 
