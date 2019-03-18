@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\css\Overview\" />
+    <Folder Include="wwwroot\images\Tutorials\APIs\Weather\" />
     <Folder Include="wwwroot\js\News\" />
     <Folder Include="wwwroot\tutorials\Visualisations\" />
   </ItemGroup>
@@ -58,6 +59,9 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Partials\Population\_PopulationLandingPage.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\APIs\_MortalityTutorial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Partials\Tutorials\Tutorial Pages\APIs\_RestCountriesTutorial.cshtml">
@@ -104,6 +108,9 @@
     </Content>
     <Content Update="Views\Partials\Tutorials\Tutorial Pages\Pre-Requisites\_NetSdkTutorial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="wwwroot\tutorials\APIs\Weather_API.pdf">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
 

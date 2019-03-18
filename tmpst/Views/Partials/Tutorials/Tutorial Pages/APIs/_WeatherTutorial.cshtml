@@ -2,3 +2,151 @@
     <h2>Weather Tutorial</h2>
     <hr />
 </div>
+
+<div class="row text-center">
+    <div class="col-12 tutorial-para">
+        <button onclick="downloadPDF('APIs/Weather_API.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
+        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('Weather Tutorial')">Go Full Screen</button>
+        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('Weather Tutorial')">Exit Full Screen</button>
+    </div>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In the weather system, tmpst uses an API to fetch data depending on a user’s query.
+            The API used is provided by APIXU. The APIXU API provides multiple endpoints for different
+            levels of a request such as current day, forecast and historical data as well as a forecast
+            of astronomical data which is returned either in JSON or XML format. The APIXU data feeds require
+            a key to be accessed and can be requested up to 10,000 times.
+
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The available APIXU feed categories are shown below:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Available Data:
+                </li>
+                <li>
+                    Current Weather
+                </li>
+                <li>
+                    Forecast up to 10 Days
+                </li>
+                <li>
+                    Forecast Dat(which includes hourly updates and Astronomical Data)
+                </li>
+                <li>
+                    Historical Weather(For Dates on or after the 1st of Januart 2015.)
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                Data Fields:
+                For each of the available data types there are similar fields that can be
+                queried for information, some of the fields we have used on our website are;
+
+                <li>
+                    Temperature in Celcius
+                </li>
+                <li>
+                    Feels like Temperature in Celcuis
+                </li>
+                <li>
+                    Weather Conditions
+                </li>
+                <li>
+                    Wind Speed
+                </li>
+                <li>
+                    Wind Direction
+                </li>
+                <li>
+                    Humidity
+                </li>
+                <li>
+                    Average Temp
+                </li>
+                <li>
+                    Max Temp
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In this Tutorial:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                Pre-requisites:
+
+                <li>
+                    Understanding of JSON or Xml format
+                </li>
+                <li>
+                    An APIXU API endpoint address (http://api.apixu.com/v1/current.json?key=&q=)
+                </li>
+                <li>
+                    An APIXU API Key, which can be obtained from (https://www.apixu.com/signup.aspx)
+                </li>
+                <li>
+                    A Suitable method for making a request(Postman: https://www.getpostman.com/downloads/ or in new tab)
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                Aims:
+
+                <li>
+                    Learn how to request data from one of the APIXU feeds in Postman
+                </li>
+                <li>
+                    Learn how to request data from one of the APIXU feeds in a new tab.
+                </li>
+                <li>
+                    Learn how to request data from one of the APIXU feeds using AJAX call
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+
+<div class="text-center">
+    <h3> Postman Request Tutorial</h3>
+    <hr />
+</div>
