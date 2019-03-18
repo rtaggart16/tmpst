@@ -33,13 +33,42 @@
                     </ul>
                 </li>
                 <li>
-                    Pre-requisites
+                    Pre-Requisites
                     <ul>
-                        <li id="visual-studio-desc-li">Visual Studio</li>
+
+                        <li id="visual-studio-desc-li">Visual Studio 2017</li>
                         <li id="net-sdk-desc-li">.NET SDK</li>
                     </ul>
                 </li>
-                
+                <li>
+                    Data Types
+                    <ul>
+                        <li id="json-desc-li">JSON</li>
+                        <li id="geojson-desc-li">GeoJSON</li>
+                    </ul>
+                </li>
+                <li>
+                    APIs
+                    <ul>
+                        <li id="earthquake-api-desc-li">Earthquake API</li>
+                        <li id="geonames-api-desc-li">GeoNames API</li>
+                        <li id="news-api-desc-li">News API</li>
+                        <li id="pollution-api-desc-li">Pollution API</li>
+                        <li id="population-api-desc-li">Population API</li>
+                        <li id="rest-countries-api-desc-li">REST Countries API</li>
+                        <li id="weather-api-desc-li">Weather API</li>
+                    </ul>
+                </li>
+                <li>
+                    Visualisations
+                    <ul>
+                        <li id="d3-desc-li">D3</li>
+                        <li id="chartsjs-desc-li">Charts.js</li>
+                        <li id="highcharts-desc-li">Highcharts</li>
+                        <li id="echarts-desc-li">eCharts</li>
+                        <li id="google-maps-desc-li">Google Maps</li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -48,6 +77,7 @@
 <div class="row">
     <div class="col-12 card tutorial-card-container">
         <div id="tutorial-text-container" style="height:300px; overflow-x:hidden">
+            <!--START - Overview Pages-->
             <div style="display:none;" class="tutorial-page" id="single-page-application-tutorial">
                 @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Overview/_SinglePageApplicationsTutorial.cshtml")
             </div>
@@ -63,12 +93,63 @@
             <div style="display:none" class="tutorial-page" id="bootstrap-4-tutorial">
                 @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Overview/_Bootstrap4Tutorial.cshtml")
             </div>
-            <div style="display:none" class="tutorial-page" id="visual-studio-tutorial">
-                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Pre-requisites/_VisualStudioTutorial.cshtml")
+            <!--END - Overview Pages-->
+            <!--START - Pre-Requisites Pages-->
+            <div style="display:none;" class="tutorial-page" id="visual-studio-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Pre-Requisites/_VisualStudioTutorial.cshtml")
             </div>
-            <div style="display:none" class="tutorial-page" id="net-sdk-tutorial">
-                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Pre-requisites/_NetSdkTutorial.cshtml")
+            <div style="display:none;" class="tutorial-page" id="net-sdk-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Pre-Requisites/_NetSdkTutorial.cshtml")
             </div>
+            <!--END - Pre-Requisites Pages-->
+            <!--START - Data Types Pages-->
+            <div style="display:none;" class="tutorial-page" id="json-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/DataTypes/_JSONTutorial.cshtml")
+            </div>
+            <div style="display:none;" class="tutorial-page" id="geojson-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/DataTypes/_GeoJSONTutorial.cshtml")
+            </div>
+            <!--END - Data Types Pages-->
+            <!--START - APIs Pages-->
+            <div style="display:none;" class="tutorial-page" id="earthquake-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/APIs/_EarthquakeTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="geonames-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/APIs/_GeoNamesTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="news-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/APIs/_NewsTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="pollution-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/APIs/_PollutionTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="population-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/APIs/_PopulationTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="rest-countries-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/APIs/_RESTCountriesTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="weather-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/APIs/_WeatherTutorial.cshtml")
+            </div>
+            <!--END - APIs Pages-->
+            <!--START - Visualisations Pages-->
+            <div style="display:none;" class="tutorial-page" id="d3-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Visualisations/_D3Tutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="chartsjs-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Visualisations/_ChartsJsTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="highcharts-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Visualisations/_HighchartsTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="echarts-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Visualisations/_EChartsTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="google-maps-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Visualisations/_GoogleMapsTutorial.cshtml")
+            </div>
+            <!--END - Visualisations Pages-->
         </div>
     </div>
 </div>

@@ -36,7 +36,7 @@ function wordcloudNewsVisualization(data, country, category) {
             return arr;
         }, []);
 
-    var first25Data = data.slice(0, 24);
+    var first25Data = data.slice(0, 99);
 
 
 
@@ -53,7 +53,7 @@ function wordcloudNewsVisualization(data, country, category) {
 } 
 
 
-function newsVisualization(data, country, category) {
+function sunburstNewsVisualization(data, country, category) {
 
     console.log(data);
     
