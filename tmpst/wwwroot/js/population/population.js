@@ -16,6 +16,7 @@ function getPopulationCountries() {
         });
     });
 }
+
 function formatCountryName(countryName) {
     console.log(countryName);
     let formattedCountryName = countryName.replace(/ /g, '%20');

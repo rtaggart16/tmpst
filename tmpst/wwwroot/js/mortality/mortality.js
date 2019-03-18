@@ -30,6 +30,7 @@
     $.getJSON(requestUrl, function (data) {
         console.log('DATA: ', data);
 
+        collapseExpandToggle('mortality-wizard-arrow-up', 'mortality-wizard-arrow-down', 'mortality-wizard-container');
         createMortalityChart(country, sex, data.mortality_distribution);
     });
 }

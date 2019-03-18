@@ -1,7 +1,7 @@
 ﻿@model tmpst.Models.NewsAPIKeys
 @*
     Author Info:
-    
+
     Name(s) - Mark Riley, Ross Taggart, Aidan Marshall, Katie King
     Student Number - S1829984, S1828840, S1828601, S1827986
     Date Created - 25/02/2019
@@ -15,22 +15,14 @@
     <div class="col-12">
         <div class="card news-card-container">
             <div class="row news-card-item">
-                <div id="collapsed-text-container" class="col-11 text-center">
-                    <h5 style="display:none" id="news-wizard-collapsed-title">News Wizard</h5>
-                </div>
-
-                <div id="news-collapse-expand" class="col-1 text-right tmpst-clickable">
-                    <i id="news-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i>
-                    <i style="display:none" id="news-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                <div class="col-12 text-center">
+                    <span>
+                        <strong>News Wizard</strong> <i onclick="collapseExpandToggle('news-wizard-arrow-up', 'news-wizard-arrow-down', 'news-wizard-container')" id="news-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i><i onclick="collapseExpandToggle('news-wizard-arrow-down', 'news-wizard-arrow-up', 'news-wizard-container')" style="display:none" id="news-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                    </span>
                 </div>
             </div>
 
             <div id="news-wizard-container">
-                <div class="row news-card-item">
-                    <div class="col-12 text-center">
-                        <h5>News Wizard</h5>
-                    </div>
-                </div>
                 <div class="row news-card-item">
                     <div class="col-6">
                         <select class="form-control" id="news-country-input">
@@ -89,7 +81,7 @@
                             <option value="us">United States of America</option>
                             <option value="ve">Venezuela</option>
                             <option value="za">South Africa</option>
-                                                       
+
                         </select>
                     </div>
                     <div class="col-6">
@@ -106,7 +98,7 @@
                     </div>
                 </div>
 
-                
+
 
                 <div id="submit-news-request-container">
                     <div class="row">
@@ -128,8 +120,8 @@
 
         let countryDropdown = $('#news-country-input').val();
         let categoryDropdown = $('#news-category-input').val();
-        
-        
+
+
 
         if (countryDropdown == null || categoryDropdown == null)
         {
@@ -148,9 +140,9 @@
                 url: requestUrl,
                 dataType: "json",
                 success: function (result) {
-                    $('#news-wizard-arrow-up').click().promise().done(function () {
-                        $('#news-card-container').fadeIn(300);
-                    });
+                    collapseExpandToggle('news-wizard-arrow-up', 'news-wizard-arrow-down', 'news-wizard-container');
+                    $('#news-card-container').fadeIn(300);
+
 
                     //Passes in the name of the options for the wordchart
                     let countryName = $('#news-country-input option:selected').text();
@@ -169,12 +161,12 @@
             });
         }
 
-        
+
 
     }
 
-    
-     
+
+
     $('#news-collapse-expand').click(function () {
         $('#news-wizard-container').slideToggle("slow", function () {
             //if container is visible, show an arrow that allows the container to be minimised
@@ -193,8 +185,8 @@
         });
     });
 
-    
-    
+
+
 
 
 
