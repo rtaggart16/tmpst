@@ -20,14 +20,33 @@ $(function () {
 });
 
 function loadViews() {
-    allTutorialPages = $('#single-page-application-tutorial').add($('#user-secret-tutorial'))
+    allTutorialPages = $('#single-page-application-tutorial')
+        .add($('#user-secret-tutorial'))
         .add($('#partial-view-tutorial'))
         .add($('#asp-core-tutorial'))
-        .add($('#bootstrap-4-tutorial'));
+        .add($('#bootstrap-4-tutorial'))
+        .add($('#visual-studio-tutorial'))
+        .add($('#net-sdk-tutorial'))
+        .add($('#json-tutorial'))
+        .add($('#geojson-tutorial'))
+        .add($('#earthquake-tutorial'))
+        .add($('#geonames-tutorial'))
+        .add($('#news-tutorial'))
+        .add($('#pollution-tutorial'))
+        .add($('#population-tutorial'))
+        .add($('#rest-countries-tutorial'))
+        .add($('#weather-tutorial'))
+        .add($('#d3-tutorial'))
+        .add($('#chartsjs-tutorial'))
+        .add($('#highcharts-tutorial'))
+        .add($('#echarts-tutorial'))
+        .add($('#google-maps-tutorial'));
 }
 
 function processNodeRequest(id) {
     console.log('ID: ' + id);
+
+    // Overview
     if (id == 'single-page-desc-li') {
         fadeSpecifiiedTut('single-page-application-tutorial');
     }
@@ -43,6 +62,70 @@ function processNodeRequest(id) {
     if (id == 'bootstrap-4-desc-li') {
         fadeSpecifiiedTut('bootstrap-4-tutorial');
     }
+
+    
+
+    // Pre-Requisites
+    if (id == 'visual-studio-desc-li') {
+        fadeSpecifiiedTut('visual-studio-tutorial');
+    }
+    if (id == 'net-sdk-desc-li') {
+        fadeSpecifiiedTut('net-sdk-tutorial');
+    }
+
+    // Data Types
+    if (id == 'json-desc-li') {
+        fadeSpecifiiedTut('json-tutorial');
+    }
+    if (id == 'geojson-desc-li') {
+        fadeSpecifiiedTut('geojson-tutorial');
+    }
+
+
+    // APIs
+    if (id == 'earthquake-api-desc-li') {
+        fadeSpecifiiedTut('earthquake-tutorial');
+    }
+    if (id == 'geonames-api-desc-li') {
+        fadeSpecifiiedTut('geonames-tutorial');
+    }
+    if (id == 'news-api-desc-li') {
+        fadeSpecifiiedTut('news-tutorial');
+    }
+    if (id == 'pollution-api-desc-li') {
+        fadeSpecifiiedTut('pollution-tutorial');
+    }
+    if (id == 'population-api-desc-li') {
+        fadeSpecifiiedTut('population-tutorial');
+    }
+    if (id == 'rest-countries-api-desc-li') {
+        fadeSpecifiiedTut('rest-countries-tutorial');
+    }
+    if (id == 'weather-api-desc-li') {
+        fadeSpecifiiedTut('weather-tutorial');
+    }
+        // TODO
+
+
+    // Visualisations
+    if (id == 'd3-desc-li') {
+        fadeSpecifiiedTut('d3-tutorial');
+    }
+    if (id == 'chartsjs-desc-li') {
+        fadeSpecifiiedTut('chartsjs-tutorial');
+    }
+    if (id == 'highcharts-desc-li') {
+        fadeSpecifiiedTut('highcharts-tutorial');
+    }
+    if (id == 'echarts-desc-li') {
+        fadeSpecifiiedTut('echarts-tutorial');
+    }
+    if (id == 'google-maps-desc-li') {
+        fadeSpecifiiedTut('google-maps-tutorial');
+    }
+
+
+
 }
 
 function tutRemoveFullSCreen(elmID) {
