@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="row news-card-item">
-                    <div class="col-6">
+                    <div class="col-4">
                         <select class="form-control" id="news-country-input">
                             <option value="" disabled selected>Select Country</option>
                             <option value="ae">United Arab Emirates</option>
@@ -89,10 +89,10 @@
                             <option value="us">United States of America</option>
                             <option value="ve">Venezuela</option>
                             <option value="za">South Africa</option>
-                                                       
+
                         </select>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <select class="form-control" id="news-category-input">
                             <option value="" disabled selected>Select Category</option>
                             <option value="business">Business</option>
@@ -102,6 +102,13 @@
                             <option value="science">Science</option>
                             <option value="sports">Sports</option>
                             <option value="technology">Technology</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-control" id="news-visualisation-input">
+                            <option value="" disabled selected>Select Visualisation</option>
+                            <option value="wordcloud">Word Cloud</option>
+                            <option value="sunburst">Sun Burst</option>
                         </select>
                     </div>
                 </div>
@@ -128,10 +135,11 @@
 
         let countryDropdown = $('#news-country-input').val();
         let categoryDropdown = $('#news-category-input').val();
+        let visualisationDropdown = $('#news-visualisation-input').val();
         
         
 
-        if (countryDropdown == null || categoryDropdown == null)
+        if (countryDropdown == null || categoryDropdown == null || visualisationDropdown == null)
         {
             Swal.fire({
                 type: 'error',
@@ -155,7 +163,17 @@
                     //Passes in the name of the options for the wordchart
                     let countryName = $('#news-country-input option:selected').text();
                     let categoryName = $('#news-category-input option:selected').text();
-                    newsVisualization(result, countryName, categoryName);
+                    let visualisationName = $('#news-visualisation-input option:selected').val();
+
+                    console.log(visualisationName);
+
+                    if (visualisationName == "wordcloud") {
+                        wordcloudNewsVisualization(result, countryName, categoryName);
+                    }
+                    else {
+                        sunburstNewsVisualization(result, countryName, categoryName);
+                    }
+                    
                 },
                 error: function (errorResult) {
 

@@ -22,6 +22,9 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\css\Overview\" />
+    <Folder Include="wwwroot\images\Tutorials\APIs\Weather\" />
+    <Folder Include="wwwroot\js\News\" />
+    <Folder Include="wwwroot\tutorials\Visualisations\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,6 +60,57 @@
     </Content>
     <Content Update="Views\Partials\Population\_PopulationLandingPage.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\APIs\_MortalityTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\APIs\_RestCountriesTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\APIs\_WeatherTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\DataTypes\_JSONTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\DataTypes\_GeoJSONTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\APIs\_EarthquakeTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\APIs\_GeoNamesTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\APIs\_NewsTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\APIs\_PollutionTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\APIs\_PopulationTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\Visualisations\_D3Tutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\Visualisations\_ChartsJsTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\Visualisations\_HighChartsTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\Visualisations\_EChartsTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\Visualisations\_GoogleMapsTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\Pre-Requisites\_NetSdkTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="wwwroot\tutorials\APIs\Weather_API.pdf">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
 
