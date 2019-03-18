@@ -13,17 +13,25 @@
 <div class="row">
     <div class="col-12">
         <div id="forecast-result-container-card-mobile" class="card weather-card-container">
-            <table class="w-100 text-center weather-card-container">
-                <thead id="forecast-tbl-head-mobile">
+            <div class="weather-card-item text-center">
+                <span>
+                    <strong>Forecast</strong> <i onclick="collapseExpandToggle('forecast-mobile-result-arrow-up', 'forecast-mobile-result-arrow-down', 'forecast-mobile-table-and-submit')" id="forecast-mobile-result-arrow-up" class="fas fa-caret-up fa-2x"></i><i onclick="collapseExpandToggle('forecast-mobile-result-arrow-down', 'forecast-mobile-result-arrow-up', 'forecast-mobile-table-and-submit')" style="display:none" id="forecast-mobile-result-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                </span>
+            </div>
+            <div id="forecast-mobile-table-and-submit">
+                <table class="w-100 text-center weather-card-container">
+                    <thead id="forecast-tbl-head-mobile">
 
-                </thead>
-                <tbody class="text-left" id="forecast-tbl-body-mobile"></tbody>
-            </table>
-            <div class="row">
-                <div class="col-12 weather-card-container">
-                    <button class="btn btn-success w-100" onclick="analyseForecastData()">Analyse Data</button>
+                    </thead>
+                    <tbody class="text-left" id="forecast-tbl-body-mobile"></tbody>
+                </table>
+                <div class="row">
+                    <div class="col-12 weather-card-container">
+                        <button class="btn btn-success w-100" onclick="analyseForecastData()">Analyse Data</button>
+                    </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>

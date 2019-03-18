@@ -14,20 +14,13 @@
     <div class="col-12">
         <div class="card pollution-card-container">
             <div class="row pollution-card-item">
-                <div id="collapsed-text-container" class="col-11 text-center">
-                    <h5 style="display:none" id="pollution-wizard-collapsed-title">Pollution Wizard</h5>
-                </div>
-                <div id="pollution-collapse-expand" class="col-1 text-right tmpst-clickable">
-                    <i id="pollution-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i>
-                    <i style="display:none" id="pollution-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                <div class="col-12 text-center">
+                    <span>
+                        <strong>Pollution Wizard</strong> <i onclick="collapseExpandToggle('pollution-wizard-arrow-up', 'pollution-wizard-arrow-down', 'pollution-wizard-container')" id="weather-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i><i onclick="collapseExpandToggle('pollution-wizard-arrow-down', 'pollution-wizard-arrow-up', 'pollution-wizard-container')" style="display:none" id="pollution-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                    </span>
                 </div>
             </div>
             <div id="pollution-wizard-container">
-                <div class="row pollution-card-item">
-                    <div class="col-12 text-center">
-                        <h5>Pollution Wizard</h5>
-                    </div>
-                </div>
                 <div class="row pollution-card-item">
                     <div class="col-6">
                         <select id="pollution-country-input" class="form-control" required></select>
@@ -63,14 +56,14 @@
 
     const pollutionCountryUrl = 'https://api.openaq.org/v1/countries';
 
-    
+
 
     //// Populate dropdown with list of provinces
     //$.getJSON(pollutionCountryUrl, function (data) {
     //    $.each(data.results, function (key, entry) {
     //        countryDropdown.append($('<option></option>').attr('value', entry.code).text(entry.name));
     //    })
-    //}); -- Talk about efficienttstyy 
+    //}); -- Talk about efficienttstyy
 
     $.ajax({
         type: "GET",
@@ -138,9 +131,9 @@
         });
     });
 
-        
 
-    
+
+
 
 
 
@@ -177,10 +170,8 @@
                 console.log(result);
 
                 createPollutionChart(result);
-
-                $('#pollution-wizard-arrow-up').click().promise().done(function () {
-                    $('#pollution-chart-container').fadeIn(300);
-                });
+                collapseExpandToggle('pollution-wizard-arrow-up', 'pollution-wizard-arrow-down', 'pollution-wizard-container');
+                $('#pollution-chart-container').fadeIn(300);
             },
             error: function (errorResult) {
                 Swal.fire({
@@ -188,9 +179,9 @@
                     title: 'Data Request Error',
                     text: 'An error has occurred when submitting your request. Please try again with different criteria.'
                 });
-            }   
-        
-        
+            }
+
+
         });
 
     }

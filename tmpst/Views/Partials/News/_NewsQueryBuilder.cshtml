@@ -1,7 +1,7 @@
 ﻿@model tmpst.Models.NewsAPIKeys
 @*
     Author Info:
-    
+
     Name(s) - Mark Riley, Ross Taggart, Aidan Marshall, Katie King
     Student Number - S1829984, S1828840, S1828601, S1827986
     Date Created - 25/02/2019
@@ -15,24 +15,16 @@
     <div class="col-12">
         <div class="card news-card-container">
             <div class="row news-card-item">
-                <div id="collapsed-text-container" class="col-11 text-center">
-                    <h5 style="display:none" id="news-wizard-collapsed-title">News Wizard</h5>
-                </div>
-
-                <div id="news-collapse-expand" class="col-1 text-right tmpst-clickable">
-                    <i id="news-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i>
-                    <i style="display:none" id="news-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                <div class="col-12 text-center">
+                    <span>
+                        <strong>News Wizard</strong> <i onclick="collapseExpandToggle('news-wizard-arrow-up', 'news-wizard-arrow-down', 'news-wizard-container')" id="news-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i><i onclick="collapseExpandToggle('news-wizard-arrow-down', 'news-wizard-arrow-up', 'news-wizard-container')" style="display:none" id="news-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                    </span>
                 </div>
             </div>
 
             <div id="news-wizard-container">
                 <div class="row news-card-item">
-                    <div class="col-12 text-center">
-                        <h5>News Wizard</h5>
-                    </div>
-                </div>
-                <div class="row news-card-item">
-                    <div class="col-4">
+                    <div class="col-6">
                         <select class="form-control" id="news-country-input">
                             <option value="" disabled selected>Select Country</option>
                             <option value="ae">United Arab Emirates</option>
@@ -92,7 +84,7 @@
 
                         </select>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <select class="form-control" id="news-category-input">
                             <option value="" disabled selected>Select Category</option>
                             <option value="business">Business</option>
@@ -104,20 +96,13 @@
                             <option value="technology">Technology</option>
                         </select>
                     </div>
-                    <div class="col-4">
-                        <select class="form-control" id="news-visualisation-input">
-                            <option value="" disabled selected>Select Visualisation</option>
-                            <option value="wordcloud">Word Cloud</option>
-                            <option value="sunburst">Sun Burst</option>
-                        </select>
-                    </div>
                 </div>
 
-                
+
 
                 <div id="submit-news-request-container">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 first">
                             <button id="submit-news-request-btn" onclick="submitNewsRequest()" class="btn btn-success w-100">Submit</button>
                         </div>
                     </div>
@@ -135,11 +120,10 @@
 
         let countryDropdown = $('#news-country-input').val();
         let categoryDropdown = $('#news-category-input').val();
-        let visualisationDropdown = $('#news-visualisation-input').val();
-        
-        
 
-        if (countryDropdown == null || categoryDropdown == null || visualisationDropdown == null)
+
+
+        if (countryDropdown == null || categoryDropdown == null)
         {
             Swal.fire({
                 type: 'error',
@@ -156,24 +140,14 @@
                 url: requestUrl,
                 dataType: "json",
                 success: function (result) {
-                    $('#news-wizard-arrow-up').click().promise().done(function () {
-                        $('#news-card-container').fadeIn(300);
-                    });
+                    collapseExpandToggle('news-wizard-arrow-up', 'news-wizard-arrow-down', 'news-wizard-container');
+                    $('#news-card-container').fadeIn(300);
+
 
                     //Passes in the name of the options for the wordchart
                     let countryName = $('#news-country-input option:selected').text();
                     let categoryName = $('#news-category-input option:selected').text();
-                    let visualisationName = $('#news-visualisation-input option:selected').val();
-
-                    console.log(visualisationName);
-
-                    if (visualisationName == "wordcloud") {
-                        wordcloudNewsVisualization(result, countryName, categoryName);
-                    }
-                    else {
-                        sunburstNewsVisualization(result, countryName, categoryName);
-                    }
-                    
+                    newsVisualization(result, countryName, categoryName);
                 },
                 error: function (errorResult) {
 
@@ -187,12 +161,12 @@
             });
         }
 
-        
+
 
     }
 
 
-     
+
     $('#news-collapse-expand').click(function () {
         $('#news-wizard-container').slideToggle("slow", function () {
             //if container is visible, show an arrow that allows the container to be minimised
@@ -210,6 +184,9 @@
             }
         });
     });
+
+
+
 
 
 
