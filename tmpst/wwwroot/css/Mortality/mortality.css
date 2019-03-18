@@ -56,3 +56,14 @@ body {
 /*--------------------------------------------------------------------------
     END: # Containers
 ---------------------------------------------------------------------------*/
+
+#mortality-chart-container {
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    padding: 10px;
+    border-width: 0px;
+    
+}
+
+
