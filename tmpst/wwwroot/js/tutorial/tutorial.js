@@ -6,7 +6,7 @@ $(function () {
         "core": {
             "themes": {
                 "variant": "large",
-                "responsive": "true"
+                //"responsive": "true"
             }
         }
     });
@@ -145,7 +145,7 @@ function openTutorialLink(address) {
 
 function downloadPDF(fileName) {
     event.preventDefault();
-    window.open('https://localhost:44359/tutorials/Overview/' + fileName);
+    window.open('https://localhost:44359/tutorials/' + fileName);
 }
 
 function fadeSpecifiiedTut(viewID) {
