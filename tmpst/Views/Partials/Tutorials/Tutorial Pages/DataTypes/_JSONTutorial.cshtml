@@ -1,0 +1,155 @@
+﻿<div class="text-center">
+    <h2>JSON Tutorial</h2>
+    <hr />
+</div>
+
+<div class="row text-center">
+    <div class="col-12 tutorial-para">
+        <button onclick="downloadPDF('DataTypes/JSON.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
+        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('json-tutorial')">Go Full Screen</button>
+        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('json-tutorial')">Exit Full Screen</button>
+    </div>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            When exchanging data between a user’s browser and a server, the data passed can only be text.
+            JSON provides the ability to convert a JavaScript object into text and then send this information
+            to a server and vice versa. As JSON is text it is easy for humans to read and write as it uses
+            understandable language and an understandable and readable format.
+
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            JSON is built on two structures:
+            <ul>
+                <li>
+                    A collection of name/value pairs. Similar to objects, records, dictionaries and hash tables in other programming languages
+                </li>
+                <li>
+                    An ordered list of values, like an array
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Once a JSON file is received from an external source, we can use JavaScript
+            to store this information in an Array, which we can then use in different
+            ways later on within other functions by referencing the array index we need.
+            To do this we need to first make a call to an external API by calling its
+            endpoint, which will return a JSON file. When making calls to API’s we would use an Ajax call like this:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <pre>
+            <code class="language-javascript">
+$.ajax({
+    type: "GET",
+    url: “{JSON_API_ENDPOINT}”,
+    contentType: "application/json",
+    success: function (result) {
+        console.log(‘JSON result: ’, result);
+    },
+    Error: function (result) {
+        console.log(‘Error Result’)
+    }
+});
+
+                </code>
+            </pre>
+        </p>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The code above specifies that the request is expecting a response
+            of JSON from this endpoint and would provide us with information that looks like this:
+        </p>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <pre>
+            <code class="language-json">
+{
+    "name": "Mark",
+    "age": "25",
+    "city": "Glasgow"
+},
+{
+    "name": "Ross",
+    "age": "19",
+    "city": "Glasgow"
+},
+
+                </code>
+            </pre>
+        </p>
+    </div>
+</div> 
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The code above specifies that the request is expecting a response
+            of JSON from this endpoint and would provide us with information that looks like this:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>References</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Although we hope this tutorial has been all the help you need, here are some useful links that may be of use:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Useful Resources:</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <ul>
+            <li>
+                Introducing JSON, JSON Data Interchange Standard:  <a href="https://www.json.org/">https://www.json.org/</a>
+            </li>
+            <li>
+                W3Schools, JSON Introduction: <a href="https://www.w3schools.com/js/js_json_intro.asp">https://www.w3schools.com/js/js_json_intro.asp</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
