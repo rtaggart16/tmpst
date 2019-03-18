@@ -1,4 +1,4 @@
-﻿/*
+/*
     Author Info:
 
     Name(s) - Mark Riley, Ross Taggart, Aidan Marshall, Katie King
