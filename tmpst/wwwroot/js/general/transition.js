@@ -59,7 +59,7 @@ function collapseExpandToggle(currentID, fadeInID, containerID) {
     });
 
     if (currentID == 'forecast-result-arrow-up' && fadeInID == 'forecast-result-arrow-down') {
-        $('#forecast-head-only-tbl').fadeIn(300);
+        //$('#forecast-head-only-tbl').fadeIn(300);
     }
     else if (currentID == 'forecast-result-arrow-down' && fadeInID == 'forecast-result-arrow-up') {
         $('#forecast-head-only-tbl').fadeOut(300);

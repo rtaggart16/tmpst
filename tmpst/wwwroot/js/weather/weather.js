@@ -131,6 +131,9 @@ function submitWeatherRequest(key) {
         //contact the api with the location request
         resetWeatherPage();
         contactAPI(dataType, location, key);
+
+        // Collapse query builder
+        collapseExpandToggle('weather-wizard-arrow-up', 'weather-wizard-arrow-down', 'weather-wizard-container');
     }
     else {
         // Show error for latitude and longitude
@@ -150,7 +153,7 @@ function submitWeatherRequest(key) {
             })
         }
     }
-
+    
 }
 
 /* FUNCTION: contactAPI
@@ -191,7 +194,7 @@ function contactAPI(requestType, location, key) {
                     updateForecastTableBodyMobile(result.forecast.forecastday);
 
                     $('#wizard-collapse-expand').click().promise().done(function () {
-                        initMap(result.location.lat, result.location.lon, result.location.name, 'result-map');
+                        //initMap(result.location.lat, result.location.lon, result.location.name, 'result-map');
                         console.log('REACHED FADE INS');
                         $('#weather-map-container').fadeIn(300).promise().done(function () {
                             console.log('MAP FADED IN');
@@ -207,7 +210,7 @@ function contactAPI(requestType, location, key) {
                     updateForecastTableBody(result.forecast.forecastday);
 
                     $('#wizard-collapse-expand').click().promise().done(function () {
-                        initMap(result.location.lat, result.location.lon, result.location.name, 'result-map');
+                        //initMap(result.location.lat, result.location.lon, result.location.name, 'result-map');
                         console.log('REACHED FADE INS');
                         $('#weather-map-container').fadeIn(300).promise().done(function () {
                             console.log('MAP FADED IN');
@@ -446,6 +449,10 @@ function analyseForecastData() {
         }
     });
 
+    // Collapses forecast container
+    collapseExpandToggle('forecast-result-arrow-up', 'forecast-result-arrow-down', 'main-forecast-result-container');
+    collapseExpandToggle('forecast-mobile-result-arrow-up', 'forecast-mobile-result-arrow-down', 'forecast-mobile-table-and-submit');
+
     $('#forecast-weather-analysis-landing').fadeIn(300).promise().done(function () {
         $('#weather-analysis-landing').fadeIn(300);
     });
@@ -506,6 +513,9 @@ function analyseCurrentDayData() {
             maintainAspectRatio: false
         }
     });
+
+    collapseExpandToggle('current-result-overview-up', 'current-result-overview-down', 'current-weather-wizard-container');
+    collapseExpandToggle('current-map-result-up', 'current-map-result-down', 'current-map-wizard-container');
 
     $('#current-weather-analysis-landing').fadeIn(300).promise().done(function () {
         $('#weather-analysis-landing').fadeIn(300);
