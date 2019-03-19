@@ -2,3 +2,607 @@
     <h2>News Tutorial</h2>
     <hr />
 </div>
+
+<div class="row text-center">
+    <div class="col-12 tutorial-para">
+        <button onclick="downloadPDF('APIs/News_API.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
+        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('news-tutorial')">Go Full Screen</button>
+        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('news-tutorial')">Exit Full Screen</button>
+    </div>
+    <hr />
+</div>
+
+<!-- TO DO FROM HERE-->
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In the News Analysis system, tmpst uses an API with the user’s query entry to get data from
+            various news sources. This API was provided by <a href="https://newsapi.org/">https://newsapi.org/</a> , it requires a key that is
+            provided by this company, it is open source code and is free to use, it can also be requested as
+            many times as desired by the user. This API provides data of the top headlines, all published
+            articles and can be broken down into categories and locations
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The endpoints that are provided are:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <ul>
+            <li> Top headlines </li>
+            <li> Everything </li>
+            <li> Source (this is a minor endpoint) </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In this tutorial:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <span><strong>Pre-Requisites</strong></span>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Understanding of JSON format
+                </li>
+                <li>
+                    Using the news API endpoint addresses
+                    <ul>
+                        <li>
+                            <a href="https://newsapi.org/docs/endpoints/sources">https://newsapi.org/docs/endpoints/sources</a>
+                        </li>
+                        <li>
+                            <a href="https://newsapi.org/docs/endpoints/everything">https://newsapi.org/docs/endpoints/everything</a>
+                        </li>
+                        <li>
+                            <a href="https://newsapi.org/docs/endpoints/top-headlines">https://newsapi.org/docs/endpoints/top-headlines</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    A suitable method for making a request (Postman: <a href="https://www.getpostman.com/downloads/">https://www.getpostman.com/downloads/</a> or in new tab)
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Aims</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li> Learn how to request data from one of the News feeds in Postman </li>
+                <li>Learn how to request data from one of the News feeds in a new tab</li>
+                <li>Learn how to request data from one of the News feeds using AJAX call </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+
+
+<div class="text-center">
+    <h3>Postman Tutorial</h3>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In this tutorial, we will create a request to the News API feed
+            using the postman application on Windows.
+            Before proceeding with this tutorial, please ensure you have access
+            to the Postman application or are using the online version.
+            version.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Steps
+            <ol>
+                <li>Choose endpoint to request data from</li>
+                <li>Construct request in Postman</li>
+            </ol>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 1: Choose endpoint to request data from</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            As mentioned earlier, News offers many feed endpoints to choose from.
+            In this tutorial, not all sources will be shown because the request 
+            format is identical for all. It is important to keep in mind that not 
+            all sources will have data at the time of the request. The endpoint that
+            will be used for this tutorial is sources. This endpoint will 
+            always have data so it is good as an example. The endpoint is shown below:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <a href="https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=ff66547bdfe04a5ebb049e7743482186">
+                https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=ff66547bdfe04a5ebb049e7743482186
+            </a>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 2: Construct request in Postman</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            This tutorial assumes that you have a basic understanding of how to 
+            use Postman. If not, we provide a tutorial on how to utilise Postman
+            properly that you may wish to read before you continue with this tutorial.
+            If you know how to use Postman, create a new GET request and give it an
+            appropriate name. The name I will use in this tutorial is “Bbc News Request”. 
+            If you have setup the request properly you should see the following:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <img src="~/images/Tutorials/APIs/News/postman-request.png" />
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Nothing will happen if you attempt to send the request as the url box is empty. 
+            Now all that is required is to add the url 
+            mentioned in step 1 to the url box and hit send. You should see the following:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <img src="~/images/Tutorials/APIs/News/postman-request.png" />
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            A section of the response is shown in plain text below:
+        </p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <pre>
+            <code class="language-javascript">
+"status": "ok",
+    "totalResults": 10,
+    "articles": [
+        {
+            "source": {
+                "id": "bbc-news",
+                "name": "BBC News"
+            },
+            "author": "BBC News",
+            "title": "'Three dead' in Utrecht tram shooting",
+            "description": "Police are hunting for the gunman and say the incident appears to have been a terrorist attack.",
+            "url": "http://www.bbc.co.uk/news/world-europe-47615231",
+            "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/1708B/production/_106074349_d18zwyywkaehcmj.jpg",
+            "publishedAt": "2019-03-18T14:16:43Z",
+            "content": "Image copyright@PolitieUtrecht / TwitterImage caption\r\n Police released this image of Gokmen Tanis\r\nThree people have been killed following a shooting on a tram in the Dutch city of Utrecht, the city's mayor says.\r\nNine others were injured in the incident whi… [+691 chars]"
+        },
+        {
+            "source": {
+                "id": "bbc-news",
+                "name": "BBC News"
+            },
+            "author": "BBC News",
+            "title": "Students perform Haka for attack victims",
+            "description": "Schools across Christchurch perform the traditional Maori war dance to pay respects to those killed.",
+            "url": "http://www.bbc.co.uk/news/world-asia-47609212",
+            "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/A633/production/_106074524_p073wrw0.jpg",
+            "publishedAt": "2019-03-18T14:04:06Z",
+            "content": null
+        },
+
+
+                </code>
+            </pre>
+        </p>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="text-center">
+    <h3>Browser Request Tutorial</h3>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In this tutorial, we will create a request to a News API feed using a new tab on a Google Chrome browser. For this tutorial, we will use the same endpoint as is used in the Postman example:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <a href="https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=ff66547bdfe04a5ebb049e7743482186">
+            https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=ff66547bdfe04a5ebb049e7743482186
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Steps
+            <ol>
+                <li>Add url to tab and run</li>
+            </ol>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 1: Add url to tab and run</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            This tutorial is easier than either the Postman method or the AJAX method (still to come)
+            as it only involves using a tab in a browser as if you are navigating to a web page.
+            To get a result, add the url to the address bar and hit enter and you should see the following:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/APIs/News/browser-response.png" />
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The result is shown in plain text below:
+        </p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <pre>
+                <code class="language-javascript">
+{
+    "status":"ok",
+    "totalResults":10,
+    "articles":
+    [{
+        "source":
+        {
+            "id":"bbc-news",
+            "name":"BBC News"
+        },
+        "author":"BBC News",
+        "title":"'Three dead' in Utrecht tram shooting",
+        "description":"Police are hunting for the gunman and say the incident appears to have been a terrorist attack.",
+        "url":"http://www.bbc.co.uk/news/world-europe-47615231",
+        "urlToImage":"https://ichef.bbci.co.uk/news/1024/branded_news/1708B/production/_106074349_d18zwyywkaehcmj.jpg",
+        "publishedAt":"2019-03-18T14:16:43Z",
+        "content":"Image copyright@PolitieUtrecht / TwitterImage caption\r\n Police released this image of Gokmen Tanis\r\nThree people have been killed following a shooting on a tram in the Dutch city of Utrecht, the city's mayor says.\r\nNine others were injured in the incident whi… [+691 chars]"
+    },
+                </code>
+            </pre>
+        </p>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="text-center">
+    <h3>AJAX Tutorial</h3>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The above methods show you how to access the News feed and
+            view the data, however, neither method involves any coding
+            and neither would work well in an application’s context.
+            So, in this tutorial we will connect to the endpoint using
+            AJAX which can then be put into the javascript of any application
+
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Steps
+            <ol>
+                <li>Create a new playcode project</li>
+                <li>Add the provided AJAX code and run</li>
+            </ol>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 1: Create a new playcode project</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            For this tutorial, playcode will be used to demonstrate the AJAX request.
+            Although we are using playcode, almost any online JavaScript IDE would
+            work (JsFiddle). If you search for playcode and
+            click on the link you should see the following default project setup:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/APIs/News/playcode-request.png" />
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Playcode is ideal for this tutorial as we only need to
+            change the js file and view the console as jquery is
+            referenced as standard
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 2: Add the provided AJAX code and run</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The AJAX required to fetch the data programatically is:
+        </p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <pre>
+            <code class="language-javascript">
+$.ajax({
+        type: "GET",
+        url: "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=ff66547bdfe04a5ebb049e7743482186",
+        contentType: "application/json",
+        success: function (result) {
+            console.log('AJAX Response: ', result);
+        },
+        error: function (errorResult) {
+            console.log('ERROR: ', errorResult);
+        }
+    });
+
+                </code>
+            </pre>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Conclusion</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            That is the methods which can be used to request data from the GeoNames country code endpoint.
+            The most useful of the methods is
+            AJAX, however, the others can be used for testing and ensuring the quality of the data.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Common Issues:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Normally, implementing the methods discussed in this tutorial are relatively easy,
+            however, some of the most common issues are detailed below:
+        </p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <ul>
+            <li>
+                An issue that occurs with AJAX is that the user is not informed when an AJAX request
+                is completed, to combat this a request completed message should be 
+                implemented to inform the user that their request has been submitted successfully.
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Outcomes</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            You should now be able to:
+        </p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <ul>
+            <li>
+                Request data from one of the News API feeds in Postman
+            </li>
+            <li>
+                Request data from one of the News API feeds in a new tab
+            </li>
+            <li>
+                Request data from one of the News API feeds using AJAX call
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>References</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Although we hope this tutorial has been all the help you need, here are some useful links that may be of use:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Useful Resources:</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <ul>
+            <li>
+                News API - <a href="https://newsapi.org/">https://newsapi.org/</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Tools:</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <ul>
+            <li>
+                Postman - <a href="https://www.getpostman.com/downloads/">https://www.getpostman.com/downloads/</a>
+
+            </li>
+            <li>
+                Playcode - <a href="https://playcode.io/">https://playcode.io/</a>
+            </li>
+
+        </ul>
+    </div>
+</div>

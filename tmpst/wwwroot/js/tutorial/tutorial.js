@@ -31,6 +31,7 @@ function loadViews() {
         .add($('#geojson-tutorial'))
         .add($('#earthquake-tutorial'))
         .add($('#geonames-tutorial'))
+        .add($('#mortality-tutorial'))
         .add($('#news-tutorial'))
         .add($('#pollution-tutorial'))
         .add($('#population-tutorial'))
@@ -88,6 +89,9 @@ function processNodeRequest(id) {
     }
     if (id == 'geonames-api-desc-li') {
         fadeSpecifiiedTut('geonames-tutorial');
+    }
+    if (id == 'mortality-api-desc-li') {
+        fadeSpecifiiedTut('mortality-tutorial');
     }
     if (id == 'news-api-desc-li') {
         fadeSpecifiiedTut('news-tutorial');

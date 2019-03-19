@@ -52,6 +52,7 @@
                     <ul>
                         <li id="earthquake-api-desc-li">Earthquake API</li>
                         <li id="geonames-api-desc-li">GeoNames API</li>
+                        <li id="mortality-api-desc-li">Mortality API</li>
                         <li id="news-api-desc-li">News API</li>
                         <li id="pollution-api-desc-li">Pollution API</li>
                         <li id="population-api-desc-li">Population API</li>
@@ -116,6 +117,9 @@
             </div>
             <div style="display:none" class="tutorial-page" id="geonames-tutorial">
                 @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/APIs/_GeoNamesTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="mortality-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/APIs/_MortalityTutorial.cshtml")
             </div>
             <div style="display:none" class="tutorial-page" id="news-tutorial">
                 @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/APIs/_NewsTutorial.cshtml")
