@@ -21,10 +21,6 @@
         @await Html.PartialAsync("~/Views/Partials/Weather/_WeatherQueryBuilder.cshtml", Model)
     </div>
 
-    <div style="display:none" id="weather-map-container">
-        @await Html.PartialAsync("~/Views/Partials/Weather/Results/_MapResultContainer.cshtml")
-    </div>
-
     <!-- Only used when the user requests forecast data -->
     <div style="display:none" id="weather-forecast-data-container">
         @await Html.PartialAsync("~/Views/Partials/Weather/Results/_ForecastResultContainer.cshtml")

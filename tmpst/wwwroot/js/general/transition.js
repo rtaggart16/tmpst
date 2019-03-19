@@ -40,7 +40,8 @@ let allViews = $('#overview-page')
     .add($('#news-page'))
     .add($('#tutorial-page'))
     .add($('#pollution-page'))
-    .add($('#general-page'));
+    .add($('#general-page'))
+    .add($('#mortality-page'));
 
 /*--------------------------------------------------------------------------
     END: # Global Container Variables
@@ -58,7 +59,7 @@ function collapseExpandToggle(currentID, fadeInID, containerID) {
     });
 
     if (currentID == 'forecast-result-arrow-up' && fadeInID == 'forecast-result-arrow-down') {
-        $('#forecast-head-only-tbl').fadeIn(300);
+        //$('#forecast-head-only-tbl').fadeIn(300);
     }
     else if (currentID == 'forecast-result-arrow-down' && fadeInID == 'forecast-result-arrow-up') {
         $('#forecast-head-only-tbl').fadeOut(300);
@@ -77,6 +78,7 @@ function fadeInSpecifiedView(viewID) {
     resetWeatherPage();
     resetEarthquakePage();
     resetNewsPage();
+    resetMortalityPage();
     allViews.fadeOut(300).promise().done(function () {
         $('#' + viewID).fadeIn(300);
     });
@@ -192,6 +194,23 @@ function resetNewsPage() {
     //fadeDynamicNewsViews();
 }
 //END: News Clean Up
+
+
+    
+    const allMortalityViews = $('#mortality-query-builder-container').add($('#mortality-percentage-chart-result'));
+
+    const allDynamicMortalityViews = $('#mortality-percentage-chart-result');
+
+    function fadeDynamicMortalityViews() {
+        allDynamicMortalityViews.fadeOut(300);
+    }
+
+    function resetMortalityPage() {
+        fadeDynamicMortalityViews();
+    }
+
+    
+
 
 /*--------------------------------------------------------------------------
     END: # API System Cleanup

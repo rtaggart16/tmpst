@@ -15,20 +15,13 @@
     <div class="col-12">
         <div class="card population-card-container">
             <div class="row population-card-item">
-                <div id="collapsed-text-container" class="col-11 text-center">
-                    <h5 style="display:none" id="population-wizard-collapsed-title">Population Wizard</h5>
-                </div>
-                <div id="population-collapse-expand" class="col-1 text-right tmpst-clickable">
-                    <i id="population-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i>
-                    <i style="display:none" id="population-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                <div class="col-12 text-center">
+                    <span>
+                        <strong>Population Wizard</strong> <i onclick="collapseExpandToggle('population-wizard-arrow-up', 'population-wizard-arrow-down', 'population-wizard-container')" id="population-wizard-arrow-up" class="fas fa-caret-up fa-2x tmpst-clickable"></i><i onclick="collapseExpandToggle('population-wizard-arrow-down', 'population-wizard-arrow-up', 'population-wizard-container')" style="display:none" id="population-wizard-arrow-down" class="fas fa-caret-down fa-2x tmpst-clickable"></i>
+                    </span>
                 </div>
             </div>
             <div id="population-wizard-container">
-                <div class="row population-card-item">
-                    <div class="col-12 text-center">
-                        <h5>Population Wizard</h5>
-                    </div>
-                </div>
                 <div class="row population-card-item">
                     <div class="col-4">
                         <select id="country-input" class="form-control" required></select>
@@ -70,7 +63,7 @@
     dropdown.prop('selectedIndex', 0);
 
     const url = 'https://api.population.io/1.0/countries';
-
+    
     // Populate dropdown with list of provinces
     $.getJSON(url, function (data) {
         $.each(data.countries, function (key, entry) {
@@ -78,37 +71,14 @@
         })
     });
 
-    //Arrow up and down
-    $('#population-collapse-expand').click(function () {
-
-        $('#population-wizard-container').slideToggle("slow", function () {
-            //if container is visible, show an arrow that allows the container to be minimised
-            if (!$('#population-wizard-container').is(':visible')) {
-                $('#population-wizard-arrow-up').fadeOut().promise().done(function () {
-                    $('#population-wizard-arrow-down').fadeIn();
-                    $('#population-wizard-collapsed-title').fadeIn();
-                });
-            }
-            else {
-                $('#population-wizard-arrow-down').fadeOut().promise().done(function () {
-                    $('#population-wizard-arrow-up').fadeIn();
-                    $('#population-wizard-collapsed-title').fadeOut();
-                });
-            }
-        });
-    });
-
-
-
-
     function submitPopulationRequest() {
         //GET Data
         let year = $('#year-input').val();
         let visualisation = $('#visualisation-input').val();
-        let country = $('#country-input').val();
+        let country = formatCountryName($('#country-input').val());
 
         if (country == "Australia/New Zealand") { country = "New Zealand"; }
-
+        
         let url = 'https://api.population.io/1.0/population/' + year + '/' + country + '/?format=jsonp';
         console.log("Created URL from user Input: " + url);
         $.ajax({
@@ -121,10 +91,8 @@
 
                 //Creates visualisation
                 createD3Visualisation(result, visualisation);
-
-                $('#population-wizard-arrow-up').click().promise().done(function () {
-                    $('#population-chart-container').fadeIn(300);
-                });
+                $('#population-chart-container').fadeIn(300);
+                collapseExpandToggle('population-wizard-arrow-up', 'population-wizard-arrow-down', 'population-wizard-container');
             },
             error: function (errorResult) {
                 console.log('ERROR: ', errorResult.statusText);

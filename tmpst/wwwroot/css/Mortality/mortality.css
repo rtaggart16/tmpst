@@ -7,7 +7,7 @@
     Version - 1.0.1
 
     Description:
-    The news css file for the application
+    The mortality css file for the application
 */
 
 /*------------------------------------------------------
@@ -15,7 +15,7 @@
 --------------------------------------------------------
 # Common
 # Containers
-    ## News Card Container
+    ## mortality Card Container
 --------------------------------------------------------
 */
 
@@ -44,25 +44,26 @@ body {
 /*--------------------------------------------------------------------------
     # Containers
 ---------------------------------------------------------------------------*/
-.news-card-container {
+.mortality-card-container {
     padding-left: 10px;
     padding-right: 10px;
     margin-bottom: 10px;
 }
 
-.news-card-item {
+.mortality-card-item {
     padding-bottom: 10px;
 }
 /*--------------------------------------------------------------------------
     END: # Containers
 ---------------------------------------------------------------------------*/
 
-/*--------------------------------------------------------------------------
-    # Chart
----------------------------------------------------------------------------*/
-
-#chart {
-    min-width: 475px;
-    max-width: 800px;
-    margin: 0 auto
+#mortality-chart-container {
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    padding: 10px;
+    border-width: 0px;
+    
 }
+
+
