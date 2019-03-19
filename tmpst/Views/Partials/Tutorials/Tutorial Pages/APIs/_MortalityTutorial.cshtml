@@ -3,11 +3,6 @@
     <hr />
 </div>
 
-<div class="text-center">
-    <h2>News Tutorial</h2>
-    <hr />
-</div>
-
 <div class="row text-center">
     <div class="col-12 tutorial-para">
         <button onclick="downloadPDF('APIs/Mortality_API.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
@@ -22,19 +17,10 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            In the News Analysis system, tmpst uses an API with the user’s query entry to get data from
-            various news sources. This API was provided by <a href="https://newsapi.org/">https://newsapi.org/</a> , it requires a key that is
-            provided by this company, it is open source code and is free to use, it can also be requested as
-            many times as desired by the user. This API provides data of the top headlines, all published
-            articles and can be broken down into categories and locations
-        </p>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12 tutorial-para">
-        <p>
-            The endpoints that are provided are:
+            The mortality section of the tmpst website is one of the more simpler of APIs to 
+            receive data from as there are no keys required to access the data from the website. 
+            The mortality API is provided by the World Population API provides information on a 
+            of data from the world such as:
         </p>
     </div>
 </div>
@@ -42,9 +28,34 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <ul>
-            <li> Top headlines </li>
-            <li> Everything </li>
-            <li> Source (this is a minor endpoint) </li>
+            <li> World mortality Rank </li>
+            <li> Life Expectancy  </li>
+            <li> Mortality </li>
+            <li> Mortality Distribution </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            These are divided by endpoints which are where the information will 
+            be accessed from. Each endpoint can return data in JSON, JSONP and HTML. 
+            For each endpoint you have a lot of customizability for querying the API such as:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <ul>
+            <li> Sex</li>
+            <li>Country</li>
+            <li>Date</li>
+            <li>Date of Birth</li>
+            <li>Years Ago</li>
+            <li>Has Diabetes</li>
+            <li>Today VS Tomorrow</li>
         </ul>
     </div>
 </div>
@@ -70,19 +81,16 @@
         <p>
             <ul>
                 <li>
-                    Understanding of JSON format
+                    Understand the API (<a href="https://api.population.io">api.population.io</a>) by using the sandbox displayed on the website to make calls to their API
                 </li>
                 <li>
-                    Using the news API endpoint addresses
+                    The endpoint that will be used will be the:
                     <ul>
                         <li>
-                            <a href="https://newsapi.org/docs/endpoints/sources">https://newsapi.org/docs/endpoints/sources</a>
+                            <a href="https://api.population.io/1.0/countries">https://api.population.io/1.0/countries</a> for a list of countries
                         </li>
                         <li>
-                            <a href="https://newsapi.org/docs/endpoints/everything">https://newsapi.org/docs/endpoints/everything</a>
-                        </li>
-                        <li>
-                            <a href="https://newsapi.org/docs/endpoints/top-headlines">https://newsapi.org/docs/endpoints/top-headlines</a>
+                            <a href="https://api.population.io/#!/population/retrieveMortalityTableAllAges">https://api.population.io/#!/population/retrieveMortalityTableAllAges</a>  for mortality
                         </li>
                     </ul>
                 </li>
@@ -104,9 +112,9 @@
     <div class="col-12 tutorial-para">
         <p>
             <ul>
-                <li> Learn how to request data from one of the News feeds in Postman </li>
-                <li>Learn how to request data from one of the News feeds in a new tab</li>
-                <li>Learn how to request data from one of the News feeds using AJAX call </li>
+                <li> Learn how to request data from one of the World mortality feeds in Postman </li>
+                <li>Learn how to request data from one of the World mortality feeds in a new tab</li>
+                <li>Learn how to request data from one of the World mortality feeds using AJAX call </li>
             </ul>
         </p>
     </div>
@@ -122,7 +130,7 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            In this tutorial, we will create a request to the News API feed
+            In this tutorial, we will create a request to the World population API feed
             using the postman application on Windows.
             Before proceeding with this tutorial, please ensure you have access
             to the Postman application or are using the online version.
@@ -152,12 +160,16 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            As mentioned earlier, News offers many feed endpoints to choose from.
-            In this tutorial, not all sources will be shown because the request
-            format is identical for all. It is important to keep in mind that not
-            all sources will have data at the time of the request. The endpoint that
-            will be used for this tutorial is sources. This endpoint will
-            always have data so it is good as an example. The endpoint is shown below:
+            As mentioned earlier, World mortality offers many mortality feed
+            endpoints to choose from. In this tutorial, not all sources will
+            be shown because the request format is identical for all. It is 
+            important to keep in mind that not all sources will have data at
+            the time of the request. For example, making a request for the
+            mortality of a country 2000 years in the future won’t yield any
+            results from the request. With that in mind, the endpoint that 
+            will be used for this tutorial is New Zealand in the year 2019. 
+            This endpoint will always have data so it is good as an example. 
+            The endpoint is shown below:
         </p>
     </div>
 </div>
@@ -165,8 +177,8 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            <a href="https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=ff66547bdfe04a5ebb049e7743482186">
-                https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=ff66547bdfe04a5ebb049e7743482186
+            <a href="https://api.population.io:443/1.0/mortality-distribution/United%20Kingdom/male/49y2m/today/">
+                https://api.population.io:443/1.0/mortality-distribution/United%20Kingdom/male/49y2m/today/
             </a>
         </p>
     </div>
