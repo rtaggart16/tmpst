@@ -2,13 +2,11 @@
     console.log('COUNTRY INFO: ', window.opener.globalCountryInfo);
     console.log('IS BUILT: ', window.opener.isBuilt);
 
-    if (window.opener.isBuilt) {
+    if (window.opener.isBuilt == false) {
         buildCountryContainer();
     }
 
-    createCountrySummary(window.opener.globalCountryInfo);
-    createCountryMapAndFlag(window.opener.globalCountryInfo);
-    createCountryInfoTable(window.opener.globalCountryInfo);
+    updateCountryContainer();
 })();
 
 function buildCountryContainer() {
@@ -23,10 +21,6 @@ function buildCountryContainer() {
         '</div>' +
         '<div class="row earthquake-card-item">' +
         '<div id="country-flag-container" class="col-6">' +
-        '</div>' +
-        '<div class="col-6 text-center">' +
-        '<div class="container-fluid" style="height:100%" id="country-capital-map">' +
-        '</div>' +
         '</div>' +
         '</div>' +
         '<div class="row earthquake-card-item">' +
@@ -66,7 +60,7 @@ function createCountrySummary(result) {
 function createCountryMapAndFlag(result) {
     $('#country-flag-container').append('<img class="img-fluid" src="' + result.flag + '" />');
 
-    initMap(result.latlng[0], result.latlng[1], result.name, 'country-capital-map');
+    //initMap(result.latlng[0], result.latlng[1], result.name, 'country-capital-map');
 }
 
 function createCountryInfoTable(result) {
@@ -110,3 +104,24 @@ function createCountryInfoTable(result) {
         '<tr><td><strong>Demonym</strong></td><td>' + demonym + '</td></tr>' +
         '<tr><td><strong>Languages</strong></td><td>' + languages + '</td></tr>');
 }
+
+function clearEarthquakeCountryInfo() {
+    $('#country-flag-container').empty();
+    $('#country-info-tbl-body').empty();
+}
+
+function updateCountryContainer() {
+    $('#country-info-container').fadeOut(300).promise().done(function () {
+        clearEarthquakeCountryInfo();
+        createCountrySummary(window.opener.globalCountryInfo);
+        createCountryMapAndFlag(window.opener.globalCountryInfo);
+        createCountryInfoTable(window.opener.globalCountryInfo);
+    }).promise().done(function () {
+        $('#country-info-container').fadeIn(300);
+    });
+}
+
+$('#refresh-btn').click(function () {
+    updateCountryContainer();
+});
+

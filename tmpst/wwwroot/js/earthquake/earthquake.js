@@ -22,9 +22,7 @@
 # API Requests
     ## Contact Earthquake API
 # Dynamic Data Functions
-    ## Current Country Summary
-    ## Current Country Map and Flag
-    ## Current Country Info Table
+    ## Child Window
 --------------------------------------------------------
 */
 
@@ -162,28 +160,7 @@ function viewCountryInfo(lat, lon) {
                     clearEarthquakeCountryInfo();
                     console.log('Country Result: ', result);
 
-                    let countryInfo = result;
-
-                    window.globalCountryInfo = countryInfo;
-
-                    if (typeof (countryInfoWindow) == 'undefined' || countryInfoWindow.closed) {
-
-                        window.isBuilt = false;
-
-                        // window is not open: insert scripts and HTML
-                        viewWindow = window.open('');
-
-                        viewWindow.document.write('<html><head><title>Country Info</title><script src="../../../../../../lib/jquery/jquery-3.3.1.min.js" async><\/script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" defer><\/script><script src="../../../../../lib/bootstrap/js/bootstrap.js" defer><\/script><link rel="stylesheet" href="../../../../../../../lib/bootstrap/css/bootstrap.css" /><link href="../../../../../css/Earthquake/countryInfo.css" rel="stylesheet" /><script src="../../../../../../js/earthquake/countryInfo.js"><\/script><script src="../../../../../../js/general/map.js"><\/script><script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6yo58EUHrSdjTIMKz_lP2jt77KE-NfOI&callback=initMap"><\/script ></head><body>');
-
-                        viewWindow.document.write('<body><div id="country-info-container"></div></body></html>');
-                    }
-
-                    /*
-                    createCountrySummary(result);
-                    createCountryMapAndFlag(result);
-                    createCountryInfoTable(result);
-
-                    displayCountryInfoPage();*/
+                    openNewWindow(result);
                 },
                 error: function (errorResult) {
                     Swal.fire({
@@ -209,77 +186,27 @@ function viewCountryInfo(lat, lon) {
     # Dynamic Data Functions
 ---------------------------------------------------------------------------*/
 
-function createCountrySummary(result) {
-    let summaryText = result.name + ' is a country which is part of ' + result.region + '. ' + result.name + ' is also part of the subregion ' + result.subregion + '. ';
+function openNewWindow(result) {
+    let countryInfo = result;
 
-    if (result.altSpellings.length > 0) {
-        summaryText += result.name + ' is also called ';
-        $.each(result.altSpellings, function (key, val) {
-            if ((key + 1) == result.altSpellings.length) {
-                summaryText += val + '. ';
-            }
-            else {
-                summaryText += val + ', ';
-            }
+    window.globalCountryInfo = countryInfo;
 
-        });
+    if (typeof (countryInfoWindow) == 'undefined' || countryInfoWindow.closed) {
+
+        window.isBuilt = false;
+
+        countryInfoWindow = window.open('');
+
+        countryInfoWindow.document.write('<html><head><title>Country Info</title><script src="../../../../../../lib/jquery/jquery-3.3.1.min.js" async><\/script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" defer><\/script><script src="../../../../../lib/bootstrap/js/bootstrap.js" defer><\/script><link rel="stylesheet" href="../../../../../../../lib/bootstrap/css/bootstrap.css" /><link href="../../../../../css/Earthquake/countryInfo.css" rel="stylesheet" /><script src="../../../../../../js/general/map.js"><\/script><script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6yo58EUHrSdjTIMKz_lP2jt77KE-NfOI&callback=initMap"><\/script ></head><body>');
+
+        countryInfoWindow.document.write('<body><div style="display:none" id="country-info-container"></div><button id="refresh-btn" style="display:none"></button></body><script src="../../../../../../js/earthquake/countryInfo.js"><\/script></html>');
+
+        countryInfoWindow.document.close();
     }
-
-    summaryText += result.name + '\'s native name is ' + result.nativeName;
-
-    $('#country-information-summary').text(summaryText);
-}
-
-function createCountryMapAndFlag(result) {
-    $('#country-flag-container').append('<img class="img-fluid" src="' + result.flag + '" />');
-
-    initMap(result.latlng[0], result.latlng[1], result.name, 'country-capital-map');
-}
-
-function createCountryInfoTable(result) {
-    let capital = result.capital;
-    let population = result.population;
-    let currencies = '';
-
-    if (result.currencies.length > 0) {
-        $.each(result.currencies, function (key, val) {
-            if ((key + 1) == result.currencies.length) {
-                let currencyText = val.name + ' (' + val.symbol + ')'
-                currencies += currencyText;
-            }
-            else {
-                let currencyText = val.name + ' (' + val.symbol + '), '
-                currencies += currencyText;;
-            }
-        });
+    else {
+        let updateButton = countryInfoWindow.document.getElementById('refresh-btn');
+        $(updateButton).click();
     }
-
-    let demonym = result.demonym;
-
-    let languages = '';
-
-    if (result.languages.length > 0) {
-        $.each(result.languages, function (key, val) {
-            if ((key + 1) == result.currencies.length) {
-                let languageText = val.name + ' (' + val.nativeName + ')'
-                languages += languageText;
-            }
-            else {
-                let languageText = val.name + ' (' + val.nativeName + '), '
-                languages += languageText;;
-            }
-        });
-    }
-
-    $('#country-info-tbl-body').append('<tr><td><strong>Capital</strong></td><td>' + capital + '</td></tr>' +
-        '<tr><td><strong>Population</strong></td><td>' + population + '</td></tr>' +
-        '<tr><td><strong>Currencies</strong></td><td>' + currencies + '</td></tr>' +
-        '<tr><td><strong>Demonym</strong></td><td>' + demonym + '</td></tr>' +
-        '<tr><td><strong>Languages</strong></td><td>' + languages + '</td></tr>');
-}
-
-function openNewWindow() {
-
 }
 
 /*--------------------------------------------------------------------------
