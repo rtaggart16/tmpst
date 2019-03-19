@@ -92,6 +92,18 @@
     <Content Update="Views\Partials\Tutorials\Tutorial Pages\Visualisations\_D3Tutorial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\Visualisations\_JsTreeTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\Visualisations\_PrisimTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\Visualisations\_FontAwesomeTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\Visualisations\_JQueryTutorial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Partials\Tutorials\Tutorial Pages\Visualisations\_ChartsJsTutorial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
