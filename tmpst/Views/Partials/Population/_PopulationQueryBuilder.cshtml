@@ -24,10 +24,10 @@
             <div id="population-wizard-container">
                 <div class="row population-card-item">
                     <div class="col-6">
-                        <select id="country-input" class="form-control" required></select>
+                        <select id="population-country-input" class="form-control" required></select>
                     </div>
                     <div class="col-6">
-                        <input id="year-input" class="form-control" placeholder="Year" required />
+                        <input id="population-year-input" class="form-control" placeholder="Year" required />
                     </div>
                 </div>
 
@@ -48,7 +48,7 @@
 
 <script>
 
-    let dropdown = $('#country-input');
+    let dropdown = $('#population-country-input');
 
     dropdown.empty();
 
@@ -58,16 +58,17 @@
     const url = 'https://api.population.io/1.0/countries';
     
     // Populate dropdown with list of provinces
-    $.getJSON(url, function (data) {
-        $.each(data.countries, function (key, entry) {
-            dropdown.append($('<option></option>').attr('value', entry).text(entry));
-        })
-    });
+    getPopulationCountries('#population-country-input');
+    //$.getJSON(url, function (data) {
+    //    $.each(data.countries, function (key, entry) {
+    //        dropdown.append($('<option></option>').attr('value', entry).text(entry));
+    //    })
+    //});
 
     function submitPopulationRequest() {
         //GET Data
-        let year = $('#year-input').val();
-        let country = formatCountryName($('#country-input').val());
+        let year = $('#population-year-input').val();
+        let country = $('#population-country-input').val();
 
         if (country == "Australia/New Zealand") { country = "New Zealand"; }
         
@@ -78,7 +79,6 @@
             url: url,
             crossDomain: true,
             dataType: 'jsonp',
-            contentType: "application/json",
             success: function (result) {
 
                 //Creates visualisation
