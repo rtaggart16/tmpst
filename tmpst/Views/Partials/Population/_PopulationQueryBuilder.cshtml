@@ -23,18 +23,11 @@
             </div>
             <div id="population-wizard-container">
                 <div class="row population-card-item">
-                    <div class="col-4">
-                        <select id="country-input" class="form-control" required></select>
+                    <div class="col-6">
+                        <select id="population-country-input" class="form-control" required></select>
                     </div>
-                    <div class="col-4">
-                        <input id="year-input" class="form-control" placeholder="Year" required />
-                    </div>
-                    <div class="col-4">
-                        <select id="visualisation-input" class="form-control" required>
-                            <option value="" disabled selected>Select Visualisation</option>
-                            <option value="radar-chart">Radar Chart</option>
-                            <option value="bar-chart">Bar Chart</option>
-                        </select>
+                    <div class="col-6">
+                        <input id="population-year-input" class="form-control" placeholder="Year" required />
                     </div>
                 </div>
 
@@ -55,7 +48,7 @@
 
 <script>
 
-    let dropdown = $('#country-input');
+    let dropdown = $('#population-country-input');
 
     dropdown.empty();
 
@@ -65,17 +58,17 @@
     const url = 'https://api.population.io/1.0/countries';
     
     // Populate dropdown with list of provinces
-    $.getJSON(url, function (data) {
-        $.each(data.countries, function (key, entry) {
-            dropdown.append($('<option></option>').attr('value', entry).text(entry));
-        })
-    });
+    getPopulationCountries('#population-country-input');
+    //$.getJSON(url, function (data) {
+    //    $.each(data.countries, function (key, entry) {
+    //        dropdown.append($('<option></option>').attr('value', entry).text(entry));
+    //    })
+    //});
 
     function submitPopulationRequest() {
         //GET Data
-        let year = $('#year-input').val();
-        let visualisation = $('#visualisation-input').val();
-        let country = formatCountryName($('#country-input').val());
+        let year = $('#population-year-input').val();
+        let country = $('#population-country-input').val();
 
         if (country == "Australia/New Zealand") { country = "New Zealand"; }
         
@@ -86,11 +79,10 @@
             url: url,
             crossDomain: true,
             dataType: 'jsonp',
-            contentType: "application/json",
             success: function (result) {
 
                 //Creates visualisation
-                createD3Visualisation(result, visualisation);
+                createD3Visualisation(result);
                 $('#population-chart-container').fadeIn(300);
                 collapseExpandToggle('population-wizard-arrow-up', 'population-wizard-arrow-down', 'population-wizard-container');
             },
@@ -108,7 +100,7 @@
                     Swal.fire({
                         type: 'error',
                         title: 'Load Error',
-                        text: 'An error has occurred when loading the data from our sources. Please refresh your screen.'
+                        text: 'An error has occurred when loading the data from our sources. Please wait a few seconds or try again with different criteria.'
                     })
                 }
             }

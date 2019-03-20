@@ -1,4 +1,589 @@
 ﻿<div class="text-center">
-    <h2>Geo Names Tutorial</h2>
+    <h2>GeoNames Tutorial</h2>
     <hr />
+</div>
+
+<div class="row text-center">
+    <div class="col-12 tutorial-para">
+        <button onclick="downloadPDF('APIs/GeoNames_API.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
+        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('geonames-tutorial')">Go Full Screen</button>
+        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('geonames-tutorial')">Exit Full Screen</button>
+    </div>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In the Earthquake system, tmpst uses an API to fetch the country code
+            associated with a specific latitude and longitude. The API used is
+            offered by GeoNames which provides multiple endpoints and various
+            attributes that can be queried for, however, only the country code
+            endpoint is used by tmpst. The GeoNames API does require authorisation,
+            however, this is in the form of a username that is provided when signing up.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The country code endpoint provides the following attributes:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <ul>
+            <li> languages </li>
+            <li> distance </li>
+            <li> countryCode </li>
+            <li> countryName </li>
+        </ul>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <span><strong>Pre-Requisites</strong></span>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Understanding of JSONp format
+                </li>
+                <li>
+                    GeoNames account username for authorisation
+                </li>
+                <li>
+                    Latitude and longitude to query the API for
+                </li>
+                <li>
+                    A suitable method for making a request (Postman: <a href="https://www.getpostman.com/downloads/">https://www.getpostman.com/downloads/</a> or in new tab)
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Aims</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li> Learn how to request data from one of the GeoNames country code endpoint in Postman </li>
+                <li>Learn how to request data from one of the GeoNames country code endpoint in a new tab</li>
+                <li>Learn how to request data from one of the GeoNames country code endpoint using AJAX call </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+
+
+<div class="text-center">
+    <h3>Postman Tutorial</h3>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In this tutorial, we will create a request to the GeoNames
+            country code endpoint using the postman application on Windows.
+            Before proceeding with this tutorial, please ensure you have access
+            to the Postman application or are using the online version.
+            version.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Steps
+            <ol>
+                <li>Construct Postman request</li>
+            </ol>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 1: Construct Postman request</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            This tutorial assumes that you have a basic understanding of how to use Postman.
+            If not, we provide a tutorial on how to utilise Postman properly that you may wish
+            to read before you continue with this tutorial. If you know how to use Postman,
+            create a new GET request and give it an appropriate name. The name I will use in
+            this tutorial is “GeoNames Country Code Request”. If you have setup the request
+            properly you should see the following:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <img src="~/images/Tutorials/APIs/GeoNames/postman-request.png" />
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Nothing will happen if you attempt to send the request as
+            the url box is empty. Now we have to add the base url
+            (https://secure.geonames.org/countryCode)
+            <a href="https://secure.geonames.org/countryCode">
+                https://secure.geonames.org/countryCode
+            </a>
+            to the url box as well as adding the following as query parameters:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <ul>
+            <li>
+                type = JSON
+            </li>
+            <li>
+                lat = 55.8668213
+            </li>
+            <li>
+                lng = -4.2521489
+            </li>
+            <li>
+                username = {Your_GeoNames_Username}
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The final url should look like the following:
+            <a href="https://secure.geonames.org/countryCode?type=JSON&lat=55.8668213&lng=-4.2521489&username={Your_GeoNames_Username}">
+                https://secure.geonames.org/countryCode?type=JSON&lat=55.8668213&lng=-4.2521489&username={Your_GeoNames_Username}
+            </a>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The latitude and longitude chosen is the exact location of Glasgow Caledonian University. 
+            If you hit the send button you should see the following response:
+        </p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <pre>
+                <code class="language-javascript">
+{
+    "languages": "en-GB,cy-GB,gd",
+    "distance": "0",
+    "countryCode": "GB",
+    "countryName": "United Kingdom"
+}
+
+                </code>
+            </pre>
+        </p>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="text-center">
+    <h3>Browser Request Tutorial</h3>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In this tutorial, we will create a request to the GeoNames country code endpoint using a new tab on a Google Chrome browser. For this tutorial, we will use the same endpoint as is used in the Postman example:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <a href="https://secure.geonames.org/countryCode?type=JSON&lat=55.8668213&lng=-4.2521489&username={Your_GeoNames_Username}">
+            https://secure.geonames.org/countryCode?type=JSON&lat=55.8668213&lng=-4.2521489&username={Your_GeoNames_Username}
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Steps
+            <ol>
+                <li>Add url to tab and run</li>
+            </ol>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 1: Add url to tab and run</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            This tutorial is easier than either the Postman method or the AJAX method (still to come)
+            as it only involves using a tab in a browser as if you are navigating to a web page.
+            To get a result, add the url to the address bar and hit enter and you should see the following:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/APIs/GeoNames/browser-response.png" />
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The result is shown in plain text below:
+        </p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <pre>
+            <code class="language-javascript">
+{
+    "languages": "en-GB,cy-GB,gd",
+    "distance": "0",
+    "countryCode": "GB",
+    "countryName": "United Kingdom"
+}
+                </code>
+            </pre>
+        </p>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="text-center">
+    <h3>AJAX Tutorial</h3>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The above methods show you how to access the GeoNames country code endpoint and
+            view the data, however, neither method involves any coding
+            and neither would work well in an application’s context.
+            So, in this tutorial we will connect to the endpoint using
+            AJAX which can then be put into the javascript of any application
+
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Steps
+            <ol>
+                <li>Create a new playcode project</li>
+                <li>Add the provided AJAX code and run</li>
+            </ol>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 1: Create a new playcode project</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            For this tutorial, playcode will be used to demonstrate the AJAX request.
+            Although we are using playcode, almost any online JavaScript IDE would
+            work (JsFiddle). If you search for playcode and
+            click on the link you should see the following default project setup:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/APIs/GeoNames/playcode-request.png" />
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Playcode is ideal for this tutorial as we only need to
+            change the js file and view the console as jquery is
+            referenced as standard
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Step 2: Add the provided AJAX code and run</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The AJAX required to fetch the data programatically is:
+        </p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <pre>
+            <code class="language-javascript">
+$.ajax({
+        type: "GET",
+        url: "https://secure.geonames.org/countryCode?type=JSON&lat=55.8668213&lng=-4.2521489&username={Your_GeoNames_Username}",
+        dataType: "jsonp",
+        success: function (result) {
+            console.log('AJAX Result: ', result);
+        },
+        error: function (errorResult) {
+            console.log('ERROR: ', errorResult.statusText);
+            
+        }
+    });
+                </code>
+            </pre>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            If you replace the contents of script.js with
+            the above AJAX and run the code, you should see
+            the following:
+        </p>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/APIs/GeoNames/playcode-response.png" />
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            As you can see this result looks similar to the other results
+            we have seen earlier in the project, however, this code can be
+            added to an application and the data can be fetched and altered
+            dynamically.
+
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Conclusion</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            That is the methods which can be used to request data from the GeoNames country code endpoint.
+            The most useful of the methods is
+            AJAX, however, the others can be used for testing and ensuring the quality of the data.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Common Issues:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Normally, implementing the methods discussed in this tutorial are relatively easy,
+            however, some of the most common issues are detailed below:
+        </p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <ul>
+            <li>
+                Not authorising username - The username used to
+                request data from the endpoint has to be authorised on the GeoNames site. 
+                If this is not dones, then any attempt to access the endpoint will fail
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Outcomes</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            You should now be able to:
+        </p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <ul>
+            <li>
+                Request data from one of the GeoNames country code endpoint in Postman
+            </li>
+            <li>
+                Request data from one of the GeoNames country code endpoint in a new tab
+            </li>
+            <li>
+                Request data from one of the GeoNames country code endpoint using AJAX call
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>References</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Although we hope this tutorial has been all the help you need, here are some useful links that may be of use:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Useful Resources:</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <ul>
+            <li>
+                GeoNames home page - <a href="http://www.geonames.org/">http://www.geonames.org/</a>
+            </li>
+            <li>
+                Functional playcode AJAX request - <a href="https://playcode.io/268741?tabs=console&script.js&output">https://playcode.io/268741?tabs=console&script.js&output</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <span><strong>Tools:</strong></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <ul>
+            <li>
+                Postman - <a href="https://www.getpostman.com/downloads/">https://www.getpostman.com/downloads/</a>
+                
+            </li>
+            <li>
+                Playcode - <a href="https://playcode.io/">https://playcode.io/</a>
+            </li>
+            
+        </ul>
+    </div>
 </div>

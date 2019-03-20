@@ -86,16 +86,25 @@ $('#occurence-type-select').on('change', function () {
     # API Requests
 ---------------------------------------------------------------------------*/
 
+/* FUNCTION: submitEarthquakeRequest
+ * PARAMS: None
+ * DESCRIPTION: Function to submit a request to the Earthquake API with then user's chosen query data
+*/
 function submitEarthquakeRequest() {
+    // Gets the url from the selected item in the select box
     let url = $('#' + requestType + '-type-select').val();
     console.log(url);
+    // Begins AJAX request construction
     $.ajax({
+        // Get request
         type: "GET",
         url: url,
+        // Expecting GeoJSON returned
         contentType: "application/vnd.geo+json",
         success: function (result) {
             console.log('AJAX Response: ', result);
 
+            // If their is data returned
             if (result.features.length > 0) {
                 Swal.fire({
                     type: 'warning',
@@ -139,21 +148,34 @@ function submitEarthquakeRequest() {
 
 }
 
+/* FUNCTION: submitEarthquakeRequest
+ * PARAMS: 
+ *  - lat: Latitude of an earthquake location
+ *  - lon: Longitude of an earthquake location
+ * DESCRIPTION: Function to retrieve relevant country information from a specified latitude and longitude
+*/
 function viewCountryInfo(lat, lon) {
     console.log('Lat Object ', lat);
     console.log('Lon Object ', lon);
 
+    // Sets the request url for the GeoNames country code API
     let url = 'https://secure.geonames.org/countryCode?type=JSON&lat=' + lat + '&lng=' + lon +'&username=tmpst';
-    
+
+    // Begins AJAX request construction
     $.ajax({
+        // Get request
         type: "GET",
         url: url,
+        // Expecting JSONp returned
         dataType: "jsonp",
         success: function (result) {
             console.log('AJAX Result: ', result);
 
+            // Begins second AJAX request construction
             $.ajax({
+                // Get request
                 type: "GET",
+                // Specifies the REST countries API url appended with the country code returned from GeoNames
                 url: 'https://restcountries.eu/rest/v2/alpha/' + result.countryCode,
                 dataType: "json",
                 success: function (result) {
