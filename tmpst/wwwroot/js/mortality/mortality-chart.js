@@ -1,11 +1,14 @@
 ﻿function createMortalityChart(country, sex, data) {
     let dataobject = [];
+    
     $.each(data, function (key, val) {
         let mortalityobject = {
-            name: val.age, 
+            name: val.age,
             value: val.mortality_percent
         };
-        dataobject.push(mortalityobject);
+        if (val.age > 0 && val.age < 100) {
+            dataobject.push(mortalityobject);
+        }
     });
     //var myChart = echarts.init(document.getElementById('mortality-chart-container'));
 
@@ -74,18 +77,30 @@
      var myChart = echarts.init(document.getElementById('mortality-chart-container'));
 
     option = {
+        legend: {
+
+            
+            type: 'scroll',
+            bottom: 10,
+            
+            
+            
+            
+            
+        },
+
         title: {
-            text: 'Mortality Rate',
+            text: 'Mortality Rate within \n a specific age range',
             left: 'center',
-            top: 20,
+            //top: 20,
             textStyle: {
-                color: '#ccc'
+                color: '#000000'
             }
         },
 
         tooltip: {
             trigger: 'item',
-            formatter: "{a} <br/>{b}: {c} ({d}%)",
+            formatter: "Death rate for a" + " " + sex + " " + " who is " + "{b}: ({d}%)",
             position: function (pos, params, dom, rect, size) {
                 // tooltip will be fixed on the right if mouse hovering on the left,
                 // and on the left if hovering on the right.
@@ -105,6 +120,8 @@
                 avoidLabelOverlap: false,
                 label: {
                     normal: {
+                        formatter: ' {b}: \n{d}%',
+                        fontSize: 5,
                         show: false,
                         position: 'center'
                         
