@@ -22,26 +22,8 @@
         .style("text-align", "center")
         .text(subheader);
 
-    //Chooses Visualisation
-    switch (D3Type){
-        
-        case D3Type = "radar-chart":
-            d3.select("#population-text-header").text("Radar Chart");
-            radarChartBuilder(data);
-            break;
-        case D3Type = "bar-chart":
-            d3.select("#population-text-header").text("Bar Chart");
-            barChartBuilder(data);
-            break;
-        default:
-            Swal.fire({
-                type: 'error',
-                title: 'Data Request Error',
-                text: 'An error has occurred when submitting your request. Please try again and select a Visualisation.'
-            });
-
-            break;
-    }
+    radarChartBuilder(data);
+    
 }
 
 

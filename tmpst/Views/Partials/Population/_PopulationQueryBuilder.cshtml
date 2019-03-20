@@ -23,18 +23,11 @@
             </div>
             <div id="population-wizard-container">
                 <div class="row population-card-item">
-                    <div class="col-4">
+                    <div class="col-6">
                         <select id="country-input" class="form-control" required></select>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <input id="year-input" class="form-control" placeholder="Year" required />
-                    </div>
-                    <div class="col-4">
-                        <select id="visualisation-input" class="form-control" required>
-                            <option value="" disabled selected>Select Visualisation</option>
-                            <option value="radar-chart">Radar Chart</option>
-                            <option value="bar-chart">Bar Chart</option>
-                        </select>
                     </div>
                 </div>
 
@@ -74,7 +67,6 @@
     function submitPopulationRequest() {
         //GET Data
         let year = $('#year-input').val();
-        let visualisation = $('#visualisation-input').val();
         let country = formatCountryName($('#country-input').val());
 
         if (country == "Australia/New Zealand") { country = "New Zealand"; }
@@ -90,7 +82,7 @@
             success: function (result) {
 
                 //Creates visualisation
-                createD3Visualisation(result, visualisation);
+                createD3Visualisation(result);
                 $('#population-chart-container').fadeIn(300);
                 collapseExpandToggle('population-wizard-arrow-up', 'population-wizard-arrow-down', 'population-wizard-container');
             },
@@ -108,7 +100,7 @@
                     Swal.fire({
                         type: 'error',
                         title: 'Load Error',
-                        text: 'An error has occurred when loading the data from our sources. Please refresh your screen.'
+                        text: 'An error has occurred when loading the data from our sources. Please wait a few seconds or try again with different criteria.'
                     })
                 }
             }
