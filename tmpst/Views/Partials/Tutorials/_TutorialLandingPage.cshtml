@@ -52,6 +52,7 @@
                     <ul>
                         <li id="earthquake-api-desc-li">Earthquake API</li>
                         <li id="geonames-api-desc-li">GeoNames API</li>
+                        <li id="mortality-api-desc-li">Mortality API</li>
                         <li id="news-api-desc-li">News API</li>
                         <li id="pollution-api-desc-li">Pollution API</li>
                         <li id="population-api-desc-li">Population API</li>
@@ -62,11 +63,15 @@
                 <li>
                     Visualisations
                     <ul>
-                        <li id="d3-desc-li">D3</li>
                         <li id="chartsjs-desc-li">Charts.js</li>
-                        <li id="highcharts-desc-li">Highcharts</li>
+                        <li id="d3-desc-li">D3</li>
                         <li id="echarts-desc-li">eCharts</li>
+                        <li id="font-awesome-desc-li">Font Awesome</li>
                         <li id="google-maps-desc-li">Google Maps</li>
+                        <li id="highcharts-desc-li">Highcharts</li>
+                        <li id="jquery-desc-li">jQuery</li>
+                        <li id="jstree-desc-li">JS Tree</li>
+                        <li id="prisim-desc-li">Prisim</li>
                     </ul>
                 </li>
             </ul>
@@ -117,6 +122,9 @@
             <div style="display:none" class="tutorial-page" id="geonames-tutorial">
                 @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/APIs/_GeoNamesTutorial.cshtml")
             </div>
+            <div style="display:none" class="tutorial-page" id="mortality-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/APIs/_MortalityTutorial.cshtml")
+            </div>
             <div style="display:none" class="tutorial-page" id="news-tutorial">
                 @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/APIs/_NewsTutorial.cshtml")
             </div>
@@ -134,20 +142,32 @@
             </div>
             <!--END - APIs Pages-->
             <!--START - Visualisations Pages-->
-            <div style="display:none;" class="tutorial-page" id="d3-tutorial">
-                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Visualisations/_D3Tutorial.cshtml")
-            </div>
             <div style="display:none" class="tutorial-page" id="chartsjs-tutorial">
                 @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Visualisations/_ChartsJsTutorial.cshtml")
             </div>
-            <div style="display:none" class="tutorial-page" id="highcharts-tutorial">
-                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Visualisations/_HighchartsTutorial.cshtml")
+            <div style="display:none;" class="tutorial-page" id="d3-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Visualisations/_D3Tutorial.cshtml")
             </div>
             <div style="display:none" class="tutorial-page" id="echarts-tutorial">
                 @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Visualisations/_EChartsTutorial.cshtml")
             </div>
+            <div style="display:none" class="tutorial-page" id="font-awesome-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Visualisations/_FontAwesomeTutorial.cshtml")
+            </div>
             <div style="display:none" class="tutorial-page" id="google-maps-tutorial">
                 @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Visualisations/_GoogleMapsTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="highcharts-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Visualisations/_HighchartsTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="jquery-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Visualisations/_JQueryTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="jstree-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Visualisations/_JsTreeTutorial.cshtml")
+            </div>
+            <div style="display:none" class="tutorial-page" id="prisim-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Visualisations/_PrisimTutorial.cshtml")
             </div>
             <!--END - Visualisations Pages-->
         </div>

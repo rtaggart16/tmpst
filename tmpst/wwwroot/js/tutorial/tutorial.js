@@ -31,13 +31,18 @@ function loadViews() {
         .add($('#geojson-tutorial'))
         .add($('#earthquake-tutorial'))
         .add($('#geonames-tutorial'))
+        .add($('#mortality-tutorial'))
         .add($('#news-tutorial'))
         .add($('#pollution-tutorial'))
         .add($('#population-tutorial'))
         .add($('#rest-countries-tutorial'))
         .add($('#weather-tutorial'))
         .add($('#d3-tutorial'))
+        .add($('#jquery-tutorial'))
         .add($('#chartsjs-tutorial'))
+        .add($('#font-awesome-tutorial'))
+        .add($('#jstree-tutorial'))
+        .add($('#prisim-tutorial'))
         .add($('#highcharts-tutorial'))
         .add($('#echarts-tutorial'))
         .add($('#google-maps-tutorial'));
@@ -89,6 +94,9 @@ function processNodeRequest(id) {
     if (id == 'geonames-api-desc-li') {
         fadeSpecifiiedTut('geonames-tutorial');
     }
+    if (id == 'mortality-api-desc-li') {
+        fadeSpecifiiedTut('mortality-tutorial');
+    }
     if (id == 'news-api-desc-li') {
         fadeSpecifiiedTut('news-tutorial');
     }
@@ -122,6 +130,18 @@ function processNodeRequest(id) {
     }
     if (id == 'google-maps-desc-li') {
         fadeSpecifiiedTut('google-maps-tutorial');
+    }
+    if (id == 'font-awesome-desc-li') {
+        fadeSpecifiiedTut('font-awesome-tutorial');
+    }
+    if (id == 'jstree-desc-li') {
+        fadeSpecifiiedTut('jstree-tutorial');
+    }
+    if (id == 'jquery-desc-li') {
+        fadeSpecifiiedTut('jquery-tutorial');
+    }
+    if (id == 'prisim-desc-li') {
+        fadeSpecifiiedTut('prisim-tutorial');
     }
 
 

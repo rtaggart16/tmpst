@@ -6,8 +6,6 @@
      * DESCRIPTION: Function to initialise the map which displays where in the world a user has requested weather from
     */
 function initMap(latitude, longitude, placeName, containerID) {
-    console.log('Lat: ', latitude);
-    console.log('Lon: ', longitude);
 
     // Create the object which stores the latitude and longitude of the marker
     let myLatLng;
