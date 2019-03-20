@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\css\Overview\" />
-    <Folder Include="wwwroot\images\Tutorials\APIs\Weather\" />
     <Folder Include="wwwroot\tutorials\Visualisations\" />
   </ItemGroup>
 
