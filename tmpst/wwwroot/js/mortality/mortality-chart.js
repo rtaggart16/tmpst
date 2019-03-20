@@ -79,7 +79,7 @@
             left: 'center',
             top: 20,
             textStyle: {
-                color: '#ccc'
+                color: '#000000'
             }
         },
 
