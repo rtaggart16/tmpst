@@ -2,3 +2,171 @@
     <h2>Pollution Tutorial</h2>
     <hr />
 </div>
+
+<div class="row text-center">
+    <div class="col-12 tutorial-para">
+        <button onclick="downloadPDF('APIs/Pollution_API.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
+        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('Pollution_API')">Go Full Screen</button>
+        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('Pollution_API')">Exit Full Screen</button>
+    </div>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The pollution section of the tmpst website is one
+            of the more simpler of APIs to receive data from as
+            there are no keys required to access the data from
+            the website. The pollution API is provided by OpenAQ
+            which provides information on a variation of data
+            from the world such as:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Cities
+                </li>
+                <li>
+                    Countries
+                </li>
+                <li>
+                    Pollution Tracking Locations
+                </li>
+                <li>
+                    Pollution Measurements
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            These are divided by endpoints which are where
+            the information will be accessed from. Each
+            endpoint can return data in JSON. For each
+            endpoint you have a lot of customizability for
+            querying the API. Parameters for the measurements
+            endpoint include:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Country
+                </li>
+                <li>
+                    City
+                </li>
+                <li>
+                    Location
+                </li>
+                <li>
+                    Pollution Type
+                </li>
+                <li>
+                    Coordinates
+                </li>
+                <li>
+                    And more...
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In this tutorial:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Pre-requisits
+            <ul>
+                <li>
+                    Read the API documentation (https://docs.openaq.org/#api-Measurements)
+                </li>
+                <li>
+                    The endpoint that will be used will be the:
+                </li>
+                <ul>
+                    <li>
+                        https://api.openaq.org/v1/measurements for pollution measurements
+                    </li>
+                </ul>
+                <li>
+                    A suitable method for making a request (Postman: https://www.getpostman.com/downloads/ or in a new tab)
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Aims:
+            <ul>
+                <li>
+                    Learn how to request data from one of the OpenAQ feeds in Postman
+                </li>
+                <li>
+                    Learn how to request data from one of the OpenAQ feeds in a new tab
+                </li>
+                <li>
+                    Learn how to request data from one of the OpenAQ feeds using AJAX call
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+
+<div class="text-center">
+    <h3> Postman Tutorial</h3>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In this tutorial, we will create a request to a OpenAQ
+            API feed using the postman application on Windows.
+            Before proceeding with this tutorial, please ensure
+            you have access to the Postman application or are using
+            the online version.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+           Steps:
+            <ul>
+                <li>
+                    Choose endpoint to request data from
+                </li>
+                <li>
+                    Construct request in Postman                   
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
