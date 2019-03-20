@@ -114,6 +114,7 @@ function submitEarthquakeRequest() {
                     
                 })
 
+                // Set a brief timeout before calling the createClusterMap
                 setTimeout(function () {
                     createClusterMap(result.features);
                 }, 100);
@@ -121,14 +122,15 @@ function submitEarthquakeRequest() {
                 $('#earthquake-wizard-arrow-up').click().promise().done(function () {
                     $('#earthquake-cluster-map-container').fadeIn(300);
                 });
+
+                // Close the SweetAlert
                 result.dismiss === Swal.DismissReason.timer
-                
             }
             else {
                 Swal.fire({
                     type: 'warning',
                     title: 'No Data',
-                    text: 'There is no data available for your request. Please submit another request'
+                    text: 'No ' + requestType + ' earthquakes have been found. Please try another time'
                 })
             }
 
