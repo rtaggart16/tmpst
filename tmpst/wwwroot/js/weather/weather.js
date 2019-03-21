@@ -16,6 +16,8 @@
 # Global Variable Declarations
     ## Current Forecast Object
     ## Current Day Object
+    ## Forecast Chart Instance
+    ## Current Day Chart Instance
 # Event Handlers
     ## Select Events
     ## Font Awesome Events
@@ -38,6 +40,10 @@
 
 let currentForecastDataset = {};
 let currentDayDataset = {};
+let ForecastChart;
+let currentDayChart;
+let forecastCtx;
+let currentDayCtx;
 
 /*--------------------------------------------------------------------------
     END: # Global Variable Declarations
@@ -133,7 +139,7 @@ function submitWeatherRequest(key) {
         contactAPI(dataType, location, key);
 
         // Collapse query builder
-        collapseExpandToggle('weather-wizard-arrow-up', 'weather-wizard-arrow-down', 'weather-wizard-container');
+        //collapseExpandToggle('weather-wizard-arrow-up', 'weather-wizard-arrow-down', 'weather-wizard-container');
     }
     else {
         // Show error for latitude and longitude
@@ -153,7 +159,7 @@ function submitWeatherRequest(key) {
             })
         }
     }
-    
+
 }
 
 /* FUNCTION: contactAPI
@@ -193,41 +199,35 @@ function contactAPI(requestType, location, key) {
                 if (isMobile == true) {
                     updateForecastTableBodyMobile(result.forecast.forecastday);
 
-                    $('#wizard-collapse-expand').click().promise().done(function () {
-                        //initMap(result.location.lat, result.location.lon, result.location.name, 'result-map');
-                        console.log('REACHED FADE INS');
-                        $('#weather-map-container').fadeIn(300).promise().done(function () {
-                            console.log('MAP FADED IN');
-                            $('#weather-forecast-data-container-mobile').fadeIn(300);
-                        });
+                    collapseExpandToggle('weather-wizard-arrow-up', 'weather-wizard-arrow-down', 'weather-wizard-container');
+                    $('#weather-forecast-data-container-mobile').fadeIn(300);
 
-                    });
                 }
                 else {
                     currentForecastDataset = result.forecast;
 
+                    forecastCtx = document.getElementById("forecast-overall-chart").getContext('2d');
+
                     updateForecastTableHead(forecastDates);
                     updateForecastTableBody(result.forecast.forecastday);
 
-                    $('#wizard-collapse-expand').click().promise().done(function () {
-                        //initMap(result.location.lat, result.location.lon, result.location.name, 'result-map');
-                        console.log('REACHED FADE INS');
-                        $('#weather-map-container').fadeIn(300).promise().done(function () {
-                            console.log('MAP FADED IN');
-                            $('#weather-forecast-data-container').fadeIn(300);
-                        });
+                    collapseExpandToggle('weather-wizard-arrow-up', 'weather-wizard-arrow-down', 'weather-wizard-container');
+                    $('#weather-forecast-data-container').fadeIn(300);
 
-                    });
                 }
 
             }
             else {
                 updateCurrentWeatherDataContainers(result);
-                currentDayDataset = result.current;
-                $('#wizard-collapse-expand').click().promise().done(function () {
-                    initMap(result.location.lat, result.location.lon, result.location.name, 'current-weather-result-map');
-                    $('#weather-current-data-container').fadeIn(300);
-                });
+
+                currentDayCtx = document.getElementById("current-day-chart").getContext('2d');
+
+                $('#current-weather-card-span').text('Current Weather for ' + result.location.name);
+
+                currentDayDataset = result;
+                analyseCurrentDayData();
+                collapseExpandToggle('weather-wizard-arrow-up', 'weather-wizard-arrow-down', 'weather-wizard-container');
+                $('#weather-current-data-container').fadeIn(300);
             }
         },
         error: function (errorResult) {
@@ -237,7 +237,7 @@ function contactAPI(requestType, location, key) {
                 Swal.fire({
                     type: 'error',
                     title: 'Data Request Error',
-                    text: 'An error has occurred when submitting your request. Please try again with different criteria'
+                    text: 'We could not find any weather information for ' + location + '. Please try another location'
                 })
             }
         }
@@ -388,8 +388,6 @@ function analyseForecastData() {
     $.each(currentForecastDataset.forecastday, function (key, val) {
         labels.push(val.date);
 
-        console.log('VAL ', val);
-
         avgTempArray.push(val.day.avgtemp_c);
         maxTempArray.push(val.day.maxtemp_c);
         minTempArray.push(val.day.mintemp_c);
@@ -397,64 +395,67 @@ function analyseForecastData() {
         avgVisArray.push(val.day.avgvis_miles);
     });
 
-    console.log('LABELS ', labels);
-    console.log('AVG TEMP ', avgTempArray);
-    console.log('MAX TEMP ', maxTempArray);
-    console.log('MIN TEMP', minTempArray);
-    console.log('HUMIDIDTY', avgHumidityArray);
-    console.log('VISIBILITY', avgVisArray);
-
-    var ctx = document.getElementById("forecast-overall-chart").getContext('2d');
-
-    var mixedChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            datasets: [{
-                label: 'Average Temperature',
-                data: avgTempArray,
-                borderColor: forecastAnalysisPallet.Avg_Temp
-            }, {
-                label: 'Max Temperature',
-                data: maxTempArray,
-                borderColor: forecastAnalysisPallet.Max_Temp,
-                // Changes this dataset to become a line
-                type: 'line'
+    if (ForecastChart != undefined) {
+        updateForecastChart(avgTempArray, maxTempArray, minTempArray, avgHumidityArray, avgVisArray);
+    }
+    else {
+        ForecastChart = new Chart(forecastCtx, {
+            type: 'bar',
+            data: {
+                datasets: [{
+                    label: 'Average Temperature',
+                    data: avgTempArray,
+                    borderColor: forecastAnalysisPallet.Avg_Temp
+                }, {
+                    label: 'Max Temperature',
+                    data: maxTempArray,
+                    borderColor: forecastAnalysisPallet.Max_Temp,
+                    // Changes this dataset to become a line
+                    type: 'line'
+                },
+                {
+                    label: 'Min Temperature',
+                    data: minTempArray,
+                    borderColor: forecastAnalysisPallet.Min_Temp,
+                    // Changes this dataset to become a line
+                    type: 'line'
+                },
+                {
+                    label: 'Humidity',
+                    data: avgHumidityArray,
+                    borderColor: forecastAnalysisPallet.Humidity,
+                    // Changes this dataset to become a line
+                    type: 'line'
+                },
+                {
+                    label: 'Visibility',
+                    data: avgVisArray,
+                    borderColor: forecastAnalysisPallet.Visibility,
+                    // Changes this dataset to become a line
+                    type: 'line'
+                }
+                ],
+                labels: labels
             },
-            {
-                label: 'Min Temperature',
-                data: minTempArray,
-                borderColor: forecastAnalysisPallet.Min_Temp,
-                // Changes this dataset to become a line
-                type: 'line'
-            },
-            {
-                label: 'Humidity',
-                data: avgHumidityArray,
-                borderColor: forecastAnalysisPallet.Humidity,
-                // Changes this dataset to become a line
-                type: 'line'
-            },
-            {
-                label: 'Visibility',
-                data: avgVisArray,
-                borderColor: forecastAnalysisPallet.Visibility,
-                // Changes this dataset to become a line
-                type: 'line'
+            options: {
+                maintainAspectRatio: false,
+                responsive: true
             }
-            ],
-            labels: labels
-        },
-        options: {
-            maintainAspectRatio: false
-        }
-    });
+        });
+    }
+
+
+
+    console.log('Forecast chart after population: ', ForecastChart);
 
     // Collapses forecast container
     collapseExpandToggle('forecast-result-arrow-up', 'forecast-result-arrow-down', 'main-forecast-result-container');
     collapseExpandToggle('forecast-mobile-result-arrow-up', 'forecast-mobile-result-arrow-down', 'forecast-mobile-table-and-submit');
 
     $('#forecast-weather-analysis-landing').fadeIn(300).promise().done(function () {
-        $('#weather-analysis-landing').fadeIn(300);
+        $('#current-weather-analysis-landing').fadeOut(300).promise().done(function () {
+            $('#weather-analysis-landing').fadeIn(300);
+        });
     });
 }
 
@@ -465,63 +466,76 @@ $('btn btn-success w-100').click(function () {
 });
 
 function analyseCurrentDayData() {
-   
 
-    let labels = [];
+    let labels = ['Current Temp', 'Feels Like', 'Humidity', 'Wind (mph)'];
 
-    let data = [currentDayDataset.temp_c, currentDayDataset.feelslike_c, currentDayDataset.humidity, currentDayDataset.wind_mph];
-    
+    let data = [currentDayDataset.current.temp_c, currentDayDataset.current.feelslike_c, currentDayDataset.current.humidity, currentDayDataset.current.wind_mph];
 
     let colours = [currentDayAnalysisPallet.Current_Temp, currentDayAnalysisPallet.Feels_Like, currentDayAnalysisPallet.Humidity, currentDayAnalysisPallet.Wind_Speed];
 
+    console.log(currentDayDataset);
+
     let dataset = {
-        
+        label: 'Current Weather Conditions in ' + currentDayDataset.location.name + ' (' + currentDayDataset.location.country + ')',
         data: data,
-        borderColor: colours
+        borderColor: colours,
+        backgroundColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)'],
+
+        borderColor: ['rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 206, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(153, 102, 255)']
     };
 
-    var ctx = document.getElementById("current-day-chart").getContext('2d');
+    console.log(dataset);
 
-    var currentDayChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Current Temp', 'Feels Like', 'Humidity', 'Wind (mph)'],
-            datasets: [{
-                label: labels,
-                data: data,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)'],
+    if (currentDayChart != undefined) {
+        updateCurrentDayChart(data);
+    }
+    else {
+        currentDayChart = new Chart(currentDayCtx, {
+            type: 'horizontalBar',
+            data: {
+                labels: ['Current Temp', 'Feels Like', 'Humidity', 'Wind (mph)'],
+                datasets: [
+                    dataset
+                ],
 
-                borderColor: ['rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 206, 86)',
-                    'rgb(75, 192, 192)',
-                    'rgb(153, 102, 255)']
-
-            }
-            ],
-            
-        },
-        options: {
-            legend: {
-                display: false,
             },
-            maintainAspectRatio: false
-        }
-    });
-
-    collapseExpandToggle('current-result-overview-up', 'current-result-overview-down', 'current-weather-wizard-container');
-    collapseExpandToggle('current-map-result-up', 'current-map-result-down', 'current-map-wizard-container');
-
-    $('#current-weather-analysis-landing').fadeIn(300).promise().done(function () {
-        $('#weather-analysis-landing').fadeIn(300);
-    });
+            options: {
+                legend: {
+                    display: true,
+                },
+                ticks: {
+                    beginAtZero: true
+                },
+                maintainAspectRatio: false,
+                responsive: true
+            }
+        });
+    }
 }
 
+
+function updateCurrentDayChart(newData) {
+    currentDayChart.data.datasets[0].data = newData;
+    currentDayChart.data.datasets[0].label = 'Current Weather Conditions in ' + currentDayDataset.location.name + ' (' + currentDayDataset.location.country + ')';
+    currentDayChart.update();
+}
+
+function updateForecastChart(avgTemp, maxTemp, minTemp, avgHumidity, avgVis) {
+    let allNewData = [avgTemp, maxTemp, minTemp, avgHumidity, avgVis];
+    for (let i = 0; i <= 4; i++) {
+        ForecastChart.data.datasets[i].data = allNewData[i];
+    }
+    ForecastChart.update();
+}
 
 /*--------------------------------------------------------------------------
     END: # Dynamic Data Functions
