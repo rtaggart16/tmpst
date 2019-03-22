@@ -53,6 +53,10 @@ body {
 .weather-card-item{
     padding-bottom:10px;
 }
+
+.current-weather-container-item{
+    padding-bottom:5px;
+}
 /*--------------------------------------------------------------------------
     END: # Containers
 ---------------------------------------------------------------------------*/

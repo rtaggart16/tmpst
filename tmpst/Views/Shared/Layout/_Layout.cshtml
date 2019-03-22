@@ -23,7 +23,6 @@
         <script src="~/lib/here/mapsjs-core.js"></script>
         <script src="~/lib/here/mapsjs-service.js"></script>
         <script src="~/lib/D3/d3-3.5.6.js"></script>
-        <script src="~/js/general/D3Visualisations.js"></script>
         <script src="~/lib/jstree/jstree.js"></script>
         <script src="~/js/tutorial/tutorial.js"></script>
         <script src="~/lib/prism/prism.js" defer></script>
@@ -114,8 +113,15 @@
         @await Html.PartialAsync("~/Views/Shared/Layout/_Footer.cshtml")
 
     </div>
-
+    <script>
+        $(function () {
+            console.log('Initialising Tooltips');
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
     @RenderSection("Scripts", required: false)
+    
 </body>
+
 </html>
 
