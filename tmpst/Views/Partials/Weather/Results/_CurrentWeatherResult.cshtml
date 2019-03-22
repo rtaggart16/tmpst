@@ -10,11 +10,11 @@
     Partial view that makes calls to our other partial views for the current weather and map and places the results into divs
 *@
 
-<div class="row">
-    <div class="col-6">
+<div id="current-weather-result" class="row">
+    <div class="col-lg-6 col-sm-12 col-12">
         @await Html.PartialAsync("~/Views/Partials/Weather/Results/_CurrentWeatherOverviewContainer.cshtml")
     </div>
-    <div class="col-6">
-        @await Html.PartialAsync("~/Views/Partials/Weather/Results/_CurrentWeatherMapResult.cshtml")
+    <div class="col-lg-6 col-sm-12 col-12">
+        @await Html.PartialAsync("~/Views/Partials/Weather/Analysis/Current/_CurrentAnalysisLanding.cshtml")
     </div>
 </div>
