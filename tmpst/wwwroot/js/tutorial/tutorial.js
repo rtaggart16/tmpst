@@ -6,7 +6,7 @@ $(function () {
         "core": {
             "themes": {
                 "variant": "large",
-                //"responsive": "true"
+                "responsive": "true"
             }
         }
     });

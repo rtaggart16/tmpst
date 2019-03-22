@@ -114,6 +114,7 @@ function submitEarthquakeRequest() {
                     
                 })
 
+                // Set a brief timeout before calling the createClusterMap
                 setTimeout(function () {
                     createClusterMap(result.features);
                 }, 100);
@@ -121,14 +122,15 @@ function submitEarthquakeRequest() {
                 $('#earthquake-wizard-arrow-up').click().promise().done(function () {
                     $('#earthquake-cluster-map-container').fadeIn(300);
                 });
+
+                // Close the SweetAlert
                 result.dismiss === Swal.DismissReason.timer
-                
             }
             else {
                 Swal.fire({
                     type: 'warning',
                     title: 'No Data',
-                    text: 'There is no data available for your request. Please submit another request'
+                    text: 'No ' + requestType + ' earthquakes have been found. Please try another time'
                 })
             }
 
@@ -208,25 +210,39 @@ function viewCountryInfo(lat, lon) {
     # Dynamic Data Functions
 ---------------------------------------------------------------------------*/
 
+/* FUNCTION: submitEarthquakeRequest
+ * PARAMS: 
+ *  - result: Most recent Country information
+ * DESCRIPTION: Function to open a new tab and populate it with requested country information
+*/
 function openNewWindow(result) {
     let countryInfo = result;
 
+    // Make the countryInfo variable accessible from the child window
     window.globalCountryInfo = countryInfo;
 
+    // If the window does not exist
     if (typeof (countryInfoWindow) == 'undefined' || countryInfoWindow.closed) {
 
         window.isBuilt = false;
 
+        // Open the new tab
         countryInfoWindow = window.open('');
 
+        // Add the ecessary style scripts to the new window
         countryInfoWindow.document.write('<html><head><title>Country Info</title><script src="../../../../../../lib/jquery/jquery-3.3.1.min.js" async><\/script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" defer><\/script><script src="../../../../../lib/bootstrap/js/bootstrap.js" defer><\/script><link rel="stylesheet" href="../../../../../../../lib/bootstrap/css/bootstrap.css" /><link href="../../../../../css/Earthquake/countryInfo.css" rel="stylesheet" /><script src="../../../../../../js/general/map.js"><\/script><script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6yo58EUHrSdjTIMKz_lP2jt77KE-NfOI&callback=initMap"><\/script ></head><body>');
 
+        // Add a hidden button for updating and reference the child window script
         countryInfoWindow.document.write('<body><div style="display:none" id="country-info-container"></div><button id="refresh-btn" style="display:none"></button></body><script src="../../../../../../js/earthquake/countryInfo.js"><\/script></html>');
 
+        // Close the document writer
         countryInfoWindow.document.close();
     }
+    // If the window does exist
     else {
+        // Get the id of the button used to update the window
         let updateButton = countryInfoWindow.document.getElementById('refresh-btn');
+        // Click the update button
         $(updateButton).click();
     }
 }
