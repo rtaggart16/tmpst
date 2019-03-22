@@ -4,7 +4,7 @@
     Name(s) - Ross Taggart
     Student Number - S1828840
     Date Created - 22/02/2019
-    Version - 1.0.1
+    Version - 2.0.0
 
     Description:
     JavaScript file which contains the functions and event handlers for the weather system
@@ -29,6 +29,10 @@
     ## Current Weather Containers
     ## Forecast Table Head
     ## Forecast Table Body
+    ## Analyse Current Data
+    ## Analyse Forecast Data
+    ## Update Current Day Chart
+    ## Update Forecast Chart
 # Validation
     ## Location Input Validation
 --------------------------------------------------------
@@ -53,18 +57,18 @@ let currentDayCtx;
     # Event Handlers
 ---------------------------------------------------------------------------*/
 
-//Allows the user to chose their input type, either latitude and longitutde of name of place
+// Allows the user to chose their input type, either latitude and longitutde of name of place
 $('#input-type-select').on('change', function () {
     console.log($('#input-type-select').val());
 
     let chosenType = $('#input-type-select').val();
-    //if user selects input based on latitutde and longitude, fade out name field
+    // If user selects input based on latitutde and longitude, fade out name field
     if (chosenType == 'latlng') {
         $('#name-and-postcode-input-container').fadeOut(300).promise().done(function () {
             $('#lat-long-input-container').fadeIn(300);
         });
     }
-    //fade in name field if lat/long not selected
+    // Fade in name field if lat/long not selected
     else {
         $('#lat-long-input-container').fadeOut(300).promise().done(function () {
             $('#name-and-postcode-input-container').fadeIn(300);
@@ -184,9 +188,11 @@ function contactAPI(requestType, location, key) {
         success: function (result) {
             console.log('AJAX Response: ', result);
 
+            // If the user requested forecast data
             if (requestType == 'forecast') {
                 let forecastDates = [];
 
+                // Updates the global forecast dataset
                 currentForecastDataset = result.forecast;
 
                 $.each(result.forecast.forecastday, function (key, val) {
@@ -194,16 +200,23 @@ function contactAPI(requestType, location, key) {
                     forecastDates.push(dateObject);
                 });
 
+                // Checks if the user is on a mobile
                 let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
 
+                // If user is on mobile
                 if (isMobile == true) {
+                    // Update and display mobile forecast views
                     updateForecastTableBodyMobile(result.forecast.forecastday);
+
+                    forecastCtx = document.getElementById("forecast-overall-chart").getContext('2d');
 
                     collapseExpandToggle('weather-wizard-arrow-up', 'weather-wizard-arrow-down', 'weather-wizard-container');
                     $('#weather-forecast-data-container-mobile').fadeIn(300);
 
                 }
+                // User is on desktop
                 else {
+                    // Update and display desktop forecast views
                     currentForecastDataset = result.forecast;
 
                     forecastCtx = document.getElementById("forecast-overall-chart").getContext('2d');
@@ -217,7 +230,9 @@ function contactAPI(requestType, location, key) {
                 }
 
             }
+            // The user requested current weather
             else {
+                // Update and display current data views
                 updateCurrentWeatherDataContainers(result);
 
                 currentDayCtx = document.getElementById("current-day-chart").getContext('2d');
@@ -230,9 +245,11 @@ function contactAPI(requestType, location, key) {
                 $('#weather-current-data-container').fadeIn(300);
             }
         },
+        // The AJAX call was not successful
         error: function (errorResult) {
             console.log('ERROR: ', errorResult.statusText);
 
+            // Fire an alert informing the user that there is no data for theit location
             if (errorResult.statusText == 'error') {
                 Swal.fire({
                     type: 'error',
@@ -377,6 +394,7 @@ function updateForecastTableBodyMobile(apiData) {
 */
 function analyseForecastData() {
 
+    // Initialise new data variables
     let labels = [];
 
     let avgTempArray = [];
@@ -385,6 +403,7 @@ function analyseForecastData() {
     let avgHumidityArray = [];
     let avgVisArray = [];
 
+    // Iterate through each item in the most recent forecast dataset and populate the variables
     $.each(currentForecastDataset.forecastday, function (key, val) {
         labels.push(val.date);
 
@@ -395,10 +414,14 @@ function analyseForecastData() {
         avgVisArray.push(val.day.avgvis_miles);
     });
 
+    // If the forecast chart already exist (Not first run)
     if (ForecastChart != undefined) {
+        // Change the data of the chart and redraw
         updateForecastChart(avgTempArray, maxTempArray, minTempArray, avgHumidityArray, avgVisArray);
     }
+    // If the forecast chart does not exist
     else {
+        // Set ForecastChart to a new instance of a Chart.js chart
         ForecastChart = new Chart(forecastCtx, {
             type: 'bar',
             data: {
@@ -443,15 +466,12 @@ function analyseForecastData() {
             }
         });
     }
-
-
-
-    console.log('Forecast chart after population: ', ForecastChart);
-
+    
     // Collapses forecast container
     collapseExpandToggle('forecast-result-arrow-up', 'forecast-result-arrow-down', 'main-forecast-result-container');
     collapseExpandToggle('forecast-mobile-result-arrow-up', 'forecast-mobile-result-arrow-down', 'forecast-mobile-table-and-submit');
 
+    // Display the forecast chart
     $('#forecast-weather-analysis-landing').fadeIn(300).promise().done(function () {
         $('#current-weather-analysis-landing').fadeOut(300).promise().done(function () {
             $('#weather-analysis-landing').fadeIn(300);
@@ -459,22 +479,23 @@ function analyseForecastData() {
     });
 }
 
-$('btn btn-success w-100').click(function () {
-    $('current-map-collapse-expand').click();
-    $('current-weather-collapse-expand').click();
-
-});
-
+/* FUNCTION: analyseCurrentDayData
+ * PARAMS:
+ * DESCRIPTION: Updates the current day chart with the data from the latest query
+*/
 function analyseCurrentDayData() {
 
+    // Defin the labels of the chart
     let labels = ['Current Temp', 'Feels Like', 'Humidity', 'Wind (mph)'];
 
+    // Store the data from the latest query in an array
     let data = [currentDayDataset.current.temp_c, currentDayDataset.current.feelslike_c, currentDayDataset.current.humidity, currentDayDataset.current.wind_mph];
 
     let colours = [currentDayAnalysisPallet.Current_Temp, currentDayAnalysisPallet.Feels_Like, currentDayAnalysisPallet.Humidity, currentDayAnalysisPallet.Wind_Speed];
 
     console.log(currentDayDataset);
 
+    // Create a dataset object to plug straight into the chart
     let dataset = {
         label: 'Current Weather Conditions in ' + currentDayDataset.location.name + ' (' + currentDayDataset.location.country + ')',
         data: data,
@@ -495,10 +516,14 @@ function analyseCurrentDayData() {
 
     console.log(dataset);
 
+    // If the current day chart already exist (Not first run)
     if (currentDayChart != undefined) {
+        // Change the data of the chart and redraw
         updateCurrentDayChart(data);
     }
+    // If the current day chart does not exist
     else {
+        // Set currentDayChart to a new instance of a Chart.js chart
         currentDayChart = new Chart(currentDayCtx, {
             type: 'horizontalBar',
             data: {
@@ -516,24 +541,42 @@ function analyseCurrentDayData() {
                     beginAtZero: true
                 },
                 maintainAspectRatio: false,
-                responsive: true
             }
         });
     }
 }
 
-
+/* FUNCTION: analyseCurrentDayData
+ * PARAMS:
+ *  - newData: Data from the last current day query to be added to the current day chart
+ * DESCRIPTION: Updates the current day chart with the data from the latest query
+*/
 function updateCurrentDayChart(newData) {
+    // Changes the data of the only dataset to the newData
     currentDayChart.data.datasets[0].data = newData;
+    // Changes the label of the dataset to the new location that the user has submitted
     currentDayChart.data.datasets[0].label = 'Current Weather Conditions in ' + currentDayDataset.location.name + ' (' + currentDayDataset.location.country + ')';
+    // Update the chart.js instance
     currentDayChart.update();
 }
 
+/* FUNCTION: analyseCurrentDayData
+ * PARAMS:
+ *  - avgTemp: Array of the latest average temperature data
+ *  - maxTemp: Array of the latest maximum temperature data
+ *  - minTemp: Array of the latest minimum temperature data
+ *  - avgHumidity: Array of the latest average humidity data
+ *  - avgVis: Array of the latest average visibility data
+ * DESCRIPTION: Updates the forecast chart with the data from the latest query
+*/
 function updateForecastChart(avgTemp, maxTemp, minTemp, avgHumidity, avgVis) {
+    // Adds all the variables passed in to an Array
     let allNewData = [avgTemp, maxTemp, minTemp, avgHumidity, avgVis];
+    // Iterates from 0 to 4 and freplaces the data of each dataset in the chart
     for (let i = 0; i <= 4; i++) {
         ForecastChart.data.datasets[i].data = allNewData[i];
     }
+    // Update the chart.js instance
     ForecastChart.update();
 }
 
