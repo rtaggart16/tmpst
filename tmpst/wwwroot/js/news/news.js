@@ -171,7 +171,7 @@ function sunburstNewsVisualization(data, country, category) {
     let chart = Highcharts.chart('chart', {
 
         chart: {
-            height: '100%'
+            height: '80%',
         },
 
         title: {
@@ -261,4 +261,49 @@ function sunburstNewsVisualization(data, country, category) {
         loopIterator += 1;
     });*/
 } 
+
+
+function submitNewsRequest(key) {
+
+    let countryDropdown = $('#news-country-input').val();
+    let categoryDropdown = $('#news-category-input').val();
+
+
+
+    if (countryDropdown == null || categoryDropdown == null) {
+        Swal.fire({
+            type: 'error',
+            title: 'Fields missing',
+            text: 'Neither field has been entered. Please enter the country and category.'
+        })
+    }
+    else {
+        let requestUrl = 'https://newsapi.org/v2/top-headlines?country=' + countryDropdown + '&category=' + categoryDropdown + '&language=en&apiKey=' + key;
+
+        $.ajax({
+            type: "GET",
+            url: requestUrl,
+            dataType: "json",
+            success: function (result) {
+                collapseExpandToggle('news-wizard-arrow-up', 'news-wizard-arrow-down', 'news-wizard-container');
+                $('#news-card-container').fadeIn(300);
+
+
+                //Passes in the name of the options for the wordchart
+                let countryName = $('#news-country-input option:selected').text();
+                let categoryName = $('#news-category-input option:selected').text();
+                sunburstNewsVisualization(result, countryName, categoryName);
+            },
+            error: function (errorResult) {
+
+
+                Swal.fire({
+                    type: 'error',
+                    title: 'Data Request Error',
+                    text: 'An error has occurred when submitting your request. Please try again with different criteria.'
+                })
+            }
+        });
+    }
+}
 
