@@ -69,8 +69,8 @@ body {
 
 @media only screen and (max-width: 600px) {
     #chart {
-        min-width: 310px;
-        max-width: 800px;
+        min-width: 90vw;
+        max-width: 90vw;
         margin: 0 auto
     }
 }

@@ -21,11 +21,15 @@
                     </span>
                 </div>
             </div>
-
+            <div class="row earthquake-card-item text-center">
+                <div class="col-12">
+                    <p>The earthquake wizard allows you to view the locations of earthquakes over a certain time period</p>
+                </div>
+            </div>
             <div id="earthquake-wizard-container">
                 <div class="row earthquake-card-item">
                     <div class="col-6">
-                        <select class="form-control" id="occurence-type-select" data-toggle="tooltip" data-placement="top" title="Select the time period for your data">
+                        <select class="form-control tmpst-clickable" id="occurence-type-select" data-toggle="tooltip" data-placement="top" title="Select the time period for your data">
                             <option value="hourly">Hourly</option>
                             <option value="daily">Daily</option>
                             <option value="weekly">Weekly</option>
@@ -33,7 +37,7 @@
                         </select>
                     </div>
                     <div class="col-6">
-                        <select class="form-control" id="hourly-type-select" data-toggle="tooltip" data-placement="top" title="Select the magnitude of hourly earthquakes you want to see">
+                        <select class="form-control tmpst-clickable" id="hourly-type-select" data-toggle="tooltip" data-placement="top" title="Select the magnitude of hourly earthquakes you want to see">
                             <option value="@Model.HourlyUrls.Significant_Quakes">Significant Earthquakes</option>
                             <option value="@Model.HourlyUrls.Magnitude_Four_Point_Five">Magnitude 4.5</option>
                             <option value="@Model.HourlyUrls.Magnitude_Two_Point_Five">Magnitude 2.5</option>
@@ -41,7 +45,7 @@
                             <option value="@Model.HourlyUrls.All_Earthquakes">All Earthquakes</option>
                         </select>
 
-                        <select class="form-control" id="daily-type-select" style="display:none;" data-toggle="tooltip" data-placement="top" title="Select the magnitude of daily earthquakes you want to see">
+                        <select class="form-control tmpst-clickable" id="daily-type-select" style="display:none;" data-toggle="tooltip" data-placement="top" title="Select the magnitude of daily earthquakes you want to see">
                             <option value="@Model.DailyUrls.Significant_Quakes">Significant Earthquakes</option>
                             <option value="@Model.DailyUrls.Magnitude_Four_Point_Five">Magnitude 4.5</option>
                             <option value="@Model.DailyUrls.Magnitude_Two_Point_Five">Magnitude 2.5</option>
@@ -49,7 +53,7 @@
                             <option value="@Model.DailyUrls.All_Earthquakes">All Earthquakes</option>
                         </select>
 
-                        <select class="form-control" id="weekly-type-select" style="display:none;" data-toggle="tooltip" data-placement="top" title="Select the magnitude of weekly earthquakes you want to see">
+                        <select class="form-control tmpst-clickable" id="weekly-type-select" style="display:none;" data-toggle="tooltip" data-placement="top" title="Select the magnitude of weekly earthquakes you want to see">
                             <option value="@Model.WeeklyUrls.Significant_Quakes">Significant Earthquakes</option>
                             <option value="@Model.WeeklyUrls.Magnitude_Four_Point_Five">Magnitude 4.5</option>
                             <option value="@Model.WeeklyUrls.Magnitude_Two_Point_Five">Magnitude 2.5</option>
@@ -57,7 +61,7 @@
                             <option value="@Model.WeeklyUrls.All_Earthquakes">All Earthquakes</option>
                         </select>
 
-                        <select class="form-control" id="monthly-type-select" style="display:none;" data-toggle="tooltip" data-placement="top" title="Select the magnitude of weekly earthquakes you want to see">
+                        <select class="form-control tmpst-clickable" id="monthly-type-select" style="display:none;" data-toggle="tooltip" data-placement="top" title="Select the magnitude of weekly earthquakes you want to see">
                             <option value="@Model.MonthlyUrls.Significant_Quakes">Significant Earthquakes</option>
                             <option value="@Model.MonthlyUrls.Magnitude_Four_Point_Five">Magnitude 4.5</option>
                             <option value="@Model.MonthlyUrls.Magnitude_Two_Point_Five">Magnitude 2.5</option>
@@ -67,12 +71,12 @@
                     </div>
                 </div>
 
-                
+
 
                 <div id="submit-earthquake-request-container">
                     <div class="row">
                         <div class="col-12">
-                            <button id="submit-earthquake-request-btn" onclick="submitEarthquakeRequest()" class="btn btn-success w-100" data-toggle="tooltip" data-placement="top" title="Submit the earthquake request">Submit</button>
+                            <button id="submit-earthquake-request-btn" onclick="submitEarthquakeRequest()" class="btn btn-success w-100 tmpst-clickable" data-toggle="tooltip" data-placement="top" title="Submit the earthquake request">Submit</button>
                         </div>
                     </div>
                 </div>

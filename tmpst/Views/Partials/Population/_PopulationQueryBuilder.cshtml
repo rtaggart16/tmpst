@@ -17,26 +17,28 @@
             <div class="row population-card-item">
                 <div class="col-12 text-center">
                     <span>
-                        <strong>Population Wizard</strong> <i onclick="collapseExpandToggle('population-wizard-arrow-up', 'population-wizard-arrow-down', 'population-wizard-container')" id="population-wizard-arrow-up" class="fas fa-caret-up fa-2x tmpst-clickable"></i><i onclick="collapseExpandToggle('population-wizard-arrow-down', 'population-wizard-arrow-up', 'population-wizard-container')" style="display:none" id="population-wizard-arrow-down" class="fas fa-caret-down fa-2x tmpst-clickable"></i>
+                        <strong>Population Wizard</strong> <i onclick="collapseExpandToggle('population-wizard-arrow-up', 'population-wizard-arrow-down', 'population-wizard-container')" id="population-wizard-arrow-up" class="fas fa-caret-up fa-2x tmpst-clickable" data-toggle="tooltip" data-placement="top" title="Click to slide up"></i><i onclick="collapseExpandToggle('population-wizard-arrow-down', 'population-wizard-arrow-up', 'population-wizard-container')" style="display:none" id="population-wizard-arrow-down" class="fas fa-caret-down fa-2x tmpst-clickable" data-toggle="tooltip" data-placement="top" title="Click to slide down"></i>
                     </span>
+                </div>
+            </div>
+            <div class="row population-card-item text-center">
+                <div class="col-12">
+                    <p>The population wizard allows you to view the population distribution of a specific country</p>
                 </div>
             </div>
             <div id="population-wizard-container">
                 <div class="row population-card-item">
                     <div class="col-6">
-                        <select id="population-country-input" class="form-control" required></select>
+                        <select id="population-country-input" class="form-control tmpst-clickable" required data-toggle="tooltip" data-placement="top" title="Select the country you want to see data for"></select>
                     </div>
                     <div class="col-6">
-                        <input id="population-year-input" class="form-control" placeholder="Year" required />
+                        <input id="population-year-input" class="form-control" placeholder="Year" required data-toggle="tooltip" data-placement="top" title="Year to see data for" />
                     </div>
                 </div>
-
-
-
                 <div id="submit-population-request-container">
                     <div class="row">
                         <div class="col-12">
-                            <button id="submit-population-request-btn" onclick="submitPopulationRequest()" class="btn btn-success w-100">Submit</button>
+                            <button id="submit-population-request-btn" onclick="submitPopulationRequest()" class="btn btn-success w-100" data-toggle="tooltip" data-placement="top" title="Submit population request">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -45,67 +47,3 @@
         </div>
     </div>
 </div>
-
-<script>
-
-    let dropdown = $('#population-country-input');
-
-    dropdown.empty();
-
-    dropdown.append('<option selected="true" disabled>Select Country</option>');
-    dropdown.prop('selectedIndex', 0);
-
-    const url = 'https://api.population.io/1.0/countries';
-    
-    // Populate dropdown with list of provinces
-    getPopulationCountries('#population-country-input');
-    //$.getJSON(url, function (data) {
-    //    $.each(data.countries, function (key, entry) {
-    //        dropdown.append($('<option></option>').attr('value', entry).text(entry));
-    //    })
-    //});
-
-    function submitPopulationRequest() {
-        //GET Data
-        let year = $('#population-year-input').val();
-        let country = $('#population-country-input').val();
-
-        if (country == "Australia/New Zealand") { country = "New Zealand"; }
-        
-        let url = 'https://api.population.io/1.0/population/' + year + '/' + country + '/?format=jsonp';
-        console.log("Created URL from user Input: " + url);
-        $.ajax({
-            type: "GET",
-            url: url,
-            crossDomain: true,
-            dataType: 'jsonp',
-            success: function (result) {
-
-                //Creates visualisation
-                createD3Visualisation(result);
-                $('#population-chart-container').fadeIn(300);
-                collapseExpandToggle('population-wizard-arrow-up', 'population-wizard-arrow-down', 'population-wizard-container');
-            },
-            error: function (errorResult) {
-                console.log('ERROR: ', errorResult.statusText);
-
-                if (errorResult.statusText == 'error') {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Data Request Error',
-                        text: 'An error has occurred when submitting your request. Please try again with different criteria.'
-                    })
-                }
-                else if (errorResult.statusText == 'load') {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Load Error',
-                        text: 'An error has occurred when loading the data from our sources. Please wait a few seconds or try again with different criteria.'
-                    })
-                }
-            }
-        });
-
-    }
-
-</script>

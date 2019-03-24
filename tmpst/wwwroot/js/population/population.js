@@ -539,7 +539,65 @@ function barChartBuilder(data) {
         .style("width", function (d) { return x(d) + "px"; })
         .style("margin-left", "55px;")
         .text(function (d) { return d; });
+}
 
+let dropdown = $('#population-country-input');
 
+dropdown.empty();
+
+dropdown.append('<option selected="true" disabled>Select Country</option>');
+dropdown.prop('selectedIndex', 0);
+
+const url = 'https://api.population.io/1.0/countries';
+
+// Populate dropdown with list of provinces
+getPopulationCountries('#population-country-input');
+//$.getJSON(url, function (data) {
+//    $.each(data.countries, function (key, entry) {
+//        dropdown.append($('<option></option>').attr('value', entry).text(entry));
+//    })
+//});
+
+function submitPopulationRequest() {
+    //GET Data
+    let year = $('#population-year-input').val();
+    let country = $('#population-country-input').val();
+
+    if (country == "Australia/New Zealand") { country = "New Zealand"; }
+
+    let url = 'https://api.population.io/1.0/population/' + year + '/' + country + '/?format=jsonp';
+    console.log("Created URL from user Input: " + url);
+    $.ajax({
+        type: "GET",
+        url: url,
+        crossDomain: true,
+        dataType: 'jsonp',
+        success: function (result) {
+
+            //Creates visualisation
+            createD3Visualisation(result);
+            $('#population-chart-container').fadeIn(300);
+            collapseExpandToggle('population-wizard-arrow-up', 'population-wizard-arrow-down', 'population-wizard-container');
+        },
+        error: function (errorResult) {
+            console.log('ERROR: ', errorResult.statusText);
+
+            if (errorResult.statusText == 'error') {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Data Request Error',
+                    text: 'An error has occurred when submitting your request. Please try again with different criteria.'
+                })
+            }
+            else if (errorResult.statusText == 'load') {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Load Error',
+                    text: 'An error has occurred when loading the data from our sources. Please wait a few seconds or try again with different criteria.'
+                })
+            }
+        }
+    });
 
 }
+

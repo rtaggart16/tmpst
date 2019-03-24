@@ -17,15 +17,19 @@
             <div class="row news-card-item">
                 <div class="col-12 text-center">
                     <span>
-                        <strong>News Wizard</strong> <i onclick="collapseExpandToggle('news-wizard-arrow-up', 'news-wizard-arrow-down', 'news-wizard-container')" id="news-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i><i onclick="collapseExpandToggle('news-wizard-arrow-down', 'news-wizard-arrow-up', 'news-wizard-container')" style="display:none" id="news-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                        <strong>News Wizard</strong> <i onclick="collapseExpandToggle('news-wizard-arrow-up', 'news-wizard-arrow-down', 'news-wizard-container')" id="news-wizard-arrow-up" class="fas fa-caret-up fa-2x tmpst-clickable" data-toggle="tooltip" data-placement="top" title="Click to slide up"></i><i onclick="collapseExpandToggle('news-wizard-arrow-down', 'news-wizard-arrow-up', 'news-wizard-container')" style="display:none" id="news-wizard-arrow-down" class="fas fa-caret-down fa-2x tmpst-clickable" data-toggle="tooltip" data-placement="top" title="Click to slide down"></i>
                     </span>
                 </div>
             </div>
-
+            <div class="row pollution-card-item text-center">
+                <div class="col-12">
+                    <p>The news wizard allows you to view the top headlines of a specific news category in a particular country</p>
+                </div>
+            </div>
             <div id="news-wizard-container">
                 <div class="row news-card-item">
                     <div class="col-6">
-                        <select class="form-control" id="news-country-input">
+                        <select class="form-control tmpst-clickable" id="news-country-input" data-toggle="tooltip" data-placement="top" title="Select the country to see news from">
                             <option value="" disabled selected>Select Country</option>
                             <option value="ae">United Arab Emirates</option>
                             <option value="ar">Argentina</option>
@@ -85,7 +89,7 @@
                         </select>
                     </div>
                     <div class="col-6">
-                        <select class="form-control" id="news-category-input">
+                        <select class="form-control tmpst-clickable" id="news-category-input" data-toggle="tooltip" data-placement="top" title="Select the news category you want to see">
                             <option value="" disabled selected>Select Category</option>
                             <option value="business">Business</option>
                             <option value="entertainment">Entertainment</option>
@@ -103,7 +107,7 @@
                 <div id="submit-news-request-container">
                     <div class="row">
                         <div class="col-12 first">
-                            <button id="submit-news-request-btn" onclick="submitNewsRequest()" class="btn btn-success w-100">Submit</button>
+                            <button id="submit-news-request-btn" onclick="submitNewsRequest('@Model.App_Key')" class="btn btn-success w-100 tmpst-clickable" data-toggle="tooltip" data-placement="top" title="Submit news request">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -112,82 +116,3 @@
         </div>
     </div>
 </div>
-
-
-<script>
-
-    function submitNewsRequest() {
-
-        let countryDropdown = $('#news-country-input').val();
-        let categoryDropdown = $('#news-category-input').val();
-
-
-
-        if (countryDropdown == null || categoryDropdown == null)
-        {
-            Swal.fire({
-                type: 'error',
-                title: 'Fields missing',
-                text: 'Neither field has been entered. Please enter the country and category.'
-            })
-        }
-        else
-        {
-            let requestUrl = 'https://newsapi.org/v2/top-headlines?country=' + countryDropdown + '&category=' + categoryDropdown + '&language=en&apiKey=' + '@Model.App_Key';
-
-            $.ajax({
-                type: "GET",
-                url: requestUrl,
-                dataType: "json",
-                success: function (result) {
-                    collapseExpandToggle('news-wizard-arrow-up', 'news-wizard-arrow-down', 'news-wizard-container');
-                    $('#news-card-container').fadeIn(300);
-
-
-                    //Passes in the name of the options for the wordchart
-                    let countryName = $('#news-country-input option:selected').text();
-                    let categoryName = $('#news-category-input option:selected').text();
-                    sunburstNewsVisualization(result, countryName, categoryName);
-                },
-                error: function (errorResult) {
-
-
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Data Request Error',
-                        text: 'An error has occurred when submitting your request. Please try again with different criteria.'
-                    })
-                }
-            });
-        }
-
-
-
-    }
-
-
-
-    $('#news-collapse-expand').click(function () {
-        $('#news-wizard-container').slideToggle("slow", function () {
-            //if container is visible, show an arrow that allows the container to be minimised
-            if (!$('#news-wizard-container').is(':visible')) {
-                $('#news-wizard-arrow-up').fadeOut().promise().done(function () {
-                    $('#news-wizard-arrow-down').fadeIn();
-                    $('#news-wizard-collapsed-title').fadeIn();
-                });
-            }
-            else {
-                $('#news-wizard-arrow-down').fadeOut().promise().done(function () {
-                    $('#news-wizard-arrow-up').fadeIn();
-                    $('#news-wizard-collapsed-title').fadeOut();
-                });
-            }
-        });
-    });
-
-
-
-
-
-
-</script>

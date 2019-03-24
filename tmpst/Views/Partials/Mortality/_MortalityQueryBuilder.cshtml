@@ -17,18 +17,22 @@
             <div class="row mortality-card-item">
                 <div class="col-12 text-center">
                     <span>
-                        <strong>Mortality Wizard</strong> <i onclick="collapseExpandToggle('mortality-wizard-arrow-up', 'mortality-wizard-arrow-down', 'mortality-wizard-container')" id="mortality-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i><i onclick="collapseExpandToggle('mortality-wizard-arrow-down', 'mortality-wizard-arrow-up', 'mortality-wizard-container')" style="display:none" id="mortality-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                        <strong>Mortality Wizard</strong> <i onclick="collapseExpandToggle('mortality-wizard-arrow-up', 'mortality-wizard-arrow-down', 'mortality-wizard-container')" id="mortality-wizard-arrow-up" class="fas fa-caret-up fa-2x tmpst-clickable" data-toggle="tooltip" data-placement="top" title="Click to slide up"></i><i onclick="collapseExpandToggle('mortality-wizard-arrow-down', 'mortality-wizard-arrow-up', 'mortality-wizard-container')" style="display:none" id="mortality-wizard-arrow-down" class="fas fa-caret-down fa-2x tmpst-clickable" data-toggle="tooltip" data-placement="top" title="Click to slide down"></i>
                     </span>
                 </div>
             </div>
-
+            <div class="row pollution-card-item text-center">
+                <div class="col-12">
+                    <p>The mortality wizard allows you to view the distribution of mortality percentage for a specific country</p>
+                </div>
+            </div>
             <div id="mortality-wizard-container">
                 <div class="row mortality-card-item">
                     <div class="col-6">
-                        <select id="mortality-country-select" class="form-control"></select>
+                        <select id="mortality-country-select" class="form-control tmpst-clickable" data-toggle="tooltip" data-placement="top" title="Select the country to view data for"></select>
                     </div>
                     <div class="col-6">
-                        <select id="mortality-sex-select" class="form-control">
+                        <select id="mortality-sex-select" class="form-control tmpst-clickable" data-toggle="tooltip" data-placement="top" title="Select the gender to request data for. The genders are provided by our API">
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
@@ -38,7 +42,7 @@
                 <div id="submit-mortality-request-container">
                     <div class="row">
                         <div class="col-12">
-                            <button id="submit-mortality-request-btn" onclick="submitMortalityRequest('@Model.Base_Url' + 'mortality-distribution/')" class="btn btn-success w-100">Submit</button>
+                            <button id="submit-mortality-request-btn" onclick="submitMortalityRequest('@Model.Base_Url' + 'mortality-distribution/')" class="btn btn-success w-100 tmpst-clickable" data-toggle="tooltip" data-placement="top" title="Submit the mortality request">Submit</button>
                         </div>
                     </div>
                 </div>

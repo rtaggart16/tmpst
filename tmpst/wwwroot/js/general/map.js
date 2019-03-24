@@ -73,8 +73,8 @@ function createClusterMap(data) {
             let content = '<h3>' + location.title + '</h3><p><a onclick="viewCountryInfo(' + location.latlng + ')"</a><p>';
 
             var infowindow = new google.maps.InfoWindow({
-                content: '<h2>' + location.title + '</h2>' +
-                    '<button class="btn btn-success" onclick="viewCountryInfo(' + location.latlng.lat + ', ' + location.latlng.lng + ')">Analyse Data</button>'
+                content: '<h4>' + location.title + '</h4>' +
+                    '<button class="btn btn-success" onclick="viewCountryInfo(' + location.latlng.lat + ', ' + location.latlng.lng + ')">Country Info</button>'
             });
             marker.addListener('click', function (data) {
                 infowindow.open(map, marker); // Open the Google maps marker infoWindow
