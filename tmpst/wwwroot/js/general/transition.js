@@ -43,6 +43,8 @@ let allViews = $('#overview-page')
     .add($('#general-page'))
     .add($('#mortality-page'));
 
+let currentView = 'overview-page';
+
 /*--------------------------------------------------------------------------
     END: # Global Container Variables
 ---------------------------------------------------------------------------*/
@@ -81,6 +83,7 @@ function fadeInSpecifiedView(viewID) {
     resetMortalityPage();
     allViews.fadeOut(300).promise().done(function () {
         $('#' + viewID).fadeIn(300);
+        currentView = viewID;
     });
 }
 

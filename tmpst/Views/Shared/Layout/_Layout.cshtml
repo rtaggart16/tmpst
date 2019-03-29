@@ -109,7 +109,7 @@
     @await Html.PartialAsync("~/Views/Shared/Layout/_Navbar.cshtml")
     <div class="container body-content">
         @RenderBody()
-
+        @await Html.PartialAsync("~/Views/Shared/Layout/_TmpstHelper.cshtml")
         <hr />
         @await Html.PartialAsync("~/Views/Shared/Layout/_Footer.cshtml")
 
