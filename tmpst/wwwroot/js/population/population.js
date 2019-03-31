@@ -37,7 +37,7 @@
 ]
 
 function getPopulationCountries(partialViewCountrySelect) {
-    let url = 'https://api.population.io/1.0/countries';
+    let url = 'https://dyicn1e62j3n1.cloudfront.net/1.0/countries';
 
     $.getJSON(url, function (data) {
         
