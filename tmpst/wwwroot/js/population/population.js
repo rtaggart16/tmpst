@@ -551,7 +551,7 @@ dropdown.prop('selectedIndex', 0);
 //const url = 'https://api.population.io/1.0/countries';
 
 // Populate dropdown with list of provinces
-getPopulationCountries('#population-country-input');
+
 //$.getJSON(url, function (data) {
 //    $.each(data.countries, function (key, entry) {
 //        dropdown.append($('<option></option>').attr('value', entry).text(entry));
