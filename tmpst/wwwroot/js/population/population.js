@@ -548,7 +548,7 @@ dropdown.empty();
 dropdown.append('<option selected="true" disabled>Select Country</option>');
 dropdown.prop('selectedIndex', 0);
 
-const url = 'https://api.population.io/1.0/countries';
+//const url = 'https://api.population.io/1.0/countries';
 
 // Populate dropdown with list of provinces
 getPopulationCountries('#population-country-input');
@@ -565,7 +565,7 @@ function submitPopulationRequest() {
 
     if (country == "Australia/New Zealand") { country = "New Zealand"; }
 
-    let url = 'https://api.population.io/1.0/population/' + year + '/' + country + '/?format=jsonp';
+    let url = 'https://dyicn1e62j3n1.cloudfront.net/1.0/population/' + year + '/' + country + '/?format=jsonp';
     console.log("Created URL from user Input: " + url);
     $.ajax({
         type: "GET",
