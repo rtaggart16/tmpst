@@ -165,7 +165,7 @@ function openTutorialLink(address) {
 
 function downloadPDF(fileName) {
     event.preventDefault();
-    window.open('https://localhost:44359/tutorials/' + fileName);
+    window.open('http://tmpst.azurewebsites.net/tutorials/' + fileName);
 }
 
 function fadeSpecifiiedTut(viewID) {

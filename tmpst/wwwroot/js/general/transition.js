@@ -130,14 +130,14 @@ const allWeatherViews = $('#weather-query-container').add($('#weather-current-da
     .add($('#weather-current-data-container'))
     .add($('#weather-forecast-data-container-mobile'))
     .add($('#weather-analysis-landing'));
-  
+
 
 const allDynamicWeatherViews = $('#weather-current-data-container').add($('#weather-map-container'))
     .add($('#weather-forecast-data-container'))
     .add($('#weather-current-data-container'))
     .add($('#weather-forecast-data-container-mobile'))
     .add($('#weather-analysis-landing')
-    .add($('#forecast-head-only-tbl')));
+        .add($('#forecast-head-only-tbl')));
 
 const allDynamicWeatherElements = $('#latitude-input').add($('#longitude-input'))
     .add($('#name-or-postcode-input'))
@@ -152,7 +152,7 @@ const allDynamicWeatherElements = $('#latitude-input').add($('#longitude-input')
     .add($('#forecast-tbl-body-mobile'))
     .add($('#forecast-overall-chart'))
     .add($('#current-day-chart')
-    .add($('#forecast-head-only')));
+        .add($('#forecast-head-only')));
 
 function fadeDynamicWeatherViews() {
     allDynamicWeatherViews.fadeOut(300);
@@ -167,13 +167,13 @@ function clearDynamicWeatherElements() {
 
 function showNecessaryWeatherContainers() {
     if ($('#weather-wizard-container').is(':hidden')) {
-        collapseExpandToggle('weather-wizard-arrow-up', 'weather-wizard-arrow-down', 'weather-wizard-container');        
+        collapseExpandToggle('weather-wizard-arrow-up', 'weather-wizard-arrow-down', 'weather-wizard-container');
     } else {
         // The wizard is visible. Do nothing
     }
 
     if ($('#main-forecast-result-container').is(':hidden')) {
-        collapseExpandToggle('forecast-result-arrow-up', 'forecast-result-arrow-down', 'main-forecast-result-container');        
+        collapseExpandToggle('forecast-result-arrow-up', 'forecast-result-arrow-down', 'main-forecast-result-container');
     } else {
         // The forecast result is visible. Do nothing
     }
@@ -216,21 +216,22 @@ function resetNewsPage() {
 }
 //END: News Clean Up
 
+// Mortality Clean up
 
-    
-    const allMortalityViews = $('#mortality-query-builder-container').add($('#mortality-percentage-chart-result'));
+const allMortalityViews = $('#mortality-query-builder-container').add($('#mortality-percentage-chart-result'));
 
-    const allDynamicMortalityViews = $('#mortality-percentage-chart-result');
+const allDynamicMortalityViews = $('#mortality-percentage-chart-result');
 
-    function fadeDynamicMortalityViews() {
-        allDynamicMortalityViews.fadeOut(300);
-    }
+function fadeDynamicMortalityViews() {
+    allDynamicMortalityViews.fadeOut(300);
+}
 
-    function resetMortalityPage() {
-        fadeDynamicMortalityViews();
-    }
+function resetMortalityPage() {
+    fadeDynamicMortalityViews();
+}
 
-    
+// END: Mortality Clean up
+
 
 
 /*--------------------------------------------------------------------------
@@ -238,5 +239,5 @@ function resetNewsPage() {
 ---------------------------------------------------------------------------*/
 
 
-    
+
 
