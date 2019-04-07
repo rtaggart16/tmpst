@@ -114,6 +114,8 @@
 
         }],
     });
+
+    $('#pollution-chart-result-container').fadeIn(300);
 }
 
 

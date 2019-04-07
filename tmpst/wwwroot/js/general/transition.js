@@ -81,6 +81,8 @@ function fadeInSpecifiedView(viewID) {
     resetEarthquakePage();
     resetNewsPage();
     resetMortalityPage();
+    resetPollutionPage();
+    resetPopulationPage();
     allViews.fadeOut(300).promise().done(function () {
         $('#' + viewID).fadeIn(300);
         currentView = viewID;
@@ -209,6 +211,25 @@ function clearEarthquakeCountryInfo() {
 
 // END: Earthquake Clean Up
 
+// Pollution Clean Up
+
+let dynamicPollutionElements = $('#pollution-chart-result-container');
+
+function resetPollutionPage() {
+    dynamicPollutionElements.fadeOut(300);
+}
+
+// END: Pollution Clean Up
+
+// Population Clean Up
+
+let dynamicPopulationElements = $('#population-chart-result-container');
+
+function resetPopulationPage() {
+    dynamicPopulationElements.fadeOut(300);
+}
+
+// END: Population Clean Up
 
 //News Clean Up
 function resetNewsPage() {

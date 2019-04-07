@@ -576,8 +576,11 @@ function submitPopulationRequest() {
 
             //Creates visualisation
             createD3Visualisation(result);
-            $('#population-chart-container').fadeIn(300);
-            collapseExpandToggle('population-wizard-arrow-up', 'population-wizard-arrow-down', 'population-wizard-container');
+            $('#population-chart-result-container').fadeIn(300).promise().done(function () {
+                $('#population-chart-container').fadeIn(300);
+                collapseExpandToggle('population-wizard-arrow-up', 'population-wizard-arrow-down', 'population-wizard-container');
+            });
+            
         },
         error: function (errorResult) {
             console.log('ERROR: ', errorResult.statusText);
