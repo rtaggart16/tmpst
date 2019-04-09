@@ -48,6 +48,10 @@ body {
     margin-bottom: 10px;
 }
 
+.overview-card-item {
+    padding-bottom: 10px;
+}
+
 .banner-outer {
     width:100%;
     text-align:center;

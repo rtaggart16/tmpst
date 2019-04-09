@@ -41,7 +41,8 @@ let allViews = $('#overview-page')
     .add($('#tutorial-page'))
     .add($('#pollution-page'))
     .add($('#general-page'))
-    .add($('#mortality-page'));
+    .add($('#mortality-page'))
+    .add($('#overview-desc-page'));
 
 let currentView = 'overview-page';
 
