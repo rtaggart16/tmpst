@@ -171,8 +171,10 @@ function sunburstNewsVisualization(data, country, category) {
     let chart = Highcharts.chart('chart', {
 
         chart: {
-            height: '100%'
+            height: '100%',
+            width: '50%'
         },
+
 
         title: {
             text: category + ' Headlines in ' + country,
