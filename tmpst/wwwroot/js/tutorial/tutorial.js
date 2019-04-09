@@ -21,6 +21,7 @@ $(function () {
 
 function loadViews() {
     allTutorialPages = $('#single-page-application-tutorial')
+        .add($('#overview-tutorial'))
         .add($('#user-secret-tutorial'))
         .add($('#partial-view-tutorial'))
         .add($('#asp-core-tutorial'))
@@ -54,6 +55,9 @@ function processNodeRequest(id) {
     // Overview
     if (id == 'single-page-desc-li') {
         fadeSpecifiiedTut('single-page-application-tutorial');
+    }
+    if (id == 'overview-li') {
+        fadeSpecifiiedTut('overview-tutorial');
     }
     if (id == 'user-secret-desc-li') {
         fadeSpecifiiedTut('user-secret-tutorial');

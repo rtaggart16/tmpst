@@ -25,6 +25,7 @@
                 <li>
                     Overview
                     <ul>
+                        <li id="overview-li">Overview</li>
                         <li id="single-page-desc-li">Single Page Applications</li>
                         <li id="user-secret-desc-li">User Secrets</li>
                         <li id="partial-view-desc-li">Partial Views</li>
@@ -83,6 +84,9 @@
     <div class="col-12 card tutorial-card-container">
         <div id="tutorial-text-container" style="height:300px; overflow-x:hidden">
             <!--START - Overview Pages-->
+            <div class="tutorial-page" id="overview-tutorial">
+                @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Overview/_OverviewPage.cshtml")
+            </div>
             <div style="display:none;" class="tutorial-page" id="single-page-application-tutorial">
                 @await Html.PartialAsync("~/Views/Partials/Tutorials/Tutorial Pages/Overview/_SinglePageApplicationsTutorial.cshtml")
             </div>
