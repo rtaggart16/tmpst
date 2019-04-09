@@ -89,6 +89,9 @@
     <Content Update="Views\Partials\Tutorials\Tutorial Pages\APIs\_PopulationTutorial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Partials\Tutorials\Tutorial Pages\Overview\_OverviewPage.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Partials\Tutorials\Tutorial Pages\Visualisations\_D3Tutorial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
