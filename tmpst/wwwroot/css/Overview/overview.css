@@ -43,8 +43,8 @@ body {
 }
 
 .overview-card-container {
-    margin-left: 5px;
-    margin-right: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin-bottom: 10px;
 }
 
