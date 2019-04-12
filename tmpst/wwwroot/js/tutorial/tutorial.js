@@ -154,12 +154,15 @@ function processNodeRequest(id) {
 
 function tutRemoveFullSCreen(elmID) {
     let elem = document.getElementById(elmID);
-    if (elmID == 'user-secret-tutorial') {
-        $('#usr-scrt-rmv-full-screen-btn').fadeOut(300).promise().done(function () {
-            $('#usr-scrt-full-screen-btn').fadeIn(300);
-        });
-    }
-    elem.exitFullscreen();
+    console.log("HIT - Element ID: ", elmID);
+
+    //Gets full screen button and sets the display to none
+    document.getElementById(elmID + "-full-screen-btn").style.display = "inline";
+
+    //Gets remove full screen button and sets the display to inline
+    document.getElementById(elmID + "-rmv-full-screen-btn").style.display = "none";
+
+    document.exitFullscreen();
 }
 
 function openTutorialLink(address) {
@@ -183,11 +186,14 @@ function tutFullScreen(elmID) {
     let enabled = document.fullscreenEnabled;
     if (enabled == true) {
         let elem = document.getElementById(elmID);
-        if (elmID == 'user-secret-tutorial') {
-            $('#usr-scrt-full-screen-btn').fadeOut(300).promise().done(function () {
-                $('#usr-scrt-rmv-full-screen-btn').fadeIn(300);
-            });
-        }
+        console.log("HIT - Element ID: ", elmID);
+
+        //Gets full screen button and sets the display to none
+        document.getElementById(elmID + "-full-screen-btn").style.display = "none";
+
+        //Gets remove full screen button and sets the display to inline
+        document.getElementById(elmID + "-rmv-full-screen-btn").style.display = "inline";
+
         elem.requestFullscreen();
     }
     else {
