@@ -8,6 +8,7 @@
         border-radius:60px;
         padding-left:40px;
         display:none;
+        
     }
 
     .back-home-btn p {
@@ -23,3 +24,13 @@
 <button id="back-home-btn" class="btn btn-info back-home-btn" onclick="fadeInSpecifiedView('overview-page')" style="margin-bottom:1em;" >
     <p>Home </p> <i class="fas fa-chevron-left"></i> <i class="fas fa-home"></i>  
 </button>
+
+<script>
+    $('.navbar-toggler').on('click', function () {
+        if (currentView != "overview-page") {
+            $('#back-home-btn').toggle("fast");
+        }
+        });
+    
+        
+</script>
