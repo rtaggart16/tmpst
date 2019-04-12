@@ -77,3 +77,14 @@ body {
 /*--------------------------------------------------------------------------
     END: # Containers
 ---------------------------------------------------------------------------*/
+
+
+@media only screen and (max-width: 600px) {
+    #population-chart-result-container {
+        min-width: 90vw;
+        max-width: 90vw;
+        min-height: 90vw;
+        max-height: 90vw;
+        margin: 0 auto
+    }
+}
