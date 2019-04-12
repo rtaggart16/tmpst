@@ -50,13 +50,13 @@ function wordcloudNewsVisualization(data, country, category) {
             text: category + ' Headlines in ' + country,
         }
     });
-}
+} 
 
 
 function newsVisualization(data, country, category) {
 
     console.log(data);
-
+    
 
 
 
@@ -75,9 +75,9 @@ function newsVisualization(data, country, category) {
     sources.push(sourceParent);
 
 
+    
 
-
-
+    
 
     $.each(data.articles, function (key, val) {
         //Creates the source
@@ -85,19 +85,19 @@ function newsVisualization(data, country, category) {
         //does not create the source but appends the 
 
         //Source must have
-        //ID of 'X'
-        //Parent of '0.0'
-        //Value of 1
+            //ID of 'X'
+            //Parent of '0.0'
+            //Value of 1
 
         //Article must have
-        //ID of 'X.Y' where x is the source
-        //Parent of 'X' where x is the source
-        //Value of 1
+            //ID of 'X.Y' where x is the source
+            //Parent of 'X' where x is the source
+            //Value of 1
 
         //One source can have many articles
 
         var id = sources.length.toString();
-
+        
         var source =
         {
             'id': "1." + id,
@@ -119,14 +119,14 @@ function newsVisualization(data, country, category) {
         });
 
 
-        if (repeatingSource != -1) {
+        if(repeatingSource != -1) {
             console.log("FOUND DUPLICATE - Name: " + source.name + " - ID in Array: " + repeatingSource);
         }
         else {
             sources.push(source);
         }
-
-
+        
+    
 
         //The source for the article should now be in the 'sources' array
         //Now the aritcle needs to be inserted in the 'articles' array with appropriate attributes
@@ -144,7 +144,7 @@ function newsVisualization(data, country, category) {
         else {
             var len = sources.length - 1;
             parent = len.toString();
-
+            
         }
 
         var article =
@@ -153,24 +153,25 @@ function newsVisualization(data, country, category) {
             'parent': "1." + parent,
             'name': val.title,
             'value': 1,
+            
         };
 
         articles.push(article);
-
-
+        
+        
     });
     var dataArray = sources.concat(articles);
-
+    
     console.log(dataArray);
+    
+    
 
-
-
-
+    
     // Splice in transparent for the center circle
     Highcharts.getOptions().colors.splice(0, 0, 'transparent');
 
 
-    let chart = Highcharts.chart('chart', {
+    Highcharts.chart('chart', {
 
         chart: {
             height: '100%'
@@ -187,16 +188,8 @@ function newsVisualization(data, country, category) {
             data: dataArray,
             allowDrillToNode: true,
             cursor: 'pointer',
-            events: {
-                click: function (event) {
-                    let selectedPoints = chart.getSelectedPoints();
-                    console.log(
-                        selectedPoints
-                    );
-                }
-            },
             dataLabels: {
-                format: '{point.name}',
+                format: '{point.name}', 
                 filter: {
                     property: 'innerArcLength',
                     operator: '>',
@@ -228,39 +221,10 @@ function newsVisualization(data, country, category) {
                 //        }
                 //}
             ],
-
         }],
         tooltip: {
             headerFormat: "",
             pointFormat: '{point.name} - Articles: {point.value}'
         }
     });
-
-    let loopIterator = 0;
-
-    console.log('ALL SOURCES: ', sources);
-
-    for (let i = sources.length; i < chart.series[0].data.length; i++) {
-        let currentArticle = chart.series[0].data[i];
-        console.log('Current Article: ', currentArticle);
-        console.log('API DATA: ', data.articles[loopIterator]);
-
-        console.log('JQUERY ITEM: ', $(chart.series[0].data[i]));
-
-        $(chart.series[0].data[i].node).on('click', function () {
-            console.log('HIT ONCLICK');
-            window.open(currentArticle.url);
-        });
-
-        loopIterator += 1;
-    }
-
-    /*$.each(chart.series[0].data, function (key, val) {
-        console.log('Iterator: ' + loopIterator);
-        console.log('CHART DATA: ', val);
-        console.log('API DATA: ', data.articles[loopIterator]);
-
-        loopIterator += 1;
-    });*/
 } 
-
