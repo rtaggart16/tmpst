@@ -8,8 +8,8 @@ namespace tmpst.Models
     /*
        Author Info:
 
-       Name(s) - Ross Taggart
-       Student Number - S1828840
+       Name(s) - Ross Taggart, Aidan Marshall
+       Student Number - S1828840, S1828601
        Date Created - 17/02/2019
        Version - 1.0.0
 
