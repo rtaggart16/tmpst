@@ -122,9 +122,6 @@
     <Content Update="Views\Partials\Tutorials\Tutorial Pages\Pre-Requisites\_NetSdkTutorial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="wwwroot\tutorials\APIs\Weather_API.pdf">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
   </ItemGroup>
 
 </Project>
