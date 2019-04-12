@@ -1,8 +1,8 @@
 ﻿/*
     Author Info:
 
-    Name(s) - Ross Taggart
-    Student Number - S1828840
+    Name(s) - Ross Taggart, Katie King, Aidan Marshall
+    Student Number - S1828840, S1827986, S1828601
     Date Created - 22/02/2019
     Version - 2.0.0
 
