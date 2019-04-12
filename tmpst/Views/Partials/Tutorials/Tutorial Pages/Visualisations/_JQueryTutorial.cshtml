@@ -2,3 +2,171 @@
     <h2>jQuery Tutorial</h2>
     <hr />
 </div>
+
+<div class="row text-center">
+    <div class="col-12 tutorial-para">
+        <button onclick="downloadPDF('Visualisations/jQuery.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
+        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('jquery-tutorial')">Go Full Screen</button>
+        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('jquery-tutorial')">Exit Full Screen</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            jQuery is a small JavaScript library that is feature-rich and allows for the developer to access
+            additional functionality such as, HTML page traversal (DOM Manipulation), manipulation, event
+            handling, animation and Ajax. This API works across multiple browsing platforms and is an
+            extremely versatile and extensive tool that has adapted the way developers have used and
+            written JavaScript.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            jQuery can be used in a multiple of ways:
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 tutorial-para">
+        
+        <ul>
+            <li>
+                jQuery Hide and Show
+            </li>
+            <li>
+                jQuery Sliding
+            </li>
+            <li>
+                jQuery Animation
+            </li>
+        </ul>
+        
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            The w3schools website gives examples of how these would be used in a function.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <a href="https://www.w3schools.com/whatis/whatis_jquery.asp"> https://www.w3schools.com/whatis/whatis_jquery.asp </a>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            We as a team continuously used jQuery throughout the development of the tmpst website. An
+            example of where we used this library is within the “QueryBuilder”, it is used to gather the data
+            by pulling from the API.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Example from “_NewsQueryBuilder”:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/Visualisation/jQuery-queryBuilder-code.png" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In plain text:
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            let requestUrl = 'https://newsapi.org/v2/top-headlines?country=' + countryDropdown +
+            '&category=' + categoryDropdown + '&language=en&apiKey=' + '@Model.App_Key';
+            $.ajax({
+
+            type: "GET",
+            url: requestUrl,
+            dataType: "json",
+            success: function (result) {
+            $('#news-wizard-arrow-up').click().promise().done(function () {
+            $('#news-card-container').fadeIn(300);
+            });
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            As a development team jQuery was the obvious choice as it is so easy to use and significantly
+            reduced our development time, we used jQuery with complex element selection and event
+            handling.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            An example of how we used jQuery for event handling:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/Visualisation/jQuery-eventHandling-code.png" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            In plain text:
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            $.each(data.articles, function (key, val) {
+            //Concatenates text string together from sources
+            text = text + "" + val.title;
+            });
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            There are more information and examples provided by w3schools -
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <a href="https://www.w3schools.com/jquery/jquery_ref_events.asp"> https://www.w3schools.com/jquery/jquery_ref_events.asp </a>
+        </p>
+    </div>
+</div>
