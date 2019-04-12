@@ -4,6 +4,10 @@
         bottom: 10px;
         right: 10px;
         z-index: 2000;
+        color: black;
+    }
+    .helper-btn:hover{
+        color:black;
     }
 </style>
 
@@ -101,9 +105,31 @@
                         </div>
                         <div class="col-12">
                             <p>
-                                The tutorial page displays a tree structure of all the tutorials that tmpst offers. The tutorials are organised into parent folders which make finding the tutorial you are 
-                                looking for easier. By clicking on a tutorial item, The lower section of the pag will display the content of the tutorial along with options to view a PDF version as well as
+                                The tutorial page displays a tree structure of all the tutorials that tmpst offers. The tutorials are organised into parent folders which make finding the tutorial you are
+                                looking for easier. By clicking on a tutorial item, The lower section of the page will display the content of the tutorial along with options to view a PDF version as well as
                                 viewing it in full screen.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="mortality-desc-sect" style="display:none" class="row">
+                        <div class="col-12">
+                            <h6>What is it?</h6>
+                        </div>
+                        <div class="col-12">
+                            <p>
+                                The mortality page allows you to view the mortality distribution percentage of a specified country fro a specific gender. The select boxes allow you to choose the country and
+                                gender you want to see data for. Once you submit the request, a doughnut chart will be displayed which contains all the mortality percentages.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="news-desc-sect" style="display:none" class="row">
+                        <div class="col-12">
+                            <h6>What is it?</h6>
+                        </div>
+                        <div class="col-12">
+                            <p>
+                                The news page allows you to view a high level overview of the most popular news stories in a specific category for a chosen country. The select boxes allow you to chose the country
+                                and the category of the news you want to see. Once you submit the request, a sunburst chart will be displayed which displays the top stories along with their source.
                             </p>
                         </div>
                     </div>
@@ -117,7 +143,8 @@
 <script>
     let allDescSections = $('#overview-desc-sect').add($('#weather-desc-sect'))
         .add($('#earthquake-desc-sect')).add($('#population-desc-sect'))
-        .add($('#pollution-desc-sect')).add($('#aboutus-desc-sect')).add($('#tutorial-desc-sect'));
+        .add($('#pollution-desc-sect')).add($('#aboutus-desc-sect')).add($('#tutorial-desc-sect'))
+        .add($('#mortality-desc-sect')).add($('#news-desc-sect'));
 
     function showHelpModal() {
         let appendTitleText = '';
@@ -151,6 +178,14 @@
                 case 'tutorial-page':
                     appendTitleText = 'Tutorial Page';
                     $('#tutorial-desc-sect').fadeIn(300);
+                    break;
+                case 'news-page':
+                    appendTitleText = 'News Page';
+                    $('#news-desc-sect').fadeIn(300);
+                    break;
+                case 'mortality-page':
+                    appendTitleText = 'Mortality Page';
+                    $('#mortality-desc-sect').fadeIn(300);
                     break;
             }
         }).promise().done(function () {
