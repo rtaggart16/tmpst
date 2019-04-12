@@ -36,8 +36,6 @@
     "Western%20Europe"
 ]
 
-let popChart;
-
 function getPopulationCountries(partialViewCountrySelect) {
     let url = 'https://dyicn1e62j3n1.cloudfront.net/1.0/countries';
 
@@ -86,7 +84,7 @@ function createD3Visualisation(data, type) {
         .style("text-align", "center")
         .text(subheader);
 
-    radarChartBuilderMobile(data);
+    radarChartBuilder(data);
 
 }
 
@@ -121,11 +119,6 @@ function radarChartBuilderMobile(data) {
 
         dataInArray[0].push(radarItem);
     };
-
-
-
-
-
 
     try {
 
@@ -603,17 +596,17 @@ function radarChartBuilder(data) {
 
         //Initiate the radar chart SVG
         var svg = d3.select(id).append("svg")
-            .attr("width", container.width() / 2 /*cfg.w + cfg.margin.left + cfg.margin.right*/) //cfg.w + cfg.margin.left + cfg.margin.right
-            .attr("height", container.height() / 2 /*cfg.h + cfg.margin.bottom + cfg.margin.top*/)
-            .attr("class", "radar" + id)
-            .attr('viewBox', '-120 -20 ' + Math.min(container.width(), container.height()) + ' ' + container.height())
+            .attr("width", container.width() /*cfg.w + cfg.margin.left + cfg.margin.right*/) //cfg.w + cfg.margin.left + cfg.margin.right
+            .attr("height", container.height() /*cfg.h + cfg.margin.bottom + cfg.margin.top*/)
+            .attr("class", "chart-svg")
+            .attr('viewBox', '-120 -20 1000' + ' ' + container.width() / 2)
             .attr('preserveAspectRatio', 'xMinYMin')
             .attr("id", "pop-chart-svg");
 
         popChart = svg;
 
         //Append a g element
-        var g = svg.append("g").attr("transform", "translate(" + Math.min(container.width(), container.height()) / 2 + "," + Math.min(container.width(), container.height()) / 2 + ")");
+        var g = svg.append("g").attr("transform", "translate(" + ((container.width() / 2) + 150) + "," + container.height() / 2 + ")");
             //.attr("transform", "translate(" + (cfg.w / 2 + cfg.margin.left) + "," + (cfg.h / 2 + cfg.margin.top) + ")");
     }
     catch (error) {
@@ -665,6 +658,7 @@ function radarChartBuilder(data) {
             .style("font-size", "10px")
             .attr("fill", "#737373")
             .text(function (d, i) { return Format(maxValue * d / cfg.levels); });
+        
     }
     catch (error) {
         console.log(error);
@@ -775,6 +769,7 @@ function radarChartBuilder(data) {
             .attr("cy", function (d, i) { return rScale(d.value) * Math.sin(angleSlice * i - Math.PI / 2); })
             .style("fill", function (d, i, j) { return cfg.color(j); })
             .style("fill-opacity", 0.8);
+        
     }
     catch (error) {
         console.log(error);
@@ -814,6 +809,7 @@ function radarChartBuilder(data) {
                 tooltip.transition().duration(200)
                     .style("opacity", 0);
             });
+        
 
         //Set up the small tooltip for when you hover over a circle
         var tooltip = g.append("text")
@@ -989,4 +985,5 @@ function submitPopulationRequest() {
     });
 
 }
+
 
