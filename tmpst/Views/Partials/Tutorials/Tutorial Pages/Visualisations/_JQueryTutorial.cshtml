@@ -98,18 +98,20 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            let requestUrl = 'https://newsapi.org/v2/top-headlines?country=' + countryDropdown +
-            '&category=' + categoryDropdown + '&language=en&apiKey=' + '@Model.App_Key';
-            $.ajax({
-
-            type: "GET",
-            url: requestUrl,
-            dataType: "json",
-            success: function (result) {
-            $('#news-wizard-arrow-up').click().promise().done(function () {
-            $('#news-card-container').fadeIn(300);
-            });
-        </p>
+            <pre>
+                <code class="language-javascript">
+let requestUrl = 'https://newsapi.org/v2/top-headlines?country=' + countryDropdown + '&category=' + categoryDropdown + '&language=en&apiKey=' + '@@Model.App_Key';
+                    $.ajax
+                    type: "GET",
+                    url: requestUrl,
+                    dataType: "json",
+                    success: function (result) {
+                    $('#news-wizard-arrow-up').click().promise().done(function () {
+                    $('#news-card-container').fadeIn(300);
+                    });
+                </code>
+        </pre>
+            
     </div>
 </div>
 
@@ -147,11 +149,14 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            $.each(data.articles, function (key, val) {
+            <pre>
+<code class="language-javascript">
+$.each(data.articles, function (key, val) {
             //Concatenates text string together from sources
             text = text + "" + val.title;
             });
-        </p>
+    </code> 
+        </pre>
     </div>
 </div>
 
