@@ -12,22 +12,22 @@
 <div class="card weather-card-container">
     <div class="row weather-card-item">
         <div class="col-12 text-center">
-            <span>
-                <strong>Current Weather </strong> <i onclick="collapseExpandToggle('current-result-overview-up', 'current-result-overview-down', 'current-weather-wizard-container')" id="current-result-overview-up" class="fas fa-caret-up fa-2x tmpst-clickable"></i><i onclick="collapseExpandToggle('current-result-overview-down', 'current-result-overview-up', 'current-weather-wizard-container')" style="display:none" id="current-result-overview-down" class="fas fa-caret-down fa-2x tmpst-clickable"></i>
-            </span>
+            <strong><span id="current-weather-card-span"></span></strong>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-12 text-center">
+            <p>The Current Weather card contains a brief overview of the current weather conditions that you have requested</p>
+        </div>
+    </div>
     <div id="current-weather-wizard-container">
-
-
         @*Div that contains the current weather icon*@
-        <div class="row weather-card-item text-center">
-            <div id="current-weather-icon-container" class="col-12">
+        <div class="row current-weather-container-item text-center">
+            <div id="current-weather-icon-container" class="col-12 current-weather-icon-container">
 
             </div>
         </div>
-        <div class="row weather-card-item">
+        <div class="row current-weather-container-item">
             @*Div that contains the current condition*@
             <div id="current-weather-condition-container" class="col-12">
 
@@ -39,32 +39,33 @@
 
             </div>
         </div>
-        <div class="row weather-card-item">
+        <div class="row current-weather-container-item">
             @*Div that contains the current feels like temperature*@
             <div id="current-weather-feel-temp-container" class="col-12">
 
             </div>
         </div>
-        <hr />
-        <div class="row weather-card-item">
+        <div class="row current-weather-container-item">
             @*Div that contains the current wind direction*@
             <div id="current-weather-wind-dir-container" class="col-12">
 
             </div>
         </div>
-        <div class="row weather-card-item">
+        <div class="row current-weather-container-item">
             @*Div that contains the current wind speed*@
             <div id="current-weather-wind-speed-container" class="col-12">
 
             </div>
         </div>
+        @*
         <div class="row">
             <div class="col-12">
                 <button class="btn btn-success w-100" id="submitCurrentDay" onclick="analyseCurrentDayData()">Analyse Data</button>
             </div>
         </div>
+            *@
     </div>
-    </div>
+</div>
 
 <script>
     $('#current-weather-collapse-expand').click(function () {

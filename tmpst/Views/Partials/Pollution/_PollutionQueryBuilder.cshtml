@@ -16,23 +16,28 @@
             <div class="row pollution-card-item">
                 <div class="col-12 text-center">
                     <span>
-                        <strong>Pollution Wizard</strong> <i onclick="collapseExpandToggle('pollution-wizard-arrow-up', 'pollution-wizard-arrow-down', 'pollution-wizard-container')" id="pollution-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i><i onclick="collapseExpandToggle('pollution-wizard-arrow-down', 'pollution-wizard-arrow-up', 'pollution-wizard-container')" style="display:none" id="pollution-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                        <strong>Pollution Wizard</strong> <i onclick="collapseExpandToggle('pollution-wizard-arrow-up', 'pollution-wizard-arrow-down', 'pollution-wizard-container')" id="pollution-wizard-arrow-up" class="fas fa-caret-up fa-2x tmpst-clickable" data-toggle="tooltip" data-placement="top" title="Click to slide up"></i><i onclick="collapseExpandToggle('pollution-wizard-arrow-down', 'pollution-wizard-arrow-up', 'pollution-wizard-container')" style="display:none" id="pollution-wizard-arrow-down" class="fas fa-caret-down fa-2x tmpst-clickable" data-toggle="tooltip" data-placement="top" title="Click to slide down"></i>
                     </span>
+                </div>
+            </div>
+            <div class="row pollution-card-item text-center">
+                <div class="col-12">
+                    <p>The pollution wizard allows you to view the pollutants in the atmosphere of a specific region</p>
                 </div>
             </div>
             <div id="pollution-wizard-container">
                 <div class="row pollution-card-item">
                     <div class="col-6">
-                        <select id="pollution-country-input" class="form-control" required></select>
+                        <select id="pollution-country-input" class="form-control tmpst-clickable" required data-toggle="tooltip" data-placement="top" title="Select the country you want to see the pollution of"></select>
                     </div>
                     <div class="col-6">
-                        <select id="pollution-location-input" class="form-control" required></select>
+                        <select id="pollution-location-input" class="form-control tmpst-clickable" required data-toggle="tooltip" data-placement="top" title="Select the pollution station to see the data for"></select>
                     </div>
                 </div>
                 <div id="submit-pollution-request-container">
                     <div class="row">
                         <div class="col-12">
-                            <button id="submit-pollution-request-btn" onclick="submitPollutionRequest()" class="btn btn-success w-100">Submit</button>
+                            <button id="submit-pollution-request-btn" onclick="submitPollutionRequest()" class="btn btn-success w-100" data-toggle="tooltip" data-placement="top" title="Submit pollution request">Submit</button>
                         </div>
                     </div>
                 </div>

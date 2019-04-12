@@ -1,0 +1,199 @@
+﻿<style>
+    .helper-btn {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        z-index: 2000;
+        color: black;
+    }
+    .helper-btn:hover{
+        color:black;
+    }
+</style>
+
+
+<button id="helper-toggle-btn" class="btn helper-btn" onclick="showHelpModal()" data-toggle="tooltip" data-placement="top" title="Need some help?"><i class="fas fa-question fa-3x"></i></button>
+
+<div class="modal" id="tmpst-help-modal" tabindex="-1" data-backdrop="static" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-2">
+                        <img class="img-fluid" src="~/images/logo/logo64.png" />
+                    </div>
+                    <div class="col-10">
+                        <h4 id="helper-modal-page-title"></h4>
+                    </div>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-page-desc-sect">
+                    <div id="overview-desc-sect" style="display:none" class="row">
+                        <div class="col-12">
+                            <h6>What is it?</h6>
+                        </div>
+                        <div class="col-12">
+                            <p>
+                                The overview page contains the buttons that will take you to the other systems of the application. Each button has its own title and icon that symbolises the system it
+                                links to. The overview page also contains the tmpst logo.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="weather-desc-sect" style="display:none" class="row">
+                        <div class="col-12">
+                            <h6>What is it?</h6>
+                        </div>
+                        <div class="col-12">
+                            <p>
+                                The weather page contains option selectors for choosing between viewing current and forecast weather data. From here, you can view future weather conditions both in table
+                                and graph form
+                            </p>
+                        </div>
+                    </div>
+                    <div id="earthquake-desc-sect" style="display:none" class="row">
+                        <div class="col-12">
+                            <h6>What is it?</h6>
+                        </div>
+                        <div class="col-12">
+                            <p>
+                                The earthquake page allows you to view a clustered map of all earthquakes within a specified time range. On this page, the select boxes will let you chose the time range
+                                you want to see data for as well as the magnitude you want to use to limit the results.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="population-desc-sect" style="display:none" class="row">
+                        <div class="col-12">
+                            <h6>What is it?</h6>
+                        </div>
+                        <div class="col-12">
+                            <p>
+                                The population page allows you to view the population distribution of a chosen country in a specific year. On this page, the select box lets you chose the desired country
+                                from a set list and you can enter the year you want to see data for in the input box. Once you submit the request, a radar chart that visualises the data will be displayed.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="pollution-desc-sect" style="display:none" class="row">
+                        <div class="col-12">
+                            <h6>What is it?</h6>
+                        </div>
+                        <div class="col-12">
+                            <p>
+                                The pollution page allows you to view the atmospheric pollutants for a chosen pollution station in a specified country. On this page, the select box will allow you to choose
+                                the country you want to see data for. The other select box will then be automatically populated with the avaliable pollution stations for that country. Once you submit the request,
+                                a horizontal bar chart will be displayed that shows all the pollutants in the atmosphere for that area.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="aboutus-desc-sect" style="display:none" class="row">
+                        <div class="col-12">
+                            <h6>What is it?</h6>
+                        </div>
+                        <div class="col-12">
+                            <p>
+                                The about us page displays some basic information for each of the tmpst team members. Links to our LinkedIn and GitHub accounts as well as a summary of tasks that we have
+                                performed during the creation of this application.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="tutorial-desc-sect" style="display:none" class="row">
+                        <div class="col-12">
+                            <h6>What is it?</h6>
+                        </div>
+                        <div class="col-12">
+                            <p>
+                                The tutorial page displays a tree structure of all the tutorials that tmpst offers. The tutorials are organised into parent folders which make finding the tutorial you are
+                                looking for easier. By clicking on a tutorial item, The lower section of the page will display the content of the tutorial along with options to view a PDF version as well as
+                                viewing it in full screen.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="mortality-desc-sect" style="display:none" class="row">
+                        <div class="col-12">
+                            <h6>What is it?</h6>
+                        </div>
+                        <div class="col-12">
+                            <p>
+                                The mortality page allows you to view the mortality distribution percentage of a specified country fro a specific gender. The select boxes allow you to choose the country and
+                                gender you want to see data for. Once you submit the request, a doughnut chart will be displayed which contains all the mortality percentages.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="news-desc-sect" style="display:none" class="row">
+                        <div class="col-12">
+                            <h6>What is it?</h6>
+                        </div>
+                        <div class="col-12">
+                            <p>
+                                The news page allows you to view a high level overview of the most popular news stories in a specific category for a chosen country. The select boxes allow you to chose the country
+                                and the category of the news you want to see. Once you submit the request, a sunburst chart will be displayed which displays the top stories along with their source.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let allDescSections = $('#overview-desc-sect').add($('#weather-desc-sect'))
+        .add($('#earthquake-desc-sect')).add($('#population-desc-sect'))
+        .add($('#pollution-desc-sect')).add($('#aboutus-desc-sect')).add($('#tutorial-desc-sect'))
+        .add($('#mortality-desc-sect')).add($('#news-desc-sect'));
+
+    function showHelpModal() {
+        let appendTitleText = '';
+
+        allDescSections.fadeOut(300).promise().done(function () {
+            switch (currentView) {
+                case 'overview-page':
+                    appendTitleText = 'Overview Page';
+                    $('#overview-desc-sect').fadeIn(300);
+                    break;
+                case 'weather-page':
+                    appendTitleText = 'Weather Page';
+                    $('#weather-desc-sect').fadeIn(300);
+                    break;
+                case 'earthquake-page':
+                    appendTitleText = 'Earthquake Page';
+                    $('#earthquake-desc-sect').fadeIn(300);
+                    break;
+                case 'population-page':
+                    appendTitleText = 'Population Page';
+                    $('#population-desc-sect').fadeIn(300);
+                    break;
+                case 'pollution-page':
+                    appendTitleText = 'Pollution Page';
+                    $('#pollution-desc-sect').fadeIn(300);
+                    break;
+                case 'general-page':
+                    appendTitleText = 'About Us Page';
+                    $('#aboutus-desc-sect').fadeIn(300);
+                    break;
+                case 'tutorial-page':
+                    appendTitleText = 'Tutorial Page';
+                    $('#tutorial-desc-sect').fadeIn(300);
+                    break;
+                case 'news-page':
+                    appendTitleText = 'News Page';
+                    $('#news-desc-sect').fadeIn(300);
+                    break;
+                case 'mortality-page':
+                    appendTitleText = 'Mortality Page';
+                    $('#mortality-desc-sect').fadeIn(300);
+                    break;
+            }
+        }).promise().done(function () {
+            $('#helper-modal-page-title').text(appendTitleText);
+
+            $('#tmpst-help-modal').modal('show');
+        });
+    }
+    
+</script>
+

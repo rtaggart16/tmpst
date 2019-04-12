@@ -22,13 +22,18 @@ function buildCountryContainer() {
         '<div class="row earthquake-card-item">' +
         '<div id="country-flag-container" class="col-6">' +
         '</div>' +
-        '</div>' +
-        '<div class="row earthquake-card-item">' +
-        '<div class="col-12">' +
+        '<div class="col-6">' + 
         '<table class="w-100 table-striped">' +
         '<tbody id="country-info-tbl-body" class="text-center"></tbody>' +
         '</table>' +
         '</div>' +
+        '</div>' +
+        '<div class="row earthquake-card-item">' +
+        /*'<div class="col-12">' +
+        '<table class="w-100 table-striped">' +
+        '<tbody id="country-info-tbl-body" class="text-center"></tbody>' +
+        '</table>' +
+        '</div>' +*/
         '</div>' +
         '</div>' +
         '</div>' +
