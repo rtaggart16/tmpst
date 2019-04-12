@@ -288,7 +288,9 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            [
+            <pre>
+<code class="language-javascript">
+[
             {
             "females": 28400,
             "country": "New Zealand",
@@ -305,10 +307,21 @@
             "year": 2019,
             "total": 59500
             },
+            
+
+    </code>
+        </pre>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
             Not all the request will be show here as the response is too long for the document.
         </p>
     </div>
 </div>
+
 
 <div class="text-center">
     <h2>Browser Request Tutorial</h2>
@@ -365,6 +378,15 @@
     <div class="col-12 tutorial-para">
         <p>
             The result is shown in plain text below:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <pre>
+<code class="language-javascript">
             HTTP 200 OK
             Content-Type: application/json
             Vary: Accept
@@ -388,6 +410,15 @@
             "year": 2019,
             "total": 59500
             },
+            
+    </code>
+        </pre>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
             Once again, the full response is not shown as it is too large.
         </p>
     </div>
@@ -413,8 +444,14 @@
     <div class="col-12 tutorial-para">
         <p>
             Steps:
-            1. Create a new playcode project
-            2. Add the provided AJAX code and run
+            <ol>
+                <li>
+                    Create a new playcode project
+                </li>
+                <li>
+                    Add the provided AJAX code and run
+                </li>
+            </ol>
         </p>
     </div>
 </div>
@@ -467,6 +504,8 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
+            <pre>
+<code class="language-javascript">
             The AJAX required to fetch the data programatically is:
             $.ajax({
             type: "GET",
@@ -479,12 +518,21 @@
             console.log('ERROR: ', errorResult);
             }
             });
+    </code>
+           
+        </pre>
+    </div>
+</div>
 
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
             If you replace the contents of script.js with the above AJAX and run the code, you should
             see the following:
         </p>
     </div>
 </div>
+
 
 <div class="row">
     <div class="col-12 tutorial-para">
@@ -498,8 +546,16 @@
             As you can see this result looks similar to the other results we have seen earlier in the
             project, however, this code can be added to an application and the data can be fetched and
             altered dynamically.
+
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
             Note: If playcode hangs or feels unresponsive when running this code there is no need to
             worry, their is a lot of data to process from this feed
+
         </p>
     </div>
 </div>
