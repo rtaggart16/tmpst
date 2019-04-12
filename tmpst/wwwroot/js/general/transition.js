@@ -86,6 +86,18 @@ function fadeInSpecifiedView(viewID) {
         $('#' + viewID).fadeIn(300);
         currentView = viewID;
     });
+
+    console.log(viewID);
+
+    if (viewID != "overview-page") {
+        backHome = document.getElementById("back-home-btn");
+
+        backHome.style.display = "inline";
+    }
+    else {
+        backHome.style.display = "none";
+    }
+
 }
 
 /*--------------------------------------------------------------------------
