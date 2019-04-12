@@ -103,8 +103,26 @@ body {
         color: #d0e1f9 !important;
     }
 
-.navbar-dropdown-item-expand{
-    color:white !important;
+.tutorial-link:hover {
+    color: #e6bbad !important;
+}
+
+.tutorial-link {
+    color: white !important;
+    transition: all .2s ease-in-out;
+}
+
+.aboutus-link:hover {
+    color: #ece1c1 !important;
+}
+
+.aboutus-link {
+    color: lightcyan !important;
+    transition: all .2s ease-in-out;
+}
+
+.navbar-dropdown-item-expand {
+    color: white !important;
 }
 
     .navbar-dropdown-item-expand:hover {
