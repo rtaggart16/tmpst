@@ -36,6 +36,8 @@
     "Western%20Europe"
 ]
 
+let popChart;
+
 function getPopulationCountries(partialViewCountrySelect) {
     let url = 'https://dyicn1e62j3n1.cloudfront.net/1.0/countries';
 
@@ -94,6 +96,7 @@ function radarChartBuilder(data) {
     //Radar chart sourced from https://gist.github.com/nbremer/21746a9668ffdf6d8242 
     //Call function to drawv the Radar chart
 
+    let container = $('#population-chart');
 
     var dataInArray = [[]];
 
@@ -120,27 +123,22 @@ function radarChartBuilder(data) {
 
         dataInArray[0].push(radarItem);
     };
-
-
-
-
-
-
+    
     try {
 
         var id = "#population-chart";
 
-        var margin = { top: 100, right: 100, bottom: 100, left: 100 },
-            width = Math.min(700, window.innerWidth - 10) - margin.left - margin.right,
-            height = Math.min(wid, window.innerHeight - margin.top - margin.bottom - 20);
+        /*var margin = { top: 100, right: 100, bottom: 100, left: 100 },
+            width = Math.min(container.width()) - margin.left - margin.right,
+            height = Math.min(container.height(), window.innerHeight - margin.top - margin.bottom - 20);*/
 
         var color = d3.scale.ordinal()
             .range(["#4d648d", "#4d648d", "#4d648d"]);
 
         var options = {
-            w: width,
-            h: height,
-            margin: margin,
+            w: container.width(),
+            h: container.height(),
+            //margin: margin,
             maxValue: 0.5,
             levels: 5,
             roundStrokes: true,
@@ -153,7 +151,7 @@ function radarChartBuilder(data) {
             w: 600,				//Width of the circle
             h: 600,				//Height of the circle
             margin: { top: 20, right: 20, bottom: 20, left: 20 }, //The margins of the SVG
-            levels: 5,				//How many levels or inner circles should there be drawn
+            levels: 3,				//How many levels or inner circles should there be drawn
             maxValue: 0, 			//What is the value that the biggest circle will represent
             labelFactor: 1.25, 	//How much farther than the radius of the outer circle should the labels be placed
             wrapWidth: 60, 		//The number of pixels after which a label needs to be given a new line
@@ -194,7 +192,7 @@ function radarChartBuilder(data) {
 
         var allAxis = (dataInArray[0].map(function (i, j) { return i.axis })),	//Names of each axis
             total = allAxis.length,					//The number of different axes
-            radius = Math.min(cfg.w / 2, cfg.h / 2), 	//Radius of the outermost circle
+            radius = Math.min(container.width(), container.height()) / 2, 	//Radius of the outermost circle
             Format = d3.format(',d'),			 	//Percentage formatting
             angleSlice = Math.PI * 2 / total;		//The width in radians of each "slice"
 
@@ -219,16 +217,24 @@ function radarChartBuilder(data) {
         //Remove whatever chart with the same id/class was present before
 
         d3.select(id).select("svg").remove();
+        
+        console.log('Container Heigth: ', container.height());
+        console.log('Container width: ', container.width());
 
         //Initiate the radar chart SVG
         var svg = d3.select(id).append("svg")
-            .attr("width", cfg.w + cfg.margin.left + cfg.margin.right) //cfg.w + cfg.margin.left + cfg.margin.right
-            .attr("height", cfg.h + cfg.margin.bottom + cfg.margin.top)
-            .attr("class", "radar" + id);
+            .attr("width", container.width() /*cfg.w + cfg.margin.left + cfg.margin.right*/) //cfg.w + cfg.margin.left + cfg.margin.right
+            .attr("height", container.height() /*cfg.h + cfg.margin.bottom + cfg.margin.top*/)
+            .attr("class", "radar" + id)
+            .attr('viewBox', '0 0 ' + Math.min(container.width(), container.height()) + ' ' + Math.min(container.width(), container.height()))
+            .attr('preserveAspectRatio', 'xMinYMin')
+            .attr("id", "pop-chart-svg");
+
+        popChart = svg;
 
         //Append a g element
-        var g = svg.append("g")
-            .attr("transform", "translate(" + (cfg.w / 2 + cfg.margin.left) + "," + (cfg.h / 2 + cfg.margin.top) + ")");
+        var g = svg.append("g").attr("transform", "translate(" + Math.min(container.width(), container.height()) / 2 + "," + Math.min(container.width(), container.height()) / 2 + ")");
+            //.attr("transform", "translate(" + (cfg.w / 2 + cfg.margin.left) + "," + (cfg.h / 2 + cfg.margin.top) + ")");
     }
     catch (error) {
         console.error(error);
@@ -576,11 +582,8 @@ function submitPopulationRequest() {
 
             //Creates visualisation
             createD3Visualisation(result);
-            $('#population-chart-result-container').fadeIn(300).promise().done(function () {
-                $('#population-chart-container').fadeIn(300);
-                collapseExpandToggle('population-wizard-arrow-up', 'population-wizard-arrow-down', 'population-wizard-container');
-            });
-            
+            $('#population-chart-container').fadeIn(300);
+            collapseExpandToggle('population-wizard-arrow-up', 'population-wizard-arrow-down', 'population-wizard-container');
         },
         error: function (errorResult) {
             console.log('ERROR: ', errorResult.statusText);
