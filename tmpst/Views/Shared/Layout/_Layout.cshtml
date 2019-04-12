@@ -30,7 +30,7 @@
         <script src="https://code.highcharts.com/modules/sunburst.js"></script>
         <script src="https://code.highcharts.com/modules/wordcloud.js"></script>
         <script src="~/js/pollution/pollution.js"></script>
-        <script src="~/js/news/news.js"></script>
+        <script src="~/js/news/news.js" defer></script>
         <script src="~/js/population/population.js"></script>
         <script src="~/js/mortality/mortality.js"></script>
         <script src="~/js/mortality/mortality-chart.js"></script>
@@ -65,6 +65,8 @@
         <script src="~/js/general/transition.js" defer></script>
         <script src="~/js/general/map.min.js" defer></script>
         <script src="~/js/weather/weather.js" defer></script>
+        <script src="~/js/earthquake/countryInfo.js" defer></script>
+        <script src="~/js/News/news.js"></script>
         <script src="~/js/general/pallet.min.js" defer></script>
         <script src="~/js/earthquake/earthquake.min.js" defer></script>
         <script src="~/lib/sweetalert2/sweetalert2.all.min.js" defer></script>
@@ -108,13 +110,20 @@
     @await Html.PartialAsync("~/Views/Shared/Layout/_Navbar.cshtml")
     <div class="container body-content">
         @RenderBody()
-
+        @await Html.PartialAsync("~/Views/Shared/Layout/_TmpstHelper.cshtml")
         <hr />
         @await Html.PartialAsync("~/Views/Shared/Layout/_Footer.cshtml")
 
     </div>
-
+    <script>
+        $(function () {
+            console.log('Initialising Tooltips');
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
     @RenderSection("Scripts", required: false)
+    
 </body>
+
 </html>
 

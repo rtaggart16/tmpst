@@ -43,6 +43,8 @@ let allViews = $('#overview-page')
     .add($('#general-page'))
     .add($('#mortality-page'));
 
+let currentView = 'overview-page';
+
 /*--------------------------------------------------------------------------
     END: # Global Container Variables
 ---------------------------------------------------------------------------*/
@@ -81,6 +83,7 @@ function fadeInSpecifiedView(viewID) {
     resetMortalityPage();
     allViews.fadeOut(300).promise().done(function () {
         $('#' + viewID).fadeIn(300);
+        currentView = viewID;
     });
 }
 
@@ -157,11 +160,29 @@ function fadeDynamicWeatherViews() {
 
 function clearDynamicWeatherElements() {
     allDynamicWeatherElements.empty();
+    $('#latitude-input').val('');
+    $('#longitude-input').val('');
+    $('#name-or-postcode-input').val('');
+}
+
+function showNecessaryWeatherContainers() {
+    if ($('#weather-wizard-container').is(':hidden')) {
+        collapseExpandToggle('weather-wizard-arrow-up', 'weather-wizard-arrow-down', 'weather-wizard-container');        
+    } else {
+        // The wizard is visible. Do nothing
+    }
+
+    if ($('#main-forecast-result-container').is(':hidden')) {
+        collapseExpandToggle('forecast-result-arrow-up', 'forecast-result-arrow-down', 'main-forecast-result-container');        
+    } else {
+        // The forecast result is visible. Do nothing
+    }
 }
 
 function resetWeatherPage() {
     fadeDynamicWeatherViews();
     clearDynamicWeatherElements();
+    //showNecessaryWeatherContainers();
 }
 
 // END: Weather Clean Up

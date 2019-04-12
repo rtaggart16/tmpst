@@ -17,20 +17,25 @@
             <div class="row weather-card-item tmpst-clickable text-center">
                 <div class="col-12 text-center">
                     <span>
-                        <strong>Weather Wizard</strong> <i onclick="collapseExpandToggle('weather-wizard-arrow-up', 'weather-wizard-arrow-down', 'weather-wizard-container')" id="weather-wizard-arrow-up" class="fas fa-caret-up fa-2x"></i><i onclick="collapseExpandToggle('weather-wizard-arrow-down', 'weather-wizard-arrow-up', 'weather-wizard-container')" style="display:none" id="weather-wizard-arrow-down" class="fas fa-caret-down fa-2x"></i>
+                        <strong>Weather Wizard</strong> <i onclick="collapseExpandToggle('weather-wizard-arrow-up', 'weather-wizard-arrow-down', 'weather-wizard-container')" id="weather-wizard-arrow-up" class="fas fa-caret-up fa-2x" data-toggle="tooltip" data-placement="top" title="Click to slide up"></i><i onclick="collapseExpandToggle('weather-wizard-arrow-down', 'weather-wizard-arrow-up', 'weather-wizard-container')" style="display:none" id="weather-wizard-arrow-down" class="fas fa-caret-down fa-2x" data-toggle="tooltip" data-placement="top" title="Click to slide down"></i>
                     </span>
+                </div>
+            </div>
+            <div class="row weather-card-item text-center">
+                <div class="col-12">
+                    <p>The weather wizard allows you to find out the current conditions or the weekly forecast for a given place name, latitude and longitude or postcode</p>
                 </div>
             </div>
             <div id="weather-wizard-container">
                 <div class="row weather-card-item">
                     <div class="col">
-                        <select class="form-control" id="method-type-select">
+                        <select class="form-control tmpst-clickable" id="method-type-select" data-toggle="tooltip" data-placement="top" title="Select the type of weather data you want">
                             <option value="current">Current Conditions</option>
                             <option value="forecast">Forecast</option>
                         </select>
                     </div>
                     <div class="col">
-                        <select class="form-control" id="input-type-select">
+                        <select class="form-control tmpst-clickable" id="input-type-select" data-toggle="tooltip" data-placement="top" title="Select the format of the weather location">
                             <option value="plcName">Place Name</option>
                             <option value="latlng">Latitude and Longitude</option>
                             <option value="pstcode">Postcode</option>
@@ -47,17 +52,17 @@
                     <div style="display:none;" id="lat-long-input-container">
                         <div class="row weather-card-item">
                             <div class="col">
-                                <input id="latitude-input" class="form-control" placeholder="Latitude" />
+                                <input id="latitude-input" class="form-control" placeholder="Latitude" data-toggle="tooltip" data-placement="top" title="Enter the latitude of the location" />
                             </div>
                             <div class="col">
-                                <input id="longitude-input" class="form-control" placeholder="Longitude" />
+                                <input id="longitude-input" class="form-control" placeholder="Longitude" data-toggle="tooltip" data-placement="top" title="Enter the longitude of the location" />
                             </div>
                         </div>
                     </div>
                     <div id="name-and-postcode-input-container">
                         <div class="row weather-card-item">
                             <div class="col">
-                                <input id="name-or-postcode-input" class="form-control" placeholder="Name or Postcode" />
+                                <input id="name-or-postcode-input" class="form-control" placeholder="Name or Postcode" data-toggle="tooltip" data-placement="top" title="Enter the name or postcode of the location" />
                             </div>
                         </div>
                     </div>
@@ -67,7 +72,7 @@
                 <div id="submit-weather-request-container">
                     <div class="row">
                         <div class="col-12">
-                            <button id="submit-weather-request-btn" onclick="submitWeatherRequest('@Model.Apixu.API_Key')" class="btn btn-success w-100">Submit</button>
+                            <button id="submit-weather-request-btn" onclick="submitWeatherRequest('@Model.Apixu.API_Key')" class="btn btn-success w-100" data-toggle="tooltip" data-placement="top" title="Submit your weather request">Submit</button>
                         </div>
                     </div>
                 </div>
