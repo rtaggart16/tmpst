@@ -82,6 +82,8 @@ function fadeInSpecifiedView(viewID) {
     resetEarthquakePage();
     resetNewsPage();
     resetMortalityPage();
+    resetPopulationPage();
+    resetPollutionPage();
     allViews.fadeOut(300).promise().done(function () {
         $('#' + viewID).fadeIn(300);
         currentView = viewID;
@@ -245,7 +247,25 @@ function resetMortalityPage() {
 
 // END: Mortality Clean up
 
+// Pollution Clean Up
 
+let dynamicPollutionElements = $('#pollution-chart-result-container');
+
+function resetPollutionPage() {
+    dynamicPollutionElements.fadeOut(300);
+}
+
+// END: Pollution Clean Up
+
+// Population Clean Up
+
+let dynamicPopulationElements = $('#population-chart-result-container');
+
+function resetPopulationPage() {
+    dynamicPopulationElements.fadeOut(300);
+}
+
+ // END: Population Clean Up
 
 /*--------------------------------------------------------------------------
     END: # API System Cleanup
