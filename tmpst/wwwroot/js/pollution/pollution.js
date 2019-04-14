@@ -1,6 +1,6 @@
 ﻿function createPollutionChart(data) {
 
-    console.log(data.results);
+    //////console.log(data.results);
 
 
     // Arrays for different emmisions
@@ -52,7 +52,7 @@
 
     
 
-    console.log("SERIES ARRAY--", seriesArray);
+    //////console.log("SERIES ARRAY--", seriesArray);
        
 
     Highcharts.chart('pollution-chart', {

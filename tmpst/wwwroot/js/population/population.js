@@ -203,7 +203,7 @@ function radarChartBuilderMobile(data) {
 
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
         // expected output: ReferenceError: nonExistentFunction is not defined
         // Note - error messages will vary depending on browser
     };
@@ -241,7 +241,7 @@ function radarChartBuilderMobile(data) {
             feMergeNode_2 = feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
 
@@ -277,7 +277,7 @@ function radarChartBuilderMobile(data) {
             .text(function (d, i) { return Format(maxValue * d / cfg.levels); });
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
 
@@ -312,7 +312,7 @@ function radarChartBuilderMobile(data) {
             .call(wrap, cfg.wrapWidth);
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
 
@@ -387,7 +387,7 @@ function radarChartBuilderMobile(data) {
             .style("fill-opacity", 0.8);
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
     // Append invisible circles for tooltip
@@ -430,7 +430,7 @@ function radarChartBuilderMobile(data) {
             .attr("class", "tooltip")
             .style("opacity", 0);
     } catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
     //Helper Function
@@ -580,7 +580,7 @@ function radarChartBuilder(data) {
 
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
         // expected output: ReferenceError: nonExistentFunction is not defined
         // Note - error messages will vary depending on browser
     };
@@ -593,8 +593,8 @@ function radarChartBuilder(data) {
 
         d3.select(id).select("svg").remove();
         
-        console.log('Container Heigth: ', container.height());
-        console.log('Container width: ', container.width());
+        //////console.log('Container Heigth: ', container.height());
+        //////console.log('Container width: ', container.width());
         
         var offset = container.offset();
         var width = container.width();
@@ -637,7 +637,7 @@ function radarChartBuilder(data) {
             feMergeNode_2 = feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
 
@@ -674,7 +674,7 @@ function radarChartBuilder(data) {
         
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
 
@@ -709,7 +709,7 @@ function radarChartBuilder(data) {
             .call(wrap, cfg.wrapWidth);
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
 
@@ -785,7 +785,7 @@ function radarChartBuilder(data) {
         
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
     // Append invisible circles for tooltip
@@ -829,7 +829,7 @@ function radarChartBuilder(data) {
             .attr("class", "tooltip")
             .style("opacity", 0);
     } catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
     //Helper Function
@@ -925,7 +925,7 @@ function barChartBuilder(data) {
         .domain([0, d3.max(dataInArray)])
         .range([0, width]);
 
-    console.log(width);
+    //////console.log(width);
 
     d3.select("#population-inner-chart")
         .selectAll("div")
@@ -961,7 +961,7 @@ function submitPopulationRequest() {
     if (country == "Australia/New Zealand") { country = "New Zealand"; }
 
     let url = 'https://dyicn1e62j3n1.cloudfront.net/1.0/population/' + year + '/' + country + '/?format=jsonp';
-    console.log("Created URL from user Input: " + url);
+    //////console.log("Created URL from user Input: " + url);
     $.ajax({
         type: "GET",
         url: url,
@@ -978,7 +978,7 @@ function submitPopulationRequest() {
             
         },
         error: function (errorResult) {
-            console.log('ERROR: ', errorResult.statusText);
+            //////console.log('ERROR: ', errorResult.statusText);
 
             if (errorResult.statusText == 'error') {
                 Swal.fire({
@@ -1014,10 +1014,10 @@ function render() {
     var centerX = (width + offset.left) / 2;
     var centerY = (offset.top + height) / 2;
 
-    console.log('OFFSET: ', offset);
-    console.log('CONTAINER WIDTH: ' + width);
-    console.log('CONTAINER HEIGHT: ' + height);
-    console.log('CENTER X: ' + centerX);
+    //////console.log('OFFSET: ', offset);
+    //////console.log('CONTAINER WIDTH: ' + width);
+    //////console.log('CONTAINER HEIGHT: ' + height);
+    //////console.log('CENTER X: ' + centerX);
 
     if (offset.left == 0) {
         svg.attr('width', width)

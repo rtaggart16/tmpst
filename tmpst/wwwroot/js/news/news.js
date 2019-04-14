@@ -52,12 +52,7 @@ function wordcloudNewsVisualization(data, country, category) {
 
 
 function sunburstNewsVisualization(data, country, category) {
-
-    console.log(data);
-
-
-
-
+    
     // Initialising the arrays for data modification
     var sources = [];
     var articles = [];
@@ -118,7 +113,6 @@ function sunburstNewsVisualization(data, country, category) {
 
 
         if (repeatingSource != -1) {
-            console.log("FOUND DUPLICATE - Name: " + source.name + " - ID in Array: " + repeatingSource);
         }
         else {
             sources.push(source);
@@ -158,12 +152,7 @@ function sunburstNewsVisualization(data, country, category) {
 
     });
     var dataArray = sources.concat(articles);
-
-    console.log(dataArray);
-
-
-
-
+    
     // Splice in transparent for the center circle
     Highcharts.getOptions().colors.splice(0, 0, 'transparent');
 
@@ -188,9 +177,9 @@ function sunburstNewsVisualization(data, country, category) {
             events: {
                 click: function (event) {
                     let selectedPoints = chart.getSelectedPoints();
-                    console.log(
+                    /*console.log(
                         selectedPoints
-                    );
+                    );*/
                 }
             },
             dataLabels: {
@@ -236,17 +225,17 @@ function sunburstNewsVisualization(data, country, category) {
 
     let loopIterator = 0;
 
-    console.log('ALL SOURCES: ', sources);
+    //////console.log('ALL SOURCES: ', sources);
 
     for (let i = sources.length; i < chart.series[0].data.length; i++) {
         let currentArticle = chart.series[0].data[i];
-        console.log('Current Article: ', currentArticle);
-        console.log('API DATA: ', data.articles[loopIterator]);
+        //////console.log('Current Article: ', currentArticle);
+        //////console.log('API DATA: ', data.articles[loopIterator]);
 
-        console.log('JQUERY ITEM: ', $(chart.series[0].data[i]));
+        //////console.log('JQUERY ITEM: ', $(chart.series[0].data[i]));
 
         $(chart.series[0].data[i].node).on('click', function () {
-            console.log('HIT ONCLICK');
+            //////console.log('HIT ONCLICK');
             window.open(currentArticle.url);
         });
 
@@ -254,9 +243,9 @@ function sunburstNewsVisualization(data, country, category) {
     }
 
     /*$.each(chart.series[0].data, function (key, val) {
-        console.log('Iterator: ' + loopIterator);
-        console.log('CHART DATA: ', val);
-        console.log('API DATA: ', data.articles[loopIterator]);
+        //////console.log('Iterator: ' + loopIterator);
+        //////console.log('CHART DATA: ', val);
+        //////console.log('API DATA: ', data.articles[loopIterator]);
 
         loopIterator += 1;
     });*/

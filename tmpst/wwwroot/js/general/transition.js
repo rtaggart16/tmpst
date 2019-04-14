@@ -88,9 +88,7 @@ function fadeInSpecifiedView(viewID) {
         $('#' + viewID).fadeIn(300);
         currentView = viewID;
     });
-
-    console.log(viewID);
-
+    
     if (viewID != "overview-page") {
         backHome = document.getElementById("back-home-btn");
 
@@ -224,10 +222,11 @@ function clearEarthquakeCountryInfo() {
 
 // END: Earthquake Clean Up
 
+let dynamicNewsElements = $('#news-card-container');
 
 //News Clean Up
 function resetNewsPage() {
-    //fadeDynamicNewsViews();
+    dynamicNewsElements.fadeOut(300);
 }
 //END: News Clean Up
 
@@ -249,7 +248,7 @@ function resetMortalityPage() {
 
 // Pollution Clean Up
 
-let dynamicPollutionElements = $('#pollution-chart-result-container');
+let dynamicPollutionElements = $('#pollution-chart-container');
 
 function resetPollutionPage() {
     dynamicPollutionElements.fadeOut(300);

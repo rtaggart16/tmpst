@@ -14,7 +14,7 @@ $(function () {
     loadViews();
 
     $('#tutorial-menu-container').on("changed.jstree", function (e, data) {
-        console.log(data.node.id);
+        //////console.log(data.node.id);
         processNodeRequest(data.node.id);
     });
 });
@@ -50,7 +50,7 @@ function loadViews() {
 }
 
 function processNodeRequest(id) {
-    console.log('ID: ' + id);
+    //////console.log('ID: ' + id);
 
     // Overview
     if (id == 'single-page-desc-li') {
@@ -154,7 +154,7 @@ function processNodeRequest(id) {
 
 function tutRemoveFullSCreen(elmID) {
     let elem = document.getElementById(elmID);
-    console.log("HIT - Element ID: ", elmID);
+    //////console.log("HIT - Element ID: ", elmID);
 
     //Gets full screen button and sets the display to none
     document.getElementById(elmID + "-full-screen-btn").style.display = "inline";
@@ -176,7 +176,7 @@ function downloadPDF(fileName) {
 }
 
 function fadeSpecifiiedTut(viewID) {
-    console.log(allTutorialPages);
+    //////console.log(allTutorialPages);
     allTutorialPages.fadeOut(300).promise().done(function () {
         $('#' + viewID).fadeIn(300);
     });
@@ -186,7 +186,7 @@ function tutFullScreen(elmID) {
     let enabled = document.fullscreenEnabled;
     if (enabled == true) {
         let elem = document.getElementById(elmID);
-        console.log("HIT - Element ID: ", elmID);
+        //////console.log("HIT - Element ID: ", elmID);
 
         //Gets full screen button and sets the display to none
         document.getElementById(elmID + "-full-screen-btn").style.display = "none";
@@ -217,6 +217,6 @@ if (document.addEventListener) {
 
 function exitHandler() {
     if (document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement !== null) {
-        console.log("HITTTTTTTTTTTTTTTTTTTTT");
+        //////console.log("HITTTTTTTTTTTTTTTTTTTTT");
     }
 }
