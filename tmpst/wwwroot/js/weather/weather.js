@@ -1,8 +1,8 @@
 ﻿/*
     Author Info:
 
-    Name(s) - Ross Taggart
-    Student Number - S1828840
+    Name(s) - Ross Taggart, Katie King, Aidan Marshall
+    Student Number - S1828840, S1827986, S1828601
     Date Created - 22/02/2019
     Version - 2.0.0
 
@@ -59,7 +59,7 @@ let currentDayCtx;
 
 // Allows the user to chose their input type, either latitude and longitutde of name of place
 $('#input-type-select').on('change', function () {
-    console.log($('#input-type-select').val());
+    //////console.log($('#input-type-select').val());
 
     let chosenType = $('#input-type-select').val();
     // If user selects input based on latitutde and longitude, fade out name field
@@ -186,7 +186,7 @@ function contactAPI(requestType, location, key) {
         url: requestUrl,
         contentType: "application/json",
         success: function (result) {
-            console.log('AJAX Response: ', result);
+            //////console.log('AJAX Response: ', result);
 
             // If the user requested forecast data
             if (requestType == 'forecast') {
@@ -247,7 +247,7 @@ function contactAPI(requestType, location, key) {
         },
         // The AJAX call was not successful
         error: function (errorResult) {
-            console.log('ERROR: ', errorResult.statusText);
+            //////console.log('ERROR: ', errorResult.statusText);
 
             // Fire an alert informing the user that there is no data for theit location
             if (errorResult.statusText == 'error') {
@@ -321,10 +321,10 @@ function updateForecastTableBody(apiData) {
         conditionTexts.push(val.day.condition.text);
     });
 
-    console.log('ICONS', icons);
-    console.log('AVGTEMPS', avgTemps);
-    console.log('MAXTEMPS', maxTemps);
-    console.log('CONDITIONS', conditionTexts);
+    //////console.log('ICONS', icons);
+    //////console.log('AVGTEMPS', avgTemps);
+    //////console.log('MAXTEMPS', maxTemps);
+    //////console.log('CONDITIONS', conditionTexts);
 
     $('#forecast-head-only').append('<tr><td><img src="' + icons[0] + '" /></td>' +
         '<td><img src="' + icons[1] + '" /></td>' +
@@ -493,7 +493,7 @@ function analyseCurrentDayData() {
 
     let colours = [currentDayAnalysisPallet.Current_Temp, currentDayAnalysisPallet.Feels_Like, currentDayAnalysisPallet.Humidity, currentDayAnalysisPallet.Wind_Speed];
 
-    console.log(currentDayDataset);
+    //////console.log(currentDayDataset);
 
     // Create a dataset object to plug straight into the chart
     let dataset = {
@@ -514,7 +514,7 @@ function analyseCurrentDayData() {
             'rgb(153, 102, 255)']
     };
 
-    console.log(dataset);
+    //////console.log(dataset);
 
     // If the current day chart already exist (Not first run)
     if (currentDayChart != undefined) {

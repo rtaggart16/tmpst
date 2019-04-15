@@ -6,10 +6,22 @@
 <div class="row text-center">
     <div class="col-12 tutorial-para">
         <button onclick="downloadPDF('APIs/Earthquake_API.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
-        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('earthquake-tutorial')">Go Full Screen</button>
-        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('earthquake-tutorial')">Exit Full Screen</button>
+        <button id="earthquake-tutorial-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('earthquake-tutorial')">Go Full Screen</button>
+        <button style="display:none" id="earthquake-tutorial-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('earthquake-tutorial')">Exit Full Screen</button>
     </div>
     <hr />
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            An earthquake is the shaking of the surface of the Earth, resulting from the sudden 
+            release of energy in the Earth's lithosphere that creates seismic waves. Earthquakes 
+            can range in size from those that are so weak that they cannot be felt 
+            to those violent enough to toss people around and destroy whole cities.
+            <a href="https://en.wikipedia.org/wiki/Earthquake">(Wikipedia)</a>
+        </p>
+    </div>
 </div>
 
 <div class="row">
@@ -505,10 +517,10 @@ $.ajax({
         url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
         contentType: "application/vnd.geo+json",
         success: function (result) {
-            console.log('AJAX Response: ', result);
+            //////console.log('AJAX Response: ', result);
         },
         error: function (errorResult) {
-            console.log('ERROR: ', errorResult.statusText);
+            //////console.log('ERROR: ', errorResult.statusText);
         }
     });
                 </code>

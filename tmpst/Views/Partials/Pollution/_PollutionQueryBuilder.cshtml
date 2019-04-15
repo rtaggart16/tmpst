@@ -1,8 +1,8 @@
 ﻿@*
     Author Info:
 
-    Name(s) - Mark Riley, Ross Taggart, Aidan Marshall
-    Student Number - S1829984, S1828840, S1828601
+    Name(s) - Mark Riley, Ross Taggart, Aidan Marshall, Katie King
+    Student Number - S1829984, S1828840, S1828601, S1827986
     Date Created - 01/03/2019
     Version - 1.0.0
 
@@ -92,7 +92,7 @@
 
 
     countryDropdown.change(function () {
-        console.log(countryDropdown.val());
+        //////console.log(countryDropdown.val());
         $.ajax({
             type: "GET",
             url: 'https://api.openaq.org/v1/locations?country[]=' + countryDropdown.val(),
@@ -146,12 +146,12 @@
     function submitPollutionRequest() {
         //GET Data
 
-        console.log(locationDropdown.val());
+        //////console.log(locationDropdown.val());
 
         let location = formatCountryName(locationDropdown.val());
 
         var utc = new Date().toJSON().slice(0, 10);
-        console.log(utc);
+        //////console.log(utc);
 
         let measurementsUrl = 'https://api.openaq.org/v1/measurements?location=' + location + '&date_from=' + utc;
 
@@ -160,7 +160,7 @@
             return formattedCountryName;
         };
 
-        console.log("Created URL - " + measurementsUrl);
+        //////console.log("Created URL - " + measurementsUrl);
 
 
         $.ajax({
@@ -172,7 +172,7 @@
             success: function (result) {
 
                 //Creates visualisation
-                console.log(result);
+                //////console.log(result);
 
                 createPollutionChart(result);
                 collapseExpandToggle('pollution-wizard-arrow-up', 'pollution-wizard-arrow-down', 'pollution-wizard-container');

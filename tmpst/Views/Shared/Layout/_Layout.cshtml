@@ -111,13 +111,14 @@
     <div class="container body-content">
         @RenderBody()
         @await Html.PartialAsync("~/Views/Shared/Layout/_TmpstHelper.cshtml")
+        @await Html.PartialAsync("~/Views/Shared/Layout/_BackHome.cshtml")
         <hr />
         @await Html.PartialAsync("~/Views/Shared/Layout/_Footer.cshtml")
 
     </div>
     <script>
         $(function () {
-            console.log('Initialising Tooltips');
+            //////console.log('Initialising Tooltips');
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>

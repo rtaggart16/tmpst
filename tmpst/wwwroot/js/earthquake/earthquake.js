@@ -1,8 +1,8 @@
 ﻿/*
     Author Info:
 
-    Name(s) - Ross Taggart
-    Student Number - S1828840
+    Name(s) - Ross Taggart, Katie King
+    Student Number - S1828840, S1827986
     Date Created - 02/03/2019
     Version - 1.0.0
 
@@ -69,8 +69,6 @@ $('#earthquake-collapse-expand').click(function () {
 
 // Updates the requestType variable when the user changes the request type select item
 $('#occurence-type-select').on('change', function () {
-    console.log($('#occurence-type-select').val());
-
     requestType = $('#occurence-type-select').val();
 
     allSelects.fadeOut(300).promise().done(function () {
@@ -93,7 +91,12 @@ $('#occurence-type-select').on('change', function () {
 function submitEarthquakeRequest() {
     // Gets the url from the selected item in the select box
     let url = $('#' + requestType + '-type-select').val();
-    console.log(url);
+    let loadingSwal = Swal.fire({
+        type: 'warning',
+        title: 'Processing Data',
+        html: '<i class="fas fa-spinner fa-spin fa-2x"></i>'
+
+    })
     // Begins AJAX request construction
     $.ajax({
         // Get request
@@ -102,24 +105,21 @@ function submitEarthquakeRequest() {
         // Expecting GeoJSON returned
         contentType: "application/vnd.geo+json",
         success: function (result) {
-            console.log('AJAX Response: ', result);
-
             // If their is data returned
             if (result.features.length > 0) {
-                Swal.fire({
+                /*Swal.fire({
                     type: 'warning',
                     title: 'Processing Data',
                     html: '<i class="fas fa-spinner fa-spin fa-2x"></i>',
                     timer: 1500
-                    
-                })
+
+                })*/
 
                 // Set a brief timeout before calling the createClusterMap
-                setTimeout(function () {
-                    createClusterMap(result.features);
-                }, 100);
+                createClusterMap(result.features);
 
                 $('#earthquake-wizard-arrow-up').click().promise().done(function () {
+                    loadingSwal.close();
                     $('#earthquake-cluster-map-container').fadeIn(300);
                 });
 
@@ -136,8 +136,6 @@ function submitEarthquakeRequest() {
 
         },
         error: function (errorResult) {
-            console.log('ERROR: ', errorResult.statusText);
-
             if (errorResult.statusText == 'error') {
                 Swal.fire({
                     type: 'error',
@@ -157,11 +155,8 @@ function submitEarthquakeRequest() {
  * DESCRIPTION: Function to retrieve relevant country information from a specified latitude and longitude
 */
 function viewCountryInfo(lat, lon) {
-    console.log('Lat Object ', lat);
-    console.log('Lon Object ', lon);
-
     // Sets the request url for the GeoNames country code API
-    let url = 'https://secure.geonames.org/countryCode?type=JSON&lat=' + lat + '&lng=' + lon +'&username=tmpst';
+    let url = 'https://secure.geonames.org/countryCode?type=JSON&lat=' + lat + '&lng=' + lon + '&username=tmpst';
 
     // Begins AJAX request construction
     $.ajax({
@@ -171,8 +166,6 @@ function viewCountryInfo(lat, lon) {
         // Expecting JSONp returned
         dataType: "jsonp",
         success: function (result) {
-            console.log('AJAX Result: ', result);
-
             // Begins second AJAX request construction
             $.ajax({
                 // Get request
@@ -182,8 +175,6 @@ function viewCountryInfo(lat, lon) {
                 dataType: "json",
                 success: function (result) {
                     clearEarthquakeCountryInfo();
-                    console.log('Country Result: ', result);
-
                     openNewWindow(result);
                 },
                 error: function (errorResult) {
@@ -196,8 +187,6 @@ function viewCountryInfo(lat, lon) {
             });
         },
         error: function (errorResult) {
-            console.log('ERROR: ', errorResult.statusText);
-            
         }
     });
 }

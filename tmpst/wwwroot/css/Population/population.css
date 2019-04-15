@@ -1,8 +1,8 @@
 ﻿/*
     Author Info:
-
-    Name(s) - Mark Riley, Ross Taggart, Aidan Marshall
-    Student Number - S1829984, S1828840, S1828601
+    
+    Name(s) - Mark Riley, Ross Taggart, Aidan Marshall, Katie King
+    Student Number - S1829984, S1828840, S1828601, S1827986
     Date Created - 25/02/2019
     Version - 1.0.1
 
@@ -70,6 +70,25 @@ body {
     margin: 1px;
     float:left;
 }
+
+.chart-text{
+    font-size: 15px;
+}
+
+.chart-svg{
+    margin: 0 auto !important;
+}
 /*--------------------------------------------------------------------------
     END: # Containers
 ---------------------------------------------------------------------------*/
+
+
+@media only screen and (max-width: 600px) {
+    #population-chart-result-container {
+        min-width: 90vw;
+        max-width: 90vw;
+        min-height: 90vw;
+        max-height: 90vw;
+        margin: 0 auto
+    }
+}

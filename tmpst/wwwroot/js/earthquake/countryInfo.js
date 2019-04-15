@@ -1,6 +1,4 @@
 ﻿(function initWindow() {
-    console.log('COUNTRY INFO: ', window.opener.globalCountryInfo);
-    console.log('IS BUILT: ', window.opener.isBuilt);
 
     if (window.opener.isBuilt == false) {
         buildCountryContainer();

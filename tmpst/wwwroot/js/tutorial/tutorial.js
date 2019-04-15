@@ -14,7 +14,7 @@ $(function () {
     loadViews();
 
     $('#tutorial-menu-container').on("changed.jstree", function (e, data) {
-        console.log(data.node.id);
+        //////console.log(data.node.id);
         processNodeRequest(data.node.id);
     });
 });
@@ -50,7 +50,7 @@ function loadViews() {
 }
 
 function processNodeRequest(id) {
-    console.log('ID: ' + id);
+    //////console.log('ID: ' + id);
 
     // Overview
     if (id == 'single-page-desc-li') {
@@ -154,12 +154,15 @@ function processNodeRequest(id) {
 
 function tutRemoveFullSCreen(elmID) {
     let elem = document.getElementById(elmID);
-    if (elmID == 'user-secret-tutorial') {
-        $('#usr-scrt-rmv-full-screen-btn').fadeOut(300).promise().done(function () {
-            $('#usr-scrt-full-screen-btn').fadeIn(300);
-        });
-    }
-    elem.exitFullscreen();
+    //////console.log("HIT - Element ID: ", elmID);
+
+    //Gets full screen button and sets the display to none
+    document.getElementById(elmID + "-full-screen-btn").style.display = "inline";
+
+    //Gets remove full screen button and sets the display to inline
+    document.getElementById(elmID + "-rmv-full-screen-btn").style.display = "none";
+
+    document.exitFullscreen();
 }
 
 function openTutorialLink(address) {
@@ -173,7 +176,7 @@ function downloadPDF(fileName) {
 }
 
 function fadeSpecifiiedTut(viewID) {
-    console.log(allTutorialPages);
+    //////console.log(allTutorialPages);
     allTutorialPages.fadeOut(300).promise().done(function () {
         $('#' + viewID).fadeIn(300);
     });
@@ -183,11 +186,14 @@ function tutFullScreen(elmID) {
     let enabled = document.fullscreenEnabled;
     if (enabled == true) {
         let elem = document.getElementById(elmID);
-        if (elmID == 'user-secret-tutorial') {
-            $('#usr-scrt-full-screen-btn').fadeOut(300).promise().done(function () {
-                $('#usr-scrt-rmv-full-screen-btn').fadeIn(300);
-            });
-        }
+        //////console.log("HIT - Element ID: ", elmID);
+
+        //Gets full screen button and sets the display to none
+        document.getElementById(elmID + "-full-screen-btn").style.display = "none";
+
+        //Gets remove full screen button and sets the display to inline
+        document.getElementById(elmID + "-rmv-full-screen-btn").style.display = "inline";
+
         elem.requestFullscreen();
     }
     else {
@@ -196,5 +202,37 @@ function tutFullScreen(elmID) {
             title: 'Cannot toggle fullscreen',
             text: 'Unfortunately, your browser cannot toggle fullscreen. Please run in chrome for this feature'
         })
+    }
+}
+
+
+
+
+if (document.addEventListener) {
+    document.addEventListener('webkitfullscreenchange', exitHandler, false);
+    document.addEventListener('mozfullscreenchange', exitHandler, false);
+    document.addEventListener('fullscreenchange', exitHandler, false);
+    document.addEventListener('MSFullscreenChange', exitHandler, false);
+}
+
+function exitHandler() {
+    //TRUE = Full Screen
+    if (document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement == true) {
+        console.log(document.webkitIsFullScreen);
+        console.log(document.mozFullScreen);
+        console.log(document.msFullscreenElement);
+
+        document.getElementById(elmID + "-full-screen-btn").style.display = "none";
+        document.getElementById(elmID + "-rmv-full-screen-btn").style.display = "inline";
+    }
+    else if (document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement == false) {
+        console.log(document.webkitIsFullScreen);
+        console.log(document.mozFullScreen);
+        console.log(document.msFullscreenElement);
+
+        document.getElementById(elmID + "-full-screen-btn").style.display = "inline";
+        document.getElementById(elmID + "-rmv-full-screen-btn").style.display = "none";
+
+
     }
 }

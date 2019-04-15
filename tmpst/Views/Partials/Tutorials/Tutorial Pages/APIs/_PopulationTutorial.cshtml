@@ -6,57 +6,82 @@
 <div class="row text-center">
     <div class="col-12 tutorial-para">
         <button onclick="downloadPDF('APIs/Population_API.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
-        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('population-tutorial')">Go Full Screen</button>
-        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('population-tutorial')">Exit Full Screen</button>
+        <button id="population-tutorial-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('population-tutorial')">Go Full Screen</button>
+        <button style="display:none" id="population-tutorial-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('population-tutorial')">Exit Full Screen</button>
     </div>
     <hr />
 </div>
 
-<!--FROM HERE-->
-
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            The mortality section of the tmpst website is one of the more simpler of APIs to
-            receive data from as there are no keys required to access the data from the website.
-            The mortality API is provided by the World Population API provides information on a
-            of data from the world such as:
+            The population section of the tmpst website is one of the more simpler of APIs to receive
+            data from as there are no keys required to access the data from the website. The Population
+            API is provided by the World Population API provides information on a variation of data from
+            the world such as:
         </p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
-        <ul>
-            <li> World Population Rank </li>
-            <li> Life Expectancy  </li>
-            <li> Population </li>
-            <li> Mortality Distribution </li>
-        </ul>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12 tutorial-para">
         <p>
-            These are divided by endpoints which are where the information will
-            be accessed from. Each endpoint can return data in JSON, JSONP and HTML.
-            For each endpoint you have a lot of customizability for querying the API such as:
+            <ul>
+                <li>
+                    Word Population Rank
+                </li>
+                <li>
+                    Life Expectancy
+
+                </li>
+                <li>
+                    Population
+                </li>
+                <li>
+                    Mortality Distrubution
+                </li>
+            </ul>
         </p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
-        <ul>
-            <li>Sex</li>
-            <li>Country</li>
-            <li>Date</li>
-            <li>Date of Birth</li>
-            <li>Years Ago</li>
-            <li>Has Diabetes</li>
-            <li>Today VS Tomorrow</li>
-        </ul>
+        <p>
+            These are divided by endpoints which are where the information will be accessed from. Each
+            endpoint can return data in JSON, JSONP and HTML. For each endpoint you have a lot of
+            customizability for querying the API such as:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Sex
+                </li>
+                <li>
+                    Country
+                </li>
+                <li>
+                    Date
+                </li>
+                <li>
+                    Date of Birth
+                </li>
+                <li>
+                    Years Ago
+                </li>
+                <li>
+                    Has Diabetes
+                </li>
+                <li>
+                    Today Vs Tomorrow
+                </li>
+            </ul>
+        </p>
     </div>
 </div>
 
@@ -67,11 +92,10 @@
         </p>
     </div>
 </div>
-
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            <span><strong>Pre-Requisites</strong></span>
+            Pre-requisites:
         </p>
     </div>
 </div>
@@ -81,21 +105,22 @@
         <p>
             <ul>
                 <li>
-                    Understand the API (<a href="https://api.population.io">api.population.io</a>) by using the sandbox displayed on the website to make calls to their API
+                    Understand the API (<a href="https://api.population.io/">(https://api.population.io/)</a>) by using the sandbox displayed on the
+                    website to make calls to their API
                 </li>
                 <li>
                     The endpoint that will be used will be the:
                     <ul>
                         <li>
-                            <a href="https://api.population.io/1.0/countries">https://api.population.io/1.0/countries</a> for a list of countries
+                            (<a href="https://api.population.io/1.0/countries">https://api.population.io/1.0/countries</a>) for a list of countries
                         </li>
                         <li>
-                            <a href="https://api.population.io/1.0/population/{year}/{country}/">https://api.population.io/1.0/population/{year}/{country}/</a>  for mortality
+                            (<a href="https://api.population.io/1.0/population/{year}/{country}/">https://api.population.io/1.0/population/{year}/{country}/</a>) for population
                         </li>
                     </ul>
-                </li>
                 <li>
-                    A suitable method for making a request (Postman: <a href="https://www.getpostman.com/downloads/">https://www.getpostman.com/downloads/</a> or in new tab)
+                    A suitable method for making a request (Postman:
+                    (<a href="https://www.getpostman.com/downloads/">https://www.getpostman.com/downloads/</a>) or in a new tab)
                 </li>
             </ul>
         </p>
@@ -104,7 +129,9 @@
 
 <div class="row">
     <div class="col-12 tutorial-para">
-        <span><strong>Aims</strong></span>
+        <p>
+            Aims:
+        </p>
     </div>
 </div>
 
@@ -112,29 +139,31 @@
     <div class="col-12 tutorial-para">
         <p>
             <ul>
-                <li> Learn how to request data from one of the World Population feeds in Postman </li>
-                <li>Learn how to request data from one of the World Population feeds in a new tab</li>
-                <li>Learn how to request data from one of the World Population feeds using AJAX call </li>
+                <li>
+                    Learn how to request data from one of the World Population feeds in Postman
+                </li>
+                <li>
+                    Learn how to request data from one of the World Population feeds in a new tab
+                </li>
+                <li>
+                    Learn how to request data from one of the World Population feeds using AJAX call
+                </li>
             </ul>
         </p>
     </div>
 </div>
 
-
-
 <div class="text-center">
-    <h3>Postman Tutorial</h3>
+    <h2>Postman Tutorial</h2>
     <hr />
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            In this tutorial, we will create a request to the World Population API feed
-            using the postman application on Windows.
-            Before proceeding with this tutorial, please ensure you have access
+            In this tutorial, we will create a request to a World Population API feed using the postman
+            application on Windows. Before proceeding with this tutorial, please ensure you have access
             to the Postman application or are using the online version.
-            version.
         </p>
     </div>
 </div>
@@ -142,34 +171,9 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            Steps
-            <ol>
-                <li>Choose endpoint to request data from</li>
-                <li>Construct request in Postman</li>
-            </ol>
-        </p>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12 tutorial-para">
-        <span><strong>Step 1: Choose endpoint to request data from</strong></span>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12 tutorial-para">
-        <p>
-            As mentioned earlier, World Population offers many population
-            feed endpoints to choose from. In this tutorial, not all sources
-            will be shown because the request format is identical for all.
-            It is important to keep in mind that not all sources will have
-            data at the time of the request. For example, making a request
-            for the population of a country 2000 years in the future won’t
-            yield any results from the request. With that in mind, the endpoint
-            that will be used for this tutorial is New Zealand in the year 2019.
-            This endpoint will always have data so it is good as an example.
-            The endpoint is shown below:
+            Steps:
+            1. Choose endpoint to request data from
+            2. Construct request in Postman
         </p>
     </div>
 </div>
@@ -177,28 +181,9 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            <a href="http://api.population.io/1.0/population/2019/New%20Zealand/">
-                http://api.population.io/1.0/population/2019/New%20Zealand/
-            </a>
-        </p>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12 tutorial-para">
-        <span><strong>Step 2: Construct request in Postman</strong></span>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12 tutorial-para">
-        <p>
-            This tutorial assumes that you have a basic understanding of how to use Postman.
-            If not, we provide a tutorial on how to utilise Postman properly that you may
-            wish to read before you continue with this tutorial. If you know how to use
-            Postman, create a new GET request and give it an appropriate name. The name
-            I will use in this tutorial is “New Zealand Population in 2019 Request”.
-            If you have setup the request properly you should see the following:
+            <strong>
+                Step 1: Choose endpoint to request data from
+            </strong>
         </p>
     </div>
 </div>
@@ -206,7 +191,33 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            <img src="~/images/Tutorials/APIs/Population/postman-request.png" />
+            As mentioned earlier, World Population offers many population feed endpoints to choose
+            from. In this tutorial, not all sources will be shown because the request format is identical for
+            all. It is important to keep in mind that not all sources will have data at the time of the
+            request. For example, making a request for the population of a country 2000 years in the
+            future won’t yield any results from the request. With that in mind, the endpoint that will be
+            used for this tutorial is New Zealand in the year 2019. This endpoint will always have data so
+            it is good as an example. The endpoint is shown below:
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="text-center">
+        <div class="col-12 tutorial-para">
+            <p>
+                (<a href="http://api.population.io/1.0/population/2019/New%20Zealand/">http://api.population.io/1.0/population/2019/New%20Zealand/</a>)
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <strong>
+                Step 2: Construct request in Postman
+            </strong>
         </p>
     </div>
 </div>
@@ -214,44 +225,57 @@
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            Nothing will happen if you attempt to send the request as the url box is empty.
-            Now all that is required is to add the url
-            mentioned in step 1 to the url box and hit send. You should see the following:
+            This tutorial assumes that you have a basic understanding of how to use Postman. If not, we
+            provide a tutorial on how to utilise Postman properly that you may wish to read before you
+            continue with this tutorial. If you know how to use Postman, create a new GET request and
+            give it an appropriate name. The name I will use in this tutorial is “New Zealand Population in
+            2019 Request”. If you have setup the request properly you should see the following:
         </p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
-        <p>
-            <img src="~/images/Tutorials/APIs/Population/postman-request.png" />
-        </p>
+        <img src="~/images/Tutorials/APIs/Population/postman-request.png" />
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            Note: It is recommended that you add the format of the returned file.
-            If you are going to use an AJAX call it is recommended to use JSONP format.
-            Below are the formats the call is accepted in:
+            Nothing will happen if you attempt to send the request as the url box is empty. Now all that is
+            required is to add the url mentioned in step 1 to the url box and hit send. You should see the
+            following:
         </p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
+        <img src="~/images/Tutorials/APIs/Population/postman-response.png" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 tutorial-para">
         <p>
-            <a href="http://api.population.io/1.0/population/2019/New%20Zealand/?format=jsonp">
-                http://api.population.io/1.0/population/2019/New%20Zealand/?format=jsonp
-            </a>
-            <a href="http://api.population.io/1.0/population/2019/New%20Zealand/?format=json">
-                http://api.population.io/1.0/population/2019/New%20Zealand/?format=json
-            </a>
+            Note: It is recommended that you add the format of the returned file. If you are going to use
+            an AJAX call it is recommended to use JSONP format. Below are the formats the call is
+            accepted in:
         </p>
     </div>
 </div>
 
+<div class="row">
+    <div class="text-center">
+        <div class="col-12 tutorial-para">
+            <p>
+                (<a href="http://api.population.io/1.0/population/2019/New%20Zealand/?format=jsonp">http://api.population.io/1.0/population/2019/New%20Zealand/?format=jsonp</a>)
+                (<a href="http://api.population.io/1.0/population/2019/New%20Zealand/?format=json">http://api.population.io/1.0/population/2019/New%20Zealand/?format=json</a>)
+            </p>
+        </div>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
@@ -261,32 +285,32 @@
     </div>
 </div>
 
-
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
             <pre>
-            <code class="language-javascript">
+<code class="language-javascript">
 [
-  {
-    "females": 28400,
-    "country": "New Zealand",
-    "age": 0,
-    "males": 30000,
-    "year": 2019,
-    "total": 58400
-  },
-  {
-    "females": 29000,
-    "country": "New Zealand",
-    "age": 1,
-    "males": 30500,
-    "year": 2019,
-    "total": 59500
-  },
-                </code>
-            </pre>
-        </p>
+            {
+            "females": 28400,
+            "country": "New Zealand",
+            "age": 0,
+            "males": 30000,
+            "year": 2019,
+            "total": 58400
+            },
+            {
+            "females": 29000,
+            "country": "New Zealand",
+            "age": 1,
+            "males": 30500,
+            "year": 2019,
+            "total": 59500
+            },
+            
+
+    </code>
+        </pre>
     </div>
 </div>
 
@@ -299,60 +323,47 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
 <div class="text-center">
-    <h3>Browser Request Tutorial</h3>
+    <h2>Browser Request Tutorial</h2>
     <hr />
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            In this tutorial, we will create a request to a News API feed using a new tab on a Google Chrome browser. For this tutorial, we will use the same endpoint as is used in the Postman example:
+            In this tutorial, we will create a request to a World Population API population feed using a
+            new tab on a Google Chrome browser. For this tutorial, we will use the same endpoint as is
+            used in the Postman example:
         </p>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-12 tutorial-para">
-        <a href="http://api.population.io/1.0/population/2019/New%20Zealand/?format=jsonp">
-            http://api.population.io/1.0/population/2019/New%20Zealand/?format=jsonp
-        </a>
+    <div class="text-center">
+        <div class="col-12 tutorial-para">
+            <p>
+                (<a href="http://api.population.io/1.0/population/2019/New%20Zealand/?format=jsonp">http://api.population.io/1.0/population/2019/New%20Zealand/?format=jsonp</a>)
+            </p>
+        </div>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            Steps
-            <ol>
-                <li>Add url to tab and run</li>
-            </ol>
+            <strong>
+                Step 1: Add url to tab and run
+            </strong>
         </p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
-        <span><strong>Step 1: Add url to tab and run</strong></span>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12 tutorial-para">
         <p>
-            This tutorial is easier than either the Postman method or the AJAX method (still to come)
-            as it only involves using a tab in a browser as if you are navigating to a web page.
-            To get a result, add the url to the address bar and hit enter and you should see the following:
+            This tutorial is easier than either the Postman method or the AJAX method (still to come) as
+            it only involves using a tab in a browser as if you are navigating to a web page. To get a
+            result, add the url to the address bar and hit enter and you should see the following:
         </p>
     </div>
 </div>
@@ -363,7 +374,6 @@
     </div>
 </div>
 
-
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
@@ -372,41 +382,39 @@
     </div>
 </div>
 
-
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
             <pre>
-            <code class="language-javascript">
-HTTP 200 OK
-Content-Type: application/json
-Vary: Accept
-Allow: OPTIONS, GET
-Cache-Control: public, max-age=86400
+<code class="language-javascript">
+            HTTP 200 OK
+            Content-Type: application/json
+            Vary: Accept
+            Allow: OPTIONS, GET
+            Cache-Control: public, max-age=86400
+            [
+            {
+            "females": 28400,
+            "country": "New Zealand",
+            "age": 0,
+            "males": 30000,
+            "year": 2019,
+            "total": 58400
+            },
+            {
+            "females": 29000,
 
-[
-    {
-        "females": 28400, 
-        "country": "New Zealand", 
-        "age": 0, 
-        "males": 30000, 
-        "year": 2019, 
-        "total": 58400
-    }, 
-    {
-        "females": 29000, 
-        "country": "New Zealand", 
-        "age": 1, 
-        "males": 30500, 
-        "year": 2019, 
-        "total": 59500
-    },
-                </code>
-            </pre>
-        </p>
+            "country": "New Zealand",
+            "age": 1,
+            "males": 30500,
+            "year": 2019,
+            "total": 59500
+            },
+            
+    </code>
+        </pre>
     </div>
 </div>
-
 
 <div class="row">
     <div class="col-12 tutorial-para">
@@ -416,24 +424,18 @@ Cache-Control: public, max-age=86400
     </div>
 </div>
 
-
-
-
-
 <div class="text-center">
-    <h3>AJAX Tutorial</h3>
+    <h2>AJAX Tutorial</h2>
     <hr />
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            The above methods show you how to access the  World Population feed and
-            view the data, however, neither method involves any coding
-            and neither would work well in an application’s context.
-            So, in this tutorial we will connect to the endpoint using
-            AJAX which can then be put into the javascript of any application
-
+            The above methods show you how to access the World Population feed and view the data,
+            however, neither method involves any coding and neither would work well in an application’s
+            context. So, in this tutorial we will connect to the monthly feed using AJAX which can then be
+            put into the javascript of any application
         </p>
     </div>
 </div>
@@ -441,10 +443,14 @@ Cache-Control: public, max-age=86400
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            Steps
+            Steps:
             <ol>
-                <li>Create a new playcode project</li>
-                <li>Add the provided AJAX code and run</li>
+                <li>
+                    Create a new playcode project
+                </li>
+                <li>
+                    Add the provided AJAX code and run
+                </li>
             </ol>
         </p>
     </div>
@@ -452,17 +458,20 @@ Cache-Control: public, max-age=86400
 
 <div class="row">
     <div class="col-12 tutorial-para">
-        <span><strong>Step 1: Create a new playcode project</strong></span>
+        <p>
+            <strong>
+                Step 1: Create a new playcode project
+            </strong>
+        </p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            For this tutorial, playcode will be used to demonstrate the AJAX request.
-            Although we are using playcode, almost any online JavaScript IDE would
-            work (JsFiddle). If you search for playcode and
-            click on the link you should see the following default project setup:
+            For this tutorial, playcode will be used to demonstrate the AJAX request. Although we are
+            using playcode, almost any online JavaScript IDE would work (JsFiddle). If you search for
+            playcode and click on the link you should see the following default project setup:
         </p>
     </div>
 </div>
@@ -473,61 +482,57 @@ Cache-Control: public, max-age=86400
     </div>
 </div>
 
-
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            Playcode is ideal for this tutorial as we only need to
-            change the js file and view the console as jquery is
-            referenced as standard.
+            Playcode is ideal for this tutorial as we only need to change the js file and view the console
+            as jquery is referenced as standard.
         </p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
-        <span><strong>Step 2: Add the provided AJAX code and run</strong></span>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12 tutorial-para">
         <p>
-            The AJAX required to fetch the data programatically is:
+            <strong>
+                Step 2: Add the provided AJAX code and run
+            </strong>
         </p>
     </div>
 </div>
-
 
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
             <pre>
-            <code class="language-javascript">
-$.ajax({
-        type: "GET",
-        url: "https://api.population.io/1.0/population/2019/New%20Zealand/?format=jsonp",
-        success: function (result) {
-            console.log('AJAX Response: ', result);
-        },
-        error: function (errorResult) {
-            console.log('ERROR: ', errorResult);
-        }
-    });
-                </code>
-            </pre>
-        </p>
+<code class="language-javascript">
+            The AJAX required to fetch the data programatically is:
+            $.ajax({
+            type: "GET",
+            url: "https://api.population.io/1.0/population/2019/New%20Zealand/?format=jsonp",
+            contentType: "application/jsonp",
+            success: function (result) {
+            //////console.log('AJAX Response: ', result);
+            },
+            error: function (errorResult) {
+            //////console.log('ERROR: ', errorResult);
+            }
+            });
+    </code>
+           
+        </pre>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            If you replace the contents of script.js 
-            with the above AJAX and run the code, you should see the following:
+            If you replace the contents of script.js with the above AJAX and run the code, you should
+            see the following:
         </p>
     </div>
 </div>
+
 
 <div class="row">
     <div class="col-12 tutorial-para">
@@ -538,7 +543,19 @@ $.ajax({
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            As you can see this result looks similar to the other results we have seen earlier in the project, however, this code can be added to an application and the data can be fetched and altered dynamically.
+            As you can see this result looks similar to the other results we have seen earlier in the
+            project, however, this code can be added to an application and the data can be fetched and
+            altered dynamically.
+
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            Note: If playcode hangs or feels unresponsive when running this code there is no need to
+            worry, their is a lot of data to process from this feed
+
         </p>
     </div>
 </div>
@@ -546,17 +563,10 @@ $.ajax({
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            Note: If playcode hangs or feels unresponsive when running this code there is no need to worry, their is a lot of data to process from this feed
+            <strong>
+                Conclusion
+            </strong>
         </p>
-    </div>
-</div>
-
-
-
-
-<div class="row">
-    <div class="col-12 tutorial-para">
-        <span><strong>Conclusion</strong></span>
     </div>
 </div>
 
@@ -564,8 +574,8 @@ $.ajax({
     <div class="col-12 tutorial-para">
         <p>
             That is the methods which can be used to request data from the World Population feeds.
-            The most useful of the methods is
-            AJAX, however, the others can be used for testing and ensuring the quality of the data.
+            The most useful of the methods is AJAX, however, the others can be used for testing and
+            ensuring the quality of the data.
         </p>
     </div>
 </div>
@@ -581,28 +591,34 @@ $.ajax({
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            Normally, implementing the methods discussed in this tutorial are relatively easy, however, some of the most common issues are detailed below:
+            Normally, implementing the methods discussed in this tutorial are relatively easy, however,
+            some of the most common issues are detailed below:
         </p>
     </div>
 </div>
 
-
 <div class="row">
     <div class="col-12 tutorial-para">
-        <ul>
-            <li>
-                Lack of responsiveness - Depending on the feed chosen, the method used to
-                fetch the data can seem slow because it has to process thousands of ages
-                in the population sometimes. Normally, the request should complete quite
-                quickly without too much impact on the user.
-            </li>
-        </ul>
+        <p>
+            <ul>
+                <li>
+                    Lack of responsiveness - Depending on the feed chosen, the method used to fetch
+                    the data can seem slow because it has to process thousands of ages in the
+                    population sometimes. Normally, the request should complete quite quickly without
+                    too much impact on the user.
+                </li>
+            </ul>
+        </p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
-        <span><strong>Outcomes</strong></span>
+        <p>
+            <strong>
+                Outcomes
+            </strong>
+        </p>
     </div>
 </div>
 
@@ -614,74 +630,91 @@ $.ajax({
     </div>
 </div>
 
-
-<div class="row">
-    <div class="col-12 tutorial-para">
-        <ul>
-            <li>
-                Request data from one of the World Population API feeds in Postman
-            </li>
-            <li>
-                Request data from one of the World Population API feeds in a new tab
-            </li>
-            <li>
-                Request data from one of the World Population API feeds using AJAX call
-            </li>
-        </ul>
-    </div>
-</div>
-
-
-<div class="row">
-    <div class="col-12 tutorial-para">
-        <span><strong>References</strong></span>
-    </div>
-</div>
-
 <div class="row">
     <div class="col-12 tutorial-para">
         <p>
-            Although we hope this tutorial has been all the help you need, here are some useful links that may be of use:
+            <ul>
+                <li>
+                    Request data from one of the World Population API population by year/country feed
+                    in Postman
+                </li>
+                <li>
+                    Request data from one of the World Population API population by year/country feed
+                    in a new tab
+                </li>
+                <li>
+                    Request data from one of the World Population API population by year/country feed
+                    using AJAX call
+                </li>
+            </ul>
         </p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
-        <span><strong>Useful Resources:</strong></span>
+        <p>
+            <strong>
+                References
+            </strong>
+        </p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
-        <ul>
-            <li>
-                World Population API - <a href="http://api.population.io/">http://api.population.io/</a>
-            </li>
-            <li>
-                Functional playcode AJAX request - <a href="https://playcode.io/268741?tabs=console&script.js&output">https://playcode.io/268741?tabs=console&script.js&output</a>
-            </li>
-        </ul>
+        <p>
+            Although we hope this tutorial has been all the help you need, here are some useful links
+            that may be of use:
+        </p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
-        <span><strong>Tools:</strong></span>
+        <p>
+            <strong>
+                Useful Resouces:
+            </strong>
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    World Population API - (<a href="http://api.population.io/">http://api.population.io/</a>)
+                </li>
+                <li>
+                    Functional playcode AJAX request -
+                    (<a href="https://playcode.io/268741?tabs=console&script.js&output">https://playcode.io/268741?tabs=console&script.js&output</a>)
+                </li>
+            </ul>
+        </p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 tutorial-para">
-        <ul>
-            <li>
-                Postman - <a href="https://www.getpostman.com/downloads/">https://www.getpostman.com/downloads/</a>
-
-            </li>
-            <li>
-                Playcode - <a href="https://playcode.io/">https://playcode.io/</a>
-            </li>
-
-        </ul>
+        <p>
+            <strong>
+                Tools:
+            </strong>
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 tutorial-para">
+        <p>
+            <ul>
+                <li>
+                    Postman - (<a href="https://www.getpostman.com/downloads/">https://www.getpostman.com/downloads/</a>)
+                </li>
+                <li>
+                    Playcode - (<a href="https://playcode.io/">https://playcode.io/</a>)
+                </li>
+            </ul>
+        </p>
     </div>
 </div>

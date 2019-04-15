@@ -82,10 +82,22 @@ function fadeInSpecifiedView(viewID) {
     resetEarthquakePage();
     resetNewsPage();
     resetMortalityPage();
+    resetPopulationPage();
+    resetPollutionPage();
     allViews.fadeOut(300).promise().done(function () {
         $('#' + viewID).fadeIn(300);
         currentView = viewID;
     });
+    
+    if (viewID != "overview-page") {
+        backHome = document.getElementById("back-home-btn");
+
+        backHome.style.display = "inline";
+    }
+    else {
+        backHome.style.display = "none";
+    }
+
 }
 
 /*--------------------------------------------------------------------------
@@ -210,10 +222,11 @@ function clearEarthquakeCountryInfo() {
 
 // END: Earthquake Clean Up
 
+let dynamicNewsElements = $('#news-card-container');
 
 //News Clean Up
 function resetNewsPage() {
-    //fadeDynamicNewsViews();
+    dynamicNewsElements.fadeOut(300);
 }
 //END: News Clean Up
 
@@ -233,7 +246,25 @@ function resetMortalityPage() {
 
 // END: Mortality Clean up
 
+// Pollution Clean Up
 
+let dynamicPollutionElements = $('#pollution-chart-container');
+
+function resetPollutionPage() {
+    dynamicPollutionElements.fadeOut(300);
+}
+
+// END: Pollution Clean Up
+
+// Population Clean Up
+
+let dynamicPopulationElements = $('#population-chart-result-container');
+
+function resetPopulationPage() {
+    dynamicPopulationElements.fadeOut(300);
+}
+
+ // END: Population Clean Up
 
 /*--------------------------------------------------------------------------
     END: # API System Cleanup

@@ -7,8 +7,8 @@
 <div class="row text-center">
     <div class="col-12 tutorial-para">
         <button onclick="downloadPDF('DataTypes/GeoJSON.pdf')" class="btn btn-secondary"><span>View as a PDF <i class="fas fa-file-pdf fa-2x"></i></span></button>
-        <button id="usr-scrt-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('geojson-tutorial')">Go Full Screen</button>
-        <button style="display:none" id="usr-scrt-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('geojson-tutorial')">Exit Full Screen</button>
+        <button id="geojson-tutorial-full-screen-btn" class="btn btn-success" onclick="tutFullScreen('geojson-tutorial')">Go Full Screen</button>
+        <button style="display:none" id="geojson-tutorial-rmv-full-screen-btn" class="btn btn-danger" onclick="tutRemoveFullSCreen('geojson-tutorial')">Exit Full Screen</button>
     </div>
     <hr />
 </div>
@@ -48,10 +48,10 @@ $.ajax({
         url: “{GEO_JSON_API_ENDPOINT}”,
         contentType: "application/vnd.geo+json",
         success: function (result) { 
-	console.log(‘GeoJSON result: ’, result);
+	//////console.log(‘GeoJSON result: ’, result);
         },
         Error: function (result) {
-	console.log(‘Error Result’)
+	//////console.log(‘Error Result’)
         }
 });
                 </code>
