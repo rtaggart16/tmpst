@@ -216,7 +216,23 @@ if (document.addEventListener) {
 }
 
 function exitHandler() {
-    if (document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement !== null) {
-        //////console.log("HITTTTTTTTTTTTTTTTTTTTT");
+    //TRUE = Full Screen
+    if (document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement == true) {
+        console.log(document.webkitIsFullScreen);
+        console.log(document.mozFullScreen);
+        console.log(document.msFullscreenElement);
+
+        document.getElementById(elmID + "-full-screen-btn").style.display = "none";
+        document.getElementById(elmID + "-rmv-full-screen-btn").style.display = "inline";
+    }
+    else if (document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement == false) {
+        console.log(document.webkitIsFullScreen);
+        console.log(document.mozFullScreen);
+        console.log(document.msFullscreenElement);
+
+        document.getElementById(elmID + "-full-screen-btn").style.display = "inline";
+        document.getElementById(elmID + "-rmv-full-screen-btn").style.display = "none";
+
+
     }
 }
