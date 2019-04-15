@@ -222,7 +222,7 @@ function openNewWindow(result) {
         countryInfoWindow.document.write('<html><head><script src="../../../../../../lib/jquery/jquery-3.3.1.min.js" async><\/script><title>Country Info</title><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" defer><\/script><script src="../../../../../lib/bootstrap/js/bootstrap.js" defer><\/script><link rel="stylesheet" href="../../../../../../../lib/bootstrap/css/bootstrap.css" /><link href="../../../../../css/Earthquake/countryInfo.css" rel="stylesheet" /><script src="../../../../../../js/general/map.js"><\/script><script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6yo58EUHrSdjTIMKz_lP2jt77KE-NfOI&callback=initMap"><\/script ></head><body>');
 
         // Add a hidden button for updating and reference the child window script
-        countryInfoWindow.document.write('<body><div style="display:none" id="country-info-container"></div><button id="refresh-btn" style="display:none"></button></body><script src="../../../../../../js/earthquake/countryInfo.js"><\/script></html>');
+        countryInfoWindow.document.write('<body><div style="display:none" id="country-info-container"></div><button id="refresh-btn" style="display:none"></button></body><script src="../../../../../../js/earthquake/countryInfo.js" defer><\/script></html>');
 
         // Close the document writer
         countryInfoWindow.document.close();
