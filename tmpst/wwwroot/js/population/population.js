@@ -86,7 +86,7 @@ function createD3Visualisation(data, type) {
         .style("text-align", "center")
         .text(subheader);
 
-    radarChartBuilderMobile(data);
+    radarChartBuilder(data);
 
 }
 
@@ -121,11 +121,6 @@ function radarChartBuilderMobile(data) {
 
         dataInArray[0].push(radarItem);
     };
-
-
-
-
-
 
     try {
 
@@ -208,7 +203,7 @@ function radarChartBuilderMobile(data) {
 
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
         // expected output: ReferenceError: nonExistentFunction is not defined
         // Note - error messages will vary depending on browser
     };
@@ -246,7 +241,7 @@ function radarChartBuilderMobile(data) {
             feMergeNode_2 = feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
 
@@ -282,7 +277,7 @@ function radarChartBuilderMobile(data) {
             .text(function (d, i) { return Format(maxValue * d / cfg.levels); });
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
 
@@ -317,7 +312,7 @@ function radarChartBuilderMobile(data) {
             .call(wrap, cfg.wrapWidth);
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
 
@@ -392,7 +387,7 @@ function radarChartBuilderMobile(data) {
             .style("fill-opacity", 0.8);
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
     // Append invisible circles for tooltip
@@ -435,7 +430,7 @@ function radarChartBuilderMobile(data) {
             .attr("class", "tooltip")
             .style("opacity", 0);
     } catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
     //Helper Function
@@ -585,7 +580,7 @@ function radarChartBuilder(data) {
 
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
         // expected output: ReferenceError: nonExistentFunction is not defined
         // Note - error messages will vary depending on browser
     };
@@ -598,23 +593,34 @@ function radarChartBuilder(data) {
 
         d3.select(id).select("svg").remove();
         
-        console.log('Container Heigth: ', container.height());
-        console.log('Container width: ', container.width());
+        //////console.log('Container Heigth: ', container.height());
+        //////console.log('Container width: ', container.width());
+        
+        var offset = container.offset();
+        var width = container.width();
+        var height = container.height();
+
+        var centerX = width + (offset.left / 2);
+        var centerY = (offset.top + height) / 2;
 
         //Initiate the radar chart SVG
         var svg = d3.select(id).append("svg")
-            .attr("width", container.width() / 2 /*cfg.w + cfg.margin.left + cfg.margin.right*/) //cfg.w + cfg.margin.left + cfg.margin.right
-            .attr("height", container.height() / 2 /*cfg.h + cfg.margin.bottom + cfg.margin.top*/)
-            .attr("class", "radar" + id)
-            .attr('viewBox', '-120 -20 ' + Math.min(container.width(), container.height()) + ' ' + container.height())
+            .attr("width", width /*cfg.w + cfg.margin.left + cfg.margin.right*/) //cfg.w + cfg.margin.left + cfg.margin.right
+            .attr("height", height /*cfg.h + cfg.margin.bottom + cfg.margin.top*/)
+            .attr("class", "chart-svg")
+            .attr('viewBox', '-120 -40 ' + (container.width() * 2) + ' ' + container.height())
             .attr('preserveAspectRatio', 'xMinYMin')
             .attr("id", "pop-chart-svg");
 
         popChart = svg;
 
+
         //Append a g element
-        var g = svg.append("g").attr("transform", "translate(" + Math.min(container.width(), container.height()) / 2 + "," + Math.min(container.width(), container.height()) / 2 + ")");
+        var g = svg.append("g").attr("transform", "translate(" + /*((container.width() / 2) + 150)*/ (((width / 2) + (centerX / 2)) - offset.left) + "," + container.height() / 2 + ")")
+            .attr("id", "pop-chart-g");
             //.attr("transform", "translate(" + (cfg.w / 2 + cfg.margin.left) + "," + (cfg.h / 2 + cfg.margin.top) + ")");
+
+        
     }
     catch (error) {
         console.error(error);
@@ -631,7 +637,7 @@ function radarChartBuilder(data) {
             feMergeNode_2 = feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
 
@@ -665,9 +671,10 @@ function radarChartBuilder(data) {
             .style("font-size", "10px")
             .attr("fill", "#737373")
             .text(function (d, i) { return Format(maxValue * d / cfg.levels); });
+        
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
 
@@ -702,7 +709,7 @@ function radarChartBuilder(data) {
             .call(wrap, cfg.wrapWidth);
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
 
@@ -775,9 +782,10 @@ function radarChartBuilder(data) {
             .attr("cy", function (d, i) { return rScale(d.value) * Math.sin(angleSlice * i - Math.PI / 2); })
             .style("fill", function (d, i, j) { return cfg.color(j); })
             .style("fill-opacity", 0.8);
+        
     }
     catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
     // Append invisible circles for tooltip
@@ -814,13 +822,14 @@ function radarChartBuilder(data) {
                 tooltip.transition().duration(200)
                     .style("opacity", 0);
             });
+        
 
         //Set up the small tooltip for when you hover over a circle
         var tooltip = g.append("text")
             .attr("class", "tooltip")
             .style("opacity", 0);
     } catch (error) {
-        console.log(error);
+        //////console.log(error);
     }
 
     //Helper Function
@@ -852,7 +861,7 @@ function radarChartBuilder(data) {
         });
     }
 
-
+    render();
 }
 
 function barChartBuilder(data) {
@@ -916,7 +925,7 @@ function barChartBuilder(data) {
         .domain([0, d3.max(dataInArray)])
         .range([0, width]);
 
-    console.log(width);
+    //////console.log(width);
 
     d3.select("#population-inner-chart")
         .selectAll("div")
@@ -952,7 +961,7 @@ function submitPopulationRequest() {
     if (country == "Australia/New Zealand") { country = "New Zealand"; }
 
     let url = 'https://dyicn1e62j3n1.cloudfront.net/1.0/population/' + year + '/' + country + '/?format=jsonp';
-    console.log("Created URL from user Input: " + url);
+    //////console.log("Created URL from user Input: " + url);
     $.ajax({
         type: "GET",
         url: url,
@@ -969,7 +978,7 @@ function submitPopulationRequest() {
             
         },
         error: function (errorResult) {
-            console.log('ERROR: ', errorResult.statusText);
+            //////console.log('ERROR: ', errorResult.statusText);
 
             if (errorResult.statusText == 'error') {
                 Swal.fire({
@@ -989,4 +998,51 @@ function submitPopulationRequest() {
     });
 
 }
+
+function render() {
+    let container = $('#population-chart');
+    let g = $('#pop-chart-g');
+    let svg = $('#pop-chart-svg');
+
+    /*x.range([0, width]);
+    y.range([height, 0]);*/
+
+    var offset = container.offset();
+    var width = container.width();
+    var height = container.height();
+
+    var centerX = (width + offset.left) / 2;
+    var centerY = (offset.top + height) / 2;
+
+    //////console.log('OFFSET: ', offset);
+    //////console.log('CONTAINER WIDTH: ' + width);
+    //////console.log('CONTAINER HEIGHT: ' + height);
+    //////console.log('CENTER X: ' + centerX);
+
+    if (offset.left == 0) {
+        svg.attr('width', width)
+            .attr('height', height)
+            .attr('viewBox', '-120 -40 ' + ((container.width() * 2) + (height - width)) + ' ' + container.height())
+            .attr('preserveAspectRatio', 'xMinYMin')
+
+        g.attr("transform", "translate(" + centerX + "," + container.height() / 2 + ")")
+    }
+    else {
+        svg.attr('width', width)
+            .attr('height', height)
+            .attr('viewBox', '-120 -20 ' + (container.width() * 2) + ' ' + container.height())
+            .attr('preserveAspectRatio', 'xMinYMin')
+
+        g.attr("transform", "translate(" + (((width / 2) + (centerX / 2)) - offset.left) + "," + container.height() / 2 + ")")
+    }
+    
+}
+
+$(window).resize(function () {
+    if (popChart != undefined) {
+        render();
+    }
+    
+});
+
 

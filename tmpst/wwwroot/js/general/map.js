@@ -64,7 +64,6 @@ function createClusterMap(data) {
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     
         var markers = locations.map(function (location, i) {
-            console.log('LOCATION ', location);
             let marker = new google.maps.Marker({
                 position: location.latlng,
                 label: labels[i % labels.length]

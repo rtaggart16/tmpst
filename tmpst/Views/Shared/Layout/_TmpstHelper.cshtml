@@ -133,6 +133,17 @@
                             </p>
                         </div>
                     </div>
+                    <div id="website-overview-desc-sect" style="display:none" class="row">
+                        <div class="col-12">
+                            <h6>What is it?</h6>
+                        </div>
+                        <div class="col-12">
+                            <p>
+                                The overview page allows you to view a list of descriptions for each section of tmpst. On this page, each of the sections of the website will have a small description
+                                as well as an image which represents the section. On this page you can also click the view PDF button and view the course specification as a PDF.
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 
             </div>
@@ -144,7 +155,7 @@
     let allDescSections = $('#overview-desc-sect').add($('#weather-desc-sect'))
         .add($('#earthquake-desc-sect')).add($('#population-desc-sect'))
         .add($('#pollution-desc-sect')).add($('#aboutus-desc-sect')).add($('#tutorial-desc-sect'))
-        .add($('#mortality-desc-sect')).add($('#news-desc-sect'));
+        .add($('#mortality-desc-sect')).add($('#news-desc-sect')).add($('#website-overview-desc-sect'));
 
     function showHelpModal() {
         let appendTitleText = '';
@@ -186,6 +197,10 @@
                 case 'mortality-page':
                     appendTitleText = 'Mortality Page';
                     $('#mortality-desc-sect').fadeIn(300);
+                    break;
+                case 'overview-desc-page':
+                    appendTitleText = 'Website Overview Page';
+                    $('#website-overview-desc-sect').fadeIn(300);
                     break;
             }
         }).promise().done(function () {
